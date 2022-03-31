@@ -1,12 +1,55 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+         <h:outputStylesheet library="css" name="Login.css"/>
+         <h:outputStylesheet library="css" name="primeflex.min.css"/>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Ahora si a Darle papi
+        <div id="top">
+
+            <div class="layout-topbar">
+                <h:graphicImage name="Images/logoUTEQ.png"  height="60px" class="p-mr-1" style="width: 55px; height: 55px;
+                                vertical-align: middle; margin-top: -1px"/>
+
+            </div>
+            <h:outputStylesheet name="header.css" library="css"/>
+        </div>
+
+        <div class="login-panel">
+
+                <div class="p-col-12 p-lg-12">
+
+                    <div class="p-col-12">
+                        <h2>Iniciar sesión</h2>
+                    </div>
+                    <div class="p-col-12">
+                        <div class="input-wrapper ui-input-icon-left">
+                            <i class="pi pi-user"/>
+                            <p:inputText type="text"/>
+                        </div>
+                    </div>
+                    <div class="p-col-12">
+                        <div class="input-wrapper ui-input-icon-left">
+                            <i class="pi pi-lock"/>
+                            <p:inputText type="password" />
+                        </div>
+                    </div>
+                    <div class="p-col-12 ">
+                        <p:commandButton value="Iniciar Sesión"></p:commandButton>
+
+                    </div>
+
+                </div>
+           
+        </div>
+
     </h:body>
 </html>
 
