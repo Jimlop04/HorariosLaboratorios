@@ -1,0 +1,61 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pa="http://primefaces.org/manhattan">
+
+    <div class="layout-topbar">
+        <a href="../Global/Principal.xhtml"  >
+            <p:graphicImage name="logoUTEQ.png" library="Images"
+                            style="width: 55px; height: 55px;
+                            vertical-align: middle; margin-top: -12px"/>
+        </a>
+        <div class="layout-topbar-menu-wrapper">        
+            <ul class="topbar-menu navbar">
+                <li class="menu">               
+                    <p:graphicImage name="avatar.png" library="Images"/>
+                    <span class="user">  <h:outputText value="Admin" style="font-size: 18px;"/></span>
+                    <div class="submenu">
+                        <ul style="width: 100%">
+                            <li>
+                                <a href="#">
+                                    <i class="pi pi-user"/>
+                                    <span>Perfil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="pi pi-cog"/>
+                                    <span>Ajustes</span>
+                                </a>
+                            </li>
+                            <li>
+                                <h:form>
+                                    <a>
+                                        <i class="pi pi-sign-out" />
+                                        <p:commandLink  style="margin-right:20px; text-decoration: none">
+                                            <h:outputText value="Salir" style="font-size: 18px;"/>
+                                        </p:commandLink> 
+                                    </a>
+                                </h:form>
+
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>	
+    <script>
+        var dd_main = document.querySelector(".menu");
+
+        dd_main.addEventListener("click", function () {
+            this.classList.toggle("active");
+        })
+    </script>
+
+    <h:outputStylesheet name="header.css" library="css"/>
+</ui:composition>
+

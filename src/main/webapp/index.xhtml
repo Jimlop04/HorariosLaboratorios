@@ -1,12 +1,47 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Ahora si a Darle papi
-    </h:body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Home</ui:define>
+    <ui:define name="content">
+        <div style="position: relative">
 
+
+            <div class="ui-panel-content" style="margin-top: auto">                
+                <p:graphicImage style="min-height:100px;
+                                min-width:100px;
+                                height:auto;
+                                width:auto;
+                                max-height:100%;
+                                max-width:100%;"  
+                                name="fondoUTEQ.jpg" 
+                                library="Images"/>  
+
+            </div>
+            <div class="left-side" style="float: right;position: absolute; left: 70%; top: 30px; z-index: 3;">
+                <h:form>
+                    <p:tab id="contact" title="Contact">
+                        <p:panel header="Entrada al Laboratorio">
+                     
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Usuario: *"/>
+                                <p:inputText  />
+
+                                <h:outputText value="Contraseña: *"/>
+                                <p:inputText />
+
+                                <p:commandButton value="Entrar" action="/View/Global/Principal" styleClass="ui-button-success">
+                                    
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                </h:form>
+            </div>
+
+        </div>
+        <h:outputStylesheet name="home.css" library="css"/>
+    </ui:define>
+</ui:composition>
