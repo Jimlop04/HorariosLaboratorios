@@ -1,0 +1,112 @@
+#principal {
+    text-align: justify;
+    margin: 0.5rem 10rem;
+}
+#second {
+    margin-top: 2rem
+}
+h1, h2{
+    color: #ffffff
+}
+.crmargin {
+    margin: 0.5rem
+}
+
+.container {
+    width: 95%;
+    margin: auto;
+    padding-top: 2rem;
+}
+
+
+body{
+    background:#eee;
+}
+
+.card-box {
+    position: relative;
+    color: #fff;
+    padding: 20px 10px 40px;
+    margin: 20px 0px;
+}
+.card-box:hover {
+    text-decoration: none;
+    color: #f1f1f1;
+}
+.card-box:hover .icon i {
+    font-size: 100px;
+    size: 50px;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+.card-box .inner {
+    padding: 5px 10px 0 10px;
+}
+.card-box h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    padding: 0;
+    text-align: left;
+}
+.card-box p {
+    font-size: 15px;
+}
+.card-box .icon {
+    position: absolute;
+    top: auto;
+    bottom: 5px;
+    right: 5px;
+    z-index: 0;
+    font-size: 72px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.card-box .icon i{
+    font-size: 50px;
+}
+.card-box .card-box-footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 3px 0;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-decoration: none;
+}
+.card-box .card-box-footer i{
+    padding-left: 2px;
+}
+.card-box:hover .card-box-footer {
+    background: rgba(0, 0, 0, 0.3);
+}
+.bg-blue {
+    background-color: #CA84F5 !important;
+}
+.bg-green {
+    background-color: #028A0F!important;
+}
+
+
+.Fondo #header {
+    background-color: #633ea5;
+    background: url("#{resource['manhattan-layout:images/landing/manhattan-silhouette.svg']}") no-repeat #633ea5;
+    background-position: center bottom;
+    height: 300px;
+}
+.Fondo #Contacto{
+    padding-top: 2%;
+    padding-left: 10%;
+    color: #ffffff;
+}
+.Fondo #Contacto h2{
+    color: #ffffff;
+}
+
+@media (max-width: 800px) {
+    .container {
+        margin-top: 6%;
+    }
+}

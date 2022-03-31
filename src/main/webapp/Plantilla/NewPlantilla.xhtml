@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+
+            <div class="layout-topbar">
+                <h:graphicImage name="Images/logoUTEQ.png"  height="60px" class="p-mr-1" style="width: 55px; height: 55px;
+                                vertical-align: middle; margin-top: -1px"/>
+
+                <div class="layout-topbar-menu-wrapper">        
+                    <ul class="topbar-menu navbar">
+                        <li class="menu">  
+                            <p:graphicImage name="Images/avatar.png" />
+                            <span class="user">  <h:outputText style="font-size: 18px;"/></span>
+                            <div class="submenu">
+                                <ul style="width: 100%">
+                                    <li>
+                                        <a href="#">
+                                            <i class="pi pi-user"/>
+                                            <span>Perfil</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="pi pi-cog"/>
+                                            <span>Ajustes</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h:form>
+                                            <a>
+                                                <i class="pi pi-sign-out" />
+
+                                                <h:outputText value="Salir" style="font-size: 18px;"/>
+
+                                            </a>
+                                        </h:form>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+       
+
+    <h:outputStylesheet name="header.css" library="css"/>
+        </div>
+     
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Bottom</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

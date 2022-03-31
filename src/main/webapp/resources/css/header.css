@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none; 
+}
+
+.menu img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-top: -4px;
+}
+
+.menu span {
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 6px;
+}
+
+.menu .user {
+    color: #fff;
+}
+
+.navbar .submenu {
+    position: fixed;
+    right: 60px;
+    width: 300px;
+    top: 65px;
+    background: #fff;
+    border-radius: 5px;
+    display: none;
+    font-size: 18px;
+}
+
+.navbar .submenu{
+    padding: 6px 0;
+    width: 13%;
+    box-shadow: 3px 1px 6px rgba(0,0,0,0.3);
+}
+
+.navbar .submenu li{
+    margin-bottom: 2px;
+    color: #868686;
+    list-style: none;
+    padding: 6px 12px;
+    transition: all 0.3s;
+}
+
+.navbar .submenu li a{
+    color: #000;
+}
+
+.navbar .submenu li a span{
+    font-weight: 300;
+}
+
+.navbar .submenu li:hover {
+    background: #dddddd
+}
+
+.navbar .menu.active .submenu{
+    display: flex;
+}

@@ -9,6 +9,28 @@
 
     <name>HorariosLaboratorios</name>
 
+
+    <repositories>
+        <!-- Repositorio de Maven de JBoss -->
+        <repository>
+            <id>maven2-repository.jboss.com</id>
+            <name>Jboss Repository for Maven</name>
+            <url>http://repository.jboss.com/maven2</url>
+        </repository>
+        <!-- Repositorio con el API y la implementación de JSF 2 -->
+        <repository>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2</url>
+        </repository>
+        <!-- Repositorio de Primefaces -->
+        <repository>
+            <id>prime-repo</id>
+            <name>Prime Technology Maven Repository</name>
+            <url>http://repository.prime.com.tr/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +48,22 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.0.2-b10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.0.2-b10</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+ 
 
         <dependency>
             <groupId>org.primefaces</groupId>
