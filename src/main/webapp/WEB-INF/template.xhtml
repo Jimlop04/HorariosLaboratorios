@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="en">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+        </f:facet>
+        <title><ui:insert name="title">PrimeFaces Manhattan</ui:insert></title>
+        <!-- Los siguientes archivos no son reconocidos -->
+        <h:outputScript name="js/layout.js" library="manhattan-layout"/>
+        <h:outputScript name="js/prism.js" library="manhattan-layout"/>
+        <ui:insert name="head"/>
+    </h:head>
+
+    <h:body styleClass="">
+        <div class="layout-wrapper ">
+            <div class="layout-main">
+                <ui:include src="./HeaderInicio.xhtml"></ui:include>
+                <div class="layout-content">
+                    <ui:insert name="content">
+                    </ui:insert>
+                </div>
+               
+            </div>
+        </div>
+
+        <h:outputStylesheet name="css/primeicons.css" library="manhattan-layout"/>
+        <h:outputStylesheet name="css/primeflex.min.css" library="manhattan-layout"/>
+        <h:outputStylesheet name="css/layout-deeppurple-teal.css" library="manhattan-layout"/>
+    </h:body>
+
+</html>

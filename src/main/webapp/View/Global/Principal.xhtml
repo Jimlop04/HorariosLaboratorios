@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/InicioTemplate.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
+    <ui:define name="content">  
+        <div class="container">
+            <div class="p-grid">
+
+                <ui:fragment >
+                    <div class="p-col-12 p-lg-6 p-xl-3">
+                        <a href="../contabilidad/asientos.xhtml" >
+                            <div class="card-box bg-blue"> 
+                                <div class="inner">
+                                    <h3> Contabilidad </h3>
+                                    <p> Sistema de control y registro contable</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="pi pi-book" aria-hidden="true" ></i>
+                                </div>
+                                <div class="card-box-footer">Ingresar 
+                                    <i class="pi pi-arrow-circle-right"/>
+                                </div>
+                            </div>                        
+                        </a>
+                    </div>
+                </ui:fragment>
+
+                <ui:fragment >
+                    <div class="p-col-12 p-lg-6 p-xl-3">
+                        <a href="../activos_fijos/ActivosTangibles.xhtml">
+                            <div class="card-box bg-orange">
+                                <div class="inner">
+                                    <h3> Activos Fijos </h3>
+                                    <p> Detalles de activos tanjibles e intanjibles </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="pi pi-home" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-box-footer">Ingresar
+                                    <i class="pi pi-arrow-circle-right"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </ui:fragment>
+
+                <ui:fragment >
+                    <div class="p-col-12 p-lg-6 p-xl-3">
+                        <a href="../Seguridad/administrativePanel.xhtml" >
+                            <div class="card-box bg-orange">
+                                <div class="inner">
+                                    <h3> Administración </h3>
+                                    <p> Descripción </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="pi pi-sitemap"></i>
+                                </div>
+                                <div class="card-box-footer">Ingresar
+                                    <i class="pi pi-arrow-circle-right"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </ui:fragment>            
+            </div>
+        </div>
+        <h:outputStylesheet name="home.css" library="css"/>
+    </ui:define>
+
+</ui:composition>
+
