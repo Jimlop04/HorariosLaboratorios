@@ -4,11 +4,25 @@
     padding: 10px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    width: 350px;
+    width: 380px;
+    height: 31%;
     background-color: #ffffff;
     position: absolute;
     left: 60%;
     top: 2%;}
+
+.login-Index-imagen {
+    border: 5px solid #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    position: absolute;
+ 
+    left: 17%;
+    top: 2%;
+    
+   
+
+}
 
 .fondo-imagen{
 
