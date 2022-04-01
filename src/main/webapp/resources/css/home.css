@@ -6,7 +6,7 @@
     margin-top: 2rem
 }
 h1, h2{
-    color: #ffffff
+    color:#0a0a0a
 }
 .crmargin {
     margin: 0.5rem
@@ -83,7 +83,7 @@ body{
     background: rgba(0, 0, 0, 0.3);
 }
 .bg-blue {
-    background-color: #CA84F5 !important;
+    background-color: #07a824!important;
 }
 .bg-green {
     background-color: #028A0F!important;

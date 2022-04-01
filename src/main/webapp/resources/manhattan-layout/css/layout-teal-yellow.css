@@ -804,7 +804,7 @@ a {
   background: #f2f2f7;
 }
 .layout-wrapper.layout-light .layout-sidebar .layout-menu > li > a:hover {
-  background-color: #d9d9de;
+  background-color: #07a824;
 }
 .layout-wrapper.layout-light .layout-sidebar .layout-menu > li.active-menuitem > a {
   color: #2A92B8;
@@ -814,14 +814,14 @@ a {
   background-color: #2A92B8;
 }
 .layout-wrapper.layout-light .layout-sidebar .layout-menu > li.active-menuitem > a:hover {
-  background-color: #d9d9de;
+  background-color: #07a824;
 }
 .layout-wrapper.layout-light .layout-sidebar .layout-menu li > a {
   color: #575867;
 }
 .layout-wrapper.layout-light .layout-sidebar .layout-menu li > a i:first-child {
   color: #575867;
-  background-color: #d9d9de;
+  background-color: #07a824;
 }
 .layout-wrapper.layout-light .layout-sidebar .layout-menu li.active-menuitem {
   background-color: #ffffff;
@@ -833,7 +833,7 @@ a {
   background-color: #ffffff;
 }
 .layout-wrapper.layout-light .layout-sidebar .layout-menu li ul li > a:hover {
-  background-color: #d9d9de;
+  background-color: #07a824;
 }
 
 .layout-wrapper .layout-main {

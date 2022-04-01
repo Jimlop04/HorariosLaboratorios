@@ -1,11 +1,21 @@
 
-    .login-panel {
-        width: 450px;
-        background-color: #ffffff;
-        position: absolute;
-        left: 75%;
-        top: 10%;}
-    
- 
+.login-Index {
+    border: 2px solid #fff;
+    padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    width: 350px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 60%;
+    top: 2%;}
 
-       
+.fondo-imagen{
+
+    max-width: 100%;
+}
+
+
+
+
+
