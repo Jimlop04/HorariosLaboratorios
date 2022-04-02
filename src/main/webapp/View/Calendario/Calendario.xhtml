@@ -10,13 +10,18 @@
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
             <ui:define name="content">
-                 <ui:include src="./SubHeaderCalendario.xhtml"/>
-                 <h:form id="form" style="margin-top: 3%">
-                    
-                     <div class="card">
-                         
-                     </div>
-                 </h:form>
+                <ui:include src="./SubHeaderCalendario.xhtml"/>
+                <h:form id="form" style="margin-top: 3%">
+                    <div class="card">
+                        <div class="p-col-12 p-lg-4">
+                            <div class="p-col-12">
+                                <p:panel header="Calendar" style="height:100%">
+                                    <p:schedule  value="#{calendarMB.eventModel}"/>
+                                </p:panel>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
