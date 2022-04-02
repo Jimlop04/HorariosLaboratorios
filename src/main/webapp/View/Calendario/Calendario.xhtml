@@ -9,14 +9,46 @@
 
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+            <ui:define name="head">
+                <h:outputScript name="js/chart.js" library="demo" />
+                <script type="text/javascript">
+                    $(function () {
+                        var ordersChart = new Chart(document.getElementById("sales-chart").getContext('2d'), {
+                            type: 'line',
+                            data: {
+                                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                datasets: [
+                                    {
+                                        label: 'First Dataset',
+                                        data: [65, 59, 80, 81, 56, 55, 40],
+                                        fill: false,
+                                        borderColor: '#FFC107'
+                                    },
+                                    {
+                                        label: 'Second Dataset',
+                                        data: [28, 48, 40, 19, 86, 27, 90],
+                                        fill: false,
+                                        borderColor: '#03A9F4'
+                                    }
+                                ]
+                            }
+                        });
+                    });
+                </script>
+            </ui:define>
             <ui:define name="content">
                 <ui:include src="./SubHeaderCalendario.xhtml"/>
                 <h:form id="form" style="margin-top: 3%">
-                    <div class="card">
-                        <div class="p-col-12 p-lg-4">
-                            <div class="p-col-12">
-                                <p:panel header="Calendar" style="height:100%">
-                                   <p:schedule  value="#{calendarMB.eventModel}" />
+                    <div class="login-panel">
+                        <div class="p-grid ">
+                                <div class="p-col-12 p-lg-12 right-panel-scroll-content ui-fluid">
+                                <p:panel header="Calendario" style="height:100%;">
+                                    <p:schedule 
+                                        value="#{calendarMB.eventModel}" 
+                                        draggable="true" 
+                                        resizable="true" 
+                                        showWeekends="true"
+                                        leftHeaderTemplate="prev next today"/>
                                 </p:panel>
                             </div>
                         </div>
