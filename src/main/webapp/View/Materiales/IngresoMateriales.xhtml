@@ -2,9 +2,9 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/InicioTemplate.xhtml"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
     <ui:define name="content">  
@@ -124,24 +124,40 @@
                         </p:dialog>
 
                     </p:toolbarGroup>
-
-
-
-
-
-
                 </div>
 
                 <div class="card" style="margin-top: 5px;">
 
                     <p:toolbarGroup>
-            
-                            <h:form>
-                               
 
-                               
-                            </h:form>
-           
+                        <h:form>
+
+                             <div class="p-grid p-justify-around">
+                                                <p:dataTable lazy="true"  editable="true" reflow="true"
+                                                             editInitEvent="dblclick" editMode="cell"
+                                                            >
+                                                    <p:column headerText="Nombre" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Descripcion" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+
+                                                    <p:column headerText="Precio" filterStyle="display : none">
+                                                        <h:outputText />
+                                                    </p:column>
+                                                    <p:column headerText="Cantidad Requerida" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Total" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+
+                                                </p:dataTable>
+                                            </div>
+
+                        </h:form>
+
 
                     </p:toolbarGroup> 
                 </div>
