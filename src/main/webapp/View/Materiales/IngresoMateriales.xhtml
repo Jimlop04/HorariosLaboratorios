@@ -42,70 +42,56 @@
                                 <div class="p-formgrid p-grid">
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Codigo" for="@next"/>
-                                        <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}"
-                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                          <p:inputText 
+                                            id="codMaterial" 
+                                            value="#{autoCompleteView.txt1}" 
+                                            placeholder="identificador" 
+                                            style="background: #5bc75d;
+                                            color:#000000"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Nombre" for="@next"/>
-                                        <p:autoComplete id="acMinLength" minQueryLength="3" value="#{autoCompleteView.txt2}"
-                                                        completeMethod="#{autoCompleteView.completeText}" effect="fade" scrollHeight="250"/>
+                                       <p:inputText 
+                                            maxlength="25"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Unidad de Medida" for="@next"/>
-                                        <p:autoComplete id="acDelay" queryDelay="1000" value="#{autoCompleteView.txt3}"
-                                                        completeMethod="#{autoCompleteView.completeText}" effect="blind" scrollHeight="250"/>
+                                         <p:inputText 
+                                            maxlength="25"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Descripcion" for="@next"/>
-                                        <p:autoComplete id="acMaxResults" maxResults="5" value="#{autoCompleteView.txt4}"
-                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                         <p:inputText 
+                                            maxlength="25"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Cantidad" for="@next"/>
-                                        <p:autoComplete id="acForce" forceSelection="true" value="#{autoCompleteView.txt5}"
-                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                         <p:inputText 
+                                            maxlength="5"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Precio" for="@next"/>
-                                        <p:autoComplete id="cache" cache="true" cacheTimeout="30000" value="#{autoCompleteView.txt7}"
-                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                         <p:inputText 
+                                            maxlength="25"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Laboratorio" for="@next"/>
-                                        <p:autoComplete id="itemTip" value="#{autoCompleteView.country3}"
-                                                        completeMethod="#{autoCompleteView.completeCountry}"
-                                                        var="country" itemLabel="#{country.name}" itemValue="#{country}"
-                                                        converter="#{countryConverter}" scrollHeight="250">
-                                            <f:facet name="itemtip">
-                                                <h:panelGrid columns="2" cellpadding="5">
-                                                    <f:facet name="header">
-                                                        <span class="flag flag-#{country.code}" style="width: 30px; height: 20px"/>
-                                                    </f:facet>
-
-                                                    <h:outputText value="Name"/>
-                                                    <h:outputText value="#{country.name}"/>
-
-                                                    <h:outputText value="Code"/>
-                                                    <h:outputText value="#{country.code}"/>
-                                                </h:panelGrid>
-                                            </f:facet>
-                                        </p:autoComplete>
+                                        <p:inputText 
+                                            maxlength="25"></p:inputText>
                                     </div>
-
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Categoria" for="@next"/>
-                                        <p:autoComplete id="group" value="#{autoCompleteView.country4}"
-                                                        completeMethod="#{autoCompleteView.completeCountry}"
-                                                        var="country" itemLabel="#{country.name}" itemValue="#{country}"
-                                                        converter="#{countryConverter}" forceSelection="true"
-                                                        groupBy="#{autoCompleteView.getCountryGroup(country)}" escape="false" scrollHeight="250"/>
+                                         <p:inputText 
+                                            maxlength="25"></p:inputText>
                                     </div>
+
+
 
                                 </div>
 
@@ -132,29 +118,47 @@
 
                         <h:form>
 
-                             <div class="p-grid p-justify-around">
-                                                <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                             editInitEvent="dblclick" editMode="cell"
-                                                            >
-                                                    <p:column headerText="Nombre" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Descripcion" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
+                            <div class="p-grid p-justify-around">
+                                <p:dataTable lazy="true"  editable="true" reflow="true"
+                                             editInitEvent="dblclick" editMode="cell"
+                                             >
 
-                                                    <p:column headerText="Precio" filterStyle="display : none">
-                                                        <h:outputText />
-                                                    </p:column>
-                                                    <p:column headerText="Cantidad Requerida" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Total" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
+                                    <f:facet name="header">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            <span style="font-size: 24px">Materiales de Laboratorios</span>
+                                            <span class="filter-container ui-input-icon-left">
+                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                            </span>
+                                        </div>
+                                    </f:facet>
 
-                                                </p:dataTable>
-                                            </div>
+                                    <p:column headerText="Codigo" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Nombre" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Unidad de Medida" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Descripcion" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Cantidad" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Precio" filterStyle="display : none">
+                                        <h:outputText />
+                                    </p:column>
+                                    <p:column headerText="Laboratorio" filterStyle="display : none">
+                                        <h:outputText />
+                                    </p:column>
+                                    <p:column headerText="Categoria" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+
+                                </p:dataTable>
+                            </div>
 
                         </h:form>
 
