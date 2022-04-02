@@ -37,6 +37,7 @@
     </properties>
     
     <dependencies>
+    
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>

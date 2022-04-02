@@ -1,0 +1,162 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/InicioTemplate.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
+    <ui:define name="content">  
+        <div class="barra-navegacion">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="Materiales"/>
+                    <p:menuitem value="Agregar Materiales"/>
+                </p:breadCrumb>
+
+                <div class="card" style="margin-top: 5px;">
+                    <!-- Botones Principales de Materiales -->
+                    <p:toolbarGroup>
+                        <!-- Boton Agregar nuevo material -->
+                        <p:commandButton 
+                            value=" Agregar Material" 
+                            styleClass="ui-button-primary" 
+                            icon="pi pi-plus" 
+                            process="@this"
+                            oncomplete="PF('agregarMaterial').show()">
+                        </p:commandButton>
+
+                        <!-- Dialogo Agregar Nuevo Material  -->
+                        <p:dialog header="Agregar Material" 
+                                  showEffect="fade" 
+                                  modal="true"
+                                  widgetVar="agregarMaterial"
+                                  responsive="true" 
+                                  width="55%"
+                                  draggable="false" 
+                                  height="200" >
+                            <p:outputPanel 
+                                id="manage-Material-form" 
+                                class="ui-fluid">
+                                <div class="p-formgrid p-grid">
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Codigo" for="@next"/>
+                                        <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}"
+                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Nombre" for="@next"/>
+                                        <p:autoComplete id="acMinLength" minQueryLength="3" value="#{autoCompleteView.txt2}"
+                                                        completeMethod="#{autoCompleteView.completeText}" effect="fade" scrollHeight="250"/>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Unidad de Medida" for="@next"/>
+                                        <p:autoComplete id="acDelay" queryDelay="1000" value="#{autoCompleteView.txt3}"
+                                                        completeMethod="#{autoCompleteView.completeText}" effect="blind" scrollHeight="250"/>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Descripcion" for="@next"/>
+                                        <p:autoComplete id="acMaxResults" maxResults="5" value="#{autoCompleteView.txt4}"
+                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Cantidad" for="@next"/>
+                                        <p:autoComplete id="acForce" forceSelection="true" value="#{autoCompleteView.txt5}"
+                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Precio" for="@next"/>
+                                        <p:autoComplete id="cache" cache="true" cacheTimeout="30000" value="#{autoCompleteView.txt7}"
+                                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Laboratorio" for="@next"/>
+                                        <p:autoComplete id="itemTip" value="#{autoCompleteView.country3}"
+                                                        completeMethod="#{autoCompleteView.completeCountry}"
+                                                        var="country" itemLabel="#{country.name}" itemValue="#{country}"
+                                                        converter="#{countryConverter}" scrollHeight="250">
+                                            <f:facet name="itemtip">
+                                                <h:panelGrid columns="2" cellpadding="5">
+                                                    <f:facet name="header">
+                                                        <span class="flag flag-#{country.code}" style="width: 30px; height: 20px"/>
+                                                    </f:facet>
+
+                                                    <h:outputText value="Name"/>
+                                                    <h:outputText value="#{country.name}"/>
+
+                                                    <h:outputText value="Code"/>
+                                                    <h:outputText value="#{country.code}"/>
+                                                </h:panelGrid>
+                                            </f:facet>
+                                        </p:autoComplete>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Categoria" for="@next"/>
+                                        <p:autoComplete id="group" value="#{autoCompleteView.country4}"
+                                                        completeMethod="#{autoCompleteView.completeCountry}"
+                                                        var="country" itemLabel="#{country.name}" itemValue="#{country}"
+                                                        converter="#{countryConverter}" forceSelection="true"
+                                                        groupBy="#{autoCompleteView.getCountryGroup(country)}" escape="false" scrollHeight="250"/>
+                                    </div>
+
+                                </div>
+
+                            </p:outputPanel>
+                            <f:facet name="footer">
+                                <p:commandButton 
+                                    value="Guardar" 
+                                    icon="pi pi-check" 
+                                    styleClass="ui-button-primary">
+                                </p:commandButton>
+                                <p:commandButton 
+                                    value="Cancelar" 
+                                    icon="pi pi-times"
+                                    styleClass="ui-button-danger"/>
+                            </f:facet>
+                        </p:dialog>
+
+                    </p:toolbarGroup>
+
+
+
+
+
+
+                </div>
+
+                <div class="card" style="margin-top: 5px;">
+
+                    <p:toolbarGroup>
+            
+                            <h:form>
+                               
+
+                               
+                            </h:form>
+           
+
+                    </p:toolbarGroup> 
+                </div>
+
+            </h:form>
+
+
+
+
+        </div>   
+
+        <h:outputStylesheet name="home.css" library="css"/>
+        <h:outputStylesheet name="main.css" library="css"/>
+    </ui:define>
+
+
+
+</ui:composition>

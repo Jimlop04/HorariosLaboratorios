@@ -1,7 +1,7 @@
 * {
     margin: 0px;
     font-family: 'Roboto';
-    
+
 }
 
 .container {
@@ -14,7 +14,7 @@
     color: #E2EAF6;
     margin-bottom: 10px;
     padding-left: 20px;
-    
+
 }
 
 .contenedor-flex {
@@ -23,7 +23,7 @@
     background-color: white;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .formulario {
@@ -43,7 +43,7 @@ button.ui-button {
     min-width: 700px;
     display: flex;
     flex-direction: row;
-    
+
     justify-content: flex-end;
     align-items: center;
     margin: 20px;
@@ -62,6 +62,15 @@ button.ui-button {
     font-size: 27px;
     font-weight: bold;
 }
+
+.barra-navegacion {
+    width: 99%;
+    margin: 0px 0px 20px;
+    padding: 8px 15px;
+    background: #F5F5F5;
+
+}
+
 
 
 
