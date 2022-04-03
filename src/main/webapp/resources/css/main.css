@@ -71,6 +71,19 @@ button.ui-button {
 
 }
 
+.Calendario-PD{
+    width:47%;
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+.Calendario-PI{
+    width:50%;
+    float: left;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
 
 
 
