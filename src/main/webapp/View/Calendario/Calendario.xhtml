@@ -1,64 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                template="../../WEB-INF/InicioTemplate.xhtml">
-    <ui:define name="title">Horarios Asignados</ui:define>
-    <ui:define name="head">
-        <h:outputScript name="js/chart.js" library="demo" />
-        <script type="text/javascript">
-            $(function () {
-                var ordersChart = new Chart(document.getElementById("sales-chart").getContext('2d'), {
-                    type: 'line',
-                    data: {
-                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                        datasets: [
-                            {
-                                label: 'First Dataset',
-                                data: [65, 59, 80, 81, 56, 55, 40],
-                                fill: false,
-                                borderColor: '#FFC107'
-                            },
-                            {
-                                label: 'Second Dataset',
-                                data: [28, 48, 40, 19, 86, 27, 90],
-                                fill: false,
-                                borderColor: '#03A9F4'
+    <h:body>
+        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+            <ui:define name="head">
+                <h:outputScript name="js/chart.js" library="demo" />
+                <script type="text/javascript">
+                    $(function () {
+                        var ordersChart = new Chart(document.getElementById("sales-chart").getContext('2d'), {
+                            type: 'line',
+                            data: {
+                                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                datasets: [
+                                    {
+                                        label: 'First Dataset',
+                                        data: [65, 59, 80, 81, 56, 55, 40],
+                                        fill: false,
+                                        borderColor: '#FFC107'
+                                    },
+                                    {
+                                        label: 'Second Dataset',
+                                        data: [28, 48, 40, 19, 86, 27, 90],
+                                        fill: false,
+                                        borderColor: '#03A9F4'
+                                    }
+                                ]
                             }
-                        ]
-                    }
-                });
-            });
-        </script>
-    </ui:define>
-    <ui:define name="content">
-        <ui:include src="./SubHeaderCalendario.xhtml"/>
-        <div class="p-grid panel-demo">
-            <div class="p-col-12">
-                <div class="card">
-                    <h:form id="form">
-                        <div class="p-grid p-dir-col">
-                            <div class="p-col">
-                                <div class="card grid-item" > 
-                                    <div class="p-mb-3 p-text-center"><h1>Calendario</h1></div> 
-                                    <p:panel style="height:100%;">
-                                        <p:schedule 
-                                            value="#{calendarMB.eventModel}" 
-                                            draggable="true" 
-                                            resizable="true" 
-                                            showWeekends="true"
-                                            leftHeaderTemplate="prev next today"/>
-                                    </p:panel>
-                                </div>
+                        });
+                    });
+                </script>
+            </ui:define>
+            <ui:define name="content">
+                <ui:include src="./SubHeaderCalendario.xhtml"/>
+                <h:form id="form" style="margin-top: 3%">
+                    <div class="login-panel">
+                        <div class="p-grid ">
+                                <div class="p-col-12 p-lg-12 right-panel-scroll-content ui-fluid">
+                                <p:panel header="Calendario" style="height:100%;">
+                                    <p:schedule 
+                                        value="#{calendarMB.eventModel}" 
+                                        draggable="true" 
+                                        resizable="true" 
+                                        showWeekends="true"
+                                        leftHeaderTemplate="prev next today"/>
+                                </p:panel>
                             </div>
                         </div>
-                    </h:form>
-                </div>
-            </div>
-
-        </div>
-    </ui:define>
-</ui:composition>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
 
