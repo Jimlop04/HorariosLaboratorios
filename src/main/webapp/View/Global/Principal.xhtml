@@ -8,6 +8,26 @@
 
     <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
     <ui:define name="content">  
+        <div  >
+           
+            <div id="nonAjaxLoad" > 
+                <p:graphicImage style="
+                                width: 60px;
+                                height: 60px;" 
+                                name="ajax-document-loader.gif" 
+                                library="Images" />
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#nonAjaxLoad').hide();
+            });
+
+            $(window).bind('beforeunload', function () {
+                $('#nonAjaxLoad').show();
+            });
+        </script>
         <div class="container">
             <div class="p-grid">
 
@@ -34,7 +54,7 @@
 
                 <ui:fragment >
                     <div class="p-col-12 p-lg-6 p-xl-3">
-                            <a href="../Materiales/IngresoMateriales.xhtml">
+                        <a href="../Materiales/IngresoMateriales.xhtml">
                             <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3> Materiales</h3>
@@ -95,7 +115,7 @@
                 </ui:fragment>   
                 <ui:fragment >
                     <div class="p-col-12 p-lg-6 p-xl-3">
-                        <a href="../Seguridad/administrativePanel.xhtml" >
+                        <a href="../Laboratorios/Laboratorios.xhtml" >
                             <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3> Laboratorios</h3>

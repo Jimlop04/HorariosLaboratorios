@@ -115,3 +115,15 @@ body{
     height: 70px;
     margin: 4px 4px;
 }
+#nonAjaxLoad{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    width: 1%;
+    height: 1%;
+    
+}
