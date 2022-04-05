@@ -1,0 +1,45 @@
+body {
+  .ui-spinner {
+
+    .ui-spinner-input {
+      padding-right: $buttonIconOnlyWidth + $inlineSpacing;
+    }
+
+    .ui-spinner-button.ui-button {
+      border-radius: 0;
+      width: $buttonIconOnlyWidth;
+
+      .ui-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -1 * $iconSize / 2;
+        margin-top: -1 * $iconSize / 2;
+      }
+
+      &.ui-spinner-up {
+        border-top-right-radius: $borderRadius;
+
+        .ui-icon {
+          @include icon_override ("\e933");
+        }
+      }
+
+      &.ui-spinner-down {
+        border-bottom-right-radius: $borderRadius;
+
+        .ui-icon {
+          @include icon_override ("\e930");
+        }
+      }
+    }
+  }
+
+  .ui-fluid {
+    .ui-spinner {
+      .ui-spinner-input {
+        padding-right: $buttonIconOnlyWidth + $inlineSpacing;
+      }
+    }
+  }
+}

@@ -21,21 +21,21 @@
         <ui:insert name="head"/>
     </h:head>
 
-    <h:body styleClass="">
-        <div class="layout-wrapper ">
+    <h:body >
+        <div class="layout-wrapper" >
             <div class="layout-main">
                 <ui:include src="./HeaderInicio.xhtml"></ui:include>
                 <div class="layout-content">
                     <ui:insert name="content">
                     </ui:insert>
                 </div>
-               
+                <div class="layout-main-mask"></div>
             </div>
         </div>
-
-        <h:outputStylesheet name="css/primeicons.css" library="manhattan-layout"/>
-        <h:outputStylesheet name="css/primeflex.min.css" library="manhattan-layout"/>
-        <h:outputStylesheet name="css/layout-deeppurple-teal.css" library="manhattan-layout"/>
+  <h:outputStylesheet name="css/primeicons.css" library="manhattan-layout"/>
+    <h:outputStylesheet name="css/primeflex.min.css" library="manhattan-layout"/>
+    
+        <h:outputStylesheet library="manhattan-layout" name="css/layout-green-purple.css"/>
     </h:body>
 
 </html>

@@ -20,7 +20,7 @@
 
     <h:body >
         
-        <div class="layout-wrapper layout-horizontal layout-light">
+        <div class="layout-wrapper">
             <div class="layout-main">
                 <ui:include src="./HeaderPrincipal.xhtml"/>
                 <div class="layout-content">
@@ -30,9 +30,14 @@
             </div>
         </div>
         
-        <h:outputStylesheet name="css/primeicons.css" library="manhattan-layout"/>
-        <h:outputStylesheet name="css/primeflex.min.css" library="manhattan-layout"/>
-        <h:outputStylesheet name="css/layout-deeppurple-teal.css" library="manhattan-layout"/>
+       <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <h:outputStylesheet library="css" name="Login.css"/>
+        <h:outputStylesheet name="home.css" library="css"/>
+        <h:outputStylesheet name="main.css" library="css"/>
+        <h:outputStylesheet name="header.css" library="css"/>
+        <h:outputStylesheet library="manhattan-layout" name="css/primeflex.min.css"/>
+        <h:outputStylesheet library="manhattan-layout" name="css/layout-green-purple.css"/>
+        <h:outputStylesheet library="manhattan-layout" name="css/primeicons.css"/>
     </h:body>
 
 </html>

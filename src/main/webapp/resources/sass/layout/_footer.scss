@@ -1,0 +1,32 @@
+.layout-wrapper {
+    .layout-main {
+        .layout-footer {
+            padding: 16px 24px;
+            border: 1px solid #dee4e9;
+            background: #ffffff;
+
+            img {
+                margin-top: 5px;
+            }
+
+            .layout-footer-icons {
+                float: right;
+
+                a {
+                    font-size: 24px;
+                    margin-left: 28px;
+                    display: inline-block;
+
+                    i {
+                        font-size: 18px;
+                        color: $textColor;
+
+                        &:hover {
+                            color: $textSecondaryColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

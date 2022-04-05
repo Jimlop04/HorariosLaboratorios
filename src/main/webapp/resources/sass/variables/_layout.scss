@@ -1,0 +1,60 @@
+$fontFamily:"Source Sans Pro","Helvetica Neue",sans-serif !default;
+$fontSize:14px !default;
+$textColor:#333333 !default;
+$textSecondaryColor:lighten($textColor,25%) !default;
+$borderRadius:2px !default;
+$dividerColor:#d8dae2 !default;
+$transitionDuration:.3s !default;
+$animationDuration:.4s !default;
+$animationTimingFunction:cubic-bezier(.05,.74,.2,.99) !default;
+$overlayShadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12) !default;
+$tabletBreakpoint:991px !default;
+$phoneBreakpoint:576px !default;
+
+$blue:#147df0 !default;
+$pink:#ed3c76 !default;
+$green:#3e9018 !default;
+$red:#da2f31 !default;
+$orange:#ffb200 !default;
+$teal:#599597 !default;
+$purple:#633ea5 !default;
+$black:#000000 !default;
+$yellow:#ffd644 !default;
+
+$bodyBgColor:#f4f3f8 !default;
+$overlayBorder:0 none !default;
+
+//topbar
+$topbarBgColor:#ffffff !default;
+$topbarIconColor:#b6b7c2 !default;
+$topbarIconHoverColor:#7f8087 !default;
+$topbarIconActiveColor:#48494d !default;
+$topbarInputBorderColor:#d8dae2 !default;
+$topbarSubmenuHoverBgColor:#f1f2f7 !default;
+$topbarMobileMenuBgColor:#ffffff !default;
+
+// config
+$rightSidebarWidth: 16rem !default;
+
+//dark sidebar - default
+$sidebarBgColor:#2c2d3c !default;
+$menuitemIconBgColor:#1d1d26 !default;
+$menuitemTextColor:#d9dae3 !default;
+$menuitemHoverBgColor:#1d1d26 !default;
+$submenuitemHoverBgColor:#242430 !default;
+$activeMenuitemBgColor:#17171e !default;
+$submenuBgColor:#17171e !default;
+
+//light sidebar
+$lightSidebarBgColor:#f2f2f7 !default;
+$lightSidebarMenuitemIconBgColor:#d9d9de !default;
+$lightSidebarMenuitemTextColor:#575867 !default;
+$lightSidebarMenuitemHoverBgColor:#d9d9de !default;
+$lightSidebarSubmenuitemHoverBgColor:#d9d9de !default;
+$lightSidebarActiveMenuitemBgColor:#ffffff !default;
+$lightSidebarSubmenuBgColor:#ffffff !default;
+
+//misc
+$rightPanelBgColor:#ffffff !default;
+$mobileBreakpoint:1280px !default;
+$contentMobileMaskBgColor:#ffffff !default;

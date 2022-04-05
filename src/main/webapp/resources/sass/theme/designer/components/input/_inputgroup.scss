@@ -1,0 +1,59 @@
+body {
+  .ui-inputgroup {
+    .ui-inputgroup-addon,
+    .ui-inputgroup-addon-checkbox {
+      padding: $inputPadding;
+      border-color: $inputGroupBorderColor;
+      background: $inputGroupBg;
+      color: $inputGroupIconColor;
+      min-width: $inputGroupAddonMinWidth;
+
+      &:first-child {
+        @include border-radius-left($borderRadius);
+      }
+
+      &:last-child {
+        @include border-radius-right($borderRadius);
+      }
+    }
+
+    button:first-child, input:first-child {
+      @include border-radius-left($borderRadius);
+    }
+
+    .ui-float-label:first-child input {
+      @include border-radius-left($borderRadius);
+    }
+
+    button:last-child, input:last-child {
+      @include border-radius-right($borderRadius);
+    }
+
+    .ui-float-label:last-child input {
+      @include border-radius-right($borderRadius);
+    }
+
+    > .ui-widget,
+    > .ui-float-label > .ui-widget {
+      border-radius: 0;
+
+      + .ui-inputgroup-addon {
+        border-left: 0 none;
+      }
+    }
+
+    .ui-inputgroup-addon-checkbox {
+      padding: 0;
+      position: relative;
+
+      .ui-chkbox {
+        vertical-align: baseline;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -1 * $checkboxHeight / 2;
+        margin-left: -1 * $checkboxWidth / 2;
+      }
+    }
+  }
+}

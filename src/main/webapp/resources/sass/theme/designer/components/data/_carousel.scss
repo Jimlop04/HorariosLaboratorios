@@ -1,0 +1,77 @@
+body {
+  .ui-carousel {
+    padding: 0;
+
+    .ui-carousel-header {
+      background: $panelHeaderBg;
+      color: $panelHeaderTextColor;
+      padding: $panelHeaderPadding;
+      border: $panelHeaderBorder;
+      margin: 0;
+      font-weight: $panelHeaderFontWeight;
+
+      .ui-carousel-header-title {
+        padding: 0;
+        width: auto;
+      }
+    }
+
+    .ui-carousel-footer {
+      background: $panelHeaderBg;
+      color: $panelHeaderTextColor;
+      padding: $panelHeaderPadding;
+      border: $panelHeaderBorder;
+      margin: 0;
+    }
+
+    .ui-carousel-viewport {
+      border: $panelContentBorder;
+      background: $panelContentBg;
+      color: $panelContentTextColor;
+      padding: 0;
+
+      .ui-carousel-item {
+        border: $panelContentBorder;
+      }
+    }
+
+    .ui-carousel-button {
+      margin: 0 0 0 $inlineSpacing;
+      position: relative;
+      top: 0.143em;
+      @include action-icon();
+
+      &.ui-carousel-next-button {
+        @include icon-override("\e901");
+      }
+
+      &.ui-carousel-prev-button {
+        @include icon-override("\e900");
+      }
+    }
+
+    .ui-carousel-dropdown, .ui-carousel-mobiledropdown {
+      margin: 0 $inlineSpacing 0 0;
+    }
+
+    .ui-carousel-page-links {
+      margin: 0 $inlineSpacing;
+      position: relative;
+      top: 0.143em;
+
+      .ui-carousel-page-link {
+        @include action-icon();
+        text-decoration: none;
+
+        &.ui-icon-radio-off {
+          @include icon_override("\e912");
+        }
+
+        &.ui-icon-radio-on {
+          @include icon_override("\e911");
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+}

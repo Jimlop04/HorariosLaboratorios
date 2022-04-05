@@ -1,0 +1,61 @@
+.layout-wrapper {
+  &.layout-light {
+    .layout-sidebar {
+      background: $lightSidebarBgColor;
+
+      .layout-menu {
+        > li {
+          > a {
+            &:hover {
+              background-color: $lightSidebarMenuitemHoverBgColor;
+            }
+          }
+
+          &.active-menuitem {
+            > a {
+              color: $menuitemActiveColor;
+
+              i:first-child {
+                color: $rootMenuitemActiveIconColor;
+                background-color: $menuitemActiveColor;
+              }
+
+              &:hover {
+                background-color: $lightSidebarMenuitemHoverBgColor;
+              }
+            }
+          }
+        }
+
+        li {
+          > a {
+            color: $lightSidebarMenuitemTextColor;
+
+            i:first-child {
+              color: $lightSidebarMenuitemTextColor;
+              background-color: $lightSidebarMenuitemIconBgColor;
+            }
+          }
+
+          &.active-menuitem {
+            background-color: $lightSidebarActiveMenuitemBgColor;
+
+            > a {
+              color: $menuitemActiveColor;
+            }
+          }
+
+          ul {
+            background-color: $lightSidebarSubmenuBgColor;
+
+            li {
+              > a:hover {
+                background-color: $lightSidebarSubmenuitemHoverBgColor;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

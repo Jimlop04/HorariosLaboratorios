@@ -1,0 +1,122 @@
+.layout-wrapper {
+    .layout-main {
+        .rightpanel-btn {
+            display: inline-block;
+            vertical-align: middle;
+            width: 24px;
+            height: 24px;
+            margin-top: -8px;
+            margin-left: 14px;
+
+            i {
+                font-size: 24px;
+                color: $topbarIconColor;
+                @include transition(all $transitionDuration);
+
+                &:hover {
+                    color: $topbarIconHoverColor;
+                }
+            }
+
+            &.rightpanel-btn-active {
+                i {
+                    @include rotate(180deg);
+                    color: $topbarIconActiveColor;
+                }
+            }
+        }
+    }
+
+    .layout-rightpanel {
+        position: fixed;
+        top: 64px;
+        height: 100%;
+        right: -240px;
+        width: 240px;
+        z-index: 999;
+        overflow: auto;
+        background-color: $rightPanelBgColor;
+        @include transition(right $transitionDuration);
+        @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.3));
+
+        .right-panel-scroll-content {
+            padding-bottom: 150px;
+        }
+
+        &.layout-rightpanel-active {
+            right: 0;
+            -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+            transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+
+        }
+
+        .layout-rightpanel-header {
+            background: url("\#{resource['manhattan-layout:images/dashboard/sidebar-image.jpg']}") no-repeat;
+            height: 118px;
+            padding: 14px;
+
+            .weather-day, .weather-date {
+                color: #ffffff;
+                left: 14px;
+                font-size: 18px;
+                font-weight: 700;
+                padding-bottom: 4px;
+            }
+        }
+
+        .layout-rightpanel-content {
+            padding: 14px;
+
+            h1 {
+                font-size: 18px;
+                margin: 0 0 4px 0;
+            }
+
+            h2 {
+                font-size: 16px;
+                margin: 0;
+                color: $textSecondaryColor;
+                font-weight: normal;
+            }
+
+            .weather-today {
+                text-align: center;
+                margin-top: 28px;
+
+                .weather-today-value {
+                    font-size: 36px;
+                    vertical-align: middle;
+                    margin-right: 14px;
+                }
+
+                img {
+                    vertical-align: middle;
+                }
+            }
+
+            .weekly-weather {
+                list-style-type: none;
+                margin: 28px 0 0 0;
+                padding: 0;
+
+                li {
+                    padding: 8px 14px;
+                    border-bottom: 1px solid #d8dae2;
+                    position: relative;
+
+                    .weekly-weather-value {
+                        position: absolute;
+                        right: 40px;
+                    }
+
+                    img {
+                        width: 24px;
+                        position: absolute;
+                        right: 0px;
+                        top: 4px;
+                    }
+                }
+            }
+        }
+    }
+}

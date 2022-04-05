@@ -1,0 +1,166 @@
+@media (max-width: $mobileBreakpoint) {
+    .layout-wrapper {
+        .layout-sidebar {
+            left: -270px;
+            width: 270px;
+            height: 100%;
+            top: 0;
+            -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+            transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+            @include transition(left $transitionDuration);
+            @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.3));
+        }
+
+        .layout-main {
+            margin-left: 0;
+            left: 0;
+            @include transition(left $transitionDuration);
+            -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+            transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+
+            .layout-topbar {
+                width: 100%;
+
+                .menu-btn {
+                    display: inline-block;
+                    margin-right: 14px;
+
+                    i {
+                        font-size: 24px;
+                    }
+                }
+
+                .layout-topbar-menu-wrapper {
+                    .topbar-menu-btn {
+                        display: inline-block;
+                    }
+
+                    .topbar-menu {
+                        display: none;
+                        -webkit-animation-duration: .5s;
+                        -moz-animation-duration: .5s;
+                        animation-duration: .5s;
+                        @include shadow(0 0 5px 0 rgba(0, 0, 0, 0.3));
+
+                        &.topbar-menu-active {
+                            position: fixed;
+                            top: 61px;
+                            right: 50px;
+                            width: 250px;
+                            display: block;
+                            padding: 8px 0;
+                            background-color: $topbarMobileMenuBgColor;
+
+                            > li {
+                                float: none;
+                                display: block;
+                                margin: 0;
+
+                                > a {
+                                    padding: 8px 14px;
+                                    display: block;
+
+                                    &:hover {
+                                        background-color: $topbarSubmenuHoverBgColor;
+                                    }
+
+                                    i {
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                    }
+
+                                    .topbar-item-name {
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                    }
+
+                                    .topbar-badge {
+                                        position: static;
+                                        float: right;
+                                    }
+                                }
+
+                                > ul {
+                                    position: static;
+                                    @include no-shadow();
+                                    padding: 0;
+                                    width: 100%;
+
+                                    a {
+                                        padding-left: 28px;
+                                    }
+                                }
+
+                                &.profile-item {
+                                    img {
+                                        display: none;
+                                    }
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+
+                .topbar-search {
+                    input {
+                        &:focus {
+                            width: 150px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.layout-mobile-active {
+            overflow: hidden;
+
+            .layout-sidebar {
+                left: 0;
+            }
+
+            .layout-main {
+                position: relative;
+                left: 270px;
+            }
+
+            .layout-main-mask {
+                z-index: 999998;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-color: $contentMobileMaskBgColor;
+                display: block;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                @include opacity(.5);
+            }
+        }
+    }
+    
+    body {
+        &.hidden-overflow {
+            overflow: hidden;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .layout-wrapper {
+        .layout-main {
+            .layout-topbar {
+                .topbar-search {
+                    input {
+                        width: 100px;
+                        
+                        &:focus {
+                            width: 120px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

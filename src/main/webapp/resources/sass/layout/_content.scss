@@ -1,0 +1,17 @@
+.layout-wrapper {
+    .layout-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh;
+
+        .layout-content {
+            padding: 90px 30px 24px 30px;
+            flex: 1 1 0;
+        }
+
+        .layout-main-mask {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+body {
+  .ui-galleria {
+    .ui-galleria-nav-prev,
+    .ui-galleria-nav-next {
+      transition: all $transitionDuration;
+      position: absolute;
+      color: $panelContentTextColor;
+      margin-bottom: -5px;
+
+      &:hover {
+        scale: 1.2;
+      }
+    }
+
+    .ui-galleria-nav-prev {
+      @include icon_override("\e900");
+      font-size: 20px;
+    }
+
+    .ui-galleria-nav-next {
+      @include icon_override("\e901");
+      font-size: 20px;
+    }
+  }
+}
