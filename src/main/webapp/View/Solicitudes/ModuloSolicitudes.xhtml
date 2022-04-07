@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/InicioTemplate.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
+    <ui:define name="content">  
+        <div class="barra-navegacion">
+            <h:form>
+
+                <div class="card" style="margin-top: 5px;">
+                    <!-- Botones Principales de Solicitudes -->
+                    <p:toolbarGroup>
+                        <!-- Boton Agregar nueva Solicitud -->
+                        <p:button  
+                            value="Nueva Solicitud Practicas Estudiantiles" 
+                            styleClass="ui-button-primary"
+                            icon="pi pi-plus" 
+                            style="margin-right: 6px;"
+                            outcome="SolicitudPracticasEstudiantiles">
+                        </p:button>
+
+                        <p:button  
+                            value="Nueva Solicitud Practicas Tesis de Grado" 
+                            styleClass="ui-button-primary"
+                            icon="pi pi-plus" 
+                            style="margin-right: 6px;"
+                            outcome="SolicitudPracticasTesis">
+                        </p:button>
+                        
+                    </p:toolbarGroup>
+                </div>
+
+                <div class="card" style="margin-top: 5px;">
+
+                    <p:toolbarGroup>
+
+                        <h:form>
+
+                            <div class="p-grid p-justify-around">
+                                <p:dataTable lazy="true"  editable="true" reflow="true"
+                                             editInitEvent="dblclick" editMode="cell">
+                                    <f:facet name="header">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            <span style="font-size: 24px">Mis Solicitudes Realizadas</span>
+                                            <span class="filter-container ui-input-icon-left">
+                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                            </span>
+                                        </div>
+                                    </f:facet>
+
+                                    <p:column headerText="Codigo" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Laboratorio" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Solicitud" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+
+                                    <p:column headerText="Docente" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Carrera" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Materia" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Seccion" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Aula" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Fecha" filterStyle="display : none">
+                                        <h:outputText />
+                                    </p:column>
+                                    <p:column headerText="Hora Entrada" filterStyle="display : none">
+                                        <h:outputText />
+                                    </p:column>
+                                    <p:column headerText="Hora Salida" filterStyle="display : none">
+                                        <h:outputText />
+                                    </p:column>
+                                    <p:column headerText="Acciones" filterStyle="display : none">
+                                        <h:outputText  />
+                                    </p:column>
+
+                                </p:dataTable>
+                            </div>
+
+                        </h:form>
+
+
+                    </p:toolbarGroup> 
+                </div>
+
+            </h:form>
+
+
+
+
+        </div>   
+    </ui:define>
+
+
+
+</ui:composition>

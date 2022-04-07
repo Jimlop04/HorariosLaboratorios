@@ -10,11 +10,7 @@
     <ui:define name="content">  
         <div class="barra-navegacion">
             <h:form>
-                <p:breadCrumb>
-                    <p:menuitem value="Solicitudes"/>
-                    <p:menuitem value="Nueva Solicitud"/>
-                </p:breadCrumb>
-
+          
                 <div class="card" style="margin-top: 5px;">
                     <!-- Botones Principales de Solicitudes -->
                     <p:toolbarGroup>
@@ -26,14 +22,7 @@
                             process="@this"
                             oncomplete="PF('nuevaSolicitud').show()">
                         </p:commandButton>
-                        <p:commandButton 
-                            value="Mis Solicitudes" 
-                            styleClass="ui-button-primary" 
-                            icon="pi pi-plus" 
-                            process="@this"
-                            oncomplete="PF('misSolicitud').show()">
-                        </p:commandButton>
-
+                       
                         <!-- Dialogo Nueva Solicitud  -->
                         <p:dialog header="Realizar Solicitud" 
                                   showEffect="fade" 
@@ -63,7 +52,6 @@
                                             maxlength="25"></p:inputText>
                                     </div>
 
-
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Carrera" for="@next"/>
                                          <p:inputText 
@@ -72,12 +60,6 @@
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Materia" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Sección" for="@next"/>
                                          <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
@@ -100,7 +82,12 @@
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Hora Salidad" for="@next"/>
+                                        <p:outputLabel value="Hora Salida" for="@next"/>
+                                         <p:inputText 
+                                            maxlength="25"></p:inputText>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel value="Estado" for="@next"/>
                                          <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
@@ -121,10 +108,9 @@
                                     styleClass="ui-button-danger"/>
                             </f:facet>
                         </p:dialog>
-
-
+                        
                         <!-- Dialogo Mis Solicitud  -->
-                        <p:dialog header="Solicitudes Realizadas" 
+                        <p:dialog header="Mis Solicitudes Realizadas" 
                                   showEffect="fade" 
                                   modal="true"
                                   widgetVar="misSolicitud"
@@ -136,8 +122,6 @@
                                 id="manage-misSolicitud-form" 
                                 class="ui-fluid">
                                 <div class="p-formgrid p-grid">
-
-
                                     <div class="p-grid p-justify-around">
                                         <p:dataTable lazy="true"  editable="true" reflow="true"
                                                      editInitEvent="dblclick" editMode="cell">
@@ -149,7 +133,6 @@
                                                     </span>
                                                 </div>
                                             </f:facet>
-
                                             <p:column headerText="Codigo" filterStyle="display : none">
                                                 <h:outputText  />
                                             </p:column>
@@ -161,10 +144,7 @@
                                             </p:column>
                                             <p:column headerText="Materia" filterStyle="display : none">
                                                 <h:outputText  />
-                                            </p:column>
-                                            <p:column headerText="Seccion" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>
+                                            </p:column>                                       
                                             <p:column headerText="Aula" filterStyle="display : none">
                                                 <h:outputText  />
                                             </p:column>
@@ -177,10 +157,12 @@
                                             <p:column headerText="Hora Salida" filterStyle="display : none">
                                                 <h:outputText />
                                             </p:column>
+                                             <p:column headerText="Sección" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
                                             <p:column headerText="Acciones" filterStyle="display : none">
                                                 <h:outputText  />
                                             </p:column>
-
                                         </p:dataTable>
                                     </div>
 
