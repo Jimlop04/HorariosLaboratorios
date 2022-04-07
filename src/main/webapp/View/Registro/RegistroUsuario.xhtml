@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <link rel="icon" type="image/x-icon" href="../../favicon.ico"/>
+        </f:facet>
+        <title>Registro</title>
+    </h:head>
+
+    <h:body styleClass="login-body">
+        <h:form>
+            <p:growl id="messages" showDetail="true" severity="info, warn"/>
+
+            <div class="modal" >
+                <div class="modal__container">
+                    <div class="modal__featured" >
+                        <p:button icon="pi pi-arrow-circle-left" 
+                                  styleClass="rounded-button ui-button-flat">
+                        </p:button>
+                        <div class="modal__circle"></div>
+
+                    </div>
+                    <div class="modal__content">
+
+                        <div class="ui-fluid">
+                            <h1 >Bienvenido !</h1>
+                            <h3 >
+                                Crear cuenta</h3>
+                        </div>
+
+
+                        <div class="ui-fluid">
+                            <div class="ui-inputgroup">
+                                <span  
+                                    class="ui-inputgroup-addon">
+                                    <i class="pi pi-user" />   
+                                </span>
+                                <p:inputText 
+                                    placeholder="Nombres" 
+                                    maxlength="50" id="name1" 
+                                    />
+                            </div>
+                        </div>
+                        <br></br>
+                        <div class="ui-fluid">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-user" /> 
+                                </span> 
+                                <p:inputText 
+                                    placeholder="Apellidos" 
+                                    maxlength="50" 
+                                    id="name2" 
+                                    type="text" 
+                                    />
+                            </div>
+                        </div>                  
+                        <br></br>
+                        <div class="ui-fluid">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-user" /> 
+                                </span> 
+                                <p:inputText 
+                                    placeholder="Nombre usuario" 
+                                    maxlength="15" id="name3" 
+                                    type="text"
+                                    />
+                            </div>
+                        </div>
+                        <br></br>
+                        <div class="ui-fluid">                            
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-envelope" /> 
+                                </span> 
+                                <p:inputText 
+                                    placeholder="E-mail"  
+                                    maxlength="100" 
+                                    id="email1" 
+                                    type="text" 
+                                    />
+                            </div>           
+                        </div>     
+                        <br></br>
+                        <div  class="ui-fluid">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-key" /> 
+                                </span> 
+                                <p:password 
+                                    id="password"
+                                    placeholder="Contraseña"
+                                    weakLabel="Débil"
+                                    maxlength="15"
+                                    goodLabel="Bueno"
+                                    strongLabel="Fuerte"
+                                    match="password2"
+                                    feedback="true" 
+                                    />
+
+                            </div>
+                        </div>
+                        <br></br>
+                        <div  class="ui-fluid">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-key" /> 
+                                </span> 
+                                <p:password 
+                                    placeholder="Confirmar contraseña"
+                                    maxlength="15" id="password2"/>
+
+                            </div>
+                        </div>
+
+                        <div class="ui-fluid p-grid" style="padding-top: 10px ">
+
+                            <h:selectBooleanCheckbox value="false">
+
+                            </h:selectBooleanCheckbox>
+                            <u style="padding-top: 9px" >
+                                <a  href="#" onclick="PF('dlg2').show()"> 
+                                    Aceptar terminos y condiciones 
+                                </a>
+                            </u> 
+                        </div>
+
+
+
+                        <div  class="p-col-12 button-container ui-fluid">     
+                            <p:commandButton
+                                value="Crear cuenta" 
+                                styleClass="rounded-button ui-button-success" update="messages"
+                                />
+                        </div>
+
+                        <p:dialog header="Términos y Condiciones de Uso" widgetVar="dlg2" minHeight="40" width="650" height="500" showEffect="fade" modal="true">
+                            <h2>INFORMACIÓN RELEVANTE</h2>
+                            <p class="p-m-0" style="text-align: justify;">
+                            </p>
+
+                            <h2>LICENCIA</h2>
+                            <p class="p-m-0" style="text-align: justify;">
+                            </p>
+                            <h2>USO NO AUTORIZADO</h2>
+                            <p class="p-m-0" style="text-align: justify;">
+                            </p>
+                            <h2>PROPIEDAD</h2>
+                            <p class="p-m-0" style="text-align: justify;">
+                            </p>
+                            <h2>POLÍTICA DE REEMBOLSO Y GARANTÍA</h2>
+                            <p class="p-m-0" style="text-align: justify;">
+                            </p>
+                            <h2>PRIVACIDAD</h2>
+                            <p class="p-m-0" style="text-align: justify;">
+
+                            </p>
+                        </p:dialog>
+                    </div>
+                </div>
+            </div>
+
+
+            <h:outputStylesheet name="css/primeicons.css" 
+                                library="manhattan-layout"/>
+            <h:outputStylesheet name="css/primeflex.min.css" 
+                                library="manhattan-layout"/>
+            <h:outputStylesheet name="css/registro.css" />
+              <h:outputStylesheet name="css/login_.css" />
+        </h:form>
+    </h:body>
+</html>
+
