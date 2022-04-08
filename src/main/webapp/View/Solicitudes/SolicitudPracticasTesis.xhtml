@@ -10,8 +10,7 @@
     <ui:define name="content">  
         <div class="barra-navegacion">
             <h:form>
-
-                <div class="card" >
+                <div class="card" align="center">
                     <p:toolbarGroup>
                         <h4>Registro de practicas para tesis de Grado</h4>
                         <h6>LABORATORIO DE QUÍMICA Y BIOQUÍMICA</h6>
@@ -24,67 +23,49 @@
                                 id="manage-Solicitud-form" 
                                 class="ui-fluid">
                                 <div class="p-formgrid p-grid">
-                                    <div class="p-field p-col-12 p-md-8">
-                                        <p:outputLabel value="Director de Proyecto" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Convocatoria" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-9">
+                                    <div class="p-field p-col-12 p-md-6">
                                         <p:outputLabel value="Tema" for="@next"/>
                                         <p:inputText 
                                             maxlength="25"></p:inputText>
-
                                     </div>
                                     <div class="p-field p-col-12 p-md-3">
+                                        <p:outputLabel value="Tutor de Tesis" for="@next"/>
+                                        <p:inputText 
+                                            maxlength="50"></p:inputText>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-2">
                                         <p:outputLabel value="Fecha" for="@next"/>
                                         <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
-                                    <div class="p-field p-col-12 p-md-9">
-                                        <p:outputLabel value="Responsable del Laboratorio" for="@next"/>
-                                        <p:inputText 
-                                                     maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-3">
+                                    <div class="p-field p-col-12 p-md-1">
                                         <p:outputLabel value="Horario" for="@next"/>
                                         <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
-                                    <div class="p-field p-col-12 p-md-10">
-                                        <p:outputLabel value="Analisis a Realizar" for="@next"/>
-                                        <p:inputText 
-                                                     maxlength="25"></p:inputText>
-                                    </div>
                                     <div class="p-field p-col-12 p-md-2">
                                         <p:outputLabel value="Codigo Laboratorio" for="@next"/>
                                         <p:inputText 
-                                                     maxlength="25"></p:inputText>
+                                            maxlength="25"></p:inputText>
                                     </div>
-                                    <div class="p-field p-col-12 p-md-12">
-                                        <p:outputLabel value="Objetivo del Proyecto" for="@next"/>
+                                    <div class="p-field p-col-12 p-md-10">
+                                        <p:outputLabel value="Responsable del Laboratorio" for="@next"/>
                                         <p:inputText 
                                             maxlength="25"></p:inputText>
-                                    </div>       
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Objetivo del Proyecto" for="@next"/>
+                                        <p:inputText 
+                                            maxlength="300"></p:inputText>
+                                    </div> 
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Analisis a Realizar" for="@next"/>
+                                        <p:inputText 
+                                            maxlength="300"></p:inputText>
+                                    </div>        
                                 </div>
                             </p:outputPanel>
-                            <f:facet name="footer">
-                                <p:commandButton 
-                                    value="Guardar" 
-                                    icon="pi pi-check" 
-                                    styleClass="ui-button-primary">
-                                </p:commandButton>
-                                <p:commandButton 
-                                    value="Cancelar" 
-                                    icon="pi pi-times"
-                                    styleClass="ui-button-danger"/>
-                            </f:facet>
                             <div class="card" style="margin-top: 5px;">
-
                                 <p:toolbarGroup>
                                     <h:form>
                                         <div class="p-grid p-justify-around">
@@ -92,7 +73,7 @@
                                                          editInitEvent="dblclick" editMode="cell">
                                                 <f:facet name="header">
                                                     <div class="p-d-flex p-jc-between p-ai-center">
-                                                        <span style="font-size: 20px">Equipos,Materiales y Reactivos</span>
+                                                        <span style="font-size: 20px">Equipos, Materiales y Reactivos</span>
                                                         <span class="filter-container ui-input-icon-left">
                                                             <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
                                                         </span>
@@ -107,7 +88,6 @@
                                                 <p:column headerText="Descripcion" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
-
                                                 <p:column headerText="Cantidad" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
@@ -125,10 +105,7 @@
                                     </h:form>
                                 </p:toolbarGroup> 
                             </div>
-                            
-
                             <div class="card" style="margin-top: 5px;">
-
                                 <p:toolbarGroup>
                                     <h:form>
                                         <div class="p-grid p-justify-around">
@@ -151,11 +128,9 @@
                                                 <p:column headerText="Apellidos" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
-
                                                 <p:column headerText="Observaciones" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
-                                                
                                                 <p:column headerText="Aprobacion" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
@@ -164,10 +139,19 @@
                                     </h:form>
                                 </p:toolbarGroup> 
                             </div>
-
+                            <div align="right" >
+                                <p:commandButton type="button" 
+                                                 value="Guardar"
+                                                  icon="pi pi-save" 
+                                                 styleClass="ui-button-success" />
+                                 <p:button  value="Cancelar" 
+                                            styleClass="ui-button-danger"
+                                            icon="pi pi-times" 
+                                            outcome="ModuloSolicitudes"/>
+                            </div>
                         </h:form>
                     </p:toolbarGroup> 
-                </div>
+                </div> 
             </h:form>
         </div>   
     </ui:define>

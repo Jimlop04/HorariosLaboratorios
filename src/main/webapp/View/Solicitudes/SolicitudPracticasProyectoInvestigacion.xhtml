@@ -11,7 +11,7 @@
             <h:form>
                 <div class="card" align="center">
                     <p:toolbarGroup>
-                        <h4>Solicitud de Practicas Estudiantiles</h4>
+                        <h4>Registro de Proyecto de Investigacion</h4>
                         <h6>LABORATORIO DE QUÍMICA Y BIOQUÍMICA</h6>
                     </p:toolbarGroup>
                 </div>
@@ -22,8 +22,28 @@
                                 id="manage-Solicitud-form" 
                                 class="ui-fluid">
                                 <div class="p-formgrid p-grid">
+                                    <div class="p-field p-col-12 p-md-5">
+                                        <p:outputLabel value="Director de Proyecto" for="@next"/>
+                                        <p:inputText 
+                                            maxlength="50"></p:inputText>
+                                    </div>
                                     <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Carrera" for="@next"/>
+                                        <p:outputLabel value="Convocatoria" for="@next"/>
+                                        <p:inputText 
+                                            maxlength="25"></p:inputText>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-2">
+                                        <p:outputLabel value="Fecha" for="@next"/>
+                                        <p:inputText 
+                                            maxlength="25"></p:inputText>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-1">
+                                        <p:outputLabel value="Horario" for="@next"/>
+                                        <p:inputText 
+                                            maxlength="25"></p:inputText>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-7">
+                                        <p:outputLabel value="Tema" for="@next"/>
                                         <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
@@ -33,70 +53,20 @@
                                             maxlength="25"></p:inputText>
                                     </div>
                                     <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Laboratorio" for="@next"/>
+                                        <p:outputLabel value="Responsable del Laboratorio" for="@next"/>
                                         <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
-                                    <div class="p-field p-col-12 p-md-3">
-                                        <p:outputLabel value="Responsable Laboratorio" for="@next"/>
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Objetivo del Proyecto" for="@next"/>
                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-3">
-                                        <p:outputLabel value="Materia" for="@next"/>
+                                            maxlength="300"></p:inputText>
+                                    </div> 
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Analisis a Realizar" for="@next"/>
                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-3">
-                                        <p:outputLabel value="Docente" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-2">
-                                        <p:outputLabel value="Periodo Academico" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-2">
-                                        <p:outputLabel value="Semestre" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-2">
-                                        <p:outputLabel value="Paralelo" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-1">
-                                        <p:outputLabel value="Nro. Practica" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-8">
-                                        <p:outputLabel value="Tema de la Practica" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-1">
-                                        <p:outputLabel value="Nro. Estudiantes" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-1">
-                                        <p:outputLabel value="Fecha" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-1">
-                                        <p:outputLabel value="Hora" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-12">
-                                        <p:outputLabel value="Objetivo de la practica" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
+                                            maxlength="300"></p:inputText>
+                                    </div>        
                                 </div>
                             </p:outputPanel>
                             <f:facet name="footer">
@@ -174,10 +144,12 @@
                                                 <p:column headerText="Apellidos" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
-                                                <p:column headerText="Cedula" filterStyle="display : none">
+
+                                                <p:column headerText="Observaciones" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
-                                                <p:column headerText="Asistencia" filterStyle="display : none">
+
+                                                <p:column headerText="Aprobacion" filterStyle="display : none">
                                                     <h:outputText  />
                                                 </p:column>
                                             </p:dataTable>

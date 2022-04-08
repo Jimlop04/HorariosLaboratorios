@@ -10,254 +10,104 @@
     <ui:define name="content">  
         <div class="barra-navegacion">
             <h:form>
-          
-                <div class="card" style="margin-top: 5px;">
-                    <!-- Botones Principales de Solicitudes -->
+                <div class="card" align="center">
                     <p:toolbarGroup>
-                        <!-- Boton Agregar nueva Solicitud -->
-                        <p:commandButton 
-                            value="Nueva Solicitud" 
-                            styleClass="ui-button-primary" 
-                            icon="pi pi-plus" 
-                            process="@this"
-                            oncomplete="PF('nuevaSolicitud').show()">
-                        </p:commandButton>
-                       
-                        <!-- Dialogo Nueva Solicitud  -->
-                        <p:dialog header="Realizar Solicitud" 
-                                  showEffect="fade" 
-                                  modal="true"
-                                  widgetVar="nuevaSolicitud"
-                                  responsive="true" 
-                                  width="70%"
-                                  draggable="false" 
-                                  height="300" >
-                            <p:outputPanel 
-                                id="manage-Solicitud-form" 
-                                class="ui-fluid">
-                                <div class="p-formgrid p-grid">
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Codigo" for="@next"/>
-                                        <p:inputText 
-                                            id="codSolicitud" 
-                                            value="#{autoCompleteView.txt1}" 
-                                            placeholder="identificador" 
-                                            style="background: #5bc75d;
-                                            color:#000000"></p:inputText>
-
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Laboratorio" for="@next"/>
-                                       <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Carrera" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Materia" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Aula" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Fecha" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Hora Entrada" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Hora Salida" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                        <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Estado" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-
-                                </div>
-
-                            </p:outputPanel>
-                            <f:facet name="footer">
-                                <p:commandButton 
-                                    value="Guardar" 
-                                    icon="pi pi-check" 
-                                    styleClass="ui-button-primary">
-                                </p:commandButton>
-                                <p:commandButton 
-                                    value="Cancelar" 
-                                    icon="pi pi-times"
-                                    styleClass="ui-button-danger"/>
-                            </f:facet>
-                        </p:dialog>
-                        
-                        <!-- Dialogo Mis Solicitud  -->
-                        <p:dialog header="Mis Solicitudes Realizadas" 
-                                  showEffect="fade" 
-                                  modal="true"
-                                  widgetVar="misSolicitud"
-                                  responsive="true" 
-                                  width="65%"
-                                  draggable="false" 
-                                  height="300" >
-                            <p:outputPanel 
-                                id="manage-misSolicitud-form" 
-                                class="ui-fluid">
-                                <div class="p-formgrid p-grid">
+                        <h4>APROBACIÓN DE SOLICITUDES</h4>
+                    </p:toolbarGroup>
+                </div>
+                <div class="card" style="margin-top: 5px;">
+                    <p:toolbarGroup>
+                        <h:form>
+                            <div align="right">
+                                <h:outputLabel for="txt2" value="Tipo de Solicitud:   "/>
+                                <p:selectOneMenu id="txt2" value="#{searchView.text2}" required="true" label="Text 2" style="width: 13rem">
+                                    <f:selectItem itemLabel="Todas las Solicitudes" itemValue="" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Practicas de Estudiantes" itemValue="1"/>
+                                    <f:selectItem itemLabel="Proyecto de Investigación" itemValue="2"/>
+                                    <f:selectItem itemLabel="Practicas de Tesis" itemValue="3"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="card" style="margin-top: 10px;">
+                                <p:toolbarGroup>
                                     <div class="p-grid p-justify-around">
                                         <p:dataTable lazy="true"  editable="true" reflow="true"
                                                      editInitEvent="dblclick" editMode="cell">
                                             <f:facet name="header">
                                                 <div class="p-d-flex p-jc-between p-ai-center">
-                                                    <span style="font-size: 24px">Mis Solicitudes</span>
+                                                    <span style="font-size: 24px">Solicitudes Realizadas</span>
                                                     <span class="filter-container ui-input-icon-left">
+
                                                         <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
                                                     </span>
                                                 </div>
                                             </f:facet>
                                             <p:column headerText="Codigo" filterStyle="display : none">
-                                                <h:outputText  />
+                                                 <h:outputText value="#" />
                                             </p:column>
                                             <p:column headerText="Laboratorio" filterStyle="display : none">
-                                                <h:outputText  />
+                                                 <h:outputText value="#" />
+                                            </p:column>
+                                            <p:column headerText="Solicitud" filterStyle="display : none">
+                                                 <h:outputText value="#" />
+                                            </p:column>
+                                            <p:column headerText="Docente" filterStyle="display : none">
+                                                 <h:outputText value="#" />
                                             </p:column>
                                             <p:column headerText="Carrera" filterStyle="display : none">
-                                                <h:outputText  />
+                                                <h:outputText value="#" />
                                             </p:column>
                                             <p:column headerText="Materia" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>                                       
+                                                 <h:outputText value="#" />
+                                            </p:column>
+                                            <p:column headerText="Seccion" filterStyle="display : none">
+                                                 <h:outputText value="#" />
+                                            </p:column>
                                             <p:column headerText="Aula" filterStyle="display : none">
-                                                <h:outputText  />
+                                                 <h:outputText value="#" />
                                             </p:column>
                                             <p:column headerText="Fecha" filterStyle="display : none">
-                                                <h:outputText />
+                                                 <h:outputText value="#" />
                                             </p:column>
                                             <p:column headerText="Hora Entrada" filterStyle="display : none">
-                                                <h:outputText />
+                                                 <h:outputText value="#" />
                                             </p:column>
                                             <p:column headerText="Hora Salida" filterStyle="display : none">
-                                                <h:outputText />
-                                            </p:column>
-                                             <p:column headerText="Sección" filterStyle="display : none">
-                                                <h:outputText  />
+                                                 <h:outputText value="#" />
                                             </p:column>
                                             <p:column headerText="Acciones" filterStyle="display : none">
-                                                <h:outputText  />
+                                                 <p:commandButton 
+                                                     type="button" 
+                                                     icon="pi pi-eye" 
+                                                     styleClass="rounded-button ui-button-success p-mr-2 p-mb-2" 
+                                                     onclick="PF('Dialogo-detalle-Solicitud').show()"/>
                                             </p:column>
                                         </p:dataTable>
                                     </div>
-
+                                </p:toolbarGroup>
+                            </div>
+                                <p:dialog header="Detalle de Solicitud" 
+                                          widgetVar="Dialogo-detalle-Solicitud" 
+                                          minHeight="40" width="550" 
+                                          height="400" showEffect="fade" 
+                                          minimizable="true" 
+                                          maximizable="true">
+                        <p:outputPanel id="ordenProduccion" class="ui-fluid">
+                            <div class="card ui-fluid ">
+                                <div class="p-formgrid p-grid">
+                                  
+                                    <div class="p-field p-col-12 p-md-12">
+                                        <p:commandButton value="Generar Reporte" ajax="false"/>
+                                    </div>
                                 </div>
 
-                            </p:outputPanel>
-                            <f:facet name="footer">
-                                <p:commandButton 
-                                    value="Guardar" 
-                                    icon="pi pi-check" 
-                                    styleClass="ui-button-primary">
-                                </p:commandButton>
-                                <p:commandButton 
-                                    value="Cancelar" 
-                                    icon="pi pi-times"
-                                    styleClass="ui-button-danger"/>
-                            </f:facet>
-                        </p:dialog>
-
-                    </p:toolbarGroup>
-                </div>
-
-                <div class="card" style="margin-top: 5px;">
-
-                    <p:toolbarGroup>
-
-                        <h:form>
-
-                            <div class="p-grid p-justify-around">
-                                <p:dataTable lazy="true"  editable="true" reflow="true"
-                                             editInitEvent="dblclick" editMode="cell">
-                                    <f:facet name="header">
-                                        <div class="p-d-flex p-jc-between p-ai-center">
-                                            <span style="font-size: 24px">Solicitudes Realizadas</span>
-                                            <span class="filter-container ui-input-icon-left">
-                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                            </span>
-                                        </div>
-                                    </f:facet>
-
-                                    <p:column headerText="Codigo" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Laboratorio" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Solicitud" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-
-                                    <p:column headerText="Docente" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Carrera" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Materia" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Seccion" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Aula" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Fecha" filterStyle="display : none">
-                                        <h:outputText />
-                                    </p:column>
-                                    <p:column headerText="Hora Entrada" filterStyle="display : none">
-                                        <h:outputText />
-                                    </p:column>
-                                    <p:column headerText="Hora Salida" filterStyle="display : none">
-                                        <h:outputText />
-                                    </p:column>
-                                    <p:column headerText="Acciones" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-
-                                </p:dataTable>
                             </div>
-
+                        </p:outputPanel>
+                       
+                    </p:dialog>
                         </h:form>
-
-
                     </p:toolbarGroup> 
                 </div>
-
             </h:form>
-
-
-
-
         </div>   
     </ui:define>
-
-
-
 </ui:composition>
