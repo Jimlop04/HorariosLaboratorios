@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package global;
 
 import java.sql.Connection;
@@ -9,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 /**
  *
  * @author ebert
@@ -22,9 +18,9 @@ public class Conexion {
     private boolean estado;
 
     //Credenciales para la conexion
-    private String url = "";
-    private String usuario = "";
-    private String clave = "";
+    private String url = "jdbc:postgresql://ec2-34-194-73-236.compute-1.amazonaws.com:5432/d90f44f58p7329";
+    private String usuario = "rvypcdvgpfbhwr";
+    private String clave = "63256d6b01a5e8e9b6a19b80424148551283aa4fce0cd105fe242b3cc1e530d5";
     private String classForName = "org.postgresql.Driver";
 
     public Conexion() {
