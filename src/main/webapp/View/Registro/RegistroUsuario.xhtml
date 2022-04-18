@@ -5,6 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+                <h:outputStylesheet library="css" name="cssLayout.css"/>
         <f:facet name="first">
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,6 +17,12 @@
     </h:head>
 
     <h:body styleClass="login-body">
+        <div id="top">
+            <div class="layout-topbar">
+                <h:graphicImage name="Images/logoUTEQ.png"  height="60px" class="p-mr-1" style="width: 55px; height: 55px;
+                                vertical-align: middle; margin-top: -1px"/>
+            </div>
+        </div>
         <h:form>
             <p:growl id="messages" showDetail="true" severity="info, warn"/>
 
