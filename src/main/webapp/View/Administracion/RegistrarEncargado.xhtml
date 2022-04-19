@@ -35,59 +35,31 @@
                                 id="manage-Material-form" 
                                 class="ui-fluid">
                                 <div class="p-formgrid p-grid">
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Codigo" for="@next"/>
-                                          <p:inputText 
-                                            id="codMaterial" 
-                                            value="#{autoCompleteView.txt1}" 
-                                            placeholder="identificador" 
-                                            style="background: #5bc75d;
-                                            color:#000000"></p:inputText>
-                                    </div>
 
                                     <div class="p-field p-col-12 p-md-4">
                                         <p:outputLabel value="Nombre" for="@next"/>
-                                       <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Unidad de Medida" for="@next"/>
                                          <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Descripcion" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Cantidad" for="@next"/>
+                                        <p:outputLabel value="Fecha Incio" for="@next"/>
                                          <p:inputText 
                                             maxlength="5"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Precio" for="@next"/>
+                                        <p:outputLabel value="Fecha Fin" for="@next"/>
                                          <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Laboratorio" for="@next"/>
+                                        <p:outputLabel value="Estado" for="@next"/>
                                         <p:inputText 
                                             maxlength="25"></p:inputText>
                                     </div>
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Categoria" for="@next"/>
-                                         <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-
-
-
+   
                                 </div>
 
                             </p:outputPanel>
@@ -114,44 +86,43 @@
                         <h:form>
 
                             <div class="p-grid p-justify-around">
-                                <p:dataTable lazy="true"  editable="true" reflow="true"
-                                             editInitEvent="dblclick" editMode="cell"
+                                <p:dataTable id="dtEncargados"
+                                             lazy="true"  
+                                             editable="true" 
+                                             reflow="true"
+                                             rows="4"
+                                             rowSelectMode="add"
+                                             editInitEvent="dblclick" 
+                                             editMode="cell"
+                                             value="#{encargadoMB.listaEncargados}"
+                                             widgetVar="TablaEncargadosBus"
+                                             var="TablaEncargados"
                                              >
-
                                     <f:facet name="header">
                                         <div class="p-d-flex p-jc-between p-ai-center">
-                                            <span style="font-size: 24px">Materiales de Laboratorios</span>
+                                            <span style="font-size: 24px">Encargados</span>
                                             <span class="filter-container ui-input-icon-left">
                                                 <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
                                             </span>
                                         </div>
                                     </f:facet>
-
-                                    <p:column headerText="Codigo" filterStyle="display : none">
-                                        <h:outputText  />
+                                    <p:column headerText="Nombre" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaEncargados.nombre_encargado}"/>
                                     </p:column>
-                                    <p:column headerText="Nombre" filterStyle="display : none">
-                                        <h:outputText  />
+                                    <p:column headerText="Fecha Inicio" filterStyle="display : none">
+                                        <h:outputText  
+                                            value="#{TablaEncargados.fecha_inicio}"/>
                                     </p:column>
-                                    <p:column headerText="Unidad de Medida" filterStyle="display : none">
-                                        <h:outputText  />
+                                    <p:column headerText="Fecha Fin" filterStyle="display : none">
+                                        <h:outputText
+                                            value="#{TablaEncargados.fecha_fin}"/>
                                     </p:column>
-                                    <p:column headerText="Descripcion" filterStyle="display : none">
-                                        <h:outputText  />
+                                    <p:column headerText="Estado" filterStyle="display : none">
+                                        <h:outputText
+                                            value="#{TablaEncargados.activo}"/>
                                     </p:column>
-                                    <p:column headerText="Cantidad" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Precio" filterStyle="display : none">
-                                        <h:outputText />
-                                    </p:column>
-                                    <p:column headerText="Laboratorio" filterStyle="display : none">
-                                        <h:outputText />
-                                    </p:column>
-                                    <p:column headerText="Categoria" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-
                                 </p:dataTable>
                             </div>
 
