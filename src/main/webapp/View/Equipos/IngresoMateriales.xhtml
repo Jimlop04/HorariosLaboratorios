@@ -20,8 +20,18 @@
                             styleClass="ui-button-primary" 
                             icon="pi pi-plus" 
                             process="@this"
+                            style="margin-right: 6px;"
                             oncomplete="PF('agregarMaterial').show()">
                         </p:commandButton>
+
+                        <!-- Boton Agregar nuevo material -->
+                        <p:button
+                                value="Nueva Solicitud Practicas Tesis de Grado"
+                                styleClass="ui-button-primary"
+                                icon="pi pi-plus"
+                                style="margin-right: 6px;"
+                                outcome="SolicitudPracticasTesis">
+                        </p:button>
 
                         <!-- Dialogo Agregar Nuevo Material  -->
                         <p:dialog header="Agregar Material" 
