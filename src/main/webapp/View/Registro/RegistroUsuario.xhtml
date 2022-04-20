@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-                <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
         <f:facet name="first">
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -43,7 +43,7 @@
                                 Crear cuenta</h3>
                         </div>
 
-
+                        <!-- NOMBRE PROFESOR -->
                         <div class="ui-fluid">
                             <div class="ui-inputgroup">
                                 <span  
@@ -52,11 +52,13 @@
                                 </span>
                                 <p:inputText 
                                     placeholder="Nombres" 
-                                    maxlength="50" id="name1" 
+                                    value="#{profesorMB.profesor.nombre_profesor}"
+                                    maxlength="50" 
+                                    id="name" 
                                     />
                             </div>
                         </div>
-                        <br></br>
+                        <!-- APELLIDO PROFESOR-->
                         <div class="ui-fluid">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon">
@@ -65,12 +67,59 @@
                                 <p:inputText 
                                     placeholder="Apellidos" 
                                     maxlength="50" 
-                                    id="name2" 
+                                    value="#{profesorMB.profesor.apellido_profesor}"
+                                    id="lastname" 
                                     type="text" 
                                     />
                             </div>
-                        </div>                  
-                        <br></br>
+                        </div>   
+                        <!-- CEDULA -->
+                        <div class="ui-fluid">                            
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-envelope" /> 
+                                </span> 
+                                <p:inputText 
+                                    placeholder="Cédula"
+                                    value="#{profesorMB.profesor.cedula_profesor}"                                  
+                                    maxlength="15" 
+                                    id="ci" 
+                                    type="text" 
+                                    />
+                            </div>           
+                        </div>  
+                        <!-- GÉNERO -->
+                        <div class="ui-fluid">                            
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-envelope" /> 
+                                </span> 
+                                <p:inputText 
+                                    placeholder="Género"
+                                    value="#{profesorMB.profesor.genero_profesor}"                                  
+                                    maxlength="15" 
+                                    id="genero" 
+                                    type="text" 
+                                    />
+                            </div>           
+                        </div>  
+                        <!-- FECHA NACIMIENTO -->
+                        <div class="ui-fluid">                            
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="pi pi-envelope" /> 
+                                </span> 
+                                  <p:datePicker
+                                        locale="es"                                        
+                                        id="fnacimiento"
+                                        value="#{profesorMB.profesor.fnacimiento_profesor}"
+                                        showIcon="true">
+                                      <p:inputText value="Fecha nacimiento"></p:inputText>
+                                  </p:datePicker>
+                                      
+                            </div>           
+                        </div> 
+                       <!-- USUARIO -->
                         <div class="ui-fluid">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon">
@@ -78,26 +127,14 @@
                                 </span> 
                                 <p:inputText 
                                     placeholder="Nombre usuario" 
-                                    maxlength="15" id="name3" 
+                                    maxlength="15"
+                                    value="#{profesorMB.profesor.usuario_profesor}"                                  
+                                    id="user" 
                                     type="text"
                                     />
                             </div>
                         </div>
-                        <br></br>
-                        <div class="ui-fluid">                            
-                            <div class="ui-inputgroup">
-                                <span class="ui-inputgroup-addon">
-                                    <i class="pi pi-envelope" /> 
-                                </span> 
-                                <p:inputText 
-                                    placeholder="E-mail"  
-                                    maxlength="100" 
-                                    id="email1" 
-                                    type="text" 
-                                    />
-                            </div>           
-                        </div>     
-                        <br></br>
+                        <!-- CONTRASEÑA -->
                         <div  class="ui-fluid">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon">
@@ -108,6 +145,7 @@
                                     placeholder="Contraseña"
                                     weakLabel="Débil"
                                     maxlength="15"
+                                    value="#{profesorMB.profesor.password_profesor}"
                                     goodLabel="Bueno"
                                     strongLabel="Fuerte"
                                     match="password2"
@@ -116,7 +154,7 @@
 
                             </div>
                         </div>
-                        <br></br>
+                        <!-- VERIFICA CONTRASEÑA -->
                         <div  class="ui-fluid">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon">
@@ -131,7 +169,7 @@
 
                         <div class="ui-fluid p-grid" style="padding-top: 10px ">
 
-                            <h:selectBooleanCheckbox value="false">
+                            <h:selectBooleanCheckbox value="#{profesorMB.status}">
 
                             </h:selectBooleanCheckbox>
                             <u style="padding-top: 9px" >
@@ -146,6 +184,7 @@
                         <div  class="p-col-12 button-container ui-fluid">     
                             <p:commandButton
                                 value="Crear cuenta" 
+                                actionListener="#{profesorMB.registrarProfesor()}"
                                 styleClass="rounded-button ui-button-success" update="messages"
                                 />
                         </div>
@@ -182,7 +221,7 @@
             <h:outputStylesheet name="css/primeflex.min.css" 
                                 library="manhattan-layout"/>
             <h:outputStylesheet name="css/registro.css" />
-              <h:outputStylesheet name="css/login_.css" />
+            <h:outputStylesheet name="css/login_.css" />
         </h:form>
     </h:body>
 </html>
