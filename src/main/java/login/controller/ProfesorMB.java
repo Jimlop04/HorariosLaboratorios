@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package login.controller;
 
 import global.Mensajes;
@@ -98,6 +95,7 @@ public class ProfesorMB implements Serializable {
               this.profesorDAO.registrarProfesor(profesor);
                   mensajesJSF.mensajeDeAdvertencia(profesorDAO.registrarProfesor(profesor).toString());
             }
+            System.out.println(profesor.getApellido_profesor());
         } catch (SQLException e) {
             e.getMessage();
         }
