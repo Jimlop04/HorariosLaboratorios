@@ -28,13 +28,7 @@
 
             <div class="modal" >
                 <div class="modal__container">
-                    <div class="modal__featured" >
-                        <p:button icon="pi pi-arrow-circle-left" 
-                                  styleClass="rounded-button ui-button-flat">
-                        </p:button>
-                        <div class="modal__circle"></div>
-
-                    </div>
+                 
                     <div class="modal__content">
 
                         <div class="ui-fluid">
@@ -184,8 +178,8 @@
                         <div  class="p-col-12 button-container ui-fluid">     
                             <p:commandButton
                                 value="Crear cuenta" 
-                                actionListener="#{profesorMB.registrarProfesor()}"
-                                styleClass="rounded-button ui-button-success" update="messages"
+                                action="#{profesorMB.registrarProfesor()}"
+                                styleClass="ui-button-success" update="messages"
                                 />
                         </div>
 

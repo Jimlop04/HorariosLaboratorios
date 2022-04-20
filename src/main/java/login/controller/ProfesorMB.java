@@ -6,6 +6,7 @@ package login.controller;
 
 import global.Mensajes;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -97,7 +98,7 @@ public class ProfesorMB implements Serializable {
               this.profesorDAO.registrarProfesor(profesor);
                   mensajesJSF.mensajeDeAdvertencia(profesorDAO.registrarProfesor(profesor).toString());
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.getMessage();
         }
     }
