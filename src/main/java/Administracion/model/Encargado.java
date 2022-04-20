@@ -7,32 +7,50 @@ import java.util.Date;
  * @author Jimmy
  */
 public class Encargado {
-    private int id_encargado;
+    private int idEncargado;
     private String nombre_encargado;
     private Date fecha_inicio;
     private Date fecha_fin;
-    private boolean activo; 
-    private int id_roles;
+    private boolean activo;
+    private int idRoles;
     private String nombre_rol;
 
     public Encargado() {
     }
-
-    public Encargado(int id_encargado, String nombre_encargado, Date fecha_inicio,Date fecha_fin, boolean activo) {
-        this.id_encargado = id_encargado;
+  
+    public Encargado(int idEncargado, String nombre_encargado, Date fecha_inicio, Date fecha_fin, boolean activo, int idRoles, String nombre_rol) {
+        this.idEncargado = idEncargado;
         this.nombre_encargado = nombre_encargado;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.activo = activo;
-      
+        this.idRoles = idRoles;
+        this.nombre_rol = nombre_rol;
     }
 
-    public int getId_encargado() {
-        return id_encargado;
+    public int getIdRoles() {
+        return idRoles;
     }
 
-    public void setId_encargado(int id_encargado) {
-        this.id_encargado = id_encargado;
+    public void setIdRoles(int idRoles) {
+        this.idRoles = idRoles;
+    }
+
+    public String getNombre_rol() {
+        return nombre_rol;
+    }
+
+    public void setNombre_rol(String nombre_rol) {
+        this.nombre_rol = nombre_rol;
+    }
+    
+  
+    public int getIdEncargado() {
+        return idEncargado;
+    }
+
+    public void setIdEncargado(int idEncargado) {
+        this.idEncargado = idEncargado;
     }
 
     public String getNombre_encargado() {

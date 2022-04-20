@@ -1,6 +1,7 @@
 
 package global;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import java.sql.Statement;
  *
  * @author ebert
  */
-public class Conexion {
+ public class Conexion implements Serializable{
 
     public Connection connection;
     private Statement statement;

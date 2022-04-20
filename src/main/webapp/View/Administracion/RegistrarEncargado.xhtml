@@ -87,10 +87,12 @@
 
                             <div class="p-grid p-justify-around">
                                 <p:dataTable id="dtEncargados"
+                                             paginator="true" 
+                                             paginatorPosition="bottom"
                                              lazy="true"  
                                              editable="true" 
                                              reflow="true"
-                                             rows="4"
+                                             rows="6"
                                              rowSelectMode="add"
                                              editInitEvent="dblclick" 
                                              editMode="cell"
@@ -111,6 +113,10 @@
                                         <h:outputText 
                                             value="#{TablaEncargados.nombre_encargado}"/>
                                     </p:column>
+                                    <p:column headerText="Cargo" filterStyle="display : none">
+                                        <h:outputText
+                                            value="#{TablaEncargados.nombre_rol}"/>
+                                    </p:column>
                                     <p:column headerText="Fecha Inicio" filterStyle="display : none">
                                         <h:outputText  
                                             value="#{TablaEncargados.fecha_inicio}"/>
@@ -123,6 +129,7 @@
                                         <h:outputText
                                             value="#{TablaEncargados.activo}"/>
                                     </p:column>
+                                    
                                 </p:dataTable>
                             </div>
 

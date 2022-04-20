@@ -8,40 +8,31 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
-
-
 /**
  *
  * @author Jimmy
  */
 @ManagedBean(name = "encargadoMB")
-@ViewScoped
+
 public class EncargadoManageBean implements Serializable {
-    
+    private Encargado encargado = new Encargado();
+    private EncargadoDAO encargadoDAO = new EncargadoDAO();
     private List<Encargado> listaEncargados = new ArrayList<>();
-     private EncargadoDAO encargadoDAO;
-     private Encargado encargado;
 
-     
-    public EncargadoManageBean() {
-        encargadoDAO = new EncargadoDAO();
-        encargado = new Encargado();
-    }
-
+    
     @PostConstruct
     public void init(){
     System.out.println("PostConstruct");
     listaEncargados = encargadoDAO.getEncargados();
     }
     
-   
-    public List<Encargado> getListaEncargados() {
-        return listaEncargados;
+
+    public Encargado getEncargado() {
+        return encargado;
     }
 
-    public void setListaEncargados(List<Encargado> listaEncargados) {
-        this.listaEncargados = listaEncargados;
+    public void setEncargado(Encargado encargado) {
+        this.encargado = encargado;
     }
 
     public EncargadoDAO getEncargadoDAO() {
@@ -52,14 +43,16 @@ public class EncargadoManageBean implements Serializable {
         this.encargadoDAO = encargadoDAO;
     }
 
-    public Encargado getEncargado() {
-        return encargado;
+    public List<Encargado> getListaEncargados() {
+        return listaEncargados;
     }
 
-    public void setEncargado(Encargado encargado) {
-        this.encargado = encargado;
+    public void setListaEncargados(List<Encargado> listaEncargados) {
+        this.listaEncargados = listaEncargados;
     }
     
+   
+  
     
     
      
