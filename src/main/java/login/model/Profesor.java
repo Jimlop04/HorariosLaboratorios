@@ -1,13 +1,14 @@
 
 package login.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author ebert
  */
-public class Profesor {
+public class Profesor implements Serializable{
 
     int idProfesor;
     String nombre_profesor,

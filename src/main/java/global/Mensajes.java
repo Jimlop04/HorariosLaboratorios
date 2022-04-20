@@ -10,8 +10,27 @@ import javax.faces.context.FacesContext;
  */
 public class Mensajes {
 
+    public String getWarnMsj() {
+        return warnMsj;
+    }
+
+    public void setWarnMsj(String warnMsj) {
+        this.warnMsj = warnMsj;
+    }
+
+    public String getInfMsj() {
+        return infMsj;
+    }
+
+    public void setInfMsj(String infMsj) {
+        this.infMsj = infMsj;
+    }
+
     String warnMsj = "Advertencia";
     String infMsj = "Exito";
+
+    public Mensajes() {
+    }
 
     public void mensajeDeAdvertencia(String msj) {
         FacesContext.getCurrentInstance().

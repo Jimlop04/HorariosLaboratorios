@@ -1,4 +1,3 @@
-
 package login.dao;
 
 import global.AES;
@@ -18,13 +17,21 @@ public class ProfesorDAO {
     AES encryptAES;
     ResultSet result;
 
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
     public ProfesorDAO() {
         conexion = new Conexion();
         encryptAES = new AES();
     }
 
     public Profesor registrarProfesor(Profesor profesor) throws SQLException {
- System.out.println("inicio registrar profesor");
+        System.out.println("inicio registrar profesor");
         try {
             conexion.conectar();
             String sentencia = "Select public.registrarprofesor('" + profesor.getNombre_profesor() + "',\n"

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 import login.dao.ProfesorDAO;
 import login.model.Profesor;
 
@@ -15,7 +15,7 @@ import login.model.Profesor;
  *
  * @author ebert
  */
-@Named(value = "profesorMB")
+@ManagedBean(name = "profesorMB")
 @SessionScoped
 public class ProfesorMB implements Serializable {
     Profesor profesor;
@@ -23,8 +23,11 @@ public class ProfesorMB implements Serializable {
     Mensajes mensajesJSF;
     boolean status;
     ProfesorDAO profesorDAO;
+     String warnMsj = "Advertencia";
+    String infMsj = "Exito";
     //Constructores
     public ProfesorMB() {
+        mensajesJSF = new Mensajes();
         profesor = new Profesor();
         profesores = new ArrayList<>();
         profesorDAO = new ProfesorDAO();
@@ -52,6 +55,10 @@ public class ProfesorMB implements Serializable {
         return profesorDAO;
     }
     //Metodos SET
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
@@ -93,11 +100,11 @@ public class ProfesorMB implements Serializable {
             }
             else {
               this.profesorDAO.registrarProfesor(profesor);
-                  mensajesJSF.mensajeDeAdvertencia(profesorDAO.registrarProfesor(profesor).toString());
             }
             System.out.println(profesor.getApellido_profesor());
         } catch (SQLException e) {
             e.getMessage();
         }
-    }
+    }    
+  
 }

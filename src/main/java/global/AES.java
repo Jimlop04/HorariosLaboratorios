@@ -1,6 +1,7 @@
 
 package global;
 
+import java.io.Serializable;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 import javax.crypto.Cipher;
@@ -14,7 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
  *
  * @author ebert
  */
-public class AES {
+public class AES implements Serializable  {
         private static final String salt = "Ch@rl3$L3C/3rK0283&#jhvwje!iWU0P";
     private static final String key = "njJDY1735TEFks&!+dw@3#ueMV/+*y&";
     
