@@ -8,225 +8,236 @@
 
     <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
     <ui:define name="content">
+        <f:event type="preRenderView" listener="#{equipoMB.listar()}" />
+        <f:event type="preRenderView" listener="#{categoriaEquipoMB.listar()}" />
         <div class="barra-navegacion">
 
-            <p:growl id="msj" autoUpdate="true" />
-            <h:form>
+            <p:growl id="msj" autoUpdate="true"/>
 
+<!--            REGISTRAR-->
+            <h:form id="registro">
                 <div class="card" style="margin-top: 5px;">
-                    <!-- Botones Principales de Equipos -->
-                    <p:toolbarGroup>
-                        <!-- Boton Agregar nuevo Equipo -->
-                        <p:commandButton
-                                value=" Agregar Equipo"
-                                styleClass="ui-button-primary"
-                                icon="pi pi-plus"
-                                style="margin-right: 6px;"
-                                process="@this"
-                                oncomplete="PF('agregarEquipo').show()">
-                        </p:commandButton>
-
-
-                        <!-- Dialogo Agregar Nuevo Equipo  -->
-                        <p:dialog header="Agregar Equipo"
-                                  showEffect="fade"
-                                  modal="true"
-                                  widgetVar="agregarEquipo"
-                                  responsive="true"
-                                  width="55%"
-                                  draggable="false"
-                                  height="350">
-                            <p:outputPanel
-                                    id="manage-equipo-form"
-                                    class="ui-fluid">
-                                <div class="p-formgrid p-grid">
-
-<!--                                    CODIG DEL BIEN-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Codigo" for="@next"/>
-                                        <p:inputText
-                                                id="codEquipo"
-                                                value="#{equipoMB.equipo.codigo}"
-                                                placeholder="código del bien"
-                                        >
-                                        </p:inputText>
-                                    </div>
-
-<!--                                    TIPO DE ACTIVO-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Tipo de activo" for="@next"/>
-                                        <p:selectOneMenu id="option" value="">
-                                            <f:selectItem itemLabel="Seleccione" itemValue="0"/>
-                                            <f:selectItem itemLabel="Microscopio" itemValue="1"/>
-                                            <f:selectItem itemLabel="Refrigerador" itemValue="2"/>
-                                            <f:selectItem itemLabel="Balanza" itemValue="3"/>
-                                            <f:facet name="footer">
-                                                <p:divider styleClass="p-mt-0"/>
-                                                <h:outputText value="3 options" style="font-weight:bold;"/>
-                                            </f:facet>
-                                        </p:selectOneMenu>
-                                    </div>
-
-<!--                                    DESCRIPCIÓN-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Descripción" for="@next"/>
-                                        <p:inputTextarea rows="1"
-                                                         cols="33"
-                                                         value="#{equipoMB.equipo.descripcion}"
-                                        />
-                                    </div>
-
-<!--                                        MARCA-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Marca" for="@next"/>
-                                        <p:inputText
-                                                maxlength="50"
-                                                value="#{equipoMB.equipo.marca}"
-                                        >
-                                        </p:inputText>
-                                    </div>
-
-<!--                                    MODELO-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Modelo" for="@next"/>
-                                        <p:inputText
-                                                maxlength="50"
-                                                value="#{equipoMB.equipo.modelo}"
-                                        >
-                                        </p:inputText>
-                                    </div>
-
-<!--                                    NÚMERO DE SERIE-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Número de serie" for="@next"/>
-                                        <p:inputText
-                                                maxlength="25"
-                                                value="#{equipoMB.equipo.numeroSerie}"
-                                        >
-                                        </p:inputText>
-                                    </div>
-
-<!--                                    FECHA ADQUISICIÓN-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Fecha de adquisición" for="@next"/>
-                                        <p:datePicker id="basic" value="#{equipoMB.equipo.fechaAdquisicion}"/>
-                                    </div>
-
-<!--                                    LABORATORIO-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Laboratorio" for="@next"/>
-                                        <p:selectOneMenu id="laboratorio" value="">
-                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                            <f:selectItem itemLabel="Biotecnología" itemValue="Option1"/>
-                                            <f:selectItem itemLabel="Biología y microbiología" itemValue="Option2"/>
-                                            <f:selectItem itemLabel="Bromatología" itemValue="Option3"/>
-                                            <f:selectItem itemLabel="Suelos y aguas" itemValue="Option4"/>
-                                            <f:selectItem itemLabel="Química y bioquímica" itemValue="Option5"/>
-                                            <f:selectItem itemLabel="Rumiología" itemValue="Option6"/>
-                                            <f:facet name="footer">
-                                                <p:divider styleClass="p-mt-0"/>
-                                                <h:outputText value="3 options" style="font-weight:bold;"/>
-                                            </f:facet>
-                                        </p:selectOneMenu>
-                                    </div>
-
-<!--                                    AREA-->
-                                    <div class="p-field p-col-12 p-md-4">
-                                        <p:outputLabel value="Area" for="@next"/>
-                                        <p:selectOneMenu id="area" value="">
-                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                            <f:selectItem itemLabel="Microbiología" itemValue="Option1"/>
-                                            <f:selectItem itemLabel="Cultivo vegetales" itemValue="Option2"/>
-                                            <f:selectItem itemLabel="Biología molecular" itemValue="Option3"/>
-                                            <f:facet name="footer">
-                                                <p:divider styleClass="p-mt-0"/>
-                                                <h:outputText value="3 options" style="font-weight:bold;"/>
-                                            </f:facet>
-                                        </p:selectOneMenu>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-12">
-                                        <h:form>
-                                            <p:growl id="messages" showDetail="true"/>
-                                            <p:outputLabel value="Subir imagen" for="@next"/>
-                                            <p:fileUpload mode="advanced"
-                                                          multiple="false"
-                                                          sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                                          invalidSizeMessage="Maximum file size allowed is 100 KB"
-                                                          invalidFileMessage="only gif | jpg | jpeg | png is allowed"
-                                                          update="messages cropperPanel"
-                                                          listener="#{cropUploaderBean.handleFileUpload}"
-                                            />
-
-                                            <p:outputPanel id="cropperPanel">
-
-                                                <h:panelGrid columns="1"
-                                                             rendered="#{not empty cropUploaderBean.originalImageFile}">
-
-                                                    <p:commandButton value="Crop"
-                                                                     action="#{cropUploaderBean.crop}"
-                                                                     update="cropped messages" styleClass="p-my-3"/>
-
-                                                    <h:panelGrid columns="2" cellpadding="7">
-
-                                                        <p:imageCropper
-                                                                value="#{cropUploaderBean.croppedImage}"
-                                                                id="imageCropper" cache="false"
-                                                                image="#{cropUploaderBean.image}"
-                                                                initialCoords="50,50,150,100"
-                                                                minSize="50,50" maxSize="350,350"/>
-
-                                                        <p:outputPanel id="cropped">
-                                                            <p:graphicImage cache="false"
-                                                                            rendered="#{not empty cropUploaderBean.croppedImage}"
-                                                                            value="#{cropUploaderBean.cropped}"/>
-                                                        </p:outputPanel>
-
-                                                    </h:panelGrid>
-
-
-                                                </h:panelGrid>
-                                            </p:outputPanel>
-                                        </h:form>
-                                    </div>
-
-                                </div>
-
-
-                            </p:outputPanel>
-                            <f:facet name="footer">
-                                <p:commandButton
-                                        value="Guardar"
-                                        icon="pi pi-check"
-                                        styleClass="ui-button-primary"
-                                        actionListener="#{equipoMB.registrar()}"
-                                >
-                                </p:commandButton>
-                                <p:commandButton
-                                        value="Cancelar"
-                                        icon="pi pi-times"
-                                        styleClass="ui-button-danger"/>
-                            </f:facet>
-                        </p:dialog>
-                    </p:toolbarGroup>
+                        <p:toolbarGroup>
+                            <!-- Boton Agregar nuevo Equipo -->
+                            <p:commandButton
+                                    value=" Agregar Equipo"
+                                    styleClass="ui-button-primary"
+                                    icon="pi pi-plus"
+                                    style="margin-right: 6px;"
+                                    process="@this"
+                                    oncomplete="PF('agregarEquipo').show()">
+                            </p:commandButton>
+                        </p:toolbarGroup>
                 </div>
+                <!-- Dialogo Agregar Nuevo Equipo  -->
+                <p:dialog header="Agregar Equipo"
+                          showEffect="fade"
+                          modal="true"
+                          widgetVar="agregarEquipo"
+                          responsive="true"
+                          width="55%"
+                          draggable="false"
+                          height="350">
+                    <p:outputPanel
+                            id="manage-equipo-form"
+                            class="ui-fluid">
+                        <div class="p-formgrid p-grid">
 
+                            <!--                                    CODIG DEL BIEN-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Codigo" for="@next"/>
+                                <p:inputText
+                                        id="codEquipo"
+                                        value="#{equipoMB.equipo.codigo}"
+                                        placeholder="código del bien"
+                                >
+                                </p:inputText>
+                            </div>
+
+                            <!--                                    TIPO DE ACTIVO-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Tipo de activo" for="@next"/>
+                                <p:selectOneMenu>
+                                    <f:selectItem  noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}" />
+                                    <f:selectItems
+                                            value="#{categoriaEquipoMB.listaCategoriaEquipos}"
+                                            var="ce"
+                                            itemLabel="#{ce.nombre}"
+                                    />
+
+                                </p:selectOneMenu>
+                            </div>
+
+                            <!--                                    DESCRIPCIÓN-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Descripción" for="@next"/>
+                                <p:inputTextarea rows="1"
+                                                 cols="33"
+                                                 value="#{equipoMB.equipo.descripcion}"
+                                />
+                            </div>
+
+                            <!--                                        MARCA-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Marca" for="@next"/>
+                                <p:inputText
+                                        maxlength="50"
+                                        value="#{equipoMB.equipo.marca}"
+                                >
+                                </p:inputText>
+                            </div>
+
+                            <!--                                    MODELO-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Modelo" for="@next"/>
+                                <p:inputText
+                                        maxlength="50"
+                                        value="#{equipoMB.equipo.modelo}"
+                                >
+                                </p:inputText>
+                            </div>
+
+                            <!--                                    NÚMERO DE SERIE-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Número de serie" for="@next"/>
+                                <p:inputText
+                                        maxlength="25"
+                                        value="#{equipoMB.equipo.numeroSerie}"
+                                >
+                                </p:inputText>
+                            </div>
+
+                            <!--                                    FECHA ADQUISICIÓN-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Fecha de adquisición" for="@next"/>
+                                <p:datePicker id="basic" value="#{equipoMB.equipo.fechaAdquisicion}"/>
+                            </div>
+
+                            <!--                                    LABORATORIO-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Laboratorio" for="@next"/>
+                                <p:selectOneMenu id="laboratorio" value="">
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItem itemLabel="Biotecnología" itemValue="Option1"/>
+                                    <f:selectItem itemLabel="Biología y microbiología" itemValue="Option2"/>
+                                    <f:selectItem itemLabel="Bromatología" itemValue="Option3"/>
+                                    <f:selectItem itemLabel="Suelos y aguas" itemValue="Option4"/>
+                                    <f:selectItem itemLabel="Química y bioquímica" itemValue="Option5"/>
+                                    <f:selectItem itemLabel="Rumiología" itemValue="Option6"/>
+                                    <f:facet name="footer">
+                                        <p:divider styleClass="p-mt-0"/>
+                                        <h:outputText value="3 options" style="font-weight:bold;"/>
+                                    </f:facet>
+                                </p:selectOneMenu>
+                            </div>
+
+                            <!--                                    AREA-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Area" for="@next"/>
+                                <p:selectOneMenu id="area" value="">
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItem itemLabel="Microbiología" itemValue="Option1"/>
+                                    <f:selectItem itemLabel="Cultivo vegetales" itemValue="Option2"/>
+                                    <f:selectItem itemLabel="Biología molecular" itemValue="Option3"/>
+                                    <f:facet name="footer">
+                                        <p:divider styleClass="p-mt-0"/>
+                                        <h:outputText value="3 options" style="font-weight:bold;"/>
+                                    </f:facet>
+                                </p:selectOneMenu>
+                            </div>
+
+                            <div class="p-field p-col-12 p-md-12">
+                                <h:form>
+                                    <p:growl id="messages" showDetail="true"/>
+                                    <p:outputLabel value="Subir imagen" for="@next"/>
+                                    <p:fileUpload mode="advanced"
+                                                  multiple="false"
+                                                  sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                  invalidSizeMessage="Maximum file size allowed is 100 KB"
+                                                  invalidFileMessage="only gif | jpg | jpeg | png is allowed"
+                                                  update="messages cropperPanel"
+                                                  listener="#{cropUploaderBean.handleFileUpload}"
+                                    />
+
+                                    <p:outputPanel id="cropperPanel">
+
+                                        <h:panelGrid columns="1"
+                                                     rendered="#{not empty cropUploaderBean.originalImageFile}">
+
+                                            <p:commandButton value="Crop"
+                                                             action="#{cropUploaderBean.crop}"
+                                                             update="cropped messages" styleClass="p-my-3"/>
+
+                                            <h:panelGrid columns="2" cellpadding="7">
+
+                                                <p:imageCropper
+                                                        value="#{cropUploaderBean.croppedImage}"
+                                                        id="imageCropper" cache="false"
+                                                        image="#{cropUploaderBean.image}"
+                                                        initialCoords="50,50,150,100"
+                                                        minSize="50,50" maxSize="350,350"/>
+
+                                                <p:outputPanel id="cropped">
+                                                    <p:graphicImage cache="false"
+                                                                    rendered="#{not empty cropUploaderBean.croppedImage}"
+                                                                    value="#{cropUploaderBean.cropped}"/>
+                                                </p:outputPanel>
+
+                                            </h:panelGrid>
+
+
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </h:form>
+                            </div>
+
+                        </div>
+
+
+                    </p:outputPanel>
+                    <f:facet name="footer">
+                        <p:commandButton
+                                value="Guardar"
+                                icon="pi pi-check"
+                                styleClass="ui-button-primary"
+                                actionListener="#{equipoMB.registrar()}"
+                        >
+                        </p:commandButton>
+                        <p:commandButton
+                                value="Cancelar"
+                                icon="pi pi-times"
+                                styleClass="ui-button-danger"/>
+                    </f:facet>
+                </p:dialog>
+            </h:form>
+
+
+            <h:form id="datos">
                 <div class="card" style="margin-top: 5px;">
 
-                    <p:toolbarGroup>
+                    <p:toolbar>
+                        <p:toolbarGroup>
+<!--                            <p:commandButton-->
+<!--                                    value="Listar"-->
+<!--                                    update="dataEquipos"-->
+<!--                                    actionListener="#{equipoMB.listar()}"-->
+<!--                            />-->
+                        </p:toolbarGroup>
+                    </p:toolbar>
 
-                        <h:form>
-
-
-                            <!--                            DataTable-->
+                    <p:toolbar>
+                        <p:toolbarGroup>
                             <div class="p-grid p-justify-around">
+
                                 <p:dataTable
+                                        id="dataEquipos"
                                         lazy="true"
                                         editable="true"
                                         reflow="true"
                                         editInitEvent="dblclick"
                                         editMode="cell"
-                                        value=""
+                                        value="#{equipoMB.listaEquipos}"
+                                        var="equipo"
                                 >
 
                                     <!--                                    Header DataTable-->
@@ -240,74 +251,46 @@
                                         </div>
                                     </f:facet>
 
-<!--                                    Codigo-->
+                                    <!--                                    Codigo-->
                                     <p:column headerText="Código" filterStyle="display : none">
-                                        <h:outputText/>
-                                        <p:outputLabel value="" />
+                                        <p:outputLabel value="#{equipo.codigo}" />
                                     </p:column>
-<!--                                    Tipo activo-->
-                                    <p:column headerText="Tipo de activo" filterStyle="display : none">
-                                        <h:outputText/>
-                                    </p:column>
-<!--                                    Desccripción-->
+<!--                                    &lt;!&ndash;                                    Tipo activo&ndash;&gt;-->
+<!--                                    <p:column headerText="Tipo de activo" filterStyle="display : none">-->
+<!--                                        <p:outputLabel value="#{equipo.categoriaEquipo.nombre}" />-->
+<!--                                    </p:column>-->
+                                    <!--                                    Desccripción-->
                                     <p:column headerText="Descripción" filterStyle="display : none">
-                                        <h:outputText value="Microscopio optico"/>
+                                        <p:outputLabel value="#{equipo.descripcion}" />
                                     </p:column>
-<!--                                    Marca-->
+                                    <!--                                    Marca-->
                                     <p:column headerText="Marca" filterStyle="display : none">
-                                        <h:outputText/>
+                                        <p:outputLabel value="#{equipo.marca}" />
                                     </p:column>
-<!--                                    Modelo-->
+                                    <!--                                    Modelo-->
                                     <p:column headerText="Modelo" filterStyle="display : none">
-                                        <h:outputText/>
+                                        <p:outputLabel value="#{equipo.modelo }" />
                                     </p:column>
-<!--                                    Número de seríe-->
+                                    <!--                                    Número de seríe-->
                                     <p:column headerText="Número de serie" filterStyle="display : none">
-                                        <h:outputText/>
+                                        <p:outputLabel value="#{equipo.numeroSerie}" />
                                     </p:column>
-<!--                                    Fecha adquisición-->
+                                    <!--                                    Fecha adquisición-->
                                     <p:column headerText="fecha de adquisición" filterStyle="display : none">
-                                        <h:outputText/>
+                                       <p:outputLabel value="#{equipo.fechaAdquisicion}" />
                                     </p:column>
-<!--                                    Área-->
+                                    <!--                                    Área-->
                                     <p:column headerText="Área" filterStyle="display : none">
-                                        <h:outputText/>
+<!--                                        <p:outputLabel value="#{equipo.areaAula.nombre}" />-->
                                     </p:column>
-<!--                                    Imagen-->
+                                    <!--                                    Imagen-->
                                     <p:column headerText="Imagen" filterStyle="display : none">
-                                        <p:graphicImage name="images/equipos/microscopio_optico.jpg" library="demo"/>
+<!--                                        <p:graphicImage name="images/equipos/microscopio_optico.jpg" library="demo"/>-->
                                     </p:column>
                                 </p:dataTable>
                             </div>
-
-                            <!-- Boton para listar -->
-                            <p:commandButton
-                                    value="Listar"
-                                    styleClass="ui-button-primary"
-                                    icon="pi pi-plus"
-                                    style="margin-right: 6px;"
-                                    actionListener="#{equipoMB.listar()}"
-                                    update="dataa"
-                            >
-                            </p:commandButton>
-
-                            <div class="p-grid p-justify-around">
-                                <p:dataTable lazy="true"
-                                             id="dataa"
-                                             editable="true"
-                                             reflow="true"
-                                             value="#{equipoMB.listaEquipos}"
-                                             var="equipo"
-                                >
-                                    <p:column headerText="Número de serie" filterStyle="display : none">
-                                        <p:outputLabel value="#{equipo.descripcion}"/>
-                                    </p:column>
-                                </p:dataTable>
-                            </div>
-
-                        </h:form>
-
-                    </p:toolbarGroup>
+                        </p:toolbarGroup>
+                    </p:toolbar>
                 </div>
             </h:form>
         </div>

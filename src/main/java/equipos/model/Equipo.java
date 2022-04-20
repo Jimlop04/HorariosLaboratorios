@@ -1,5 +1,7 @@
 package equipos.model;
 
+import laboratorios.model.AreaAula;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +9,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Equipo {
     private int idEquipo;
     private String codigo;
@@ -17,6 +20,6 @@ public class Equipo {
     private String estado;
     private String imagen ="NA";
     private Date fechaAdquisicion;
-    private int area_aula=1;
+    private AreaAula areaAula;
     private CategoriaEquipo categoriaEquipo;
 }

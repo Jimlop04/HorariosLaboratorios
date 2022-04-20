@@ -1,32 +1,34 @@
 package equipos.controller;
 
+import equipos.DAO.CategoriaEquipoDAO;
 import equipos.DAO.EquipoDAO;
+import equipos.model.CategoriaEquipo;
 import equipos.model.Equipo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EquipoMB implements Serializable {
-
-    private Equipo equipo = new Equipo();
-    private List<Equipo> listaEquipos;
+public class CategoriaEquipoMB implements Serializable {
+    private CategoriaEquipo categoriaEquipo = new CategoriaEquipo();
+    private List<CategoriaEquipo> listaCategoriaEquipos;
 
     public void registrar() throws SQLException {
-        EquipoDAO dao;
+        CategoriaEquipoDAO dao;
         try {
-            dao = new EquipoDAO();
+            dao = new CategoriaEquipoDAO();
 //            dao.resgistrar(equipo);
         }catch( Exception e){
             throw e;
@@ -34,13 +36,13 @@ public class EquipoMB implements Serializable {
     }
 
 
-//        LISTAR
+    //        LISTAR
     public void listar() throws Exception {
-        EquipoDAO dao;
+        CategoriaEquipoDAO dao;
         try {
-            dao = new EquipoDAO();
-            listaEquipos = dao.listar();
-            System.out.println(listaEquipos);
+            dao = new CategoriaEquipoDAO();
+            listaCategoriaEquipos = dao.listar();
+            System.out.println(listaCategoriaEquipos);
         }catch( Exception e){
             throw e;
         }
