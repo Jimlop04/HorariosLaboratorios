@@ -100,6 +100,7 @@ public class ProfesorMB implements Serializable {
             }
             else {
               this.profesorDAO.registrarProfesor(profesor);
+              mensajesJSF.mensajeDeExito("Registro Exitoso");
             }
             System.out.println(profesor.getApellido_profesor());
         } catch (SQLException e) {

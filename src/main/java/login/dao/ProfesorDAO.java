@@ -42,8 +42,7 @@ public class ProfesorDAO {
                     + "'" + profesor.getUsuario_profesor() + "',\n"
                     + "'" + encryptAES.getAESEncrypt(profesor.getPassword_profesor()) + "');";
             conexion.ejecutarSql(sentencia);
-            System.out.println(sentencia);
-            conexion.desconectar();
+      
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
