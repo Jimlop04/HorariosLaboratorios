@@ -45,9 +45,6 @@ public class Encargado {
     }
     
     
-  
-  
-    
     public int getIdRoles() {
         return idRoles;
     }
