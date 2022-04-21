@@ -4,6 +4,8 @@ import equipos.DAO.CategoriaEquipoDAO;
 import equipos.DAO.EquipoDAO;
 import equipos.model.CategoriaEquipo;
 import equipos.model.Equipo;
+import laboratorios.model.AreaAula;
+import laboratorios.model.Laboratorio;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,10 @@ public class CategoriaEquipoMB implements Serializable {
     private CategoriaEquipo categoriaEquipo = new CategoriaEquipo();
     private List<CategoriaEquipo> listaCategoriaEquipos;
 
+    private List<Laboratorio> listaLaboratorios;
+
+    private List<AreaAula> listaAreasAulas;
+
     public void registrar() throws SQLException {
         CategoriaEquipoDAO dao;
         try {
@@ -42,7 +48,26 @@ public class CategoriaEquipoMB implements Serializable {
         try {
             dao = new CategoriaEquipoDAO();
             listaCategoriaEquipos = dao.listar();
-            System.out.println(listaCategoriaEquipos);
+        }catch( Exception e){
+            throw e;
+        }
+    }
+
+    public void listarLaboratorios() throws Exception {
+        EquipoDAO dao;
+        try {
+            dao = new EquipoDAO();
+            listaLaboratorios = dao.listarLaboratorios();
+        }catch( Exception e){
+            throw e;
+        }
+    }
+
+    public void listarAreasAulas(int idLaboratorio) throws Exception {
+        EquipoDAO dao;
+        try {
+            dao = new EquipoDAO();
+            listaAreasAulas = dao.listarAreasAulas(idLaboratorio);
         }catch( Exception e){
             throw e;
         }

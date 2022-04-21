@@ -3,6 +3,8 @@ package equipos.DAO;
 import equipos.model.CategoriaEquipo;
 import equipos.model.Equipo;
 import global.Conexion;
+import laboratorios.model.AreaAula;
+import laboratorios.model.Laboratorio;
 
 import javax.annotation.PostConstruct;
 import java.sql.Date;
@@ -46,7 +48,7 @@ public class EquipoDAO extends Conexion {
             this.conectar();
             PreparedStatement st  =  this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
-            lista = new ArrayList();
+            lista = new ArrayList<>();
             while(rs.next()){
                 Equipo equipo = new Equipo();
                 equipo.setDescripcion(rs.getString("descripcion"));
@@ -58,7 +60,6 @@ public class EquipoDAO extends Conexion {
                 equipo.setCodigo(rs.getString("codigo"));
 //                equipo.setCategoriaEquipo(rs.getInt("id_categoria_equipos"));
                 lista.add(equipo);
-                System.out.println(equipo);
             }
         } catch(Exception e){
             throw  e;
@@ -67,6 +68,58 @@ public class EquipoDAO extends Conexion {
             this.desconectar();
         }
         return lista;
+    }
+
+
+    public List<Laboratorio> listarLaboratorios() throws Exception {
+        List<Laboratorio> listaLaboratorios;
+        ResultSet rs;
+        try {
+            String query = "SELECT * FROM laboratorio";
+            this.conectar();
+            PreparedStatement st  =  this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            listaLaboratorios = new ArrayList<>();
+            while(rs.next()){
+                Laboratorio laboratorio = new Laboratorio();
+                laboratorio.setIdLaboratorio(rs.getInt("idLaboratorio"));
+                laboratorio.setNombre(rs.getString("nombre_laboratorio"));
+                laboratorio.setCodigo(rs.getString("codigo_laboratorio"));
+                listaLaboratorios.add(laboratorio);
+            }
+        } catch(Exception e){
+            throw  e;
+        }
+        finally {
+            this.desconectar();
+        }
+        return listaLaboratorios;
+    }
+
+    public List<AreaAula> listarAreasAulas(int idLaboratorio) throws Exception {
+        List<AreaAula> listaAreasAulas;
+        ResultSet rs;
+        try {
+            String query = "select * from area_aula where \"laboratorio_idLaboratorio\" =" + idLaboratorio;
+            this.conectar();
+            PreparedStatement st  =  this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            listaAreasAulas = new ArrayList<>();
+            while(rs.next()){
+                AreaAula areaAula = new AreaAula();
+                areaAula.setIdAreaAula(rs.getInt("id_area_aula"));
+                areaAula.setCodigo(rs.getString("codigo_aula"));
+                areaAula.setCapacidad(rs.getShort("capacidad_aula"));
+                areaAula.setNombre(rs.getString("nombre_aula"));
+                listaAreasAulas.add(areaAula);
+            }
+        } catch(Exception e){
+            throw  e;
+        }
+        finally {
+            this.desconectar();
+        }
+        return listaAreasAulas;
     }
 
 }

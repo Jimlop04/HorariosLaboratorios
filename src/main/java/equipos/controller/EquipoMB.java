@@ -40,7 +40,6 @@ public class EquipoMB implements Serializable {
         try {
             dao = new EquipoDAO();
             listaEquipos = dao.listar();
-            System.out.println(listaEquipos);
         }catch( Exception e){
             throw e;
         }

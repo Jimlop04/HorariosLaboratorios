@@ -25,7 +25,6 @@ public class CategoriaEquipoDAO extends Conexion {
                 ce.setNombre(rs.getString("nombre"));
                 ce.setDescripcion(rs.getString("descripcion"));
                 lista.add(ce);
-                System.out.println(ce);
             }
         } catch(Exception e){
             throw  e;

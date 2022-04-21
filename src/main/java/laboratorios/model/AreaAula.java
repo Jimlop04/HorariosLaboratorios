@@ -7,5 +7,5 @@ public class AreaAula {
     private int idAreaAula;
     private String codigo;
     private String nombre;
-    private Short cantidad;
+    private Short capacidad;
 }
