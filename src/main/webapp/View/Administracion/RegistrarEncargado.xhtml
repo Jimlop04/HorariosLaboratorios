@@ -1,188 +1,194 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/WEB-INF/InicioTemplate.xhtml"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="title">Registrar Encargado</ui:define>
-    <ui:define name="content">  
-        <div class="barra-navegacion">
-            <h:form id="form-principal">
-                <p:growl id="messages" showDetail="true" severity="info, warn"/>
-                <div class="card" style="margin-top: 5px;">
-                    <p:toolbarGroup>
-                        <!-- Boton Agregar Encargado -->
-                        <p:commandButton 
-                            value="Registrar Encargado" 
-                            styleClass="ui-button-primary" 
-                            update=":form-principal:manage-encargado-form"
-                            icon="pi pi-plus" 
-                            process="@this"
-                            oncomplete="PF('RegistrarEncargado').show()">
-                            <p:resetInput 
-                                target=":form-principal:manage-encargado-form"/>
-                        </p:commandButton>
-
-                        <!-- Dialogo Agregar Nuevo Encargado -->
-                        <p:dialog header="Registrar Encargado" 
-                                  showEffect="fade" 
-                                  modal="true"
-                                  widgetVar="RegistrarEncargado"
-                                  responsive="true" 
-                                  width="30%"
-                                  draggable="false" 
-                                  height="200" >
-                            <p:outputPanel 
-                                id="manage-encargado-form" 
-                                class="ui-fluid">
-                                <div class="p-formgrid p-grid">
-
-                                    <div class="p-field p-col-12 p-md-6">
-                                        <p:outputLabel value="Nombre" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="50"
-                                            value="#{encargadoMB.encargado.nombre_encargado}" ></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-6">
-                                        <p:outputLabel value="Apellidos" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="50"
-                                            value="#{encargadoMB.encargado.apellidos_encargado}"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-9">
-                                        <p:outputLabel value="Cargo" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="60"
-                                            value="#{encargadoMB.encargado.nombre_rol}"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-3">
-                                        <p:outputLabel value="Estado" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="50"
-                                            value="#{encargadoMB.encargado.estado}"></p:inputText>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-6">
-                                        <p:toolbarGroup >
-                                            <p:outputLabel value="Fecha Incio" for="@next"/>
-                                            <p:datePicker id="button"
-                                                          value="#{encargadoMB.encargado.fecha_inicio}"
-                                                          showIcon="true"/>
-                                        </p:toolbarGroup>
-                                    </div>
-
-                                    <div class="p-field p-col-12 p-md-6">
-                                        <p:outputLabel value="Fecha Fin" for="@next"/>
-                                        <p:datePicker id="button2" 
-                                                      value="#{encargadoMB.encargado.fecha_fin}"
-                                                      showIcon="true"/>
-                                    </div>
-                                </div>
-
-                            </p:outputPanel>
-                            <f:facet name="footer">
+    <h:body>
+        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml"> 
+            <ui:define name="title">Registrar Encargado</ui:define>
+            <ui:define name="content">  
+                  <ui:include src="./SubHeaderAdministracion.xhtml"/> 
+                <div class="barra-navegacion">
+                    <h:form id="form-principal">
+                        <p:growl id="messages" showDetail="true" severity="info, warn"/>
+                        <div class="card" style="margin-top: 5px;">
+                            <p:toolbarGroup>
+                                <!-- Boton Agregar Encargado -->
                                 <p:commandButton 
-                                    value="Guardar"
-                                    actionListener="#{encargadoMB.registrarEncargado()}"
-                                    process="manage-encargado-form @this"
-                                    icon="pi pi-check"
-                                    styleClass="ui-button-primary">
+                                    value="Registrar Encargado" 
+                                    styleClass="ui-button-primary" 
+                                    update=":form-principal:manage-encargado-form"
+                                    icon="pi pi-plus" 
+                                    process="@this"
+                                    oncomplete="PF('RegistrarEncargado').show()">
+                                    <p:resetInput 
+                                        target=":form-principal:manage-encargado-form"/>
                                 </p:commandButton>
 
-                                <p:button  value="Cancelar" 
-                                           styleClass="ui-button-danger"
-                                           icon="pi pi-times" 
-                                           outcome="RegistrarEncargado"/>
-                            </f:facet>
-                        </p:dialog>
+                                <!-- Dialogo Agregar Nuevo Encargado -->
+                                <p:dialog header="Registrar Encargado" 
+                                          showEffect="fade" 
+                                          modal="true"
+                                          widgetVar="RegistrarEncargado"
+                                          responsive="true" 
+                                          width="30%"
+                                          draggable="false" 
+                                          height="200" >
+                                    <p:outputPanel 
+                                        id="manage-encargado-form" 
+                                        class="ui-fluid">
+                                        <div class="p-formgrid p-grid">
 
-                    </p:toolbarGroup>
-                </div>
+                                            <div class="p-field p-col-12 p-md-6">
+                                                <p:outputLabel value="Nombre" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="50"
+                                                    value="#{encargadoMB.encargado.nombre_encargado}" ></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-6">
+                                                <p:outputLabel value="Apellidos" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="50"
+                                                    value="#{encargadoMB.encargado.apellidos_encargado}"></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-9">
+                                                <p:outputLabel value="Cargo" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="60"
+                                                    value="#{encargadoMB.encargado.nombre_rol}"></p:inputText>
+                                            </div>
 
-                <div class="card" style="margin-top: 5px;">
+                                            <div class="p-field p-col-12 p-md-3">
+                                                <p:outputLabel value="Estado" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="50"
+                                                    value="#{encargadoMB.encargado.estado}"></p:inputText>
+                                            </div>
 
-                    <p:toolbarGroup>
+                                            <div class="p-field p-col-12 p-md-6">
+                                                <p:toolbarGroup >
+                                                    <p:outputLabel value="Fecha Incio" for="@next"/>
+                                                    <p:datePicker id="button"
+                                                                  value="#{encargadoMB.encargado.fecha_inicio}"
+                                                                  showIcon="true"/>
+                                                </p:toolbarGroup>
+                                            </div>
 
-                        <h:form>
-
-                            <div class="p-grid p-justify-around">
-                                <p:dataTable id="dtEncargados"
-                                             paginator="true" 
-                                             paginatorPosition="bottom"
-                                             lazy="true"  
-                                             editable="true" 
-                                             reflow="true"
-                                             rows="6"
-                                             rowSelectMode="add"
-                                             editInitEvent="dblclick" 
-                                             editMode="cell"
-                                             value="#{encargadoMB.listaEncargados}"
-                                             widgetVar="TablaEncargadosBus"
-                                             var="TablaEncargados"
-
-                                             >
-                                    <f:facet name="header">
-                                        <div class="p-d-flex p-jc-between p-ai-center">
-                                            <span style="font-size: 24px">Encargados</span>
-                                            <span class="filter-container ui-input-icon-left">
-                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                            </span>
+                                            <div class="p-field p-col-12 p-md-6">
+                                                <p:outputLabel value="Fecha Fin" for="@next"/>
+                                                <p:datePicker id="button2" 
+                                                              value="#{encargadoMB.encargado.fecha_fin}"
+                                                              showIcon="true"/>
+                                            </div>
                                         </div>
+
+                                    </p:outputPanel>
+                                    <f:facet name="footer">
+                                        <p:commandButton 
+                                            value="Guardar"
+                                            actionListener="#{encargadoMB.registrarEncargado()}"
+                                            process="manage-encargado-form @this"
+                                            icon="pi pi-check"
+                                            styleClass="ui-button-primary">
+                                        </p:commandButton>
+
+                                        <p:button  value="Cancelar" 
+                                                   styleClass="ui-button-danger"
+                                                   icon="pi pi-times" 
+                                                   outcome="RegistrarEncargado"/>
                                     </f:facet>
-                                    <p:column headerText="Nombre" 
-                                              filterStyle="display : none">
-                                        <h:outputText 
-                                            value="#{TablaEncargados.nombre_encargado}"/>
-                                    </p:column>
-                                    <p:column headerText="Apellidos" 
-                                              filterStyle="display : none">
-                                        <h:outputText 
-                                            value="#{TablaEncargados.apellidos_encargado}"/>
-                                    </p:column>
-                                    <p:column headerText="Cargo" filterStyle="display : none">
-                                        <h:outputText
-                                            value="#{TablaEncargados.nombre_rol}"/>
-                                    </p:column>
-                                    <p:column headerText="Fecha Inicio" filterStyle="display : none">
-                                        <h:outputText  
-                                            value="#{TablaEncargados.fecha_inicio}"/>
-                                    </p:column>
-                                    <p:column headerText="Fecha Fin" filterStyle="display : none">
-                                        <h:outputText
-                                            value="#{TablaEncargados.fecha_fin}"/>
-                                    </p:column>
-                                    <p:column headerText="Estado" sortBy="#{TablaEncargados.estado}">
-                                        <p:tag severity="success" value="Activo"
-                                               style="font-size:12px;"
-                                               rendered="#{TablaEncargados.estado eq true}"/>
-                                        <p:tag severity="warning" value="Inactivo"
-                                               style="font-size:12px;"
-                                               rendered="#{TablaEncargados.estado eq 'null'}"/>
-                                    </p:column>
+                                </p:dialog>
 
-                                </p:dataTable>
-                            </div>
+                            </p:toolbarGroup>
+                        </div>
 
-                        </h:form>
+                        <div class="card" style="margin-top: 5px;">
+
+                            <p:toolbarGroup>
+
+                                <h:form>
+
+                                    <div class="p-grid p-justify-around">
+                                        <p:dataTable id="dtEncargados"
+                                                     paginator="true" 
+                                                     paginatorPosition="bottom"
+                                                     lazy="true"  
+                                                     editable="true" 
+                                                     reflow="true"
+                                                     rows="6"
+                                                     rowSelectMode="add"
+                                                     editInitEvent="dblclick" 
+                                                     editMode="cell"
+                                                     value="#{encargadoMB.listaEncargados}"
+                                                     widgetVar="TablaEncargadosBus"
+                                                     var="TablaEncargados"
+
+                                                     >
+                                            <f:facet name="header">
+                                                <div class="p-d-flex p-jc-between p-ai-center">
+                                                    <span style="font-size: 24px">Encargados</span>
+                                                    <span class="filter-container ui-input-icon-left">
+                                                        <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                    </span>
+                                                </div>
+                                            </f:facet>
+                                            <p:column headerText="Nombre" 
+                                                      filterStyle="display : none">
+                                                <h:outputText 
+                                                    value="#{TablaEncargados.nombre_encargado}"/>
+                                            </p:column>
+                                            <p:column headerText="Apellidos" 
+                                                      filterStyle="display : none">
+                                                <h:outputText 
+                                                    value="#{TablaEncargados.apellidos_encargado}"/>
+                                            </p:column>
+                                            <p:column headerText="Cargo" filterStyle="display : none">
+                                                <h:outputText
+                                                    value="#{TablaEncargados.nombre_rol}"/>
+                                            </p:column>
+                                            <p:column headerText="Fecha Inicio" filterStyle="display : none">
+                                                <h:outputText  
+                                                    value="#{TablaEncargados.fecha_inicio}"/>
+                                            </p:column>
+                                            <p:column headerText="Fecha Fin" filterStyle="display : none">
+                                                <h:outputText
+                                                    value="#{TablaEncargados.fecha_fin}"/>
+                                            </p:column>
+                                            <p:column headerText="Estado" sortBy="#{TablaEncargados.estado}">
+                                                <p:tag severity="success" value="Activo"
+                                                       style="font-size:12px;"
+                                                       rendered="#{TablaEncargados.estado eq true}"/>
+                                                <p:tag severity="warning" value="Inactivo"
+                                                       style="font-size:12px;"
+                                                       rendered="#{TablaEncargados.estado eq 'null'}"/>
+                                            </p:column>
+
+                                        </p:dataTable>
+                                    </div>
+
+                                </h:form>
 
 
-                    </p:toolbarGroup> 
-                </div>
+                            </p:toolbarGroup> 
+                        </div>
 
-            </h:form>
-
-
-
-
-        </div>   
-
-        <h:outputStylesheet name="home.css" library="css"/>
-        <h:outputStylesheet name="main.css" library="css"/>
-    </ui:define>
+                    </h:form>
 
 
 
-</ui:composition>
+
+                </div>   
+
+                <h:outputStylesheet name="home.css" library="css"/>
+                <h:outputStylesheet name="main.css" library="css"/>
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
