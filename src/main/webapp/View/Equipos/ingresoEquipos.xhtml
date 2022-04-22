@@ -10,9 +10,10 @@
     <ui:define name="content">
         <f:event type="preRenderView" listener="#{equipoMB.listar()}" />
         <f:event type="preRenderView" listener="#{categoriaEquipoMB.listar()}" />
+        <f:event type="preRenderView" listener="#{categoriaEquipoMB.listarAreasAulas()}" />
         <div class="barra-navegacion">
 
-            <p:growl id="msj" autoUpdate="true"/>
+            <p:growl id="msj"  showDetail="true" />
 
 <!--            REGISTRAR-->
             <h:form id="registro">
@@ -50,19 +51,23 @@
                                         id="codEquipo"
                                         value="#{equipoMB.equipo.codigo}"
                                         placeholder="código del bien"
+                                        required="true"
                                 >
                                 </p:inputText>
                             </div>
 
-                            <!--                                    TIPO DE ACTIVO-->
+<!--                                                                TIPO DE ACTIVO-->
                             <div class="p-field p-col-12 p-md-4">
                                 <p:outputLabel value="Tipo de activo" for="@next"/>
-                                <p:selectOneMenu>
+                                <p:selectOneMenu value="#{equipoMB.equipo.idCategoriaEquipo}"
+                                >
                                     <f:selectItem  noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}" />
                                     <f:selectItems
                                             value="#{categoriaEquipoMB.listaCategoriaEquipos}"
                                             var="ce"
                                             itemLabel="#{ce.nombre}"
+                                            itemValue="#{ce.idCategoriaEquipo}"
+                                            required="true"
                                     />
 
                                 </p:selectOneMenu>
@@ -71,9 +76,11 @@
                             <!--                                    DESCRIPCIÓN-->
                             <div class="p-field p-col-12 p-md-4">
                                 <p:outputLabel value="Descripción" for="@next"/>
-                                <p:inputTextarea rows="1"
-                                                 cols="33"
-                                                 value="#{equipoMB.equipo.descripcion}"
+                                <p:inputTextarea
+                                        rows="1"
+                                        cols="33"
+                                        value="#{equipoMB.equipo.descripcion}"
+                                        required="true"
                                 />
                             </div>
 
@@ -103,6 +110,7 @@
                                 <p:inputText
                                         maxlength="25"
                                         value="#{equipoMB.equipo.numeroSerie}"
+                                        required="true"
                                 >
                                 </p:inputText>
                             </div>
@@ -110,86 +118,114 @@
                             <!--                                    FECHA ADQUISICIÓN-->
                             <div class="p-field p-col-12 p-md-4">
                                 <p:outputLabel value="Fecha de adquisición" for="@next"/>
-                                <p:datePicker id="basic" value="#{equipoMB.equipo.fechaAdquisicion}"/>
+                                <p:datePicker
+                                        showIcon="true"
+                                        value="#{equipoMB.equipo.fechaAdquisicion}"
+                                        required="true"
+                                        monthNavigator="true"
+                                        yearNavigator="true"
+                                        showWeek="true"
+                                />
+
+
+
                             </div>
+
+<!--                            ESTADO-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Estado" for="@next"/>
+                                <p:selectOneMenu
+                                        value="#{equipoMB.equipo.estado}"
+                                        required="true"
+                                >
+                                    <f:selectItem  noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}" />
+                                    <f:selectItem itemValue="BUENO" itemLabel="1. BUENO" />
+                                    <f:selectItem itemValue="REGULAR" itemLabel="2. REGULAR" />
+                                    <f:selectItem itemValue="DESCOMPUESTO" itemLabel="3. DESCOMPUESTO" />
+                                </p:selectOneMenu>
+
+                            </div>
+
 
                             <!--                                    LABORATORIO-->
-                            <div class="p-field p-col-12 p-md-4">
-                                <p:outputLabel value="Laboratorio" for="@next"/>
-                                <p:selectOneMenu id="laboratorio" value="">
-                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                    <f:selectItem itemLabel="Biotecnología" itemValue="Option1"/>
-                                    <f:selectItem itemLabel="Biología y microbiología" itemValue="Option2"/>
-                                    <f:selectItem itemLabel="Bromatología" itemValue="Option3"/>
-                                    <f:selectItem itemLabel="Suelos y aguas" itemValue="Option4"/>
-                                    <f:selectItem itemLabel="Química y bioquímica" itemValue="Option5"/>
-                                    <f:selectItem itemLabel="Rumiología" itemValue="Option6"/>
-                                    <f:facet name="footer">
-                                        <p:divider styleClass="p-mt-0"/>
-                                        <h:outputText value="3 options" style="font-weight:bold;"/>
-                                    </f:facet>
-                                </p:selectOneMenu>
-                            </div>
+<!--                            <div class="p-field p-col-12 p-md-4">-->
+<!--                                <p:outputLabel value="Laboratorio" for="@next"/>-->
+<!--                                <p:selectOneMenu id="laboratorio" value="">-->
+<!--                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>-->
+<!--                                    <f:selectItem itemLabel="Biotecnología" itemValue="Option1"/>-->
+<!--                                    <f:selectItem itemLabel="Biología y microbiología" itemValue="Option2"/>-->
+<!--                                    <f:selectItem itemLabel="Bromatología" itemValue="Option3"/>-->
+<!--                                    <f:selectItem itemLabel="Suelos y aguas" itemValue="Option4"/>-->
+<!--                                    <f:selectItem itemLabel="Química y bioquímica" itemValue="Option5"/>-->
+<!--                                    <f:selectItem itemLabel="Rumiología" itemValue="Option6"/>-->
+<!--                                    <f:facet name="footer">-->
+<!--                                        <p:divider styleClass="p-mt-0"/>-->
+<!--                                        <h:outputText value="3 options" style="font-weight:bold;"/>-->
+<!--                                    </f:facet>-->
+<!--                                </p:selectOneMenu>-->
+<!--                            </div>-->
 
-                            <!--                                    AREA-->
+<!--                                                                AREA-->
                             <div class="p-field p-col-12 p-md-4">
                                 <p:outputLabel value="Area" for="@next"/>
-                                <p:selectOneMenu id="area" value="">
-                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                    <f:selectItem itemLabel="Microbiología" itemValue="Option1"/>
-                                    <f:selectItem itemLabel="Cultivo vegetales" itemValue="Option2"/>
-                                    <f:selectItem itemLabel="Biología molecular" itemValue="Option3"/>
-                                    <f:facet name="footer">
-                                        <p:divider styleClass="p-mt-0"/>
-                                        <h:outputText value="3 options" style="font-weight:bold;"/>
-                                    </f:facet>
+                                <p:selectOneMenu
+                                        value="#{equipoMB.equipo.idAreaAula}"
+                                        required="true"
+                                >
+                                    <f:selectItem  noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}" />
+                                    <f:selectItems
+                                            value="#{categoriaEquipoMB.listaAreasAulas}"
+                                            var="au"
+                                            itemLabel="#{au.nombre}"
+                                            itemValue="#{au.idAreaAula}"
+                                    />
                                 </p:selectOneMenu>
                             </div>
 
-                            <div class="p-field p-col-12 p-md-12">
-                                <h:form>
-                                    <p:growl id="messages" showDetail="true"/>
-                                    <p:outputLabel value="Subir imagen" for="@next"/>
-                                    <p:fileUpload mode="advanced"
-                                                  multiple="false"
-                                                  sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                                  invalidSizeMessage="Maximum file size allowed is 100 KB"
-                                                  invalidFileMessage="only gif | jpg | jpeg | png is allowed"
-                                                  update="messages cropperPanel"
-                                                  listener="#{cropUploaderBean.handleFileUpload}"
-                                    />
+<!--                            <div class="p-field p-col-12 p-md-12">-->
+<!--                                    <p:growl id="messages" showDetail="true"/>-->
+<!--                                    <p:outputLabel value="Subir imagen" for="@next"/>-->
+<!--                                    <p:fileUpload mode="advanced"-->
+<!--                                                  multiple="false"-->
+<!--                                                  sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"-->
+<!--                                                  invalidSizeMessage="Maximum file size allowed is 100 KB"-->
+<!--                                                  invalidFileMessage="only gif | jpg | jpeg | png is allowed"-->
+<!--                                                  update="messages cropperPanel"-->
+<!--                                                  listener="#{cropUploaderBean.handleFileUpload}"-->
+<!--                                    />-->
 
-                                    <p:outputPanel id="cropperPanel">
+<!--                                    <p:outputPanel id="cropperPanel">-->
 
-                                        <h:panelGrid columns="1"
-                                                     rendered="#{not empty cropUploaderBean.originalImageFile}">
+<!--                                        <h:panelGrid columns="1"-->
+<!--                                                     rendered="#{not empty cropUploaderBean.originalImageFile}">-->
 
-                                            <p:commandButton value="Crop"
-                                                             action="#{cropUploaderBean.crop}"
-                                                             update="cropped messages" styleClass="p-my-3"/>
+<!--                                            <p:commandButton value="Crop"-->
+<!--                                                             action="#{cropUploaderBean.crop}"-->
+<!--                                                             update="cropped messages" styleClass="p-my-3"/>-->
 
-                                            <h:panelGrid columns="2" cellpadding="7">
+<!--                                            <h:panelGrid columns="2" cellpadding="7">-->
 
-                                                <p:imageCropper
-                                                        value="#{cropUploaderBean.croppedImage}"
-                                                        id="imageCropper" cache="false"
-                                                        image="#{cropUploaderBean.image}"
-                                                        initialCoords="50,50,150,100"
-                                                        minSize="50,50" maxSize="350,350"/>
+<!--                                                <p:imageCropper-->
+<!--                                                        value="#{cropUploaderBean.croppedImage}"-->
+<!--                                                        id="imageCropper" cache="false"-->
+<!--                                                        image="#{cropUploaderBean.image}"-->
+<!--                                                        initialCoords="50,50,150,100"-->
+<!--                                                        minSize="50,50" maxSize="350,350"/>-->
 
-                                                <p:outputPanel id="cropped">
-                                                    <p:graphicImage cache="false"
-                                                                    rendered="#{not empty cropUploaderBean.croppedImage}"
-                                                                    value="#{cropUploaderBean.cropped}"/>
-                                                </p:outputPanel>
+<!--                                                <p:outputPanel id="cropped">-->
+<!--                                                    <p:graphicImage cache="false"-->
+<!--                                                                    rendered="#{not empty cropUploaderBean.croppedImage}"-->
+<!--                                                                    value="#{cropUploaderBean.cropped}"/>-->
+<!--                                                </p:outputPanel>-->
 
-                                            </h:panelGrid>
+<!--                                            </h:panelGrid>-->
 
 
-                                        </h:panelGrid>
-                                    </p:outputPanel>
-                                </h:form>
-                            </div>
+<!--                                        </h:panelGrid>-->
+<!--                                    </p:outputPanel>-->
+
+<!--                            </div>-->
+
 
                         </div>
 
@@ -201,6 +237,7 @@
                                 icon="pi pi-check"
                                 styleClass="ui-button-primary"
                                 actionListener="#{equipoMB.registrar()}"
+                                update=":msj"
                         >
                         </p:commandButton>
                         <p:commandButton
@@ -217,16 +254,6 @@
 
                     <p:toolbar>
                         <p:toolbarGroup>
-<!--                            <p:commandButton-->
-<!--                                    value="Listar"-->
-<!--                                    update="dataEquipos"-->
-<!--                                    actionListener="#{equipoMB.listar()}"-->
-<!--                            />-->
-                        </p:toolbarGroup>
-                    </p:toolbar>
-
-                    <p:toolbar>
-                        <p:toolbarGroup>
                             <div class="p-grid p-justify-around">
 
                                 <p:dataTable
@@ -238,6 +265,7 @@
                                         editMode="cell"
                                         value="#{equipoMB.listaEquipos}"
                                         var="equipo"
+                                        responsive="true"
                                 >
 
                                     <!--                                    Header DataTable-->
@@ -259,7 +287,12 @@
 <!--                                    <p:column headerText="Tipo de activo" filterStyle="display : none">-->
 <!--                                        <p:outputLabel value="#{equipo.categoriaEquipo.nombre}" />-->
 <!--                                    </p:column>-->
-                                    <!--                                    Desccripción-->
+
+                                    <!--                                    Categoria-->
+                                    <p:column headerText="Categoria de equipo" filterStyle="display : none">
+                                        <p:outputLabel value="#{equipo.categoriaEquipo}" />
+                                    </p:column>
+                                                                        Desccripción
                                     <p:column headerText="Descripción" filterStyle="display : none">
                                         <p:outputLabel value="#{equipo.descripcion}" />
                                     </p:column>
@@ -281,11 +314,14 @@
                                     </p:column>
                                     <!--                                    Área-->
                                     <p:column headerText="Área" filterStyle="display : none">
-<!--                                        <p:outputLabel value="#{equipo.areaAula.nombre}" />-->
+                                        <p:outputLabel value="#{equipo.areaAula}" />
                                     </p:column>
                                     <!--                                    Imagen-->
                                     <p:column headerText="Imagen" filterStyle="display : none">
-<!--                                        <p:graphicImage name="images/equipos/microscopio_optico.jpg" library="demo"/>-->
+                                        <p:graphicImage
+                                                url="./resources/images/avatar.png"
+                                                style=" width: 100px; height: 100px"
+                                        />
                                     </p:column>
                                 </p:dataTable>
                             </div>

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Data
@@ -18,8 +20,10 @@ public class Equipo {
     private String modelo;
     private String numeroSerie;
     private String estado;
-    private String imagen ="NA";
+    private String imagen;
     private Date fechaAdquisicion;
-    private AreaAula areaAula;
-    private CategoriaEquipo categoriaEquipo;
+    private int idAreaAula;
+    private int idCategoriaEquipo;
+    private String areaAula;
+    private String categoriaEquipo;
 }
