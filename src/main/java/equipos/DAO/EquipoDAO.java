@@ -29,7 +29,6 @@ public class EquipoDAO extends Conexion {
             st.setString(5, equipo.getEstado());
             st.setString(6, equipo.getImagen());
             st.setInt(7, equipo.getIdCategoriaEquipo());
-//            st.setDate(8, (Date) equipo.getFechaAdquisicion());
             st.setDate(8,  new Date(equipo.getFechaAdquisicion().getTime()));
             st.setInt(9, equipo.getIdAreaAula());
             st.setString(10, equipo.getCodigo());

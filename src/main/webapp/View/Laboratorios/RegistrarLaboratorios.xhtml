@@ -5,7 +5,6 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">            
 
@@ -246,6 +245,7 @@
                                         </div>
                                     </p:outputPanel>
 
+<!--                                    Botones-->
                                     <f:facet name="footer">
                                         <p:commandButton 
                                             value="Guardar"
@@ -258,7 +258,8 @@
                                         <p:button  value="Cancelar" 
                                                    styleClass="ui-button-danger"
                                                    icon="pi pi-times" 
-                                                   outcome="RegistrarLaboratorios"/>
+                                                   outcome="RegistrarLaboratorios"
+                                        />
                                     </f:facet>
                                 </p:dialog>    
 

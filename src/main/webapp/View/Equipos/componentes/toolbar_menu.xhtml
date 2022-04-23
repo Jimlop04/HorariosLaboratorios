@@ -1,0 +1,21 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+    <div class="p-grid ui-fluid">
+        <div class="p-col-12">
+            <div class="card" style="margin-top: 5px;">
+                <p:toolbarGroup>
+                    <div class="p-col-12">
+                        <p:menubar>
+                            <p:menuitem value="Equipos" icon="pi pi-fw pi-bookmark" outcome="/View/Equipos/ingresoEquipos"/>
+                            <p:menuitem value="Mantenimientos" outcome="/View/Equipos/mantenimientos"/>
+                            <p:menuitem value="Reporte averías" outcome="/View/Equipos/mantenimientos"/>
+                        </p:menubar>
+                    </div>
+                </p:toolbarGroup>
+            </div>
+        </div>
+
+    </div>
+</ui:composition>

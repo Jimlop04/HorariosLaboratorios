@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 import org.primefaces.model.file.UploadedFile;
 
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
@@ -30,16 +28,18 @@ public class EquipoMB implements Serializable {
     private Equipo equipo = new Equipo();
     private AreaAula areaAul = new AreaAula();
     private CategoriaEquipo categoriaEquipo = new CategoriaEquipo();
+    String msj = "";
 
 
 
-    public void registrar() throws Exception {
+    public void registrar()  {
         EquipoDAO dao;
         try {
             dao = new EquipoDAO();
             dao.resgistrar(equipo);
+            this.msj="Registro guardado con éxito";
         }catch( Exception e){
-            throw e;
+            this.msj="Se produjo un error: " + e.getMessage();
         }
     }
 

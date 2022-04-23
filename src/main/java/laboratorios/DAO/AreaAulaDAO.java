@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import laboratorios.model.AreaAula;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -24,7 +27,7 @@ public class AreaAulaDAO {
     private List<AreaAula> listaAreas;
 
     public AreaAulaDAO() {
-        areaAula = new  AreaAula();
+        areaAula = new AreaAula();
         conexion = new Conexion();
         listaAreas = new ArrayList<>(); 
     }

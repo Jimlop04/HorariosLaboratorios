@@ -1,17 +1,10 @@
 package equipos.model;
 
-import laboratorios.model.AreaAula;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Equipo {
     private int idEquipo;
     private String codigo;

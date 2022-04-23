@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+        <ui:define name="title">Registrar Equipo</ui:define>
+        <ui:define name="content">
+            <f:event type="preRenderView" listener="#{equipoMB.listar()}"/>
+            <f:event type="preRenderView" listener="#{categoriaEquipoMB.listar()}"/>
+            <f:event type="preRenderView" listener="#{categoriaEquipoMB.listarAreasAulas()}"/>
+
+            <p:growl id="msj" showDetail="true"/>
+
+            <!--MENU TOOLBAR-->
+            <ui:include src="./componentes/toolbar_menu.xhtml"/>
+            <!--REGISTRO FORM-->
+            <h:form>
+                <!--MODAL REGISTRAR-->
+                <ui:include src="./componentes/modal_nuevo_equipo.xhtml"/>
+            </h:form>
+            <!--DATATABLE GENERAL-->
+            <h:form>
+                <ui:include src="./componentes/dataTable_equipos_general.xhtml"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    <h:outputScript name="calendar_es.js" library="js"/>
+</h:body>
+</html>

@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class AreaAula {
     private int idAreaAula;
     private String codigo;
@@ -17,4 +17,6 @@ public class AreaAula {
     private int facultad_idfacultad;
     private String nombre_laboratorio;
     private String codigo_laboratorio;
+
+
 }
