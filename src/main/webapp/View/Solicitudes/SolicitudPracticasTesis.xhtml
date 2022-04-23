@@ -1,159 +1,164 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/WEB-INF/InicioTemplate.xhtml"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
-    <ui:define name="content">  
-        <div class="barra-navegacion">
-            <h:form>
-                <div class="card" align="center">
-                    <p:toolbarGroup>
-                        <h4>Registro de practicas para tesis de Grado</h4>
-                        <h6>LABORATORIO DE QUÍMICA Y BIOQUÍMICA</h6>
-                    </p:toolbarGroup>
-                </div>
-                <div class="card" style="margin-top: 5px;">
-                    <p:toolbarGroup>
-                        <h:form>
-                            <p:outputPanel 
-                                id="manage-Solicitud-form" 
-                                class="ui-fluid">
-                                <div class="p-formgrid p-grid">
-                                    <div class="p-field p-col-12 p-md-6">
-                                        <p:outputLabel value="Tema" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-3">
-                                        <p:outputLabel value="Tutor de Tesis" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="50"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-2">
-                                        <p:outputLabel value="Fecha" for="@next"/>
-                                        <p:datePicker id="button"
-                                                       value="#{calendarView.date7}" 
-                                                       showIcon="true"/>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-1">
-                                        <p:outputLabel value="Horario" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-2">
-                                        <p:outputLabel value="Codigo Laboratorio" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-10">
-                                        <p:outputLabel value="Responsable del Laboratorio" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="25"></p:inputText>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-6">
-                                        <p:outputLabel value="Objetivo del Proyecto" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="300"></p:inputText>
-                                    </div> 
-                                    <div class="p-field p-col-12 p-md-6">
-                                        <p:outputLabel value="Analisis a Realizar" for="@next"/>
-                                        <p:inputText 
-                                            maxlength="300"></p:inputText>
-                                    </div>        
-                                </div>
-                            </p:outputPanel>
-                            <div class="card" style="margin-top: 5px;">
-                                <p:toolbarGroup>
-                                    <h:form>
-                                        <div class="p-grid p-justify-around">
-                                            <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                         editInitEvent="dblclick" editMode="cell">
-                                                <f:facet name="header">
-                                                    <div class="p-d-flex p-jc-between p-ai-center">
-                                                        <span style="font-size: 20px">Equipos, Materiales y Reactivos</span>
-                                                        <span class="filter-container ui-input-icon-left">
-                                                            <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                        </span>
-                                                    </div>
-                                                </f:facet>
-                                                <p:column headerText="Codigo" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Nombre" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Descripcion" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Cantidad" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Tipo" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Estado" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column> 
-                                                <p:column headerText="Acciones" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                            </p:dataTable>
+    <h:body>
+
+        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+            <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
+            <ui:define name="content"> 
+                <ui:include src="./SubHeaderSolicitudes.xhtml" />
+                <div class="barra-navegacion">
+                    <h:form>
+                        <div class="card" align="center">
+                            <p:toolbarGroup>
+                                <h4>Registro de practicas para tesis de Grado</h4>
+                                <h6>LABORATORIO DE QUÍMICA Y BIOQUÍMICA</h6>
+                            </p:toolbarGroup>
+                        </div>
+                        <div class="card" style="margin-top: 5px;">
+                            <p:toolbarGroup>
+                                <h:form>
+                                    <p:outputPanel 
+                                        id="manage-Solicitud-form" 
+                                        class="ui-fluid">
+                                        <div class="p-formgrid p-grid">
+                                            <div class="p-field p-col-12 p-md-6">
+                                                <p:outputLabel value="Tema" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="25"></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-3">
+                                                <p:outputLabel value="Tutor de Tesis" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="50"></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Fecha" for="@next"/>
+                                                <p:datePicker id="button"
+                                                              value="#{calendarView.date7}" 
+                                                              showIcon="true"/>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-1">
+                                                <p:outputLabel value="Horario" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="25"></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Codigo Laboratorio" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="25"></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-10">
+                                                <p:outputLabel value="Responsable del Laboratorio" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="25"></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-6">
+                                                <p:outputLabel value="Objetivo del Proyecto" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="300"></p:inputText>
+                                            </div> 
+                                            <div class="p-field p-col-12 p-md-6">
+                                                <p:outputLabel value="Analisis a Realizar" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="300"></p:inputText>
+                                            </div>        
                                         </div>
-                                    </h:form>
-                                </p:toolbarGroup> 
-                            </div>
-                            <div class="card" style="margin-top: 5px;">
-                                <p:toolbarGroup>
-                                    <h:form>
-                                        <div class="p-grid p-justify-around">
-                                            <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                         editInitEvent="dblclick" editMode="cell">
-                                                <f:facet name="header">
-                                                    <div class="p-d-flex p-jc-between p-ai-center">
-                                                        <span style="font-size: 20px">Lista de Estudiantes</span>
-                                                        <span class="filter-container ui-input-icon-left">
-                                                            <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                        </span>
-                                                    </div>
-                                                </f:facet>
-                                                <p:column headerText="Numero" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Nombres" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Apellidos" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Observaciones" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                                <p:column headerText="Aprobacion" filterStyle="display : none">
-                                                    <h:outputText  />
-                                                </p:column>
-                                            </p:dataTable>
-                                        </div>
-                                    </h:form>
-                                </p:toolbarGroup> 
-                            </div>
-                            <div align="right" >
-                                <p:commandButton type="button" 
-                                                 value="Guardar"
-                                                  icon="pi pi-save" 
-                                                 styleClass="ui-button-success" />
-                                 <p:button  value="Cancelar" 
-                                            styleClass="ui-button-danger"
-                                            icon="pi pi-times" 
-                                            outcome="ModuloSolicitudes"/>
-                            </div>
-                        </h:form>
-                    </p:toolbarGroup> 
-                </div> 
-            </h:form>
-        </div>   
-    </ui:define>
-</ui:composition>
+                                    </p:outputPanel>
+                                    <div class="card" style="margin-top: 5px;">
+                                        <p:toolbarGroup>
+                                            <h:form>
+                                                <div class="p-grid p-justify-around">
+                                                    <p:dataTable lazy="true"  editable="true" reflow="true"
+                                                                 editInitEvent="dblclick" editMode="cell">
+                                                        <f:facet name="header">
+                                                            <div class="p-d-flex p-jc-between p-ai-center">
+                                                                <span style="font-size: 20px">Equipos, Materiales y Reactivos</span>
+                                                                <span class="filter-container ui-input-icon-left">
+                                                                    <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                                </span>
+                                                            </div>
+                                                        </f:facet>
+                                                        <p:column headerText="Codigo" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Nombre" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Descripcion" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Cantidad" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Tipo" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Estado" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column> 
+                                                        <p:column headerText="Acciones" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                    </p:dataTable>
+                                                </div>
+                                            </h:form>
+                                        </p:toolbarGroup> 
+                                    </div>
+                                    <div class="card" style="margin-top: 5px;">
+                                        <p:toolbarGroup>
+                                            <h:form>
+                                                <div class="p-grid p-justify-around">
+                                                    <p:dataTable lazy="true"  editable="true" reflow="true"
+                                                                 editInitEvent="dblclick" editMode="cell">
+                                                        <f:facet name="header">
+                                                            <div class="p-d-flex p-jc-between p-ai-center">
+                                                                <span style="font-size: 20px">Lista de Estudiantes</span>
+                                                                <span class="filter-container ui-input-icon-left">
+                                                                    <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                                </span>
+                                                            </div>
+                                                        </f:facet>
+                                                        <p:column headerText="Numero" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Nombres" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Apellidos" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Observaciones" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                        <p:column headerText="Aprobacion" filterStyle="display : none">
+                                                            <h:outputText  />
+                                                        </p:column>
+                                                    </p:dataTable>
+                                                </div>
+                                            </h:form>
+                                        </p:toolbarGroup> 
+                                    </div>
+                                    <div align="right" >
+                                        <p:commandButton type="button" 
+                                                         value="Guardar"
+                                                         icon="pi pi-save" 
+                                                         styleClass="ui-button-success" />
+                                        <p:button  value="Cancelar" 
+                                                   styleClass="ui-button-danger"
+                                                   icon="pi pi-times" 
+                                                   outcome="ModuloSolicitudes"/>
+                                    </div>
+                                </h:form>
+                            </p:toolbarGroup> 
+                        </div> 
+                    </h:form>
+                </div>   
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
