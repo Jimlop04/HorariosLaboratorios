@@ -14,7 +14,7 @@
                       responsive="true"
                       width="55%"
                       draggable="false"
-                      height="150">
+                      height="200">
                 <p:outputPanel id="manage-equipo-form" class="ui-fluid">
                     <div class="p-formgrid p-grid">
                         <!--TIPO DE ACTIVO-->
@@ -39,6 +39,12 @@
                                     value="#{equipoMB.equipo.descripcion}"
                                     required="true"/>
                         </div>
+                        <!--CODIGO DEL BIEN-->
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Codigo del bien" for="@next"/>
+                            <p:inputText maxlength="50" value="#{equipoMB.equipo.codigo}" required="true">
+                            </p:inputText>
+                        </div>
                         <!--MARCA-->
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Marca" for="@next"/>
@@ -56,8 +62,7 @@
                             <p:outputLabel value="Número de serie" for="@next"/>
                             <p:inputText
                                     maxlength="25"
-                                    value="#{equipoMB.equipo.numeroSerie}"
-                                    required="true">
+                                    value="#{equipoMB.equipo.numeroSerie}">
                             </p:inputText>
                         </div>
                         <!--FECHA ADQUISICIÓN-->
@@ -103,8 +108,9 @@
                             value="Guardar"
                             icon="pi pi-check"
                             styleClass="ui-button-primary"
-                            update=""
-                            oncomplete="PF('agregarEquipo').hide()">
+                            update=":formData :msj "
+                            actionListener="#{equipoMB.registrar()}"
+                            oncomplete="PF('modalNuevoEquipo').hide()">
                     </p:commandButton>
                     <p:commandButton
                             value="Cancelar"

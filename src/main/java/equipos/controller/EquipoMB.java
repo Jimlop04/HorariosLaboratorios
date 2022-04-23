@@ -10,8 +10,10 @@ import lombok.NoArgsConstructor;
 import org.primefaces.model.file.UploadedFile;
 
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -38,8 +40,10 @@ public class EquipoMB implements Serializable {
             dao = new EquipoDAO();
             dao.resgistrar(equipo);
             this.msj="Registro guardado con éxito";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
         }catch( Exception e){
             this.msj="Se produjo un error: " + e.getMessage();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo"));
         }
     }
 

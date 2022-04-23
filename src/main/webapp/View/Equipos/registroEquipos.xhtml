@@ -17,15 +17,16 @@
             <!--MENU TOOLBAR-->
             <ui:include src="./componentes/toolbar_menu.xhtml"/>
             <!--REGISTRO FORM-->
-            <h:form>
+            <h:form id="formRegistro">
                 <!--MODAL REGISTRAR-->
                 <ui:include src="./componentes/modal_nuevo_equipo.xhtml"/>
             </h:form>
             <!--DATATABLE GENERAL-->
-            <h:form>
+            <h:form id="formData">
                 <ui:include src="./componentes/dataTable_equipos_general.xhtml"/>
             </h:form>
         </ui:define>
+        <h:outputScript name="calendar_es.js" library="js"/>
     </ui:composition>
     <h:outputScript name="calendar_es.js" library="js"/>
 </h:body>
