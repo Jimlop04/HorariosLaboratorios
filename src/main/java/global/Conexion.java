@@ -16,7 +16,7 @@ import java.sql.Statement;
     public Connection connection;
     private Statement statement;
     private ResultSet result;
-    private boolean estado;
+    public boolean estado;
 
     //Credenciales para la conexion
     private String url = "jdbc:postgresql://ec2-34-194-73-236.compute-1.amazonaws.com:5432/d90f44f58p7329";

@@ -14,58 +14,80 @@
                 <h:form id="form-1">
                     <p:growl id="msgs" showDetail="true"/>
                     <div class="card">
+                        <!-- CABECERA  -->
                         <p:toolbar>
                             <p:toolbarGroup>
-                                <p:commandButton value="Nuevo" 
+                                <p:commandButton value="Nuevo docente" 
+                                                 actionListener="PF('detalleProfesor').show()"
+                                                 process="@this"
                                                  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2" 
                                                  icon="pi pi-plus" 
                                                  >                                  
                                 </p:commandButton>
                             </p:toolbarGroup>                     
                         </p:toolbar>
+                        <!-- TABLA DETALLE PROFESOR -->
                         <p:dataTable 
                             id="dtProfesor"
                             reflow="true"
                             paginator="true"
                             rows="10"
+                            resizableColumns="true"
+                            value="#{profesorMB.listarProfesor}"
                             lazy="true"
+                            rowKey="#{profesorMB.profesor.idPersona}"
+                            var="prf"
                             rowSelectMode="add"
-                            paginatorPosition="botton">
-                            <p:column headerText="Nombres" filterStyle="display : none">
+                            paginatorPosition="bottom">
+                            <p:column headerText="Nombres" filterStyle="display : none" resizable="true" responsivePriority="1">
+                                <h:outputText value="#{prf.nombre_persona}"/>
+                            </p:column>
+                            <p:column headerText="Apellidos" filterStyle="display : none" resizable="true" responsivePriority="2">
+                                <h:outputText value="#{prf.apellido_persona}"/>
+                            </p:column>
+                            <p:column headerText="Correo" filterStyle="display : none" resizable="true" responsivePriority="3">
+                                <h:outputText value="#{prf.correo_persona}"/>
+                            </p:column>
+                            <p:column headerText="DNI" filterStyle="display : none" resizable="true" responsivePriority="4">
+                                <h:outputText value="#{prf.dni_persona}"/>
+                            </p:column>
+                            <p:column headerText="Fecha Nacimiento" filterStyle="display : none" resizable="true" responsivePriority="5">
+                                <h:outputText value="#{prf.fechanacimiento_persona}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Género" filterStyle="display : none" resizable="true" responsivePriority="6">
+                                <h:outputText value="#{prf.genero_persona}" />
+                            </p:column>
+                            <p:column headerText="Celular" filterStyle="display : none" resizable="true" responsivePriority="7">
+                                <h:outputText value="#{prf.celular_persona}"/>
+                            </p:column>
+                            <p:column headerText="Rol" filterStyle="display : none" resizable="true" responsivePriority="8">
+                                <h:outputText value="#{prf.nombre_rol}"/>
+                            </p:column>
+                            <p:column headerText="Estado" filterStyle="display : none" resizable="true" responsivePriority="9">
+                                <h:outputText value="#{prf.estado_usuario}"/>
+                            </p:column>
+                            <p:column headerText="Acciones" filterStyle="display : none" resizable="true" responsivePriority="10">
                                 <h:outputText/>
                             </p:column>
-                             <p:column headerText="Apellidos" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                             <p:column headerText="Correo" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                             <p:column headerText="DNI" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                             <p:column headerText="Fecha Nacimiento" filterStyle="display : none">
-                                 <h:outputText>
-                                       <f:convertDateTime pattern="dd/MM/yyyy" />
-                                 </h:outputText>
-                            </p:column>
-                             <p:column headerText="Género" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                             <p:column headerText="Celular" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                             <p:column headerText="Rol" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                            <p:column headerText="Estado" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                             <p:column headerText="Acciones" filterStyle="display : none">
-                                <h:outputText/>
-                            </p:column>
-                            
-                            
                         </p:dataTable>
+                        <!-- DIALOGO PROFESOR-->
+                        <p:dialog 
+                            header="Docentes"
+                            showEffect="fade" modal="true"
+                            widgetVar="detalleProfesor" 
+                            responsive="true" width="80%"
+                            draggable="false" height="auto">
+                            <p:outputPanel id="panel-profesor" class="ui-fluid">
+                                <p:outputPanel> 
+                                    <div class="p-grid p-justify-around">
+
+                                    </div>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                        </p:dialog>
                     </div>
                 </h:form>
             </ui:define>
