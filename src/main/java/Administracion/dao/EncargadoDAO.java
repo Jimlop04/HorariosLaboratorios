@@ -17,11 +17,13 @@ public class EncargadoDAO {
    private Encargado encargado;
    private ResultSet resultSet;
    private List<Encargado> listaEncargados;
+   private List<Encargado> listaRoles;
 
     public EncargadoDAO() {
         encargado = new Encargado();
         conexion = new Conexion();
         listaEncargados = new ArrayList<>();
+        listaRoles = new ArrayList<>();
     }
 
     public EncargadoDAO(Encargado encargado) {
@@ -60,6 +62,27 @@ public class EncargadoDAO {
      conexion.desconectar();
   }
   return Encargados; 
+  }
+  
+    public List<Encargado> getRoles(){
+  List<Encargado> roles = new ArrayList<>();
+  
+  String sql = String.format("SELECT * FROM roles");
+  try{
+       conexion.conectar();
+       resultSet = conexion.ejecutarSql(sql);
+       
+       while(resultSet.next()){
+       roles.add(new Encargado(
+               resultSet.getInt("idRoles"),
+               resultSet.getString("nombre_rol")));
+       }
+  } catch (SQLException e) {
+      System.out.println(e.getMessage());
+  } finally{
+     conexion.desconectar();
+  }
+  return roles; 
   }
     /**
      public Encargado registrarEncargado(Encargado encargado) throws SQLException {
