@@ -23,6 +23,8 @@ public class LaboratorioManageBean implements Serializable {
     private Laboratorio laboratorio = new Laboratorio();
     private LaboratorioDAO laboratorioDAO = new LaboratorioDAO();
     private List<Laboratorio> listaLaboratorios = new ArrayList<>();
+    private List<Laboratorio> listasoloLaboratorios = new ArrayList<>();
+    private List<Laboratorio> listafacultades = new ArrayList<>();
     Mensajes mensajesJSF;
     
      @PostConstruct
@@ -31,6 +33,8 @@ public class LaboratorioManageBean implements Serializable {
         listaLaboratorios = laboratorioDAO.getLaboratorios();
         mensajesJSF = new Mensajes();
         laboratorio = new Laboratorio();
+        listasoloLaboratorios = laboratorioDAO.getsoloLaboratorios();
+        listafacultades = laboratorioDAO.getfacultades();
     } 
 
     public Laboratorio getLaboratorio() {
@@ -64,13 +68,21 @@ public class LaboratorioManageBean implements Serializable {
     public void setMensajesJSF(Mensajes mensajesJSF) {
         this.mensajesJSF = mensajesJSF;
     }
-    
-    
-  
-    
-    
-    
-    
-    
-    
+
+    public List<Laboratorio> getListasoloLaboratorios() {
+        return listasoloLaboratorios;
+    }
+
+    public void setListasoloLaboratorios(List<Laboratorio> listasoloLaboratorios) {
+        this.listasoloLaboratorios = listasoloLaboratorios;
+    }
+
+    public List<Laboratorio> getListafacultades() {
+        return listafacultades;
+    }
+
+    public void setListafacultades(List<Laboratorio> listafacultades) {
+        this.listafacultades = listafacultades;
+    }
+
 }

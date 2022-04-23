@@ -29,6 +29,17 @@ public class Laboratorio {
         this.nombre_laboratorio = nombre_laboratorio;
         this.codigo_laboratorio = codigo_laboratorio;
     }
+
+    public Laboratorio(int idLaboratorio, String nombre_laboratorio, String codigo_laboratorio) {
+        this.idLaboratorio = idLaboratorio;
+        this.nombre_laboratorio = nombre_laboratorio;
+        this.codigo_laboratorio = codigo_laboratorio;
+    }
+
+    public Laboratorio(int idFacultad, String nombre_facultad) {
+        this.idFacultad = idFacultad;
+        this.nombre_facultad = nombre_facultad;
+    }
     
 
     public int getIdFacultad() {

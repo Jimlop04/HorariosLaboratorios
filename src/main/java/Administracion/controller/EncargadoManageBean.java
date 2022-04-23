@@ -23,12 +23,14 @@ public class EncargadoManageBean implements Serializable {
     private Encargado encargado = new Encargado();
     private EncargadoDAO encargadoDAO = new EncargadoDAO();
     private List<Encargado> listaEncargados = new ArrayList<>();
+    private List<Encargado> listaRoles = new ArrayList<>();
     Mensajes mensajesJSF;
 
     @PostConstruct
     public void init() {
         System.out.println("PostConstruct");
         listaEncargados = encargadoDAO.getEncargados();
+        listaRoles = encargadoDAO.getRoles();
         mensajesJSF = new Mensajes();
         encargado = new Encargado();
     }
@@ -64,6 +66,18 @@ public class EncargadoManageBean implements Serializable {
     public void setMensajesJSF(Mensajes mensajesJSF) {
         this.mensajesJSF = mensajesJSF;
     }
+    
+    
+    public List<Encargado> getListaRoles() {
+        return listaRoles;
+    }
+
+    public void setListaRoles(List<Encargado> listaRoles) {
+        this.listaRoles = listaRoles;
+    }
+    
+    
+    
     
     
 /**

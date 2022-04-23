@@ -39,6 +39,11 @@ public class Encargado {
         this.estado = estado;
     }
 
+    public Encargado(int idRoles, String nombre_rol) {
+        this.idRoles = idRoles;
+        this.nombre_rol = nombre_rol;
+    }
+
     public int getIdPersona() {
         return idPersona;
     }
