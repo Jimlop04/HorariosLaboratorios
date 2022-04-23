@@ -4,18 +4,19 @@ import equipos.DAO.EquipoDAO;
 import equipos.model.CategoriaEquipo;
 import equipos.model.Equipo;
 import laboratorios.model.AreaAula;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.primefaces.model.file.UploadedFile;
 
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
@@ -25,17 +26,17 @@ import java.util.List;
 @AllArgsConstructor
 public class EquipoMB implements Serializable {
 
-    private UploadedFile file;
     private List<Equipo> listaEquipos;
-    private Equipo equipo = new Equipo();
-    private AreaAula areaAul = new AreaAula();
-    private CategoriaEquipo categoriaEquipo = new CategoriaEquipo();
+    private Equipo equipo;
+    private AreaAula areaAula;
+    private CategoriaEquipo categoriaEquipo ;
     String msj = "";
 
+//    @Inject
+    private EquipoDAO dao;
 
 
     public void registrar()  {
-        EquipoDAO dao;
         try {
             dao = new EquipoDAO();
             dao.resgistrar(equipo);
@@ -50,7 +51,6 @@ public class EquipoMB implements Serializable {
 
 //        LISTAR
     public void listar() throws Exception {
-        EquipoDAO dao;
         try {
             dao = new EquipoDAO();
             listaEquipos = dao.listar();
@@ -59,10 +59,12 @@ public class EquipoMB implements Serializable {
         }
     }
 
-//  @PostConstruct
-//   public void init() {
-//        this.areaAula= new AreaAula();
-//        this.categoriaEquipo = new CategoriaEquipo();
-//        this.equipo = new Equipo();
-//   }
+
+  @PostConstruct
+   public void init() {
+        this.areaAula= new AreaAula();
+        this.categoriaEquipo = new CategoriaEquipo();
+        this.equipo = new Equipo();
+        this.listaEquipos = new ArrayList<>();
+   }
 }
