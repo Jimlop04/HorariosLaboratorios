@@ -33,9 +33,9 @@
                                           modal="true"
                                           widgetVar="RegistrarEncargado"
                                           responsive="true" 
-                                          width="30%"
+                                          width="40%"
                                           draggable="false" 
-                                          height="200" >
+                                          height="400" >
                                     <p:outputPanel 
                                         id="manage-encargado-form" 
                                         class="ui-fluid">
@@ -45,33 +45,33 @@
                                                 <p:outputLabel value="Nombre" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#{encargadoMB.encargado.nombre_encargado}" ></p:inputText>
+                                                    value="#" ></p:inputText>
                                             </div>
                                             <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel value="Apellidos" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#{encargadoMB.encargado.apellidos_encargado}"></p:inputText>
+                                                    value="#"></p:inputText>
                                             </div>
                                             <div class="p-field p-col-12 p-md-9">
                                                 <p:outputLabel value="Cargo" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="60"
-                                                    value="#{encargadoMB.encargado.nombre_rol}"></p:inputText>
+                                                    value="#"></p:inputText>
                                             </div>
 
                                             <div class="p-field p-col-12 p-md-3">
                                                 <p:outputLabel value="Estado" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#{encargadoMB.encargado.estado}"></p:inputText>
+                                                    value="#"></p:inputText>
                                             </div>
 
                                             <div class="p-field p-col-12 p-md-6">
                                                 <p:toolbarGroup >
                                                     <p:outputLabel value="Fecha Incio" for="@next"/>
                                                     <p:datePicker id="button"
-                                                                  value="#{encargadoMB.encargado.fecha_inicio}"
+                                                                  value="#"
                                                                   showIcon="true"/>
                                                 </p:toolbarGroup>
                                             </div>
@@ -79,16 +79,25 @@
                                             <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel value="Fecha Fin" for="@next"/>
                                                 <p:datePicker id="button2" 
-                                                              value="#{encargadoMB.encargado.fecha_fin}"
+                                                              value="#"
                                                               showIcon="true"/>
                                             </div>
+                                            
+                                             <div class="p-field p-col-12 p-md-6">
+                                                <p:outputLabel value="Laboratorio" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="60"
+                                                    value="#"></p:inputText>
+                                            </div>
+                                            
+                                            
                                         </div>
 
                                     </p:outputPanel>
                                     <f:facet name="footer">
                                         <p:commandButton 
                                             value="Guardar"
-                                            actionListener="#{encargadoMB.registrarEncargado()}"
+                                            actionListener="#"
                                             process="manage-encargado-form @this"
                                             icon="pi pi-check"
                                             styleClass="ui-button-primary">
@@ -121,7 +130,7 @@
                                                      rowSelectMode="add"
                                                      editInitEvent="dblclick" 
                                                      editMode="cell"
-                                                     value="#{encargadoMB.listaEncargados}"
+                                                     value="#"
                                                      widgetVar="TablaEncargadosBus"
                                                      var="TablaEncargados"
 
@@ -137,32 +146,32 @@
                                             <p:column headerText="Nombre" 
                                                       filterStyle="display : none">
                                                 <h:outputText 
-                                                    value="#{TablaEncargados.nombre_encargado}"/>
+                                                    value="#"/>
                                             </p:column>
                                             <p:column headerText="Apellidos" 
                                                       filterStyle="display : none">
                                                 <h:outputText 
-                                                    value="#{TablaEncargados.apellidos_encargado}"/>
+                                                    value="#"/>
                                             </p:column>
                                             <p:column headerText="Cargo" filterStyle="display : none">
                                                 <h:outputText
-                                                    value="#{TablaEncargados.nombre_rol}"/>
+                                                    value="#"/>
                                             </p:column>
                                             <p:column headerText="Fecha Inicio" filterStyle="display : none">
                                                 <h:outputText  
-                                                    value="#{TablaEncargados.fecha_inicio}"/>
+                                                    value="#"/>
                                             </p:column>
                                             <p:column headerText="Fecha Fin" filterStyle="display : none">
                                                 <h:outputText
-                                                    value="#{TablaEncargados.fecha_fin}"/>
+                                                    value="#"/>
                                             </p:column>
-                                            <p:column headerText="Estado" sortBy="#{TablaEncargados.estado}">
+                                            <p:column headerText="Estado" sortBy="#">
                                                 <p:tag severity="success" value="Activo"
                                                        style="font-size:12px;"
-                                                       rendered="#{TablaEncargados.estado eq true}"/>
+                                                       rendered="#"/>
                                                 <p:tag severity="warning" value="Inactivo"
                                                        style="font-size:12px;"
-                                                       rendered="#{TablaEncargados.estado eq 'null'}"/>
+                                                       rendered="#"/>
                                             </p:column>
 
                                         </p:dataTable>

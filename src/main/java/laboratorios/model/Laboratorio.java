@@ -5,41 +5,47 @@ package laboratorios.model;
  * @author Jimmy
  */
 public class Laboratorio {
+    private int idFacultad;
+    private String nombre_facultad;
     private int idLaboratorio;
     private int facultad_idfacultad;
     private String nombre_laboratorio;
     private String codigo_laboratorio;
-    private int id_area_aula;
-    private int laboratorio_idLaboratorio;
-    private String codigo_aula;
-    private String nombre_aula;
-    private int capacidad_aula;
 
     public Laboratorio() {
+        
     }
 
-    public Laboratorio(int idLaboratorio, 
+    public Laboratorio(int idFacultad, 
+            String nombre_facultad, 
+            int idLaboratorio, 
             int facultad_idfacultad, 
             String nombre_laboratorio, 
-            String codigo_laboratorio, 
-            int id_area_aula, 
-            int laboratorio_idLaboratorio, 
-            String codigo_aula, 
-            String nombre_aula, 
-            int capacidad_aula) {
+            String codigo_laboratorio) {
+        this.idFacultad = idFacultad;
+        this.nombre_facultad = nombre_facultad;
         this.idLaboratorio = idLaboratorio;
         this.facultad_idfacultad = facultad_idfacultad;
         this.nombre_laboratorio = nombre_laboratorio;
         this.codigo_laboratorio = codigo_laboratorio;
-        this.id_area_aula = id_area_aula;
-        this.laboratorio_idLaboratorio = laboratorio_idLaboratorio;
-        this.codigo_aula = codigo_aula;
-        this.nombre_aula = nombre_aula;
-        this.capacidad_aula = capacidad_aula;
+    }
+    
+
+    public int getIdFacultad() {
+        return idFacultad;
     }
 
-   
-    
+    public void setIdFacultad(int idFacultad) {
+        this.idFacultad = idFacultad;
+    }
+
+    public String getNombre_facultad() {
+        return nombre_facultad;
+    }
+
+    public void setNombre_facultad(String nombre_facultad) {
+        this.nombre_facultad = nombre_facultad;
+    }
 
     public int getIdLaboratorio() {
         return idLaboratorio;
@@ -56,8 +62,6 @@ public class Laboratorio {
     public void setFacultad_idfacultad(int facultad_idfacultad) {
         this.facultad_idfacultad = facultad_idfacultad;
     }
-    
-    
 
     public String getNombre_laboratorio() {
         return nombre_laboratorio;
@@ -75,57 +79,5 @@ public class Laboratorio {
         this.codigo_laboratorio = codigo_laboratorio;
     }
 
-    public int getId_area_aula() {
-        return id_area_aula;
-    }
-
-    public void setId_area_aula(int id_area_aula) {
-        this.id_area_aula = id_area_aula;
-    }
-
-    public int getLaboratorio_idLaboratorio() {
-        return laboratorio_idLaboratorio;
-    }
-
-    public void setLaboratorio_idLaboratorio(int laboratorio_idLaboratorio) {
-        this.laboratorio_idLaboratorio = laboratorio_idLaboratorio;
-    }
-    
-    
-
-    public String getCodigo_aula() {
-        return codigo_aula;
-    }
-
-    public void setCodigo_aula(String codigo_aula) {
-        this.codigo_aula = codigo_aula;
-    }
-
-    public String getNombre_aula() {
-        return nombre_aula;
-    }
-
-    public void setNombre_aula(String nombre_aula) {
-        this.nombre_aula = nombre_aula;
-    }
-
-    public int getCapacidad_aula() {
-        return capacidad_aula;
-    }
-
-    public void setCapacidad_aula(int capacidad_aula) {
-        this.capacidad_aula = capacidad_aula;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

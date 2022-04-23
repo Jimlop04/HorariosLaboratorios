@@ -38,22 +38,19 @@ public class LaboratorioDAO {
      public List<Laboratorio> getLaboratorios(){
   List<Laboratorio> Laboratorios = new ArrayList<>();
   
-  String sql = String.format("SELECT * FROM laboratorio l inner join area_aula aa on l.\"idLaboratorio\" = aa.\"laboratorio_idLaboratorio\" ");
+  String sql = String.format("select * from laboratorio l inner join facultad f on l.facultad_idFacultad = f.\"idFacultad\"");
   try{
        conexion.conectar();
        resultSet = conexion.ejecutarSql(sql);
        
        while(resultSet.next()){
       Laboratorios.add(new Laboratorio(
+               resultSet.getInt("idFacultad"),
+              resultSet.getString("nombre_facultad"),
               resultSet.getInt("idLaboratorio"),
               resultSet.getInt("facultad_idfacultad"),
                resultSet.getString("nombre_laboratorio"),
-               resultSet.getString("codigo_laboratorio"),
-               resultSet.getInt("id_area_aula"),
-               resultSet.getInt("laboratorio_idLaboratorio"),
-               resultSet.getString("codigo_aula"),
-               resultSet.getString("nombre_aula"),
-               resultSet.getInt("capacidad_aula")));
+               resultSet.getString("codigo_laboratorio")));
   
        }
   } catch (SQLException e) {

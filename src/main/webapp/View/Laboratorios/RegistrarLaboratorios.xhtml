@@ -54,17 +54,30 @@
                                         class="ui-fluid">
                                         <div class="p-formgrid p-grid">
 
-                                            <div class="p-field p-col-12 p-md-3">
+                                            <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel value="Codigo Laboratorio" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
                                                     value="#" ></p:inputText>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-9">
+                                            <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel value="Nombre laboratorio" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
                                                     value="#"></p:inputText>
+                                            </div>
+                                             <div class="p-field p-col-12 p-md-4">
+                                                <p:outputLabel value="Facultad" for="@next"/>
+                                                <p:selectOneMenu  editable="false">
+                                                <f:selectItem itemLabel="Seleccione una Facultad" itemValue="" noSelectionOption="true"/>
+                                                <p:ajax 
+                                                         process="@this"/>
+                                                <f:selectItems value="#" var="cDirecto"
+                                                              >
+
+                                                </f:selectItems>
+
+                                            </p:selectOneMenu>
                                             </div>
                                         </div>
                                         <div class="card" style="margin-top: 5px;">
@@ -93,6 +106,10 @@
                                                                     </span>
                                                                 </div>
                                                             </f:facet>
+                                                              <p:column headerText="Facultad" filterStyle="display : none">
+                                                                <h:outputText
+                                                                    value="#{TablaLaboratorios.nombre_facultad}"/>
+                                                            </p:column>
                                                             <p:column headerText="Codigo" 
                                                                       filterStyle="display : none">
                                                                 <h:outputText 
@@ -152,6 +169,7 @@
                                                     maxlength="50"
                                                     value="#" ></p:inputText>
                                             </div>
+                                           
                                             <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel value="Codigo Aula" for="@next"/>
                                                 <p:inputText 
@@ -185,7 +203,7 @@
                                                                      rowSelectMode="add"
                                                                      editInitEvent="dblclick" 
                                                                      editMode="cell"
-                                                                     value="#{laboratorioMB.listaLaboratorios}"
+                                                                     value="#"
                                                                      widgetVar="TablaAulaBus"
                                                                      var="TablaAula"
                                                                      >
@@ -197,19 +215,27 @@
                                                                     </span>
                                                                 </div>
                                                             </f:facet>
+                                                            <p:column headerText="Laboratorio" filterStyle="display : none">
+                                                                <h:outputText
+                                                                    value="#"/>
+                                                            </p:column>
+                                                            <p:column headerText="Encargado" filterStyle="display : none">
+                                                                <h:outputText
+                                                                    value="#"/>
+                                                            </p:column>
                                                             <p:column headerText="Codigo" 
                                                                       filterStyle="display : none">
                                                                 <h:outputText 
-                                                                    value="#{TablaAula.codigo_aula}"/>
+                                                                    value="#"/>
                                                             </p:column>
                                                             <p:column headerText="Aula" 
                                                                       filterStyle="display : none">
                                                                 <h:outputText 
-                                                                    value="#{TablaAula.nombre_aula}"/>
+                                                                    value="#"/>
                                                             </p:column>
                                                             <p:column headerText="Capacidad" filterStyle="display : none">
                                                                 <h:outputText
-                                                                    value="#{TablaAula.capacidad_aula}"/>
+                                                                    value="#"/>
                                                             </p:column>
                                                             <p:column headerText="Acciones" filterStyle="display : none">
                                                                 <h:outputText
