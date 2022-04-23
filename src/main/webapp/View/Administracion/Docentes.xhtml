@@ -1,12 +1,75 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <h:body>
-        Hello from Facelets
+        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+            <ui:define name="content">
+                <ui:include src="./SubHeaderAdministracion.xhtml"/> 
+                <h:form id="form-1">
+                    <p:growl id="msgs" showDetail="true"/>
+                    <div class="card">
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton value="Nuevo" 
+                                                 class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2" 
+                                                 icon="pi pi-plus" 
+                                                 >                                  
+                                </p:commandButton>
+                            </p:toolbarGroup>                     
+                        </p:toolbar>
+                        <p:dataTable 
+                            id="dtProfesor"
+                            reflow="true"
+                            paginator="true"
+                            rows="10"
+                            lazy="true"
+                            rowSelectMode="add"
+                            paginatorPosition="botton">
+                            <p:column headerText="Nombres" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                             <p:column headerText="Apellidos" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                             <p:column headerText="Correo" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                             <p:column headerText="DNI" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                             <p:column headerText="Fecha Nacimiento" filterStyle="display : none">
+                                 <h:outputText>
+                                       <f:convertDateTime pattern="dd/MM/yyyy" />
+                                 </h:outputText>
+                            </p:column>
+                             <p:column headerText="Género" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                             <p:column headerText="Celular" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                             <p:column headerText="Rol" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                            <p:column headerText="Estado" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                             <p:column headerText="Acciones" filterStyle="display : none">
+                                <h:outputText/>
+                            </p:column>
+                            
+                            
+                        </p:dataTable>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>     
     </h:body>
 </html>
 
