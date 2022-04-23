@@ -30,25 +30,29 @@ public class EncargadoDAO {
     }
 
    
-    public List<Encargado> getEncargados(){
+  public List<Encargado> getEncargados(){
   List<Encargado> Encargados = new ArrayList<>();
   
-  String sql = String.format("SELECT * FROM encargado e inner join encargado_rol eo "
-          + "on e.\"idEncargado\" = eo.\"encargado_idEncargado\" inner join roles r on  r.\"idRoles\" = eo.\"rol_idRol\"");
+  String sql = String.format("select * from usuario u inner join persona p on u.\"persona_idPersona\" = p.\"idPersona\" inner join usuarioroles ur on ur.\"usuario_idUsuario\" = u.\"idUsuario\"\n" +
+"inner join roles r on r.\"idRoles\" = ur.\"roles_idRoles\" inner join encargado en on en.\"persona_idPersona\" = p.\"idPersona\" \n" +
+"inner join encargado_laboratorio el on el.\"encargado_idEncargado\" = en.\"idEncargado\" inner join laboratorio labo on labo.\"idLaboratorio\" = el.\"laboratoro_idLaboratorio\"");
   try{
        conexion.conectar();
        resultSet = conexion.ejecutarSql(sql);
        
        while(resultSet.next()){
        Encargados.add(new Encargado(
-               resultSet.getInt("idEncargado"),
-               resultSet.getString("nombre_encargado"),
-               resultSet.getString("apellidos_encargado"),
+               resultSet.getInt("idPersona"),
+               resultSet.getString("nombre_persona"),
+               resultSet.getString("apellido_persona"),
+               resultSet.getInt("idLaboratorio"),
+               resultSet.getString("nombre_laboratorio"),
+               resultSet.getInt("idRoles"),
+               resultSet.getString("nombre_rol"),
+               resultSet.getInt("idEncargadoLaboratorio"),
                resultSet.getDate("fecha_inicio"),
                resultSet.getDate("fecha_fin"),
-               resultSet.getBoolean("estado"),
-               resultSet.getInt("idRoles"),
-               resultSet.getString("nombre_rol")));
+               resultSet.getBoolean("estado")));
        }
   } catch (SQLException e) {
       System.out.println(e.getMessage());
@@ -57,7 +61,7 @@ public class EncargadoDAO {
   }
   return Encargados; 
   }
-    
+    /**
      public Encargado registrarEncargado(Encargado encargado) throws SQLException {
         try {
             conexion.conectar();
@@ -81,7 +85,7 @@ public class EncargadoDAO {
             conexion.desconectar();
         }
         return encargado;
-    }
+    } **/
     
     
     

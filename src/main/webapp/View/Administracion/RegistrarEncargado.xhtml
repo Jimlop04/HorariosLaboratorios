@@ -130,7 +130,7 @@
                                                      rowSelectMode="add"
                                                      editInitEvent="dblclick" 
                                                      editMode="cell"
-                                                     value="#"
+                                                     value="#{encargadoMB.listaEncargados}"
                                                      widgetVar="TablaEncargadosBus"
                                                      var="TablaEncargados"
 
@@ -146,32 +146,37 @@
                                             <p:column headerText="Nombre" 
                                                       filterStyle="display : none">
                                                 <h:outputText 
-                                                    value="#"/>
+                                                    value="#{TablaEncargados.nombre_persona}"/>
                                             </p:column>
                                             <p:column headerText="Apellidos" 
                                                       filterStyle="display : none">
                                                 <h:outputText 
-                                                    value="#"/>
+                                                    value="#{TablaEncargados.apellido_persona}"/>
+                                            </p:column>
+                                              <p:column headerText="Laboratorio" 
+                                                      filterStyle="display : none">
+                                                <h:outputText 
+                                                    value="#{TablaEncargados.nombre_laboratorio}"/>
                                             </p:column>
                                             <p:column headerText="Cargo" filterStyle="display : none">
                                                 <h:outputText
-                                                    value="#"/>
+                                                    value="#{TablaEncargados.nombre_rol}"/>
                                             </p:column>
                                             <p:column headerText="Fecha Inicio" filterStyle="display : none">
                                                 <h:outputText  
-                                                    value="#"/>
+                                                    value="#{TablaEncargados.fecha_inicio}"/>
                                             </p:column>
                                             <p:column headerText="Fecha Fin" filterStyle="display : none">
                                                 <h:outputText
-                                                    value="#"/>
+                                                    value="#{TablaEncargados.fecha_fin}"/>
                                             </p:column>
-                                            <p:column headerText="Estado" sortBy="#">
+                                            <p:column headerText="Estado" sortBy="#{TablaEncargados.estado}">
                                                 <p:tag severity="success" value="Activo"
                                                        style="font-size:12px;"
-                                                       rendered="#"/>
+                                                       rendered="#{TablaEncargados.estado eq true}"/>
                                                 <p:tag severity="warning" value="Inactivo"
                                                        style="font-size:12px;"
-                                                       rendered="#"/>
+                                                       rendered="#{TablaEncargados.estado eq 'null'}"/>
                                             </p:column>
 
                                         </p:dataTable>

@@ -203,7 +203,7 @@
                                                                      rowSelectMode="add"
                                                                      editInitEvent="dblclick" 
                                                                      editMode="cell"
-                                                                     value="#"
+                                                                     value="#{areaAulaMB.listaAreas}"
                                                                      widgetVar="TablaAulaBus"
                                                                      var="TablaAula"
                                                                      >
@@ -217,25 +217,22 @@
                                                             </f:facet>
                                                             <p:column headerText="Laboratorio" filterStyle="display : none">
                                                                 <h:outputText
-                                                                    value="#"/>
+                                                                    value="#{TablaAula.nombre_laboratorio}"/>
                                                             </p:column>
-                                                            <p:column headerText="Encargado" filterStyle="display : none">
-                                                                <h:outputText
-                                                                    value="#"/>
-                                                            </p:column>
+                                                           
                                                             <p:column headerText="Codigo" 
                                                                       filterStyle="display : none">
                                                                 <h:outputText 
-                                                                    value="#"/>
+                                                                    value="#{TablaAula.codigo}"/>
                                                             </p:column>
                                                             <p:column headerText="Aula" 
                                                                       filterStyle="display : none">
                                                                 <h:outputText 
-                                                                    value="#"/>
+                                                                    value="#{TablaAula.nombre}"/>
                                                             </p:column>
                                                             <p:column headerText="Capacidad" filterStyle="display : none">
                                                                 <h:outputText
-                                                                    value="#"/>
+                                                                    value="#{TablaAula.capacidad}"/>
                                                             </p:column>
                                                             <p:column headerText="Acciones" filterStyle="display : none">
                                                                 <h:outputText

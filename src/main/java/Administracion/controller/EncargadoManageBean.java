@@ -66,7 +66,7 @@ public class EncargadoManageBean implements Serializable {
     }
     
     
-
+/**
     public void registrarEncargado() throws Exception {
 
         try {
@@ -95,6 +95,6 @@ public class EncargadoManageBean implements Serializable {
         } catch (SQLException e) {
             e.getMessage();
         }
-    }
+    }**/
 
 }

@@ -12,4 +12,9 @@ public class AreaAula {
     private String codigo;
     private String nombre;
     private Short capacidad;
+    
+    private int idLaboratorio;
+    private int facultad_idfacultad;
+    private String nombre_laboratorio;
+    private String codigo_laboratorio;
 }

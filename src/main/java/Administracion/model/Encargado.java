@@ -7,44 +7,78 @@ import java.util.Date;
  * @author Jimmy
  */
 public class Encargado {
-    private int idEncargado;
-    private String nombre_encargado;
-    private String apellidos_encargado;
-    private Date fecha_inicio;
-    private Date fecha_fin;
-    private boolean estado;
+    private int idPersona;
+    private String nombre_persona;
+    private String apellido_persona;
+    
+    private int idLaboratorio;
+    private String nombre_laboratorio;
+    
     private int idRoles;
     private String nombre_rol;
-    private int er_idRol;
-    private int er_idEncargado;
+    
+    private int idEncargadoLaboratorio;
+    private Date fecha_inicio;
+    private Date fecha_fin;
+    private Boolean estado;
 
     public Encargado() {
     }
 
-    public Encargado(
-            int idEncargado, 
-            String nombre_encargado, 
-            String apellidos_encargado, 
-            Date fecha_inicio, Date fecha_fin, 
-            boolean estado, 
-            int idRoles, 
-            String nombre_rol) {
-        this.idEncargado = idEncargado;
-        this.nombre_encargado = nombre_encargado;
-        this.apellidos_encargado = apellidos_encargado;
+    public Encargado(int idPersona, String nombre_persona, String apellido_persona, int idLaboratorio, String nombre_laboratorio, int idRoles, String nombre_rol, int idEncargadoLaboratorio, Date fecha_inicio, Date fecha_fin, Boolean estado) {
+        this.idPersona = idPersona;
+        this.nombre_persona = nombre_persona;
+        this.apellido_persona = apellido_persona;
+        this.idLaboratorio = idLaboratorio;
+        this.nombre_laboratorio = nombre_laboratorio;
+        this.idRoles = idRoles;
+        this.nombre_rol = nombre_rol;
+        this.idEncargadoLaboratorio = idEncargadoLaboratorio;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.estado = estado;
-        this.idRoles = idRoles;
-        this.nombre_rol = nombre_rol;
     }
 
-    public Encargado(int er_idRol, int er_idEncargado) {
-        this.er_idRol = er_idRol;
-        this.er_idEncargado = er_idEncargado;
+    public int getIdPersona() {
+        return idPersona;
     }
-    
-    
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public String getNombre_persona() {
+        return nombre_persona;
+    }
+
+    public void setNombre_persona(String nombre_persona) {
+        this.nombre_persona = nombre_persona;
+    }
+
+    public String getApellido_persona() {
+        return apellido_persona;
+    }
+
+    public void setApellido_persona(String apellido_persona) {
+        this.apellido_persona = apellido_persona;
+    }
+
+    public int getIdLaboratorio() {
+        return idLaboratorio;
+    }
+
+    public void setIdLaboratorio(int idLaboratorio) {
+        this.idLaboratorio = idLaboratorio;
+    }
+
+    public String getNombre_laboratorio() {
+        return nombre_laboratorio;
+    }
+
+    public void setNombre_laboratorio(String nombre_laboratorio) {
+        this.nombre_laboratorio = nombre_laboratorio;
+    }
+
     public int getIdRoles() {
         return idRoles;
     }
@@ -60,30 +94,13 @@ public class Encargado {
     public void setNombre_rol(String nombre_rol) {
         this.nombre_rol = nombre_rol;
     }
-    
-  
-    public int getIdEncargado() {
-        return idEncargado;
+
+    public int getIdEncargadoLaboratorio() {
+        return idEncargadoLaboratorio;
     }
 
-    public void setIdEncargado(int idEncargado) {
-        this.idEncargado = idEncargado;
-    }
-
-    public String getNombre_encargado() {
-        return nombre_encargado;
-    }
-
-    public void setNombre_encargado(String nombre_encargado) {
-        this.nombre_encargado = nombre_encargado;
-    }
-
-    public String getApellidos_encargado() {
-        return apellidos_encargado;
-    }
-
-    public void setApellidos_encargado(String apellidos_encargado) {
-        this.apellidos_encargado = apellidos_encargado;
+    public void setIdEncargadoLaboratorio(int idEncargadoLaboratorio) {
+        this.idEncargadoLaboratorio = idEncargadoLaboratorio;
     }
 
     public Date getFecha_inicio() {
@@ -102,45 +119,16 @@ public class Encargado {
         this.fecha_fin = fecha_fin;
     }
 
-    public boolean isEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
-    public int getEr_idRol() {
-        return er_idRol;
-    }
-
-    public void setEr_idRol(int er_idRol) {
-        this.er_idRol = er_idRol;
-    }
-
-    public int getEr_idEncargado() {
-        return er_idEncargado;
-    }
-
-    public void setEr_idEncargado(int er_idEncargado) {
-        this.er_idEncargado = er_idEncargado;
+    
+   
     }
 
    
-
-
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-}
