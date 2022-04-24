@@ -1,0 +1,140 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <style type="text/css">
+        .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+            text-align: center;
+        }
+
+        .customPanelGrid .ui-panelgrid-content {
+            align-items: center;
+        }
+    </style>
+
+    <p:dialog header="Nuevo mantenimiento"
+              showEffect="fade"
+              modal="true"
+              widgetVar="RegistrarMantenimiento"
+              responsive="true"
+              width="55%"
+              draggable="false"
+              height="400">
+
+        <p:fieldset legend="Ingrese datos mantenimiento">
+            <p:outputPanel id="manage-equipo-form" class="ui-fluid">
+                <div class="p-formgrid p-grid">
+                    <!-- PERIODO -->
+                    <div class="p-field p-col-12 p-md-3">
+                        <p:outputLabel value="Periodo" for="@next"/>
+                        <p:datePicker showIcon="true" locale="es" required="true" navigator="true"/>
+                    </div>
+                    <!-- TIPO MANTENIMIENTO -->
+                    <div class="p-field p-col-12 p-md-2">
+                        <p:outputLabel value="Tipo" for="@next"/>
+                        <p:selectOneMenu id="comboTipoMantenimiento" value="" required="true">
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                            <f:selectItem itemLabel="Preventivo" itemValue="2"/>
+                            <f:selectItem itemLabel="Correctivo" itemValue="3"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <!-- PROCEDENCIA -->
+                    <div class="p-field p-col-12 p-md-2">
+                        <p:outputLabel value="Procedencia" for="@next"/>
+                        <p:selectOneMenu id="comboProcedencia" value="" required="true">
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                            <f:selectItem itemLabel="Interno" itemValue="2"/>
+                            <f:selectItem itemLabel="Externo" itemValue="3"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <!-- TÉCNICO -->
+                    <div class="p-field p-col-12 p-md-3">
+                        <p:outputLabel value="Técnico" for="@next"/>
+                        <p:selectOneMenu value="#{equipoMB.equipo.idAreaAula}" required="true">
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"
+                                          required="true"/>
+                            <f:selectItems
+                                    value="#{mantenimientoMB.listaEncargadosLaboratorio}"
+                                    var="o"
+                                    itemLabel="#{o.nombre_persona} #{o.apellido_persona}"
+                                    itemValue="#{o.idencargadoLaboratorioDetalle}"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <!-- BOTON - AGREGAR EQUIPO -->
+                    <div class="p-field p-col-12 p-md-2 ">
+                        <p:outputLabel value="."/>
+                        <p:commandButton
+                                value="Aregar equipo"
+                                styleClass="ui-button-primary"
+                                icon="pi pi-plus"
+                                process="@this"
+                                oncomplete="PF('modalBuscarEquipo').show()"/>
+                    </div>
+                </div>
+            </p:outputPanel>
+        </p:fieldset>
+        <!-- DATATABLE -->
+        <p:fieldset>
+        <p:outputPanel>
+            <div class="p-field p-col-12 p-md-12">
+                <p:dataTable
+                        id="dataMantenimientoEquipos"
+                        lazy="true"
+                        editable="true"
+                        reflow="true"
+                        editInitEvent="dblclick"
+                        editMode="cell"
+                        value=""
+                        var="equipo"
+                        responsive="true">
+                    <!-- Header DataTable-->
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <span style="font-size: 24px">Equipos mantenimiento</span>
+                            <span class="filter-container ui-input-icon-left">
+                                                <i class="pi pi-search"/>
+                                                <p:inputText placeholder="Buscar"/>
+                                        </span>
+                        </div>
+                    </f:facet>
+                    <p:column headerText="Código" filterStyle="display : none">
+                        <p:outputLabel value="245-2545-666-44"/>
+                    </p:column>
+                    <p:column headerText="Categoria" filterStyle="display : none">
+                        <p:outputLabel value="MICROSCOPIO"/>
+                    </p:column>
+                    <p:column headerText="Descripcion" filterStyle="display : none">
+                        <p:outputLabel value="MICROSCOPIO OPTICO"/>
+                    </p:column>
+                    <p:column headerText="Estado" filterStyle="display : none">
+                        <p:outputLabel value="MALO"/>
+                    </p:column>
+                    <p:column headerText="Acciones" filterStyle="display : none">
+                        <p:outputLabel value="."/>
+                        <p:commandButton type="button" icon="pi pi-times"
+                                         styleClass="rounded-button ui-button-danger"/>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </p:outputPanel>
+        </p:fieldset>
+
+        <!-- Botones Acciones Form-->
+        <f:facet name="footer">
+            <p:commandButton
+                    value="Guardar"
+                    icon="pi pi-check"
+                    styleClass="ui-button-primary"
+                    update="">
+            </p:commandButton>
+            <p:commandButton
+                    value="Cancelar"
+                    icon="pi pi-times"
+                    styleClass="ui-button-danger"/>
+        </f:facet>
+    </p:dialog>
+</ui:composition>

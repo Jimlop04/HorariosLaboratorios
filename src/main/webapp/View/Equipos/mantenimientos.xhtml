@@ -13,103 +13,77 @@
             <f:event type="preRenderView" listener="#{mantenimientoMB.listar()}"/>
             <!--MENU TOOLBAR-->
             <ui:include src="./componentes/toolbar_menu.xhtml"/>
+            <!-- AGREGAR MANTENIMIENTO-->
+            <h:form id="formAgregarMantenimiento">
+                <ui:include src="./componentes/modal_nuevo_mantenimiento.xhtml"/>
+            </h:form>
             <!-- AGREGAR EQUIPOS-->
             <h:form id="formAgregarEquipo">
-                <ui:include src="./componentes/modal_buscar_agregar_equipo.xhtml"/>
+                <ui:include src="./componentes/modal_buscar_equipo.xhtml"/>
             </h:form>
 
             <h:form>
                 <div class="card" style="margin-top: 5px;">
-                    <p:outputPanel id="cabecerae-form" class="ui-fluid">
-                        <div class="p-formgrid p-grid">
-                            <div class="p-field p-col-12 p-md-3">
-                                <p:outputLabel value="Periodo" for="@next"/>
-                                <p:datePicker showIcon="true" locale="es"/>
-                            </div>
-
-                            <div class="p-field p-col-12 p-md-3">
-                                <p:outputLabel value="Tipo mantenimiento" for="@next"/>
-                                <p:selectOneMenu id="comboTipoMantenimiento" value="">
-                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                                    <f:selectItem itemLabel="Preventivo" itemValue="2"/>
-                                    <f:selectItem itemLabel="Correctivo" itemValue="3"/>
-                                </p:selectOneMenu>
-                            </div>
-
-                            <div class="p-field p-col-12 p-md-3">
-                                <p:outputLabel value="Procedencia" for="@next"/>
-                                <p:selectOneMenu id="comboProcedencia" value="">
-                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                                    <f:selectItem itemLabel="Interno" itemValue="2"/>
-                                    <f:selectItem itemLabel="Externo" itemValue="3"/>
-                                </p:selectOneMenu>
-                            </div>
-                            <div class="p-field p-col-12 p-md-3">
-                                <p:outputLabel value="Encargado laboratorio" for="@next"/>
-                                <p:selectOneMenu id="comboEncargadoLaboratorio" value="#{mantenimientoMB.listaEncargadosLaboratorio}" var="o">
-                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                                    <f:selectItems itemLabel="#{o.nombre_persona} #{o.apellido_persona}" itemValue="#{o.idEncargadoLaboratorio}"/>
-                                </p:selectOneMenu>
-                            </div>
-
-                            <div class="p-field p-col-12 p-md-2">
-                                <p:outputLabel value="." for="@next"/>
-                                <p:commandButton
-                                        value="Nuevo mantenimiento"
-                                        styleClass="ui-button-primary"
-                                        icon="pi pi-plus"
-                                        process="@this"
-                                        oncomplete="PF('RegistrarMantenimiento').show()"/>
-                            </div>
-                        </div>
-                    </p:outputPanel>
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton
+                                    value="Nuevo mantenimiento"
+                                    styleClass="ui-button-primary"
+                                    icon="pi pi-plus"
+                                    process="@this"
+                                    oncomplete="PF('RegistrarMantenimiento').show()"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
                 </div>
             </h:form>
             <!--            Detalle-->
             <h:form id="formulario">
-                <div class="card" style="margin-top: 5px;">
+                <div class="card p-mt-0">
                     <p:outputPanel id="manage-equipo-Detalle" class="ui-fluid">
-                        <div class="p-formgrid p-grid">
-                            <p:dataTable
-                                    id="dataMantenimientos"
-                                    lazy="true"
-                                    editable="true"
-                                    reflow="true"
-                                    editInitEvent="dblclick"
-                                    editMode="cell"
-                                    value=""
-                                    var="equipo"
-                                    responsive="true">
-                                <!-- Header DataTable-->
-                                <f:facet name="header">
-                                    <div class="p-d-flex p-jc-between p-ai-center">
-                                        <span style="font-size: 24px">Mantenimientos Realizados</span>
-                                        <span class="filter-container ui-input-icon-left">
+                        <div class="p-field p-col-12 p-md-12">
+                            <p:fieldset>
+                                <p:dataTable
+                                        id="dataMantenimientos"
+                                        lazy="true"
+                                        editable="true"
+                                        reflow="true"
+                                        editInitEvent="dblclick"
+                                        editMode="cell"
+                                        value=""
+                                        var="equipo"
+                                        responsive="true">
+                                    <!-- Header DataTable-->
+                                    <f:facet name="header">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            <span style="font-size: 24px">MANTENIMIENTOS REALIZADOS</span>
+                                            <span class="filter-container ui-input-icon-left">
                                                 <i class="pi pi-search"/>
                                                 <p:inputText placeholder="Buscar ingrese código"/>
                                             </span>
-                                    </div>
-                                </f:facet>
-                                <p:column headerText="Periodo" filterStyle="display : none">
-                                    <p:outputLabel value="20-07-2021"/>
-                                </p:column>
-                                <p:column headerText="Procedencia" filterStyle="display : none">
-                                    <p:outputLabel value="Empresa externa"/>
-                                </p:column>
-                                <p:column headerText="Tipo mantenimiento" filterStyle="display : none">
-                                    <p:outputLabel value="Correctivo"/>
-                                </p:column>
-                                <p:column headerText="Técnico" filterStyle="display : none">
-                                    <p:outputLabel value="Ing. Erick Garcia"/>
-                                </p:column>
-                                <p:column headerText="Acciones" filterStyle="display : none">
-                                    <p:commandButton type="button" icon="pi pi-eye" styleClass="rounded-button"/>
-                                </p:column>
-                            </p:dataTable>
+                                        </div>
+                                    </f:facet>
+                                    <p:column headerText="Periodo" filterStyle="display : none">
+                                        <p:outputLabel value="20-07-2021"/>
+                                    </p:column>
+                                    <p:column headerText="Procedencia" filterStyle="display : none">
+                                        <p:outputLabel value="Empresa externa"/>
+                                    </p:column>
+                                    <p:column headerText="Tipo mantenimiento" filterStyle="display : none">
+                                        <p:outputLabel value="Correctivo"/>
+                                    </p:column>
+                                    <p:column headerText="Técnico" filterStyle="display : none">
+                                        <p:outputLabel value="Ing. Erick Garcia"/>
+                                    </p:column>
+                                    <p:column headerText="Acciones" filterStyle="display : none">
+                                        <p:commandButton type="button" icon="pi pi-eye" styleClass="rounded-button"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:fieldset>
                         </div>
                     </p:outputPanel>
                 </div>
             </h:form>
+
             <h:outputScript name="calendar_es.js" library="js"/>
         </ui:define>
     </ui:composition>
