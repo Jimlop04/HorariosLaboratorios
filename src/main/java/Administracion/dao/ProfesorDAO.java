@@ -49,4 +49,36 @@ public class ProfesorDAO extends Conexion {
         return listProfesores;
     }
 
+     public Profesor getProfesorById(int id) throws SQLException {
+        Profesor profesores = new Profesor();
+        try {
+            String querry = String.format("select * from getdocentebyid('%1$d');", id);
+            conectar();
+            result = ejecutarSql(querry);
+            while (result.next()) {
+                profesores= new Profesor(
+                        result.getInt("idP"),
+                        result.getInt("idU"),
+                        result.getInt("idR"),
+                        result.getString("nombre"),
+                        result.getString("apellido"),
+                        result.getString("correo"),
+                        result.getString("dni"),
+                        result.getDate("fechanacimiento"),
+                        result.getString("genero"),
+                        result.getString("celular"),
+                        result.getString("rol"),
+                        result.getBoolean("estado"),
+                        result.getString("usuario"),
+                        result.getString("pswd")
+                );
+
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+           desconectar();
+        }
+        return profesores;
+    }
 }

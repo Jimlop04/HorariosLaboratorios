@@ -192,6 +192,7 @@
                                                 <div class="p-col-2">
                                                     <p:commandButton value="Guardar"  
                                                                      icon="pi pi-check" 
+                                                                     actionListener="#{profesorMB.guardar()}"
                                                                      update=":form-1:panel-profesor, :form-1:dtProfesor, msgs"
                                                                      process="panel-profesor @this"
                                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"/>
