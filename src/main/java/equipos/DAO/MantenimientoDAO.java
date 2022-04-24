@@ -4,20 +4,16 @@ package equipos.DAO;
 import Administracion.model.Encargado;
 import equipos.model.*;
 import global.Conexion;
-import laboratorios.model.AreaAula;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-public class ManteimientoDAO extends Conexion {
+public class MantenimientoDAO extends Conexion {
     LocalDate fecha_servidor = LocalDate.now();
 
     public ArrayList<TempDetalleMantenimiento> listarDetalleGeneral() throws Exception {

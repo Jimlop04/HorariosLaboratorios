@@ -1,13 +1,9 @@
 package equipos.controller;
 
 import Administracion.model.Encargado;
-import equipos.DAO.EquipoDAO;
-import equipos.DAO.ManteimientoDAO;
-import equipos.model.CategoriaEquipo;
+import equipos.DAO.MantenimientoDAO;
 import equipos.model.DetalleMantenimiento;
-import equipos.model.Equipo;
 import equipos.model.Mantenimiento;
-import laboratorios.model.AreaAula;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +25,7 @@ public class MantenimientoMB implements Serializable {
 
     private Mantenimiento mantenimiento;
 
-    ManteimientoDAO dao;
+    MantenimientoDAO dao;
     List<DetalleMantenimiento> listaDetalle;
     List<Encargado> listaEncargadosLaboratorio;
     private int  idEquipo;
@@ -50,7 +46,7 @@ public class MantenimientoMB implements Serializable {
     //        LISTAR
     public void listar() throws Exception {
         try {
-            dao = new ManteimientoDAO();
+            dao = new MantenimientoDAO();
             listaEncargadosLaboratorio = dao.listarEncargados();
         }catch( Exception e){
             throw e;
