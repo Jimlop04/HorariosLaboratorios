@@ -35,7 +35,9 @@ public class Profesor {
             String genero_persona,            
             String celular_persona,
             String nombre_rol,
-            boolean estado_usuario
+            boolean estado_usuario,
+            String nombre_usuario,
+            String password_usuario
             ) {
         this.idPersona = idPersona;
         this.idUsuario = idUsuario;
@@ -49,6 +51,8 @@ public class Profesor {
         this.celular_persona = celular_persona;
         this.estado_usuario = estado_usuario;
         this.nombre_rol = nombre_rol;
+        this.nombre_usuario=nombre_usuario;
+        this.password_usuario =password_usuario;
     }
 
     public Profesor() {

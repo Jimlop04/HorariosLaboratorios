@@ -35,7 +35,9 @@ public class ProfesorDAO extends Conexion {
                         result.getString("genero"),
                         result.getString("celular"),
                         result.getString("rol"),
-                        result.getBoolean("estado")
+                        result.getBoolean("estado"),
+                        result.getString("usuario"),
+                        result.getString("pswd")
                 ));
 
             }

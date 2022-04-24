@@ -43,8 +43,6 @@ public class ProfesorMB implements Serializable {
         
     }
 
-  
-
     public void listarProfesores() throws Exception {
         try {
              profesorDAO = new ProfesorDAO();
@@ -52,5 +50,8 @@ public class ProfesorMB implements Serializable {
         } catch (Exception e) {
             e.getMessage();
         }
+    }
+    public void nuevoProfesor(){
+        profesor = new Profesor();
     }
 }

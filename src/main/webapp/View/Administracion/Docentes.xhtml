@@ -18,20 +18,23 @@
                         <p:toolbar>
                             <p:toolbarGroup>
                                 <p:commandButton value="Nuevo docente" 
-                                                 actionListener="PF('detalleProfesor').show()"
+                                                 actionListener="#{profesorMB.nuevoProfesor()}"
                                                  process="@this"
+                                                 oncomplete="PF('detalleProfesor').show()"
                                                  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2" 
                                                  icon="pi pi-plus" 
-                                                 >                                  
+                                                 >      
+                                    <p:resetInput target=":form-1:panel-profesor" />
                                 </p:commandButton>
                             </p:toolbarGroup>                     
                         </p:toolbar>
-                        <!-- TABLA DETALLE PROFESOR -->
+                        <!-- TABLA DETALLE PROFESOR dtProfesor-->
                         <p:dataTable 
                             id="dtProfesor"
                             reflow="true"
                             paginator="true"
                             rows="10"
+                            selection="#{profesorMB.listarProfesor}"
                             resizableColumns="true"
                             value="#{profesorMB.listarProfesor}"
                             lazy="true"
@@ -66,10 +69,19 @@
                                 <h:outputText value="#{prf.nombre_rol}"/>
                             </p:column>
                             <p:column headerText="Estado" filterStyle="display : none" resizable="true" responsivePriority="9">
-                                <h:outputText value="#{prf.estado_usuario}"/>
+                                <p:tag severity="success" value='Activo' rendered="#{prf.estado_usuario eq true}"  />
+                                <p:tag severity="warning" value='Inactivo' rendered="#{prf.estado_usuario eq false}"  />
                             </p:column>
                             <p:column headerText="Acciones" filterStyle="display : none" resizable="true" responsivePriority="10">
-                                <h:outputText/>
+                                 <p:commandButton icon="pi pi-pencil" update=":form-1:panel-profesor"
+                                                 oncomplete="PF('detalleProfesor').show()"  
+                                                 class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"
+                                                 process="@this">
+                                     <f:setPropertyActionListener 
+                                         value="#{prf}"
+                                         target="#{profesorMB.profesor}"/>
+                                    <p:resetInput target=":form-1:panel-profesor"/>
+                                </p:commandButton>
                             </p:column>
                         </p:dataTable>
                         <!-- DIALOGO PROFESOR-->
@@ -81,13 +93,130 @@
                             draggable="false" height="auto">
                             <p:outputPanel id="panel-profesor" class="ui-fluid">
                                 <p:outputPanel> 
-                                    <div class="p-grid p-justify-around">
+                                    <div>
+                                        <div class="p-col-12">
+                                            <div class="card">
+                                                <div class="ui-fluid p-formgrid p-grid">
+                                                    <div class="p-field p-col-12 p-md-6">                                                       
+                                                        <h:outputText value="Nombres" />                                                          
 
+                                                        <p:inputText 
+                                                            value="#{profesorMB.profesor.nombre_persona}"
+                                                            maxlength="50"
+                                                            placeholder="Nombres" />                                                        
+                                                    </div>
+                                                    <div class="p-field p-col-12 p-md-6">                                                       
+                                                        <h:outputText value="Apellidos" />                                                          
+
+                                                        <p:inputText 
+                                                            value="#{profesorMB.profesor.apellido_persona}"
+                                                            maxlength="50"
+                                                            placeholder="Apellidos" />                                                        
+                                                    </div>
+                                                    <div class="p-field p-col-6 p-md-6">                                                       
+                                                        <h:outputText value="Cédula" />                                                          
+
+                                                        <p:inputText 
+                                                            value="#{profesorMB.profesor.dni_persona}"
+                                                            maxlength="50"
+                                                            placeholder="Cédula" />                                                        
+                                                    </div>
+                                                    <div class="p-field p-col-6 p-md-6">                                                       
+                                                        <h:outputText value="Celular" />                                                          
+
+                                                        <p:inputText 
+                                                            value="#{profesorMB.profesor.celular_persona}"
+                                                            maxlength="50"
+                                                            placeholder="Celular" />                                                        
+                                                    </div>
+                                                    <div class="p-field p-col-6 p-md-6">                                                       
+                                                        <h:outputText value="Correo" />                                                          
+
+                                                        <p:inputText 
+                                                            value="#{profesorMB.profesor.correo_persona}"
+                                                            maxlength="50"
+                                                            placeholder="Correo" />                                                        
+                                                    </div>  
+                                                    <div class="p-field p-col-6 p-md-3">                                                       
+                                                        <h:outputText value="Fecha nacimiento" />                                                          
+                                                        <p:datePicker value="#{profesorMB.profesor.fechanacimiento_persona}" showIcon="true">
+                                                        </p:datePicker>
+
+                                                    </div> 
+                                                    <div class="p-field p-col-12 p-md-3">
+                                                        <h:outputText  value="Género" />
+                                                        <p:selectOneMenu id="option" value="#{profesorMB.profesor.genero_persona}">
+                                                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                                                            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+                                                            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+                                                        </p:selectOneMenu>
+                                                    </div>
+
+                                                    <div class="p-field p-col-12 p-md-3">                                                       
+                                                        <h:outputText value="Usuario" /> 
+                                                        <p:inputText 
+                                                            value="#{profesorMB.profesor.nombre_usuario}"
+                                                            maxlength="50"
+                                                            placeholder="Usuario" />                                                        
+                                                    </div>
+                                                    <div class="p-field p-col-12 p-md-3">                                                       
+                                                        <h:outputText value="Contraseña" />                                                          
+
+                                                        <p:password 
+                                                            id="password"
+                                                            weakLabel="Débil"
+                                                            goodLabel="Bueno"
+                                                            strongLabel="Fuerte"
+                                                            match="password2"
+                                                            feedback="true"
+                                                            value="#{profesorMB.profesor.password_usuario}"
+                                                            maxlength="50"
+                                                            placeholder="Contraseña" />                                                        
+                                                    </div>
+                                                    <div class="p-field p-col-12 p-md-3">                                                       
+                                                        <h:outputText value="Confirmar contraseña" />                                                          
+
+                                                        <p:password 
+                                                            placeholder="Confirmar contraseña"
+                                                            maxlength="15" id="password2"/>                                                      
+                                                    </div>
+                                                    <div class="p-field p-col-12 p-md-3">                                                       
+                                                        <h:outputText value="Estado " />  
+                                                        <p:inputSwitch value="#{profesorMB.profesor.estado_usuario}" />                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>        
+                                          <div class="p-grid p-justify-end">
+                                                <div class="p-col-2">
+                                                    <p:commandButton value="Guardar"  
+                                                                     icon="pi pi-check" 
+                                                                     update=":form-1:panel-profesor, :form-1:dtProfesor, msgs"
+                                                                     process="panel-profesor @this"
+                                                                     class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"/>
+                                                </div>
+                                                <div class="p-col-2">
+                                                    <p:commandButton value="Cerrar" 
+                                                                     icon="pi pi-times"
+                                                                     styleClass="ui-button-danger" 
+                                                                     process="@this"
+                                                                     oncomplete="PF('detalleProfesor').hide()"/>
+                                                </div>
+                                            </div>
                                     </div>
                                 </p:outputPanel>
                             </p:outputPanel>
 
                         </p:dialog>
+                        <!-- CONFIRMAR DIALOGO -->
+                         <p:confirmDialog widgetVar="editarProfesor" showEffect="fade" width="300"
+                                         message="Desea descartar los cambios" header="Atencion" severity="warn">
+                            <p:commandButton value="Si" icon="pi pi-check"
+                                             process="@this" oncomplete="PF('editarProfesor').hide()" 
+                                             onclick="PF('detalleProfesor').hide()"/>
+                            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                             onclick="PF('editarProfesor').hide()"/>
+                        </p:confirmDialog>
                     </div>
                 </h:form>
             </ui:define>
