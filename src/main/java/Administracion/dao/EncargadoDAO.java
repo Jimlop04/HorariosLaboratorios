@@ -67,7 +67,7 @@ public class EncargadoDAO {
     public List<Encargado> getRoles(){
   List<Encargado> roles = new ArrayList<>();
   
-  String sql = String.format("SELECT * FROM roles");
+  String sql = String.format("SELECT * from public.\"listar_tecnicos\"()");
   try{
        conexion.conectar();
        resultSet = conexion.ejecutarSql(sql);

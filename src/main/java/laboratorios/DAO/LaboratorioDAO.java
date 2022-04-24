@@ -107,4 +107,20 @@ public class LaboratorioDAO {
         return facultades;
     }
 
+     public void modificarLaboratorio(Laboratorio laboratorio) throws SQLException {
+        try {
+
+            String sql = "";
+            conexion.ejecutarSql(sql);
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            conexion.desconectar();
+        }
+    }
+
+    
+    
+    
 }

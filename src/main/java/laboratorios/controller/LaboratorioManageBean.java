@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import laboratorios.DAO.LaboratorioDAO;
 import laboratorios.model.Laboratorio;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -85,4 +88,33 @@ public class LaboratorioManageBean implements Serializable {
         this.listafacultades = listafacultades;
     }
 
+    
+     public void editarLaboratorio() {
+        try {
+            if ("".equals(laboratorio.getNombre_facultad())) {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Facultad"));
+            } else if ("".equals(laboratorio.getCodigo_laboratorio())) {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Codigo Laboratorio"));
+            } else if ("".equals(laboratorio.getNombre_laboratorio())) {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre Laboratorio"));
+            } else {
+                this.laboratorioDAO.modificarLaboratorio(laboratorio);
+                listaLaboratorios = laboratorioDAO.getLaboratorios(); 
+                FacesContext.getCurrentInstance().
+                        addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Laboratorio Guardado"));
+                
+                PrimeFaces.current().executeScript("PF('centroEditarLaboratorioDialog').hide()");
+            }
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Error al guardar"));
+        }
+        PrimeFaces.current().ajax().update(":form-principal:dtLaboratorio");
+    }
+
+    
 }

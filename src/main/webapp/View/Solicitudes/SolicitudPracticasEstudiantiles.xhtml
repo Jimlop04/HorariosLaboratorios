@@ -31,14 +31,24 @@
                                                     maxlength="25"></p:inputText>
                                             </div>
                                             <div class="p-field p-col-12 p-md-1">
-                                                <p:outputLabel value="Codigo Laboratorio" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
+                                                 <p:outputLabel value="Codigo Laboratorio" for="CodLabSE"/>
+                                                <p:inputText
+                                                    id="CodLabSE"
+                                                    value="#" ></p:inputText>
+
                                             </div>
                                             <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel value="Laboratorio" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
+                                                 <p:selectOneMenu value="#{laboratorioMB.laboratorio.idLaboratorio}" editable="false">
+                                                    <f:selectItem itemLabel="Seleccione un Laboratorio" itemValue="" noSelectionOption="true"/>
+                                                    <p:ajax  process="@this"/>
+                                                    <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
+                                                                   var="la"
+                                                                   itemLabel="#{la.nombre_laboratorio}" 
+                                                                   itemValue="#{la.idLaboratorio}">
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
+
                                             </div>
                                             <div class="p-field p-col-12 p-md-3">
                                                 <p:outputLabel value="Responsable Laboratorio" for="@next"/>

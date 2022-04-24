@@ -107,8 +107,8 @@
                                                 <p:outputLabel value="Estado" for="@next"/>
                                                 <p:selectOneMenu id="option">
                                                     <f:selectItem itemLabel="Seleccione Estado" itemValue=""/>
-                                                    <f:selectItem itemLabel="Activo" itemValue="Option1"/>
-                                                    <f:selectItem itemLabel="Inactivo" itemValue="Option2"/>
+                                                    <f:selectItem itemLabel="Habilitado" itemValue="Option1"/>
+                                                    <f:selectItem itemLabel="Deshabilitado" itemValue="Option2"/>
                                                 </p:selectOneMenu>
                                             </div>
 
@@ -195,10 +195,10 @@
                                                     value="#{TablaEncargados.fecha_fin}"/>
                                             </p:column>
                                             <p:column headerText="Estado" sortBy="#{TablaEncargados.estado}">
-                                                <p:tag severity="success" value="Activo"
+                                                <p:tag severity="success" value="Habilitado"
                                                        style="font-size:12px;"
                                                        rendered="#{TablaEncargados.estado eq true}"/>
-                                                <p:tag severity="warning" value="Inactivo"
+                                                <p:tag severity="warning" value="Deshabilitado"
                                                        style="font-size:12px;"
                                                        rendered="#{TablaEncargados.estado eq 'null'}"/>
                                             </p:column>

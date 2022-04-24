@@ -121,8 +121,18 @@
                                                             </p:column>
 
                                                             <p:column headerText="Acciones" filterStyle="display : none">
-                                                                <h:outputText
-                                                                    value="#"/>
+                                                                <p:commandButton 
+                                                                    icon="pi pi-pencil" 
+                                                                    update=":form-principal:manage-editarLaboratorio-form"
+                                                                    class="ui-button-primary rounded-button p-mr-2 p-mb-2"
+                                                                    oncomplete="PF('centroEditarLaboratorioDialog').show()" 
+                                                                    process="@this">
+                                                                    <f:setPropertyActionListener 
+                                                                        value="#{TablaLaboratorios}" 
+                                                                        target="#{laboratorioMB.laboratorio}"/>
+                                                                    <p:resetInput target=":form-principal:manage-editarLaboratorio-form"/>
+                                                                </p:commandButton>
+
                                                             </p:column>
 
                                                         </p:dataTable>
@@ -148,6 +158,66 @@
                                     </f:facet>
                                 </p:dialog>
                                 <!-- Dialogo Agregar Nuevo Laboratorio FINAL -->
+
+                                <!-- Editar Laboratorio -->
+                                <p:dialog header="Modificar Laboratorio" 
+                                          showEffect="fade" 
+                                          modal="true"
+                                          widgetVar="centroEditarLaboratorioDialog" 
+                                          responsive="true" 
+                                          width="35%"
+                                          draggable="false" 
+                                          height="370" >
+                                    <p:outputPanel 
+                                        id="manage-editarLaboratorio-form" 
+                                        class="ui-fluid">
+                                        <p:outputPanel>
+                                            <div class="p-field">
+                                                <p:outputLabel
+                                                    for="facultadLabo"
+                                                    value="Facultad: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="facultadLabo"
+                                                    value="#{laboratorioMB.laboratorio.nombre_facultad}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                                <p:outputLabel
+                                                    for="codigoLabo"
+                                                    value="Codigo: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="codigoLabo"
+                                                    value="#{laboratorioMB.laboratorio.codigo_laboratorio}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                                <p:outputLabel
+                                                    for="nombreLabo"
+                                                    value="Laboratorio: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="nombreLabo"
+                                                    value="#{laboratorioMB.laboratorio.nombre_laboratorio}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                            </div>
+
+                                        </p:outputPanel>
+                                    </p:outputPanel>
+                                    <!-- Botones Guardar/Cancelar-->
+                                    <f:facet name="footer">
+                                        <p:commandButton 
+                                            value="Guardar" 
+                                            icon="pi pi-check"
+                                            styleClass="ui-button-primary"
+                                            update=":form-principal"
+                                            process="manage-editarLaboratorio-form @this" 
+                                            actionListener="#"/>
+                                        <p:commandButton 
+                                            value="Cancelar" 
+                                            icon="pi pi-times"
+                                            onclick="PF('centroEditarLaboratorioDialog').hide()"  
+                                            styleClass="ui-button-danger"/>
+                                    </f:facet>
+                                </p:dialog>
+
 
                                 <!-- Dialogo Agregar Nueva Area -->
                                 <p:dialog header="Registrar Nueva Aula" 
@@ -241,8 +311,18 @@
                                                                     value="#{TablaAula.capacidad}"/>
                                                             </p:column>
                                                             <p:column headerText="Acciones" filterStyle="display : none">
-                                                                <h:outputText
-                                                                    value="#"/>
+                                                                 <p:commandButton 
+                                                                    icon="pi pi-pencil" 
+                                                                    update=":form-principal:manage-editarAula-form"
+                                                                    class="ui-button-primary rounded-button p-mr-2 p-mb-2"
+                                                                    oncomplete="PF('centroEditarAulaDialog').show()" 
+                                                                    process="@this">
+                                                                    <f:setPropertyActionListener 
+                                                                        value="#{TablaAula}" 
+                                                                        target="#{areaAulaMB.areaAula}"/>
+                                                                    <p:resetInput target=":form-principal:manage-editarAula-form"/>
+                                                                </p:commandButton>
+
                                                             </p:column>
 
                                                         </p:dataTable>
@@ -269,8 +349,73 @@
                                                    />
                                     </f:facet>
                                 </p:dialog>    
+                                
+                                 <!-- Editar Area Aula -->
+                                <p:dialog header="Modificar Aula" 
+                                          showEffect="fade" 
+                                          modal="true"
+                                          widgetVar="centroEditarAulaDialog" 
+                                          responsive="true" 
+                                          width="35%"
+                                          draggable="false" 
+                                          height="370" >
+                                    <p:outputPanel 
+                                        id="manage-editarAula-form" 
+                                        class="ui-fluid">
+                                        <p:outputPanel>
+                                            <div class="p-field">
+                                                <p:outputLabel
+                                                    for="AulaLab"
+                                                    value="Laboratorio: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="AulaLab"
+                                                    value="#{areaAulaMB.areaAula.nombre_laboratorio}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                                <p:outputLabel
+                                                    for="AulaCo"
+                                                    value="Codigo: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="AulaCo"
+                                                    value="#{areaAulaMB.areaAula.codigo}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                                <p:outputLabel
+                                                    for="AulaNo"
+                                                    value="Aula: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="AulaNo"
+                                                    value="#{areaAulaMB.areaAula.nombre}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                                 <p:outputLabel
+                                                    for="AulaCap"
+                                                    value="Capacidad: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="AulaCap"
+                                                    value="#{areaAulaMB.areaAula.capacidad}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                            </div>
 
-
+                                        </p:outputPanel>
+                                    </p:outputPanel>
+                                    <!-- Botones Guardar/Cancelar-->
+                                    <f:facet name="footer">
+                                        <p:commandButton 
+                                            value="Guardar" 
+                                            icon="pi pi-check"
+                                            styleClass="ui-button-primary"
+                                            update=":form-principal"
+                                            process="manage-editarAula-form @this" 
+                                            actionListener="#"/>
+                                        <p:commandButton 
+                                            value="Cancelar" 
+                                            icon="pi pi-times"
+                                            onclick="PF('centroEditarAulaDialog').hide()"  
+                                            styleClass="ui-button-danger"/>
+                                    </f:facet>
+                                </p:dialog>
 
                             </p:toolbarGroup>
                         </div>

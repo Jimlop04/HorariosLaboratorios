@@ -52,22 +52,35 @@
                                                 <p:inputText 
                                                     maxlength="25"></p:inputText>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-10">
-                                                <p:outputLabel value="Responsable del Laboratorio" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
+
+                                            <div class="p-field p-col-12 p-md-5">
+                                                <p:outputLabel value="Laboratorio" for="@next"/>
+                                                <p:selectOneMenu value="#{laboratorioMB.laboratorio.idLaboratorio}" editable="false">
+                                                    <f:selectItem itemLabel="Seleccione un Laboratorio" itemValue="" noSelectionOption="true"/>
+                                                    <p:ajax  process="@this"/>
+                                                    <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
+                                                                   var="la"
+                                                                   itemLabel="#{la.nombre_laboratorio}" 
+                                                                   itemValue="#{la.idLaboratorio}">
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-6">
-                                                <p:outputLabel value="Objetivo del Proyecto" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="300"></p:inputText>
-                                            </div> 
-                                            <div class="p-field p-col-12 p-md-6">
-                                                <p:outputLabel value="Analisis a Realizar" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="300"></p:inputText>
-                                            </div>        
-                                        </div>
+                                            <div class="p-field p-col-12 p-md-5">
+                                                    <p:outputLabel value="Responsable del Laboratorio" for="@next"/>
+                                                    <p:inputText 
+                                                        maxlength="25"></p:inputText>
+                                                </div>
+                                                <div class="p-field p-col-12 p-md-6">
+                                                    <p:outputLabel value="Objetivo del Proyecto" for="@next"/>
+                                                    <p:inputText 
+                                                        maxlength="300"></p:inputText>
+                                                </div> 
+                                                <div class="p-field p-col-12 p-md-6">
+                                                    <p:outputLabel value="Analisis a Realizar" for="@next"/>
+                                                    <p:inputText 
+                                                        maxlength="300"></p:inputText>
+                                                </div>        
+                                            </div>
                                     </p:outputPanel>
                                     <div class="card" style="margin-top: 5px;">
                                         <p:toolbarGroup>
