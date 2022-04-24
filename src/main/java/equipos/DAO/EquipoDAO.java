@@ -68,8 +68,6 @@ public class EquipoDAO extends Conexion {
             lista = new ArrayList<>();
             while (rs.next()) {
                 Equipo equipo = new Equipo();
-                AreaAula areaAula = new AreaAula();
-                CategoriaEquipo categoriaEquipo = new CategoriaEquipo();
                 equipo.setDescripcion(rs.getString("descripcion"));
                 equipo.setMarca(rs.getString("marca"));
                 equipo.setModelo(rs.getString("modelo"));

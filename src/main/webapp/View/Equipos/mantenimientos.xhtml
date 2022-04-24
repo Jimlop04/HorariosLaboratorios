@@ -10,6 +10,7 @@
 
         <ui:define name="title">Registrar Mantenimiento</ui:define>
         <ui:define name="content">
+            <f:event type="preRenderView" listener="#{mantenimientoMB.listar()}"/>
             <!--MENU TOOLBAR-->
             <ui:include src="./componentes/toolbar_menu.xhtml"/>
             <!-- AGREGAR EQUIPOS-->
@@ -26,7 +27,7 @@
                                 <p:datePicker showIcon="true" locale="es"/>
                             </div>
 
-                            <div class="p-field p-col-12 p-md-4">
+                            <div class="p-field p-col-12 p-md-3">
                                 <p:outputLabel value="Tipo mantenimiento" for="@next"/>
                                 <p:selectOneMenu id="comboTipoMantenimiento" value="">
                                     <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
@@ -41,6 +42,13 @@
                                     <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                     <f:selectItem itemLabel="Interno" itemValue="2"/>
                                     <f:selectItem itemLabel="Externo" itemValue="3"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Encargado laboratorio" for="@next"/>
+                                <p:selectOneMenu id="comboEncargadoLaboratorio" value="#{mantenimientoMB.listaEncargadosLaboratorio}" var="o">
+                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                    <f:selectItems itemLabel="#{o.nombre_persona} #{o.apellido_persona}" itemValue="#{o.idEncargadoLaboratorio}"/>
                                 </p:selectOneMenu>
                             </div>
 

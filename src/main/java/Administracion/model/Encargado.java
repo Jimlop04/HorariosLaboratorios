@@ -22,6 +22,9 @@ public class Encargado {
     private Date fecha_fin;
     private Boolean estado;
 
+    private int  idencargadoLaboratorioDetalle;
+
+
     public Encargado() {
     }
 
@@ -37,7 +40,17 @@ public class Encargado {
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.estado = estado;
+        this.idEncargadoLaboratorio = idencargadoLaboratorioDetalle;
     }
+
+    public int getIdencargadoLaboratorioDetalle() {
+        return idencargadoLaboratorioDetalle;
+    }
+
+    public void setIdencargadoLaboratorioDetalle(int idencargadoLaboratorioDetalle) {
+        this.idencargadoLaboratorioDetalle = idencargadoLaboratorioDetalle;
+    }
+
 
     public Encargado(int idRoles, String nombre_rol) {
         this.idRoles = idRoles;
