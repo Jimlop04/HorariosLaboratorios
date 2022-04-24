@@ -20,6 +20,7 @@
                                 <p:commandButton value="Nuevo docente" 
                                                  actionListener="#{profesorMB.nuevoProfesor()}"
                                                  process="@this"
+                                                 update=":form-1:panel-profesor"
                                                  oncomplete="PF('detalleProfesor').show()"
                                                  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2" 
                                                  icon="pi pi-plus" 
@@ -200,7 +201,9 @@
                                                                      icon="pi pi-times"
                                                                      styleClass="ui-button-danger" 
                                                                      process="@this"
-                                                                     oncomplete="PF('detalleProfesor').hide()"/>
+                                                                     onclick="PF('detalleProfesor').hide()">
+                                                                         <p:resetInput target=":form-1:panel-profesor" />
+                                                    </p:commandButton>
                                                 </div>
                                             </div>
                                     </div>

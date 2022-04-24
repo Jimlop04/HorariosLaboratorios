@@ -52,6 +52,7 @@ public class ProfesorMB implements Serializable {
         }
     }
     public void nuevoProfesor(){
-        profesor = new Profesor();
+        
+        this.profesor = new Profesor();
     }
 }
