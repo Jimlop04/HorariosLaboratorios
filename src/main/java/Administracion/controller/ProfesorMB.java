@@ -60,10 +60,16 @@ public class ProfesorMB implements Serializable {
     
     public void guardar() throws Exception {
         if (profesor.getIdPersona() == 0) {
-            
-            msj.mensajeDeExito("Nueva persona");
+            if(!profesor.getNombre_persona().isEmpty()){
+                
+                 profesorDAO.insertarProfesor(profesor); 
+                 msj.mensajeDeExito("Nueva persona");
+            }
+           msj.mensajeDeAdvertencia("Agregar uno o mas datos");
         } else {
-            msj.mensajeDeAdvertencia("Editar persona");
+           if(validarInfo()){
+               
+           }
         }
     }
 

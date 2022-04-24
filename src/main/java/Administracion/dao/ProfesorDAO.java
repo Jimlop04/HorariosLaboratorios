@@ -10,10 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Administracion.model.Profesor;
+import global.AES;
+import java.text.SimpleDateFormat;
 
 public class ProfesorDAO extends Conexion {
 
     private ResultSet result;
+    private AES encryptAES;
+    
 
     public List<Profesor> listarProfesor() throws SQLException {
         List<Profesor> listProfesores;
@@ -81,4 +85,24 @@ public class ProfesorDAO extends Conexion {
         }
         return profesores;
     }
+ public boolean insertarProfesor(Profesor pro){
+      SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+      String sql;
+      encryptAES = new AES();
+        sql ="select * from registrardocente('"+pro.getNombre_persona()+"','"+ pro.getApellido_persona()+"'"
+                + ",'"+pro.getDni_persona()+"','"+pro.getFechanacimiento_persona()+"'"
+                + ",'"+pro.getGenero_persona()+"','"+pro.getCorreo_persona()+"',"
+                + "'"+pro.getCelular_persona()+"','"+pro.getNombre_usuario()+"','"+encryptAES.getAESEncrypt(pro.getPassword_usuario())+"');";
+               
+        try{
+            conectar();
+            result = ejecutarSql(sql);
+            result.next();
+            return true;
+        }catch(Exception e){
+            return false;
+        }finally{
+            desconectar();
+        }
+ }
 }

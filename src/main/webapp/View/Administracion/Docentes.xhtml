@@ -163,24 +163,15 @@
                                                     <div class="p-field p-col-12 p-md-3">                                                       
                                                         <h:outputText value="Contraseña" />                                                          
 
-                                                        <p:password 
+                                                        <p:inputText
                                                             id="password"
-                                                            weakLabel="Débil"
-                                                            goodLabel="Bueno"
-                                                            strongLabel="Fuerte"
-                                                            match="password2"
-                                                            feedback="true"
-                                                            value="#{profesorMB.profesor.password_usuario}"
                                                             maxlength="50"
-                                                            placeholder="Contraseña" />                                                        
+                                                            placeholder="Contraseña"
+                                                            value="#{profesorMB.profesor.password_usuario}"
+                                                            
+                                                            />                                                        
                                                     </div>
-                                                    <div class="p-field p-col-12 p-md-3">                                                       
-                                                        <h:outputText value="Confirmar contraseña" />                                                          
-
-                                                        <p:password 
-                                                            placeholder="Confirmar contraseña"
-                                                            maxlength="15" id="password2"/>                                                      
-                                                    </div>
+                               
                                                     <div class="p-field p-col-12 p-md-3">                                                       
                                                         <h:outputText value="Estado " />  
                                                         <p:inputSwitch value="#{profesorMB.profesor.estado_usuario}" />                                                   
