@@ -6,13 +6,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import laboratorios.DAO.LaboratorioDAO;
+import laboratorios.model.AreaAula;
 import laboratorios.model.Laboratorio;
 import org.primefaces.PrimeFaces;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 
 /**
  *
@@ -20,7 +22,6 @@ import org.primefaces.PrimeFaces;
  */
 
 @ManagedBean(name = "laboratorioMB")
-@SessionScoped
 public class LaboratorioManageBean implements Serializable {
     
     private Laboratorio laboratorio = new Laboratorio();
@@ -28,8 +29,15 @@ public class LaboratorioManageBean implements Serializable {
     private List<Laboratorio> listaLaboratorios = new ArrayList<>();
     private List<Laboratorio> listasoloLaboratorios = new ArrayList<>();
     private List<Laboratorio> listafacultades = new ArrayList<>();
+    private List<AreaAula> listaAreas = new ArrayList<>();
+    private List<AreaAula> listaAreasNode;
     Mensajes mensajesJSF;
-    
+    private TreeNode rootIntegracion = new DefaultTreeNode("Root Node", null);
+    TreeNode laboratorioTree;
+    TreeNode aulasTree;
+   
+
+  
      @PostConstruct
     public void init() {
         System.out.println("PostConstruct");
@@ -38,6 +46,8 @@ public class LaboratorioManageBean implements Serializable {
         laboratorio = new Laboratorio();
         listasoloLaboratorios = laboratorioDAO.getsoloLaboratorios();
         listafacultades = laboratorioDAO.getfacultades();
+        llenarListaTableTree();
+        
     } 
 
     public Laboratorio getLaboratorio() {
@@ -88,6 +98,25 @@ public class LaboratorioManageBean implements Serializable {
         this.listafacultades = listafacultades;
     }
 
+    public TreeNode getRootIntegracion() {
+        return rootIntegracion;
+    }
+
+    public void setRootIntegracion(TreeNode rootIntegracion) {
+        this.rootIntegracion = rootIntegracion;
+    }
+
+    public List<AreaAula> getListaAreas() {
+        return listaAreas;
+    }
+
+    public void setListaAreas(List<AreaAula> listaAreas) {
+        this.listaAreas = listaAreas;
+    }
+    
+    
+    
+
     
      public void editarLaboratorio() {
         try {
@@ -115,6 +144,34 @@ public class LaboratorioManageBean implements Serializable {
         }
         PrimeFaces.current().ajax().update(":form-principal:dtLaboratorio");
     }
+     
+     /**  LLENAR LISTA DE LISTA LABORATORIOS TABLA TREE */
+     public void llenarListaTableTre() {
+        for (Laboratorio laboratorioT : listafacultades) {
+            laboratorioTree = new DefaultTreeNode(new Laboratorio(laboratorioT.getIdFacultad(), laboratorioT.getNombre_facultad()), this.rootIntegracion);
+            listasoloLaboratorios = laboratorioDAO.getsoloLaboratoriosxfacultades(laboratorioT.getFacultad_idfacultad());
+            for(Laboratorio laboraT : listaLaboratorios){
+            aulasTree =  new DefaultTreeNode(new Laboratorio(laboraT.getIdLaboratorio(), laboraT.getNombre_laboratorio()),laboratorioTree); 
+            }
+            
+       
+            }
+        }
+     
+     public void llenarListaTableTree() {
+        for (Laboratorio laboratorioT : listasoloLaboratorios) {
+            laboratorioTree = new DefaultTreeNode(new Laboratorio(laboratorioT.getIdLaboratorio(), laboratorioT.getNombre_laboratorio(),
+                    laboratorioT.getCodigo_laboratorio()), this.rootIntegracion);
+            listaAreas = laboratorioDAO.getsoloAreas(laboratorioT.getIdLaboratorio());
+            for(AreaAula AreaT : listaAreas ){
+            aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(),AreaT.getCodigo(), AreaT.getNombre()),laboratorioTree);
+            }
+       
+            }
+        }
 
-    
+
+     
+     
+
 }

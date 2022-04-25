@@ -311,7 +311,7 @@
                                                                     value="#{TablaAula.capacidad}"/>
                                                             </p:column>
                                                             <p:column headerText="Acciones" filterStyle="display : none">
-                                                                 <p:commandButton 
+                                                                <p:commandButton 
                                                                     icon="pi pi-pencil" 
                                                                     update=":form-principal:manage-editarAula-form"
                                                                     class="ui-button-primary rounded-button p-mr-2 p-mb-2"
@@ -349,8 +349,8 @@
                                                    />
                                     </f:facet>
                                 </p:dialog>    
-                                
-                                 <!-- Editar Area Aula -->
+
+                                <!-- Editar Area Aula -->
                                 <p:dialog header="Modificar Aula" 
                                           showEffect="fade" 
                                           modal="true"
@@ -388,7 +388,7 @@
                                                     value="#{areaAulaMB.areaAula.nombre}" 
                                                     maxlength="50"
                                                     ></p:inputText>
-                                                 <p:outputLabel
+                                                <p:outputLabel
                                                     for="AulaCap"
                                                     value="Capacidad: "></p:outputLabel>
                                                 <p:inputText
@@ -419,59 +419,39 @@
 
                             </p:toolbarGroup>
                         </div>
-
-
-
-                        <div class="card" style="margin-top: 5px;">
-                            <p:toolbarGroup>
-                                <h:form>
-                                    <div class="p-grid p-justify-around">
-                                        <p:dataTable id="dtLaboratorio"
-                                                     paginator="true" 
-                                                     paginatorPosition="bottom"
-                                                     lazy="true"  
-                                                     editable="true" 
-                                                     reflow="true"
-                                                     rows="6"
-                                                     rowSelectMode="add"
-                                                     editInitEvent="dblclick" 
-                                                     editMode="cell"
-                                                     value="#"
-                                                     widgetVar="TablaLaboratoriosBus"
-                                                     var="TablaLaboratorios"
-
-                                                     >
-                                            <f:facet name="header">
-                                                <div class="p-d-flex p-jc-between p-ai-center">
-                                                    <span style="font-size: 24px">LABORATORIOS</span>
-                                                    <span class="filter-container ui-input-icon-left">
-                                                        <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                    </span>
-                                                </div>
-                                            </f:facet>
-                                            <p:column headerText="Nombre" 
-                                                      filterStyle="display : none">
-                                                <h:outputText 
-                                                    value="#"/>
-                                            </p:column>
-                                            <p:column headerText="Apellidos" 
-                                                      filterStyle="display : none">
-                                                <h:outputText 
-                                                    value="#"/>
-                                            </p:column>
-                                            <p:column headerText="Cargo" filterStyle="display : none">
-                                                <h:outputText
-                                                    value="#"/>
-                                            </p:column>
-
-                                        </p:dataTable>
+                        
+                        <div class="card">
+                            <p:toolbar>
+                                <p:toolbarGroup>
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span style="font-weight: bold; margin-right: 6px; 
+                                              font-size: 24px">Laboratorios y Areas</span>
                                     </div>
+                                </p:toolbarGroup>
+                            </p:toolbar>
+                            <p:treeTable
+                                id="integracionLaboratorio"
+                                value="#{laboratorioMB.rootIntegracion}"
+                                var="document"
+                                        paginator="true" rows="7" 
+                                         scrollable="true" paginatorPosition="bottom" 
+                                         scrollHeight="350" 
+                                         size="small"
+                                         selectionMode="single">
 
-                                </h:form>
+                                <p:column headerText="Codigo" style="text-align: justify">
+                                    <h:outputText value="#{document.idLaboratorio}" />
+                                </p:column>
+                                <p:column headerText="Laboratorio">
+                                    <h:outputText value="#{document.nombre_laboratorio}" />
+                                </p:column>
+                                 <p:column headerText="Laboratorio">
+                                    <h:outputText value="#{document.codigo_laboratorio}" />
+                                </p:column>
+                               
+                            </p:treeTable>
+                        </div> 
 
-
-                            </p:toolbarGroup> 
-                        </div>
 
 
                     </h:form>
