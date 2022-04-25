@@ -11,7 +11,7 @@
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
             <ui:define name="content">
                 <ui:include src="./SubHeaderAdministracion.xhtml"/> 
-                <h:form id="form-1">
+                <h:form id="form">
                     <p:growl id="msgs" showDetail="true"/>
                     <div class="card">
                         <!-- CABECERA  -->
@@ -20,12 +20,12 @@
                                 <p:commandButton value="Nuevo docente" 
                                                  actionListener="#{profesorMB.nuevoProfesor()}"
                                                  process="@this"
-                                                 update=":form-1:panel-profesor"
+                                                 update=":form:panel-profesor"
                                                  oncomplete="PF('detalleProfesor').show()"
                                                  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2" 
                                                  icon="pi pi-plus" 
                                                  >      
-                                    <p:resetInput target=":form-1:panel-profesor" />
+                                    <p:resetInput target=":form:panel-profesor" />
                                 </p:commandButton>
                             </p:toolbarGroup>                     
                         </p:toolbar>
@@ -33,10 +33,9 @@
                         <p:dataTable 
                             id="dtProfesor"
                             reflow="true"
+                            widgetVar="dt-Profesor"
                             paginator="true"
                             rows="10"
-                            selection="#{profesorMB.listarProfesor}"
-                            resizableColumns="true"
                             value="#{profesorMB.listarProfesor}"
                             lazy="true"
                             rowKey="#{profesorMB.profesor.idPersona}"
@@ -74,20 +73,20 @@
                                 <p:tag severity="warning" value='Inactivo' rendered="#{prf.estado_usuario eq false}"  />
                             </p:column>
                             <p:column headerText="Acciones" filterStyle="display : none" resizable="true" responsivePriority="10">
-                                 <p:commandButton icon="pi pi-pencil" update=":form-1:panel-profesor"
+                                 <p:commandButton icon="pi pi-pencil" update=":form:panel-profesor"
                                                  oncomplete="PF('detalleProfesor').show()"  
                                                  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"
+                                                 actionListener="#{profesorMB.editarProfesor(prf)}"
                                                  process="@this">
-                                     <f:setPropertyActionListener 
-                                         value="#{prf}"
-                                         target="#{profesorMB.profesor}"/>
-                                    <p:resetInput target=":form-1:panel-profesor"/>
+                                    
+                                    <p:resetInput target=":form:panel-profesor"/>
                                 </p:commandButton>
                             </p:column>
                         </p:dataTable>
-                        <!-- DIALOGO PROFESOR-->
+                        <!--  NUEVO PROFESOR DIALOGO-->
                         <p:dialog 
-                            header="Docentes"
+                            header="Docentes - #{profesorMB.profesorModo}"
+                            id="dialogo_profesor"
                             showEffect="fade" modal="true"
                             widgetVar="detalleProfesor" 
                             responsive="true" width="80%"
@@ -165,7 +164,8 @@
 
                                                         <p:inputText
                                                             id="password"
-                                                            maxlength="50"
+                                                            maxlength="15"
+                                                            type="password"
                                                             placeholder="Contraseña"
                                                             value="#{profesorMB.profesor.password_usuario}"
                                                             
@@ -184,8 +184,9 @@
                                                     <p:commandButton value="Guardar"  
                                                                      icon="pi pi-check" 
                                                                      actionListener="#{profesorMB.guardar()}"
-                                                                     update=":form-1:panel-profesor, :form-1:dtProfesor, msgs"
+                                                                     update=":form:panel-profesor, :form:dtProfesor, msgs"
                                                                      process="panel-profesor @this"
+                                                                     oncomplete="location.reload()"
                                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"/>
                                                 </div>
                                                 <div class="p-col-2">
@@ -194,7 +195,7 @@
                                                                      styleClass="ui-button-danger" 
                                                                      process="@this"
                                                                      onclick="PF('detalleProfesor').hide()">
-                                                                         <p:resetInput target=":form-1:panel-profesor" />
+                                                                         <p:resetInput target=":form:panel-profesor" />
                                                     </p:commandButton>
                                                 </div>
                                             </div>
@@ -203,15 +204,8 @@
                             </p:outputPanel>
 
                         </p:dialog>
-                        <!-- CONFIRMAR DIALOGO -->
-                         <p:confirmDialog widgetVar="editarProfesor" showEffect="fade" width="300"
-                                         message="Desea descartar los cambios" header="Atencion" severity="warn">
-                            <p:commandButton value="Si" icon="pi pi-check"
-                                             process="@this" oncomplete="PF('editarProfesor').hide()" 
-                                             onclick="PF('detalleProfesor').hide()"/>
-                            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
-                                             onclick="PF('editarProfesor').hide()"/>
-                        </p:confirmDialog>
+                        <!--  EDITAR PROFESOR DIALOGO -->
+                        
                     </div>
                 </h:form>
             </ui:define>

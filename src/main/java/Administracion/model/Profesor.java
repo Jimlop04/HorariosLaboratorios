@@ -1,5 +1,6 @@
 package Administracion.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class Profesor {
+public class Profesor implements Serializable{
     int idPersona, idUsuario, idRol, idUsuaioRoles;
     //DATOS PERSONA
     String nombre_persona,
@@ -32,8 +33,8 @@ public class Profesor {
                     int idRol,
                     String nombre_persona,
                     String apellido_persona,
-                    String correo_persona,
                     String dni_persona,
+                    String correo_persona,                    
                     Date fechanacimiento_persona,
                     String genero_persona,
                     String celular_persona,
