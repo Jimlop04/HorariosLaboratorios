@@ -79,8 +79,8 @@ public class MantenimientoDAO extends Conexion {
     public void resgistrar(Mantenimiento obj, List<DetalleMantenimiento> ltsDetalle) throws SQLException {
         try {
             //INSERT MANTENIMIENTO (CABECERA)
-            String sql_registrar_mantenimiento = "insert into mantenimientos (periodo, id_encargado_laboratorio, procedencia, tipo, estado)\n" +
-                    "values (?, ?, ?, ?, ?);";
+            String sql_registrar_mantenimiento = "insert into mantenimientos (periodo, id_encargado_laboratorio, procedencia, tipo)\n" +
+                    "values (?, ?, ?, ?);";
             this.conectar();
             this.getConnection().setAutoCommit(false);
             PreparedStatement st = this.getConnection().prepareStatement(sql_registrar_mantenimiento);
@@ -88,7 +88,7 @@ public class MantenimientoDAO extends Conexion {
             st.setInt(2, obj.getIdEncargadoLaboratorio());
             st.setString(3, obj.getProcedencia());
             st.setString(4, obj.getTipo());
-            st.setString(5, obj.getEstado());
+//            st.setString(5, "T");
             st.executeUpdate();
             st.close();
             //OBTENER ÚLTIMO ID DE MANTENIMIENTO
@@ -98,16 +98,17 @@ public class MantenimientoDAO extends Conexion {
             resultSet = st2.executeQuery();
             int idMantenimiento = 0;
             while (resultSet.next()) {
-                idMantenimiento = resultSet.getInt("1");
+                idMantenimiento = resultSet.getInt(1);
             }
+            System.out.println(ltsDetalle);
             //INSERT DETALLE_MANTENIMIENTO
-            String sql_registrar_detalle_mantenimiento = "insert into detalle_mantenimiento (id_equipo, id_mantenimiento, fecha_mantenimiento)\n" +
-                    "values (?, ?, ?)";
+            String sql_registrar_detalle_mantenimiento = "insert into detalle_mantenimiento (id_equipo, id_mantenimiento)\n" +
+                    "values (?, ?)";
             PreparedStatement st3 = this.getConnection().prepareStatement(sql_registrar_detalle_mantenimiento);
             for (DetalleMantenimiento o : ltsDetalle) {
                 st3.setInt(1, o.getIdEquipo());
                 st3.setInt(2, idMantenimiento);
-                st3.setDate(3, Date.valueOf(fecha_servidor));
+//                st3.setDate(3, Date.valueOf(fecha_servidor));
                 st3.executeUpdate();
                 st3.close();
             }

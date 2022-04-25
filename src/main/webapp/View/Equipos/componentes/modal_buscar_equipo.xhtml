@@ -8,62 +8,66 @@
     <div class="p-grid ui-fluid">
         <div class="p-col-12">
 
-                <p:dialog header="Agregar Equipo"
-                          showEffect="fade"
-                          modal="true"
-                          widgetVar="modalBuscarEquipo"
-                          responsive="true"
-                          width="55%"
-                          draggable="false"
-                          height="400">
-                    <p:outputPanel id="panelDataTableEquipos" class="ui-fluid">
-                        <div class="p-formgrid p-grid">
-                            <!-- DATATABLE -->
-                            <div class="p-field p-col-12 p-md-12">
-                                <p:dataTable
-                                        id="dataEquipos"
-                                        lazy="true"
-                                        editable="true"
-                                        reflow="true"
-                                        editInitEvent="dblclick"
-                                        editMode="cell"
-                                        value=""
-                                        var="equipo"
-                                        responsive="true">
-                                    <!-- Header DataTable-->
-                                    <f:facet name="header">
-                                        <div class="p-d-flex p-jc-between p-ai-center">
-                                            <span style="font-size: 24px">EQUIPOS</span>
-                                            <span class="filter-container ui-input-icon-left">
+            <p:dialog header="Agregar Equipo"
+                      showEffect="fade"
+                      modal="true"
+                      widgetVar="modalBuscarEquipo"
+                      responsive="true"
+                      width="55%"
+                      draggable="false"
+                      height="400">
+                <p:outputPanel id="panelDataTableEquipos" class="ui-fluid">
+                    <div class="p-formgrid p-grid">
+                        <!-- DATATABLE -->
+                        <div class="p-field p-col-12 p-md-12">
+                            <p:dataTable
+                                    id="dataEquipos"
+                                    lazy="true"
+                                    editable="true"
+                                    reflow="true"
+                                    editInitEvent="dblclick"
+                                    editMode="cell"
+                                    value="#{equipoMB.listaEquipos}"
+                                    var="equipo"
+                                    responsive="true">
+                                <!-- Header DataTable-->
+                                <f:facet name="header">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span style="font-size: 24px">EQUIPOS</span>
+                                        <span class="filter-container ui-input-icon-left">
                                                 <i class="pi pi-search"/>
                                                 <p:inputText placeholder="Buscar ingrese código"/>
                                             </span>
-                                        </div>
-                                    </f:facet>
-                                    <p:column headerText="Código" filterStyle="display : none">
-                                        <p:outputLabel value="245-2545-666-44"/>
-                                    </p:column>
-                                    <p:column headerText="Categoria" filterStyle="display : none">
-                                        <p:outputLabel value="MICROSCOPIO"/>
-                                    </p:column>
-                                    <p:column headerText="Descripcion" filterStyle="display : none">
-                                        <p:outputLabel value="MICROSCOPIO OPTICO"/>
-                                    </p:column>
-                                    <p:column headerText="Estado" filterStyle="display : none">
-                                        <p:outputLabel value="MALO"/>
-                                    </p:column>
-                                    <p:column headerText="Acciones" filterStyle="display : none">
-                                        <p:outputLabel value="."/>
-                                        <p:commandButton type="button" icon="pi pi-plus"
-                                                         styleClass="rounded-button"
-                                                         oncomplete="PF('modalBuscarEquipo').hide()"/>
-                                    </p:column>
-                                </p:dataTable>
-                            </div>
+                                    </div>
+                                </f:facet>
+                                <p:column headerText="Código" filterStyle="display : none">
+                                    <p:outputLabel value="#{equipo.codigo}"/>
+                                </p:column>
+                                <p:column headerText="Categoria" filterStyle="display : none">
+                                    <p:outputLabel value="#{equipo.categoriaEquipo}"/>
+                                </p:column>
+                                <p:column headerText="Descripcion" filterStyle="display : none">
+                                    <p:outputLabel value="#{equipo.descripcion}"/>
+                                </p:column>
+                                <p:column headerText="Estado" filterStyle="display : none">
+                                    <p:outputLabel value="#{equipo.estado}"/>
+                                </p:column>
+                                <p:column headerText="Acciones" filterStyle="display : none">
+                                    <p:outputLabel value="."/>
+                                        <p:commandButton
+                                                value="Agregar"
+                                                icon="pi pi-check"
+                                                styleClass="ui-button-primary"
+                                                update=":msj"
+                                                actionListener="#{mantenimientoMB.agregarEquipo(equipo.idEquipo)}">
+                                        </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
                         </div>
-                    </p:outputPanel>
-                </p:dialog>
-            </div>
+                    </div>
+                </p:outputPanel>
+            </p:dialog>
         </div>
+    </div>
 
 </ui:composition>

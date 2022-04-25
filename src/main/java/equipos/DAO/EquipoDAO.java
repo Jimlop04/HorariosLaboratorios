@@ -49,6 +49,7 @@ public class EquipoDAO extends Conexion {
             String query = "SELECT ce.nombre           as categoria,\n" +
                     "       e.id_categoria_equipos       as idCategoria,\n" +
                     "       e.descripcion       as descripcion,\n" +
+                    "       e.id_equipo       as id,\n" +
                     "       e.marca             as marca,\n" +
                     "       e.modelo            as modelo,\n" +
                     "       e.numero_serie      as serie,\n" +
@@ -79,6 +80,7 @@ public class EquipoDAO extends Conexion {
                 equipo.setIdAreaAula(rs.getInt("idArea"));
                 equipo.setCategoriaEquipo(rs.getString("categoria"));
                 equipo.setAreaAula(rs.getString("area"));
+                equipo.setIdEquipo(rs.getInt("id"));
                 lista.add(equipo);
             }
         } catch (Exception e) {
