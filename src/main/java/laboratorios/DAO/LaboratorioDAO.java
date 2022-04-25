@@ -91,30 +91,6 @@ public class LaboratorioDAO {
         return soloLaboratorios;
     }
 
-    public List<Laboratorio> getsoloLaboratoriosxfacultades(int idLaboratorio) {
-        List<Laboratorio> soloLaboratorios = new ArrayList<>();
-
-        String sql = String.format("SELECT * FROM laboratorio " + idLaboratorio + "");
-        try {
-            conexion.conectar();
-            resultSet = conexion.ejecutarSql(sql);
-
-            while (resultSet.next()) {
-                soloLaboratorios.add(new Laboratorio(
-                        resultSet.getInt("idLaboratorio"),
-                        resultSet.getString("nombre_laboratorio"),
-                        resultSet.getString("codigo_laboratorio")));
-            }
-            return soloLaboratorios;
-        } catch (SQLException e) {
-            return soloLaboratorios;
-
-        } finally {
-            conexion.desconectar();
-        }
-
-    }
-
     public List<Laboratorio> getfacultades() {
         List<Laboratorio> facultades = new ArrayList<>();
 

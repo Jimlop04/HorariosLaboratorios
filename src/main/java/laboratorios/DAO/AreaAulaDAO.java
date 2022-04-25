@@ -66,34 +66,6 @@ public class AreaAulaDAO {
   return Areas; 
   }
     
-     public List<AreaAula> getsoloAreas(int idArea){
-  List<AreaAula> soloAreas = new ArrayList<>();
-  
-  String sql = String.format("SELECT * FROM public.area_aula " + idArea + "");
-  try{
-       conexion.conectar();
-       resultSet = conexion.ejecutarSql(sql);
-       
-       while(resultSet.next()){
-      soloAreas.add(new AreaAula(
-               resultSet.getInt("id_area_aula"),
-               resultSet.getInt("laboratorio_idLaboratorio"),
-              resultSet.getString("codigo_aula"),
-              resultSet.getString("nombre_aula"),
-              resultSet.getShort("capacidad_aula")));
-  
-       }
-       return soloAreas;
-  } catch (SQLException e) {
-      return soloAreas;
-  } finally{
-     conexion.desconectar();
-  }
-  }
-    
-    
-    
-    
-    
+   
     
 }

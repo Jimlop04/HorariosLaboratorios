@@ -146,25 +146,16 @@ public class LaboratorioManageBean implements Serializable {
     }
      
      /**  LLENAR LISTA DE LISTA LABORATORIOS TABLA TREE */
-     public void llenarListaTableTre() {
-        for (Laboratorio laboratorioT : listafacultades) {
-            laboratorioTree = new DefaultTreeNode(new Laboratorio(laboratorioT.getIdFacultad(), laboratorioT.getNombre_facultad()), this.rootIntegracion);
-            listasoloLaboratorios = laboratorioDAO.getsoloLaboratoriosxfacultades(laboratorioT.getFacultad_idfacultad());
-            for(Laboratorio laboraT : listaLaboratorios){
-            aulasTree =  new DefaultTreeNode(new Laboratorio(laboraT.getIdLaboratorio(), laboraT.getNombre_laboratorio()),laboratorioTree); 
-            }
-            
-       
-            }
-        }
-     
      public void llenarListaTableTree() {
         for (Laboratorio laboratorioT : listasoloLaboratorios) {
             laboratorioTree = new DefaultTreeNode(new Laboratorio(laboratorioT.getIdLaboratorio(), laboratorioT.getNombre_laboratorio(),
                     laboratorioT.getCodigo_laboratorio()), this.rootIntegracion);
             listaAreas = laboratorioDAO.getsoloAreas(laboratorioT.getIdLaboratorio());
+            
             for(AreaAula AreaT : listaAreas ){
-            aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(),AreaT.getCodigo(), AreaT.getNombre()),laboratorioTree);
+                
+            if(laboratorioT.getIdLaboratorio() == AreaT.getLaboratorio_idLaboratorio() ){
+            aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(),AreaT.getCodigo(), AreaT.getNombre()),laboratorioTree);}
             }
        
             }
