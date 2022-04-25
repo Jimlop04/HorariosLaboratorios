@@ -40,8 +40,8 @@
                         <p:selectOneMenu id="comboTipoMantenimiento" value="#{mantenimientoMB.mantenimiento.tipo}"
                                          required="true">
                             <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                            <f:selectItem itemLabel="Preventivo" itemValue="2"/>
-                            <f:selectItem itemLabel="Correctivo" itemValue="3"/>
+                            <f:selectItem itemLabel="Preventivo" itemValue="Preventivo"/>
+                            <f:selectItem itemLabel="Correctivo" itemValue="Correctivo"/>
                         </p:selectOneMenu>
                     </div>
                     <!-- PROCEDENCIA -->
@@ -50,8 +50,8 @@
                         <p:selectOneMenu id="comboProcedencia" value="#{mantenimientoMB.mantenimiento.procedencia}"
                                          required="true">
                             <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                            <f:selectItem itemLabel="Interno" itemValue="2"/>
-                            <f:selectItem itemLabel="Externo" itemValue="3"/>
+                            <f:selectItem itemLabel="Interno" itemValue="Interno"/>
+                            <f:selectItem itemLabel="Externo" itemValue="Externo"/>
                         </p:selectOneMenu>
                     </div>
                     <!-- TÉCNICO -->
