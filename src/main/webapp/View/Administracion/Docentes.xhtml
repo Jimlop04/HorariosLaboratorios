@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -7,30 +8,30 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:body>
-        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
-            <ui:define name="content">
-                <ui:include src="./SubHeaderAdministracion.xhtml"/> 
-                <h:form id="form">
-                    <p:growl id="msgs" showDetail="true"/>
-                    <div class="card">
-                        <!-- CABECERA  -->
-                        <p:toolbar>
-                            <p:toolbarGroup>
-                                <p:commandButton value="Nuevo docente" 
-                                                 actionListener="#{profesorMB.nuevoProfesor()}"
-                                                 process="@this"
-                                                 update=":form:panel-profesor"
-                                                 oncomplete="PF('detalleProfesor').show()"
-                                                 class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2" 
-                                                 icon="pi pi-plus" 
-                                                 >      
-                                    <p:resetInput target=":form:panel-profesor" />
-                                </p:commandButton>
-                            </p:toolbarGroup>                     
-                        </p:toolbar>
-                        <!-- TABLA DETALLE PROFESOR dtProfesor-->
-                        <p:dataTable 
+<h:body>
+    <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+        <ui:define name="content">
+            <ui:include src="./SubHeaderAdministracion.xhtml"/>
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+                <div class="card">
+                    <!-- CABECERA  -->
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="Nuevo docente"
+                                             actionListener="#{profesorMB.nuevoProfesor()}"
+                                             process="@this"
+                                             update=":form:panel-profesor"
+                                             oncomplete="PF('detalleProfesor').show()"
+                                             class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"
+                                             icon="pi pi-plus"
+                            >
+                                <p:resetInput target=":form:panel-profesor"/>
+                            </p:commandButton>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                    <!-- TABLA DETALLE PROFESOR dtProfesor-->
+                    <p:dataTable
                             id="dtProfesor"
                             reflow="true"
                             widgetVar="dt-Profesor"
@@ -42,174 +43,184 @@
                             var="prf"
                             rowSelectMode="add"
                             paginatorPosition="bottom">
-                            <p:column headerText="Nombres" filterStyle="display : none" resizable="true" responsivePriority="1">
-                                <h:outputText value="#{prf.nombre_persona}"/>
-                            </p:column>
-                            <p:column headerText="Apellidos" filterStyle="display : none" resizable="true" responsivePriority="2">
-                                <h:outputText value="#{prf.apellido_persona}"/>
-                            </p:column>
-                            <p:column headerText="Correo" filterStyle="display : none" resizable="true" responsivePriority="3">
-                                <h:outputText value="#{prf.correo_persona}"/>
-                            </p:column>
-                            <p:column headerText="DNI" filterStyle="display : none" resizable="true" responsivePriority="4">
-                                <h:outputText value="#{prf.dni_persona}"/>
-                            </p:column>
-                            <p:column headerText="Fecha Nacimiento" filterStyle="display : none" resizable="true" responsivePriority="5">
-                                <h:outputText value="#{prf.fechanacimiento_persona}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </h:outputText>
-                            </p:column>
-                            <p:column headerText="Género" filterStyle="display : none" resizable="true" responsivePriority="6">
-                                <h:outputText value="#{prf.genero_persona}" />
-                            </p:column>
-                            <p:column headerText="Celular" filterStyle="display : none" resizable="true" responsivePriority="7">
-                                <h:outputText value="#{prf.celular_persona}"/>
-                            </p:column>
-                            <p:column headerText="Rol" filterStyle="display : none" resizable="true" responsivePriority="8">
-                                <h:outputText value="#{prf.nombre_rol}"/>
-                            </p:column>
-                            <p:column headerText="Estado" filterStyle="display : none" resizable="true" responsivePriority="9">
-                                <p:tag severity="success" value='Activo' rendered="#{prf.estado_usuario eq true}"  />
-                                <p:tag severity="warning" value='Inactivo' rendered="#{prf.estado_usuario eq false}"  />
-                            </p:column>
-                            <p:column headerText="Acciones" filterStyle="display : none" resizable="true" responsivePriority="10">
-                                 <p:commandButton icon="pi pi-pencil" update=":form:panel-profesor"
-                                                 oncomplete="PF('detalleProfesor').show()"  
-                                                 class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"
-                                                 actionListener="#{profesorMB.editarProfesor(prf)}"
-                                                 process="@this">
-                                    
-                                    <p:resetInput target=":form:panel-profesor"/>
-                                </p:commandButton>
-                            </p:column>
-                        </p:dataTable>
-                        <!--  NUEVO PROFESOR DIALOGO-->
-                        <p:dialog 
+                        <p:column headerText="Nombres" filterStyle="display : none" resizable="true"
+                                  responsivePriority="1">
+                            <h:outputText value="#{prf.nombre_persona}"/>
+                        </p:column>
+                        <p:column headerText="Apellidos" filterStyle="display : none" resizable="true"
+                                  responsivePriority="2">
+                            <h:outputText value="#{prf.apellido_persona}"/>
+                        </p:column>
+                        <p:column headerText="Correo" filterStyle="display : none" resizable="true"
+                                  responsivePriority="3">
+                            <h:outputText value="#{prf.correo_persona}"/>
+                        </p:column>
+                        <p:column headerText="DNI" filterStyle="display : none" resizable="true" responsivePriority="4">
+                            <h:outputText value="#{prf.dni_persona}"/>
+                        </p:column>
+                        <p:column headerText="Fecha Nacimiento" filterStyle="display : none" resizable="true"
+                                  responsivePriority="5">
+                            <h:outputText value="#{prf.fechanacimiento_persona}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Género" filterStyle="display : none" resizable="true"
+                                  responsivePriority="6">
+                            <h:outputText value="#{prf.genero_persona}"/>
+                        </p:column>
+                        <p:column headerText="Celular" filterStyle="display : none" resizable="true"
+                                  responsivePriority="7">
+                            <h:outputText value="#{prf.celular_persona}"/>
+                        </p:column>
+                        <p:column headerText="Rol" filterStyle="display : none" resizable="true" responsivePriority="8">
+                            <h:outputText value="#{prf.nombre_rol}"/>
+                        </p:column>
+                        <p:column headerText="Estado" filterStyle="display : none" resizable="true"
+                                  responsivePriority="9">
+                            <p:tag severity="success" value='Activo' rendered="#{prf.estado_usuario eq true}"/>
+                            <p:tag severity="warning" value='Inactivo' rendered="#{prf.estado_usuario eq false}"/>
+                        </p:column>
+                        <p:column headerText="Acciones" filterStyle="display : none" resizable="true"
+                                  responsivePriority="10">
+                            <p:commandButton icon="pi pi-pencil" update=":form:panel-profesor"
+                                             oncomplete="PF('detalleProfesor').show()"
+                                             class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"
+                                             actionListener="#{profesorMB.editarProfesor(prf)}"
+                                             process="@this">
+
+                                <p:resetInput target=":form:panel-profesor"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                    <!--  NUEVO PROFESOR DIALOGO-->
+                    <p:dialog
                             header="Docentes - #{profesorMB.profesorModo}"
                             id="dialogo_profesor"
                             showEffect="fade" modal="true"
-                            widgetVar="detalleProfesor" 
+                            widgetVar="detalleProfesor"
                             responsive="true" width="80%"
                             draggable="false" height="auto">
-                            <p:outputPanel id="panel-profesor" class="ui-fluid">
-                                <p:outputPanel> 
-                                    <div>
-                                        <div class="p-col-12">
-                                            <div class="card">
-                                                <div class="ui-fluid p-formgrid p-grid">
-                                                    <div class="p-field p-col-12 p-md-6">                                                       
-                                                        <h:outputText value="Nombres" />                                                          
+                        <p:outputPanel id="panel-profesor" class="ui-fluid">
+                            <p:outputPanel>
+                                <div>
+                                    <div class="p-col-12">
+                                        <div class="card">
+                                            <div class="ui-fluid p-formgrid p-grid">
+                                                <div class="p-field p-col-12 p-md-6">
+                                                    <h:outputText value="Nombres"/>
 
-                                                        <p:inputText 
+                                                    <p:inputText
                                                             value="#{profesorMB.profesor.nombre_persona}"
                                                             maxlength="50"
-                                                            placeholder="Nombres" />                                                        
-                                                    </div>
-                                                    <div class="p-field p-col-12 p-md-6">                                                       
-                                                        <h:outputText value="Apellidos" />                                                          
+                                                            placeholder="Nombres"/>
+                                                </div>
+                                                <div class="p-field p-col-12 p-md-6">
+                                                    <h:outputText value="Apellidos"/>
 
-                                                        <p:inputText 
+                                                    <p:inputText
                                                             value="#{profesorMB.profesor.apellido_persona}"
                                                             maxlength="50"
-                                                            placeholder="Apellidos" />                                                        
-                                                    </div>
-                                                    <div class="p-field p-col-6 p-md-6">                                                       
-                                                        <h:outputText value="Cédula" />                                                          
+                                                            placeholder="Apellidos"/>
+                                                </div>
+                                                <div class="p-field p-col-6 p-md-6">
+                                                    <h:outputText value="Cédula"/>
 
-                                                        <p:inputText 
+                                                    <p:inputText
                                                             value="#{profesorMB.profesor.dni_persona}"
                                                             maxlength="50"
-                                                            placeholder="Cédula" />                                                        
-                                                    </div>
-                                                    <div class="p-field p-col-6 p-md-6">                                                       
-                                                        <h:outputText value="Celular" />                                                          
+                                                            placeholder="Cédula"/>
+                                                </div>
+                                                <div class="p-field p-col-6 p-md-6">
+                                                    <h:outputText value="Celular"/>
 
-                                                        <p:inputText 
+                                                    <p:inputText
                                                             value="#{profesorMB.profesor.celular_persona}"
                                                             maxlength="50"
-                                                            placeholder="Celular" />                                                        
-                                                    </div>
-                                                    <div class="p-field p-col-6 p-md-6">                                                       
-                                                        <h:outputText value="Correo" />                                                          
+                                                            placeholder="Celular"/>
+                                                </div>
+                                                <div class="p-field p-col-6 p-md-6">
+                                                    <h:outputText value="Correo"/>
 
-                                                        <p:inputText 
+                                                    <p:inputText
                                                             value="#{profesorMB.profesor.correo_persona}"
                                                             maxlength="50"
-                                                            placeholder="Correo" />                                                        
-                                                    </div>  
-                                                    <div class="p-field p-col-6 p-md-3">                                                       
-                                                        <h:outputText value="Fecha nacimiento" />                                                          
-                                                        <p:datePicker value="#{profesorMB.profesor.fechanacimiento_persona}" showIcon="true">
-                                                        </p:datePicker>
+                                                            placeholder="Correo"/>
+                                                </div>
+                                                <div class="p-field p-col-6 p-md-3">
+                                                    <h:outputText value="Fecha nacimiento"/>
+                                                    <p:datePicker value="#{profesorMB.profesor.fechanacimiento_persona}"
+                                                                  showIcon="true">
+                                                    </p:datePicker>
 
-                                                    </div> 
-                                                    <div class="p-field p-col-12 p-md-3">
-                                                        <h:outputText  value="Género" />
-                                                        <p:selectOneMenu id="option" value="#{profesorMB.profesor.genero_persona}">
-                                                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                                                            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
-                                                            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
-                                                        </p:selectOneMenu>
-                                                    </div>
+                                                </div>
+                                                <div class="p-field p-col-12 p-md-3">
+                                                    <h:outputText value="Género"/>
+                                                    <p:selectOneMenu id="option"
+                                                                     value="#{profesorMB.profesor.genero_persona}">
+                                                        <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                                        <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                                        <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                                    </p:selectOneMenu>
+                                                </div>
 
-                                                    <div class="p-field p-col-12 p-md-3">                                                       
-                                                        <h:outputText value="Usuario" /> 
-                                                        <p:inputText 
+                                                <div class="p-field p-col-12 p-md-3">
+                                                    <h:outputText value="Usuario"/>
+                                                    <p:inputText
                                                             value="#{profesorMB.profesor.nombre_usuario}"
                                                             maxlength="50"
-                                                            placeholder="Usuario" />                                                        
-                                                    </div>
-                                                    <div class="p-field p-col-12 p-md-3">                                                       
-                                                        <h:outputText value="Contraseña" />                                                          
+                                                            placeholder="Usuario"/>
+                                                </div>
+                                                <div class="p-field p-col-12 p-md-3">
+                                                    <h:outputText value="Contraseña"/>
 
-                                                        <p:inputText
+                                                    <p:inputText
                                                             id="password"
                                                             maxlength="15"
                                                             type="password"
                                                             placeholder="Contraseña"
                                                             value="#{profesorMB.profesor.password_usuario}"
-                                                            
-                                                            />                                                        
-                                                    </div>
-                               
-                                                    <div class="p-field p-col-12 p-md-3">                                                       
-                                                        <h:outputText value="Estado " />  
-                                                        <p:inputSwitch value="#{profesorMB.profesor.estado_usuario}" />                                                   
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>        
-                                          <div class="p-grid p-justify-end">
-                                                <div class="p-col-2">
-                                                    <p:commandButton value="Guardar"  
-                                                                     icon="pi pi-check" 
-                                                                     actionListener="#{profesorMB.guardar()}"
-                                                                     update=":form:panel-profesor, :form:dtProfesor, msgs"
-                                                                     process="panel-profesor @this"
-                                                                     oncomplete="location.reload()"
-                                                                     class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"/>
-                                                </div>
-                                                <div class="p-col-2">
-                                                    <p:commandButton value="Cerrar" 
-                                                                     icon="pi pi-times"
-                                                                     styleClass="ui-button-danger" 
-                                                                     process="@this"
-                                                                     onclick="PF('detalleProfesor').hide()">
-                                                                         <p:resetInput target=":form:panel-profesor" />
-                                                    </p:commandButton>
-                                                </div>
-                                            </div>
-                                    </div>
-                                </p:outputPanel>
-                            </p:outputPanel>
 
-                        </p:dialog>
-                        <!--  EDITAR PROFESOR DIALOGO -->
-                        
-                    </div>
-                </h:form>
-            </ui:define>
-        </ui:composition>     
-    </h:body>
+                                                    />
+                                                </div>
+
+                                                <div class="p-field p-col-12 p-md-3">
+                                                    <h:outputText value="Estado "/>
+                                                    <p:inputSwitch value="#{profesorMB.profesor.estado_usuario}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-grid p-justify-end">
+                                        <div class="p-col-2">
+                                            <p:commandButton value="Guardar"
+                                                             icon="pi pi-check"
+                                                             actionListener="#{profesorMB.guardar()}"
+                                                             update=":form:panel-profesor, :form:dtProfesor, msgs"
+                                                             process="panel-profesor @this"
+                                                             oncomplete="location.reload()"
+                                                             class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2"/>
+                                        </div>
+                                        <div class="p-col-2">
+                                            <p:commandButton value="Cerrar"
+                                                             icon="pi pi-times"
+                                                             styleClass="ui-button-danger"
+                                                             process="@this"
+                                                             onclick="PF('detalleProfesor').hide()">
+                                                <p:resetInput target=":form:panel-profesor"/>
+                                            </p:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p:outputPanel>
+                        </p:outputPanel>
+
+                    </p:dialog>
+                    <!--  EDITAR PROFESOR DIALOGO -->
+
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>
 

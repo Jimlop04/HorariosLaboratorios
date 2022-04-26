@@ -13,7 +13,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="HorariosLaboratorios" options="-endorseddirs C:\WORK_SPACE\LABORATORIOS_PPP\target/endorsed" />
+      <module name="HorariosLaboratorios" options="-endorseddirs C:\Users\ebert\Documents\GitHub\IDEA\target/endorsed" />
     </option>
   </component>
 </project>

@@ -30,8 +30,8 @@ import org.primefaces.PrimeFaces;
 @AllArgsConstructor
 public class ProfesorMB extends Mensajes implements Serializable {
 
-    static final String NUEVO = "NUEVO";
-    static final String EDITAR = "EDITAR";
+    static final String NUEVO = "Nuevo";
+    static final String EDITAR = "Editar";
     List<Profesor> listarProfesor;
     List<Profesor> profesores;
     Profesor profesor;
@@ -51,7 +51,7 @@ public class ProfesorMB extends Mensajes implements Serializable {
     }
 
     @Asynchronous
-    public void listarProfesores() throws Exception {
+    public void listarProfesores() {
         try {
             profesorDAO = new ProfesorDAO();
             listarProfesor = profesorDAO.listarProfesor();
