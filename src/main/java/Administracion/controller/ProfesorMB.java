@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedBean;
 import Administracion.model.Profesor;
 import global.Mensajes;
 import java.sql.SQLException;
-import java.util.Objects;
 import javax.faces.bean.ViewScoped;
 import java.util.logging.Level;
 import java.util.logging.Logger;

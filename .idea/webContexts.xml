@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/View/Equipos/componentes/modal_nuevo_equipo.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/View/Equipos/componentes" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/View/Equipos/mantenimientos.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/View/Equipos" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/View/Laboratorios/RegistrarLaboratorios.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/View/Laboratorios" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/View/Solicitudes/SolicitudPracticasProyectoInvestigacion.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/View/Solicitudes" />
       </map>
     </option>
   </component>
