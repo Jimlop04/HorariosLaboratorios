@@ -19,9 +19,9 @@ import java.sql.Statement;
     public boolean estado;
 
     //Credenciales para la conexion
-    private String url = "jdbc:postgresql://ec2-34-194-73-236.compute-1.amazonaws.com:5432/d90f44f58p7329";
-    private String usuario = "rvypcdvgpfbhwr";
-    private String clave = "63256d6b01a5e8e9b6a19b80424148551283aa4fce0cd105fe242b3cc1e530d5";
+    private String url = "jdbc:postgresql://190.15.134.7:7070/erpcontableappweb";
+    private String usuario = "appweb";
+    private String clave = "@Aplicaciones@Web@2021";
     private String classForName = "org.postgresql.Driver";
 
     public Conexion() {
