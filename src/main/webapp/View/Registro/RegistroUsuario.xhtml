@@ -44,8 +44,7 @@
                                 </span>
                                 <p:inputText 
                                     placeholder="Nombres" 
-                                    value="#{profesorMB.profesor.nombre_profesor}"
-                                    maxlength="50" 
+                                    maxlength="50"
                                     id="name" 
                                     />
                             </div>
@@ -59,8 +58,7 @@
                                 <p:inputText 
                                     placeholder="Apellidos" 
                                     maxlength="50" 
-                                    value="#{profesorMB.profesor.apellido_profesor}"
-                                    id="lastname" 
+                                    id="lastname"
                                     type="text" 
                                     />
                             </div>
@@ -73,8 +71,7 @@
                                 </span> 
                                 <p:inputText 
                                     placeholder="Cédula"
-                                    value="#{profesorMB.profesor.cedula_profesor}"                                  
-                                    maxlength="15" 
+                                    maxlength="15"
                                     id="ci" 
                                     type="text" 
                                     />
@@ -88,8 +85,7 @@
                                 </span> 
                                 <p:inputText 
                                     placeholder="Género"
-                                    value="#{profesorMB.profesor.genero_profesor}"                                  
-                                    maxlength="15" 
+                                   maxlength="15"
                                     id="genero" 
                                     type="text" 
                                     />
@@ -104,8 +100,7 @@
                                 <p:datePicker
                                     locale="es"                                        
                                     id="fnacimiento"
-                                    value="#{profesorMB.profesor.fnacimiento_profesor}"
-                                    showIcon="true">                                   
+                                    showIcon="true">
                                 </p:datePicker>
 
                             </div>           
@@ -119,8 +114,7 @@
                                 <p:inputText 
                                     placeholder="Nombre usuario" 
                                     maxlength="15"
-                                    value="#{profesorMB.profesor.usuario_profesor}"                                  
-                                    id="user" 
+                                    id="user"
                                     type="text"
                                     />
                             </div>
@@ -136,7 +130,6 @@
                                     placeholder="Contraseña"
                                     weakLabel="Débil"
                                     maxlength="15"
-                                    value="#{profesorMB.profesor.password_profesor}"
                                     goodLabel="Bueno"
                                     strongLabel="Fuerte"
                                     match="password2"
@@ -160,7 +153,7 @@
 
                         <div class="ui-fluid p-grid" style="padding-top: 10px ">
 
-                            <h:selectBooleanCheckbox value="#{profesorMB.status}">
+                            <h:selectBooleanCheckbox >
 
                             </h:selectBooleanCheckbox>
                             <u style="padding-top: 9px" >
