@@ -21,7 +21,7 @@ public class ProfesorDAO extends Conexion {
     public List<Profesor> listarProfesor() throws SQLException {
         List<Profesor> listProfesores;
         try {
-            String querry = "select * from listar_docente();";
+            String querry = "select * from laboratorio.listar_docente();";
             conectar();
             result = ejecutarSql(querry);
             listProfesores = new ArrayList<>();
@@ -90,8 +90,8 @@ public class ProfesorDAO extends Conexion {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String sql;
         encryptAES = new AES();
-        sql = "select * from registrardocente('" + pro.getNombre_persona() + "','" + pro.getApellido_persona() + "'"
-                + ",'" + pro.getDni_persona() + "','" + pro.getFechanacimiento_persona() + "'"
+        sql = "select * from laboratorio.registrar_docente('" + pro.getNombre_persona() + "','" + pro.getApellido_persona() + "'"
+                + ",'" + pro.getDni_persona() + "','" + dateFormat.format(pro.getFechanacimiento_persona()) + "'"
                 + ",'" + pro.getGenero_persona() + "','" + pro.getCorreo_persona() + "',"
                 + "'" + pro.getCelular_persona() + "','" + pro.getNombre_usuario() + "','" + pro.getPassword_usuario() + "');";
 
@@ -107,9 +107,10 @@ public class ProfesorDAO extends Conexion {
         }
     }
     public boolean editarProfesor(int idP,int idU, Profesor pro){
-        String sql = "select * from editar_docente('"+idP+"','"+idU+"',"
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String sql = "select * from laboratorio.editar_docente('"+idP+"','"+idU+"',"
                 + "'"+pro.getNombre_persona()+"','"+pro.getApellido_persona()+"',"
-                + "'"+pro.getDni_persona()+"','"+pro.getFechanacimiento_persona()+"',"
+                + "'"+pro.getDni_persona()+"','"+dateFormat.format(pro.getFechanacimiento_persona())+"',"
                 + "'"+pro.getGenero_persona()+"','"+pro.getCorreo_persona()+"',"
                 + "'"+pro.getCelular_persona()+"','"+pro.getNombre_usuario()+"','"+pro.getPassword_usuario()+"');";
         try{
