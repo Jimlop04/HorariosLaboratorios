@@ -4,8 +4,8 @@ import equipos.DAO.EquipoDAO;
 import equipos.model.CategoriaEquipo;
 import equipos.model.Equipo;
 import laboratorios.model.AreaAula;
-import lombok.*;
-
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -18,50 +18,57 @@ import java.util.List;
 
 @ManagedBean
 @SessionScoped
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class EquipoMB implements Serializable {
 
     private List<Equipo> listaEquipos;
     private Equipo equipo;
     private AreaAula areaAula;
-    private CategoriaEquipo categoriaEquipo ;
+    private CategoriaEquipo categoriaEquipo;
     String msj = "";
 
-//    @Inject
+    //    @Inject
     private EquipoDAO dao;
 
 
-    public void registrar()  {
+    public void registrar() {
         try {
             dao = new EquipoDAO();
             dao.resgistrar(equipo);
-            this.msj="Registro guardado con éxito";
+            this.msj = "Registro guardado con éxito";
+            System.out.println(equipo);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
-        }catch( Exception e){
-            this.msj="Se produjo un error: " + e.getMessage();
+        } catch (Exception e) {
+            this.msj = "Se produjo un error: " + e.getMessage();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo"));
         }
     }
 
 
-//        LISTAR
+    //        LISTAR
     public void listar() throws Exception {
         try {
             dao = new EquipoDAO();
             listaEquipos = dao.listar();
-        }catch( Exception e){
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void listarEquipos() throws Exception {
+        try {
+            dao = new EquipoDAO();
+            listaEquipos = dao.listarEquipos();
+        } catch (Exception e) {
             throw e;
         }
     }
 
 
-  @PostConstruct
-   public void init() {
-        this.areaAula= new AreaAula();
-        this.categoriaEquipo = new CategoriaEquipo();
+    @PostConstruct
+    public void init() {
         this.equipo = new Equipo();
         this.listaEquipos = new ArrayList<>();
-   }
+    }
 }

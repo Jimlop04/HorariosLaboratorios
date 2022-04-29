@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+
+        <ui:define name="title">Registrar Mantenimiento</ui:define>
+        <ui:define name="content">
+            <!--            <f:event type="preRenderView" listener="#{mantenimientoMB.listar()}"/>-->
+            <f:event type="preRenderView" listener="#{mantenimientoMB.listarEquipos()}"/>
+            <!--MENU TOOLBAR-->
+            <ui:include src="./componentes/toolbar_menu.xhtml"/>
+
+
+            <p:growl id="msj" showDetail="true"/>
+       <h:form>
+           <!-- EQUIPO -->
+           <div class="p-field p-col-12 p-md-6">
+               <p:outputLabel value="Seleccione equipo" for="@next"/>
+               <p:selectOneMenu value="#{mantenimientoMB.codigo}" >
+                   <f:selectItem noSelectionOption="true" itemLabel="Codigo del bien" itemValue="#{null}"/>
+                   <f:selectItems
+                           value="#{mantenimientoMB.listaEquipos}"
+                           var="eqs"
+                           itemLabel="#{eqs.codigo} #{eqs.categoriaEquipo}"
+                           itemValue="#{eqs.codigo}"/>
+               </p:selectOneMenu>
+           </div>
+
+           <div class="p-field p-col-12 p-md-6">
+               <p:outputLabel value=" equipo" for="@next"/>
+              <p:inputText value="#{mantenimientoMB.codigo}" />
+           </div>
+
+
+
+           <!-- BOTON - AGREGAR EQUIPO -->
+           <div class="p-field p-col-12 p-md-2">
+               <p:outputLabel value="." class="p-col-12"/>
+               <p:commandButton
+                       actionListener="#{mantenimientoMB.agregarEquipo()}"
+                       styleClass="rounded-button"
+                       icon="pi pi-plus"
+                       update="dataMantenimientos"
+                       process="@this"
+                       immediate="true"
+               />
+           </div>
+           <p:dataTable
+                   id="dataMantenimientos"
+                   lazy="true"
+                   editable="true"
+                   reflow="true"
+                   editInitEvent="dblclick"
+                   editMode="cell"
+                   value="#{mantenimientoMB.listaa}"
+                   var="detalle"
+                   responsive="true">
+               <!-- Header DataTable-->
+               <f:facet name="header">
+                   <div class="p-d-flex p-jc-between p-ai-center">
+                       <span style="font-size: 24px">MANTENIMIENTOS REALIZADOS</span>
+                       <span class="filter-container ui-input-icon-left">
+                                                <i class="pi pi-search"/>
+                                                <p:inputText placeholder="Buscar ingrese código"/>
+                                            </span>
+                   </div>
+               </f:facet>
+               <p:column headerText="idEquipo" filterStyle="display : none">
+                   <p:outputLabel value="#{mantenimientoMB.codigo}"/>
+               </p:column>
+
+               <p:column headerText="var" filterStyle="display : none">
+                  <h:commandButton  value="Remove"/>
+               </p:column>
+
+           </p:dataTable>
+
+       </h:form>
+
+            <h:outputScript name="calendar_es.js" library="js"/>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

@@ -2,92 +2,97 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-</h:body>
-<ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
-    <ui:define name="title">Registrar Averia de equipo</ui:define>
-    <ui:define name="content">
-        <!--MENU TOOLBAR-->
-        <ui:include src="./componentes/toolbar_menu.xhtml"/>
 
-        <!--FORM NUEVA AVERÍA-->
-        <h:form>
-            <ui:include src="./componentes/modal_nueva_averia.xhtml"/>
-        </h:form>
+    <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+        <ui:define name="title">Registrar Averia de equipo</ui:define>
+        <ui:define name="content">
 
-        <!--BOTON - NUEVA AVERÍA-->
-        <div class="card" style="margin-top: 5px;">
-            <p:toolbarGroup>
-                <p:commandButton
-                        value="Nueva avería"
-                        styleClass="ui-button-primary"
-                        icon="pi pi-plus"
-                        process="@this"
-                        oncomplete="PF('modalNuevaAveria').show()"/>
-            </p:toolbarGroup>
-        </div>
+            <f:event type="preRenderView" listener="#{generalMB.listarEncargados()}"/>
+            <f:event type="preRenderView" listener="#{equipoMB.listarEquipos()}"/>
 
-        <!--            Detalle-->
-        <h:form id="formDataAverias">
-            <div class="card p-mt-0">
-                <p:outputPanel id="manage-averias-Detalle" class="ui-fluid">
-                    <div class="p-field p-col-12 p-md-12">
-                        <p:fieldset>
-                            <p:dataTable
-                                    id="dataAverias"
-                                    lazy="true"
-                                    editable="true"
-                                    reflow="true"
-                                    editInitEvent="dblclick"
-                                    editMode="cell"
-                                    value=""
-                                    var="equipo"
-                                    responsive="true">
-                                <!-- Header DataTable-->
-                                <f:facet name="header">
-                                    <div class="p-d-flex p-jc-between p-ai-center">
-                                        <span style="font-size: 24px">REPORTES DE AVERÍAS</span>
-                                        <span class="filter-container ui-input-icon-left">
+            <!--MENU TOOLBAR-->
+            <ui:include src="./componentes/toolbar_menu.xhtml"/>
+            <p:growl id="msj" showDetail="true"/>
+
+            <!--FORM NUEVA AVERÍA-->
+            <h:form id="formAveria">
+                <ui:include src="./componentes/modal_nueva_averia.xhtml"/>
+            </h:form>
+
+            <!--BOTON - NUEVA AVERÍA-->
+            <div class="card" style="margin-top: 5px;">
+                <p:toolbarGroup>
+                    <p:commandButton
+                            value="Nueva avería"
+                            styleClass="ui-button-primary"
+                            icon="pi pi-plus"
+                            process="@this"
+                            oncomplete="PF('modalNuevaAveria').show()"/>
+                </p:toolbarGroup>
+            </div>
+
+            <!--            Detalle-->
+            <h:form id="formDataAverias">
+                <div class="card p-mt-0">
+                    <p:outputPanel id="manage-averias-Detalle" class="ui-fluid">
+                        <div class="p-field p-col-12 p-md-12">
+                            <p:fieldset>
+                                <p:dataTable
+                                        id="dataAverias"
+                                        lazy="true"
+                                        editable="true"
+                                        reflow="true"
+                                        editInitEvent="dblclick"
+                                        editMode="cell"
+                                        value=""
+                                        var="equipo"
+                                        responsive="true">
+                                    <!-- Header DataTable-->
+                                    <f:facet name="header">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            <span style="font-size: 24px">REPORTES DE AVERÍAS</span>
+                                            <span class="filter-container ui-input-icon-left">
                                                 <i class="pi pi-search"/>
                                                 <p:inputText placeholder="Buscar ingrese código"/>
                                             </span>
-                                    </div>
-                                </f:facet>
-                                <p:column headerText="Codigo de reporte" filterStyle="display : none">
-                                    <p:outputLabel value="0007"/>
-                                </p:column>
-                                <p:column headerText="Fecha registro" filterStyle="display : none">
-                                    <p:outputLabel value="20-07-2021"/>
-                                </p:column>
-                                <p:column headerText="Laboratorio" filterStyle="display : none">
-                                    <p:outputLabel value="Química y Bioquímica"/>
-                                </p:column>
-                                <p:column headerText="Área" filterStyle="display : none">
-                                    <p:outputLabel value="Suelos y aguas"/>
-                                </p:column>
-                                <p:column headerText="Técnico" filterStyle="display : none">
-                                    <p:outputLabel value="Ing. Erick Garcia"/>
-                                </p:column>
-                                <p:column headerText="Avería" filterStyle="display : none">
-                                    <p:outputLabel value="Fuente de poder quemada"/>
-                                </p:column>
-                                <p:column headerText="Equipo" filterStyle="display : none">
-                                    <p:outputLabel value="Incubadora"/>
-                                </p:column>
-                                <p:column headerText="Codigo del bien" filterStyle="display : none">
-                                    <p:outputLabel value="522-548-454-254"/>
-                                </p:column>
-                                <p:column headerText="Acciones" filterStyle="display : none">
-                                    <p:commandButton type="button" icon="pi pi-print" styleClass="rounded-button"/>
-                                </p:column>
-                            </p:dataTable>
-                        </p:fieldset>
-                    </div>
-                </p:outputPanel>
-            </div>
-        </h:form>
-    </ui:define>
-</ui:composition>
+                                        </div>
+                                    </f:facet>
+                                    <p:column headerText="Codigo de reporte" filterStyle="display : none">
+                                        <p:outputLabel value="0007"/>
+                                    </p:column>
+                                    <p:column headerText="Fecha registro" filterStyle="display : none">
+                                        <p:outputLabel value="20-07-2021"/>
+                                    </p:column>
+                                    <p:column headerText="Laboratorio" filterStyle="display : none">
+                                        <p:outputLabel value="Química y Bioquímica"/>
+                                    </p:column>
+                                    <p:column headerText="Área" filterStyle="display : none">
+                                        <p:outputLabel value="Suelos y aguas"/>
+                                    </p:column>
+                                    <p:column headerText="Técnico" filterStyle="display : none">
+                                        <p:outputLabel value="Ing. Erick Garcia"/>
+                                    </p:column>
+                                    <p:column headerText="Avería" filterStyle="display : none">
+                                        <p:outputLabel value="Fuente de poder quemada"/>
+                                    </p:column>
+                                    <p:column headerText="Equipo" filterStyle="display : none">
+                                        <p:outputLabel value="Incubadora"/>
+                                    </p:column>
+                                    <p:column headerText="Codigo del bien" filterStyle="display : none">
+                                        <p:outputLabel value="522-548-454-254"/>
+                                    </p:column>
+                                    <p:column headerText="Acciones" filterStyle="display : none">
+                                        <p:commandButton type="button" icon="pi pi-print" styleClass="rounded-button"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:fieldset>
+                        </div>
+                    </p:outputPanel>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>

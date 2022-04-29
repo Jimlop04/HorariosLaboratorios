@@ -1,9 +1,7 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
         xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="p-grid ui-fluid">
         <div class="p-col-12">
@@ -12,15 +10,14 @@
                       modal="true"
                       widgetVar="modalNuevoEquipo"
                       responsive="true"
-                      width="55%"
+                      width="70%"
                       draggable="false"
                       height="250">
-                <p:outputPanel id="manage-equipo-form" class="ui-fluid">
+                <p:outputPanel id="panel-form-registro" class="ui-fluid">
                     <div class="p-formgrid p-grid">
-                        <!--TIPO DE ACTIVO-->
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Tipo de activo" for="@next"/>
-                            <p:selectOneMenu value="#{equipoMB.equipo.idCategoriaEquipo}">
+                            <p:selectOneMenu value="#{equipoMB.equipo.idCategoriaEquipo}" lazy="true" filter="true">
                                 <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                 <f:selectItems
                                         value="#{categoriaEquipoMB.listaCategoriaEquipos}"
@@ -37,24 +34,26 @@
                                     rows="1"
                                     cols="33"
                                     value="#{equipoMB.equipo.descripcion}"
-                                    required="true"/>
+                                    required="true"
+                                    placeholder="Ingrese descripción"/>
                         </div>
                         <!--CODIGO DEL BIEN-->
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Codigo del bien" for="@next"/>
-                            <p:inputText maxlength="50" value="#{equipoMB.equipo.codigo}" required="true">
+                            <p:inputText maxlength="50" value="#{equipoMB.equipo.codigo}" required="true"
+                                         placeholder="Ejemplo 000-00-000-00000">
                             </p:inputText>
                         </div>
                         <!--MARCA-->
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Marca" for="@next"/>
-                            <p:inputText maxlength="50" value="#{equipoMB.equipo.marca}">
-                            </p:inputText>
+                            <p:inputText maxlength="50" value="#{equipoMB.equipo.marca}" placeholder="Ingrese marca"
+                                         onkeyup="javascript:this.value=this.value.toUpperCase();"/>
                         </div>
                         <!--MODELO-->
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Modelo" for="@next"/>
-                            <p:inputText maxlength="50" value="#{equipoMB.equipo.modelo}">
+                            <p:inputText maxlength="50" value="#{equipoMB.equipo.modelo}" placeholder="Ingrese modelo">
                             </p:inputText>
                         </div>
                         <!--NÚMERO DE SERIE-->
@@ -62,7 +61,7 @@
                             <p:outputLabel value="Número de serie" for="@next"/>
                             <p:inputText
                                     maxlength="25"
-                                    value="#{equipoMB.equipo.numeroSerie}">
+                                    value="#{equipoMB.equipo.numeroSerie}" placeholder="Ingrese N° serie">
                             </p:inputText>
                         </div>
                         <!--FECHA ADQUISICIÓN-->
@@ -91,6 +90,7 @@
                         <!--AREA-->
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Area" for="@next"/>
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                             <p:selectOneMenu value="#{equipoMB.equipo.idAreaAula}" required="true">
                                 <f:selectItems
                                         value="#{categoriaEquipoMB.listaAreasAulas}"

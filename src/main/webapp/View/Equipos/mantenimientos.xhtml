@@ -2,7 +2,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:body>
@@ -10,56 +9,57 @@
 
         <ui:define name="title">Registrar Mantenimiento</ui:define>
         <ui:define name="content">
-            <f:event type="preRenderView" listener="#{mantenimientoMB.listar()}"/>
-            <f:event type="preRenderView" listener="#{equipoMB.listar()}"/>
+            <!--            <f:event type="preRenderView" listener="#{mantenimientoMB.listar()}"/>-->
+
             <!--MENU TOOLBAR-->
             <ui:include src="./componentes/toolbar_menu.xhtml"/>
 
+
             <p:growl id="msj" showDetail="true"/>
             <!-- AGREGAR MANTENIMIENTO-->
-<!--            <h:form id="formAgregarMantenimiento">-->
-<!--                <ui:include src="./componentes/modal_nuevo_mantenimiento.xhtml"/>-->
+            <!--            <h:form id="formAgregarMantenimiento">-->
+            <!--                <ui:include src="./componentes/modal_nuevo_mantenimiento.xhtml"/>-->
 
-<!--                <ui:include src="./componentes/modal_buscar_equipo.xhtml"/>-->
-<!--            </h:form>-->
+            <!--                <ui:include src="./componentes/modal_buscar_equipo.xhtml"/>-->
+            <!--            </h:form>-->
 
             <!--BOTON - NUEVO EQUIPO-->
-<!--            <div class="card" style="margin-top: 5px;">-->
-<!--                <p:toolbarGroup>-->
-<!--                    <p:commandButton-->
-<!--                            value="Nueva avería"-->
-<!--                            styleClass="ui-button-primary"-->
-<!--                            icon="pi pi-plus"-->
-<!--                            process="@this"-->
-<!--                            oncomplete="PF('modalNuevaAveria').show()"/>-->
-<!--                </p:toolbarGroup>-->
-<!--            </div>-->
+            <!--            <div class="card" style="margin-top: 5px;">-->
+            <!--                <p:toolbarGroup>-->
+            <!--                    <p:commandButton-->
+            <!--                            value="Nueva avería"-->
+            <!--                            styleClass="ui-button-primary"-->
+            <!--                            icon="pi pi-plus"-->
+            <!--                            process="@this"-->
+            <!--                            oncomplete="PF('modalNuevaAveria').show()"/>-->
+            <!--                </p:toolbarGroup>-->
+            <!--            </div>-->
             <!--AGREGAR EQUIPOS-->
-<!--            <h:form id="formAgregarEquipo">-->
-<!--                <ui:include src="./componentes/modal_buscar_equipo.xhtml"/>-->
-<!--            </h:form>-->
+            <!--            <h:form id="formAgregarEquipo">-->
+            <!--                <ui:include src="./componentes/modal_buscar_equipo.xhtml"/>-->
+            <!--            </h:form>-->
 
-<!--            <h:form>-->
-<!--                <div class="card" style="margin-top: 5px;">-->
-<!--                    <p:toolbar>-->
-<!--                        <p:toolbarGroup>-->
-<!--                            <p:commandButton-->
-<!--                                    value="Nuevo mantenimiento"-->
-<!--                                    styleClass="ui-button-primary"-->
-<!--                                    icon="pi pi-plus"-->
-<!--                                    process="@this"-->
-<!--                                    oncomplete="PF('RegistrarMantenimiento').show()"/>-->
-<!--                        </p:toolbarGroup>-->
-<!--                    </p:toolbar>-->
-<!--                </div>-->
-<!--            </h:form>-->
+            <!--            <h:form>-->
+            <!--                <div class="card" style="margin-top: 5px;">-->
+            <!--                    <p:toolbar>-->
+            <!--                        <p:toolbarGroup>-->
+            <!--                            <p:commandButton-->
+            <!--                                    value="Nuevo mantenimiento"-->
+            <!--                                    styleClass="ui-button-primary"-->
+            <!--                                    icon="pi pi-plus"-->
+            <!--                                    process="@this"-->
+            <!--                                    oncomplete="PF('RegistrarMantenimiento').show()"/>-->
+            <!--                        </p:toolbarGroup>-->
+            <!--                    </p:toolbar>-->
+            <!--                </div>-->
+            <!--            </h:form>-->
 
 
             <!--BOTON - NUEVO MANTENIMIENTO-->
             <div class="card" style="margin-top: 5px;">
                 <p:toolbarGroup class=" p-p-y-">
                     <p:commandButton
-                            value="Nueva mantenimiento"
+                            value="Nuevo mantenimiento"
                             styleClass="ui-button-primary"
                             icon="pi pi-plus"
                             process="@this"
@@ -67,8 +67,13 @@
                 </p:toolbarGroup>
             </div>
 
+            <!--            <h:form id="formNuevo">-->
+            <!--                <ui:include src="./componentes/modal_nuevo_mantenimiento.xhtml"/>-->
+            <!--            </h:form>-->
+            <ui:include src="./componentes/modal_nuevo_mantenimiento.xhtml"/>
+
             <!--            Detalle-->
-            <h:form id="formulario">
+            <h:form id="formDetalle">
                 <div class="card p-p-1">
                     <p:outputPanel id="manage-equipo-Detalle" class="ui-fluid">
                         <div class="p-field p-col-12 p-md-12">
@@ -114,7 +119,6 @@
                     </p:outputPanel>
                 </div>
             </h:form>
-
             <h:outputScript name="calendar_es.js" library="js"/>
         </ui:define>
     </ui:composition>

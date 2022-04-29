@@ -3,11 +3,20 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
         xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="p-grid ui-fluid">
         <div class="p-col-12">
             <div class="card" style="margin-top: 0px;">
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton
+                                value="Nuevo equipo"
+                                styleClass="ui-button-primary"
+                                icon="pi pi-plus"
+                                process="@this"
+                                oncomplete="PF('modalNuevoEquipo').show()"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
                 <p:toolbar>
                     <p:toolbarGroup>
                         <div class="p-grid p-justify-around">
@@ -22,7 +31,8 @@
                                     var="equipo"
                                     responsive="true"
                                     rows="5"
-                                    paginator="true">
+                                    paginator="true"
+                                    paginatorPosition="bottom">
                                 <!--HEADER - DATATABLE-->
                                 <f:facet name="header">
                                     <div class="p-d-flex p-jc-between p-ai-center">
@@ -70,10 +80,11 @@
                                 </p:column>
                                 <!--IMAGEN-->
                                 <p:column headerText="Imagen" filterStyle="display : none" responsivePriority="9">
-                                    <p:graphicImage
-                                            url="./resources/images/avatar.png"
-                                            style=" width: 75px; height: 75px"/>
+                                    <h:graphicImage name="Images/BalanzaAnalitica.jpg" height="60px" class="p-mr-1"
+                                                    style="width: 80px; height: 80px;
+                                vertical-align: middle; margin-top: -1px"/>
                                 </p:column>
+
                             </p:dataTable>
                         </div>
                     </p:toolbarGroup>

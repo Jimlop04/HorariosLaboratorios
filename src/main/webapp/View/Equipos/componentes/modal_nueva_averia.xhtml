@@ -1,10 +1,8 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-        xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:P="http://java.sun.com/jsf/html">
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="p-grid ui-fluid">
         <div class="p-col-12">
             <p:dialog header="Reportar avería"
@@ -15,11 +13,11 @@
                       width="55%"
                       draggable="false"
                       height="150">
-                <p:outputPanel id="manage-equipo-formSD" class="ui-fluid">
+                <p:outputPanel id="manage-equipo-sdsdsdfdf" class="ui-fluid">
                     <div class="p-formgrid p-grid">
                         <!--Fecha registro-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Fecha de adquisición" for="@next"/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel value="Fecha de reporte" for="@next"/>
                             <p:datePicker
                                     showIcon="true"
                                     value="#{averiaEquipoMB.averiaEquipo.fechaRegistro}"
@@ -31,32 +29,28 @@
                         </div>
 
                         <!--Técnico-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Técnico" for="@next"/>
-                            <p:selectOneMenu value="#{averiaEquipoMB.averiaEquipo.idEncarado}"
-                                             required="true">
-                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"
-                                              required="true"/>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel value="Encargado"/>
+                            <p:selectOneMenu id="comoTecnico" value="#{averiaEquipoMB.averiaEquipo.idEncargado}">
                                 <f:selectItems
-                                        value="#{mantenimientoMB.listaEncargadosLaboratorio}"
-                                        var="o"
-                                        itemLabel="#{o.nombre_persona} #{o.apellido_persona}"
-                                        itemValue="#{o.idencargadoLaboratorioDetalle}"/>
+                                        value="#{generalMB.listaEncargados}"
+                                        var="au"
+                                        itemLabel="#{au.apellido_persona}"
+                                        itemValue="#{au.idencargadoLaboratorioDetalle}"/>
                             </p:selectOneMenu>
                         </div>
 
                         <!--Tipo daño-->
-                        <div class="p-field p-col-12 p-md-4">
+                        <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Tipo de daño" for="@next"/>
                             <p:inputText value="#{averiaEquipoMB.averiaEquipo.tipoDanio}"/>
                         </div>
 
 
                         <!--Prioridad-->
-                        <div class="p-field p-col-12 p-md-4">
+                        <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Prioridad" for="@next"/>
-                            <p:selectOneMenu id="comboProcedencia" value="#{averiaEquipoMB.averiaEquipo.prioridad}"
-                                             required="true">
+                            <p:selectOneMenu id="comboProcedencia" value="#{averiaEquipoMB.averiaEquipo.prioridad}">
                                 <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                 <f:selectItem itemLabel="ALTA" itemValue="ALTA"/>
                                 <f:selectItem itemLabel="MEDIA" itemValue="MEDIA"/>
@@ -70,25 +64,43 @@
                             <p:inputTextarea
                                     rows="1"
                                     cols="33"
-                                    value="#{averiaEquipoMB.averiaEquipo.descripcion}"
-                                    required="true"/>
+                                    value="#{averiaEquipoMB.averiaEquipo.descripcion}"/>
                         </div>
 
-                        <!--Botón agregequipo-->
-                        <div class="p-field p-col-12 p-md-2">
-                            <p:outputLabel value="." for="@next"/>
-                           <p:commandButton value="Agregar equipo" icon=" pi pi-plus-circle"/>
+                        <!--     <div class="p-field p-col-12 p-md-6">
+                                 <p:outputLabel value="Encargado" for="@next"/>
+                                 <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                 <p:selectOneMenu value="#{averiaEquipoMB.averiaEquipo.idEncargado}" required="true">
+                                     <f:selectItems
+                                             value="#{generalMB.listaEncargados}"
+                                             var="au"
+                                             itemLabel="#{au.apellido_persona}"
+                                             itemValue="#{au.idencargadoLaboratorioDetalle}"/>
+                                 </p:selectOneMenu>
+                             </div>-->
+                        <div class="p-field p-col-12 p-md-6">
+                            <p:outputLabel value="Equipo" for="@next"/>
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                            <p:selectOneMenu id="comboEquipo" value="#{averiaEquipoMB.averiaEquipo.idEquipo}"
+                                             required="true">
+                                <f:selectItems
+                                        value="#{equipoMB.listaEquipos}"
+                                        var="equi"
+                                        itemLabel="#{equi.codigo}"
+                                        itemValue="#{equi.idEquipo}"/>
+                            </p:selectOneMenu>
                         </div>
                     </div>
                 </p:outputPanel>
+
                 <!-- Botones Acciones Form-->
                 <f:facet name="footer">
                     <p:commandButton
                             value="Guardar"
                             icon="pi pi-check"
                             styleClass="ui-button-primary"
-                            update=""
-                            action="#{averiaEquipoMB.registrar()}">
+                            update=":msj"
+                            actionListener="#{averiaEquipoMB.registrar()}">
                     </p:commandButton>
                     <p:commandButton
                             value="Cancelar"
@@ -99,3 +111,10 @@
         </div>
     </div>
 </ui:composition>
+
+
+
+
+
+
+

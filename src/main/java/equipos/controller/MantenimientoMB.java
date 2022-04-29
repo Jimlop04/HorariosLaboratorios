@@ -1,45 +1,56 @@
 package equipos.controller;
 
 import Administracion.model.Encargado;
-import equipos.DAO.EquipoDAO;
 import equipos.DAO.MantenimientoDAO;
 import equipos.model.DetalleMantenimiento;
+import equipos.model.Equipo;
 import equipos.model.Mantenimiento;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @ManagedBean
 @SessionScoped
+@Getter
+@Setter
 public class MantenimientoMB implements Serializable {
 
+
     private Mantenimiento mantenimiento;
+    private Encargado encargado;
 
     MantenimientoDAO dao;
     List<DetalleMantenimiento> listaDetalle;
+    private List<String> listaa;
     List<Encargado> listaEncargadosLaboratorio;
-//    private int  idEquipo;
+    List<Equipo> listaEquipos;
 
 
+    private Equipo equipo;
+    private int var;
 
+    private String codigo;
 
 
     //        LISTAR
+    public void listarEncargadosLaboratorio() throws Exception {
+        try {
+            dao = new MantenimientoDAO();
+            listaEncargadosLaboratorio = dao.listarEncargados();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
     public void listar() throws Exception {
         try {
             dao = new MantenimientoDAO();
@@ -49,27 +60,33 @@ public class MantenimientoMB implements Serializable {
         }
     }
 
+
     public void registrar() {
         try {
             dao = new MantenimientoDAO();
-            System.out.println(listaDetalle);
+
             dao.resgistrar(mantenimiento, listaDetalle);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.
+                    SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
         }
     }
 
-    public void agregarEquipo( int idEquipo) {
-        DetalleMantenimiento det = new DetalleMantenimiento();
-        det.setIdEquipo(idEquipo);
-        listaDetalle.add(det);
-        System.out.println(listaDetalle);
+    public void agregarEquipo() {
+        listaa.add(codigo);
         System.out.println("CLICK PRUEBA");
-        JOptionPane.showMessageDialog(null, "Mensaje de pregunta",
-                "QUESTION_MESSAGE", JOptionPane.QUESTION_MESSAGE);
     }
 
+
+    public void listarEquipos() throws Exception {
+        try {
+            dao = new MantenimientoDAO();
+            listaEquipos = dao.listarEquipos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
 
     @PostConstruct
@@ -77,6 +94,11 @@ public class MantenimientoMB implements Serializable {
         this.mantenimiento = new Mantenimiento();
         this.listaDetalle = new ArrayList<>();
         this.listaEncargadosLaboratorio = new ArrayList<>();
+        this.equipo = new Equipo();
+        this.listaEquipos = new ArrayList<>();
+        this.listaa = new ArrayList<>();
+        this.encargado = new Encargado();
     }
+
 
 }

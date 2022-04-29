@@ -2,7 +2,10 @@ package equipos.DAO;
 
 
 import Administracion.model.Encargado;
-import equipos.model.*;
+import equipos.model.DetalleMantenimiento;
+import equipos.model.Equipo;
+import equipos.model.Mantenimiento;
+import equipos.model.TempDetalleMantenimiento;
 import global.Conexion;
 
 import java.sql.Date;
@@ -35,16 +38,16 @@ public class MantenimientoDAO extends Conexion {
                     "       e.estado               as estado_equipo,\n" +
                     "       ce.nombre              as categoria_equipo,\n" +
                     "       e.id_equipo            as id_equipo\n" +
-                    "from mantenimientos ma\n" +
-                    "         inner join detalle_mantenimiento dm on ma.id_mantenimiento = dm.id_mantenimiento\n" +
-                    "         inner join equipos e on e.id_equipo = dm.id_equipo\n" +
-                    "         inner join encargado_laboratorio el on el.\"idEncargadoLaboratorio\" = ma.id_encargado_laboratorio\n" +
-                    "         inner join area_aula aa on aa.id_area_aula = e.id_area_aula\n" +
-                    "         inner join laboratorio l on aa.\"laboratorio_idLaboratorio\" = l.\"idLaboratorio\"\n" +
-                    "         inner join encargado e2 on e2.\"idEncargado\" = el.\"encargado_idEncargado\"\n" +
-                    "         inner join usuario u on e2.\"persona_idPersona\" = u.\"persona_idPersona\"\n" +
-                    "         inner join persona p on p.\"idPersona\" = e2.\"persona_idPersona\"\n" +
-                    "         inner join categoria_equipos ce on ce.id_categoria_equipos = e.id_categoria_equipos";
+                    "from laboratorio.mantenimientos ma\n" +
+                    "         inner join laboratorio.detalle_mantenimiento dm on ma.id_mantenimiento = dm.id_mantenimiento\n" +
+                    "         inner join laboratorio.equipos e on e.id_equipo = dm.id_equipo\n" +
+                    "         inner join laboratorio.encargado_laboratorio el on el.\"idEncargadoLaboratorio\" = ma.id_encargado_laboratorio\n" +
+                    "         inner join laboratorio.area_aula aa on aa.id_area_aula = e.id_area_aula\n" +
+                    "         inner join laboratorio.laboratorio l on aa.\"laboratorio_idLaboratorio\" = l.\"idLaboratorio\"\n" +
+                    "         inner join laboratorio.encargado e2 on e2.\"idEncargado\" = el.\"encargado_idEncargado\"\n" +
+                    "         inner join laboratorio.usuario u on e2.\"persona_idPersona\" = u.\"persona_idPersona\"\n" +
+                    "         inner join laboratorio.persona p on p.\"idPersona\" = e2.\"persona_idPersona\"\n" +
+                    "         inner join laboratorio.categoria_equipos ce on ce.id_categoria_equipos = e.id_categoria_equipos";
             this.conectar();
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
@@ -79,7 +82,7 @@ public class MantenimientoDAO extends Conexion {
     public void resgistrar(Mantenimiento obj, List<DetalleMantenimiento> ltsDetalle) throws SQLException {
         try {
             //INSERT MANTENIMIENTO (CABECERA)
-            String sql_registrar_mantenimiento = "insert into mantenimientos (periodo, id_encargado_laboratorio, procedencia, tipo)\n" +
+            String sql_registrar_mantenimiento = "insert into laboratorio.mantenimientos (periodo, id_encargado_laboratorio, procedencia, tipo)\n" +
                     "values (?, ?, ?, ?);";
             this.conectar();
             this.getConnection().setAutoCommit(false);
@@ -92,7 +95,7 @@ public class MantenimientoDAO extends Conexion {
             st.executeUpdate();
             st.close();
             //OBTENER ÚLTIMO ID DE MANTENIMIENTO
-            String sql_max_id_mantenimiento = "select max(id_mantenimiento) from mantenimientos";
+            String sql_max_id_mantenimiento = "select max(id_mantenimiento) from laboratorio.mantenimientos";
             PreparedStatement st2 = this.getConnection().prepareStatement(sql_max_id_mantenimiento);
             ResultSet resultSet;
             resultSet = st2.executeQuery();
@@ -102,7 +105,7 @@ public class MantenimientoDAO extends Conexion {
             }
             System.out.println(ltsDetalle);
             //INSERT DETALLE_MANTENIMIENTO
-            String sql_registrar_detalle_mantenimiento = "insert into detalle_mantenimiento (id_equipo, id_mantenimiento)\n" +
+            String sql_registrar_detalle_mantenimiento = "insert into laboratorio.detalle_mantenimiento (id_equipo, id_mantenimiento)\n" +
                     "values (?, ?)";
             PreparedStatement st3 = this.getConnection().prepareStatement(sql_registrar_detalle_mantenimiento);
             for (DetalleMantenimiento o : ltsDetalle) {
@@ -126,9 +129,9 @@ public class MantenimientoDAO extends Conexion {
         ResultSet rs;
         try {
             String query = "select el.\"idEncargadoLaboratorio\" as id, p.nombre_persona as nombre, p.apellido_persona as apellido\n" +
-                    "from encargado e\n" +
-                    "         inner join persona p on p.\"idPersona\" = e.\"persona_idPersona\"\n" +
-                    "         inner join encargado_laboratorio el on e.\"idEncargado\" = el.\"encargado_idEncargado\"";
+                    "from laboratorio.encargado e\n" +
+                    "         inner join laboratorio.persona p on p.\"idPersona\" = e.\"persona_idPersona\"\n" +
+                    "         inner join laboratorio.encargado_laboratorio el on e.\"idEncargado\" = el.\"encargado_idEncargado\"";
             this.conectar();
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
@@ -149,4 +152,29 @@ public class MantenimientoDAO extends Conexion {
     }
 
 
+    public ArrayList<Equipo> listarEquipos() throws Exception {
+        ArrayList<Equipo> lista;
+        ResultSet rs;
+        try {
+            String query = "select e.id_equipo as id_equipo, e.codigo as codigo, ce.nombre as categoria\n" +
+                    "from laboratorio.equipos e\n" +
+                    "         inner join laboratorio.categoria_equipos ce on ce.id_categoria_equipos = e.id_categoria_equipos";
+            this.conectar();
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            lista = new ArrayList<>();
+            while (rs.next()) {
+                Equipo equipo = new Equipo();
+                equipo.setCodigo(rs.getString("codigo"));
+                equipo.setCategoriaEquipo(rs.getString("categoria"));
+                equipo.setIdEquipo(rs.getInt("id_equipo"));
+                lista.add(equipo);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return lista;
+    }
 }

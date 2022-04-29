@@ -1,12 +1,9 @@
 package equipos.DAO;
 
-import equipos.model.CategoriaEquipo;
 import equipos.model.Equipo;
 import global.Conexion;
 import laboratorios.model.AreaAula;
-import laboratorios.model.Laboratorio;
 
-import javax.annotation.PostConstruct;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +16,7 @@ public class EquipoDAO extends Conexion {
 
     public void resgistrar(Equipo equipo) throws SQLException {
         try {
-            String sql_registrar = "INSERT INTO equipos (descripcion, marca, modelo, numero_serie, estado, imagen, id_categoria_equipos, fecha_adquisicion, id_area_aula, codigo)VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql_registrar = "INSERT INTO laboratorio.equipos (descripcion, marca, modelo, numero_serie, estado, imagen, id_categoria_equipos, fecha_adquisicion, id_area_aula, codigo)VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this.conectar();
             PreparedStatement st = this.getConnection().prepareStatement(sql_registrar);
             st.setString(1, equipo.getDescripcion());
@@ -29,14 +26,13 @@ public class EquipoDAO extends Conexion {
             st.setString(5, equipo.getEstado());
             st.setString(6, equipo.getImagen());
             st.setInt(7, equipo.getIdCategoriaEquipo());
-            st.setDate(8,  new Date(equipo.getFechaAdquisicion().getTime()));
+            st.setDate(8, new Date(equipo.getFechaAdquisicion().getTime()));
             st.setInt(9, equipo.getIdAreaAula());
             st.setString(10, equipo.getCodigo());
             st.executeUpdate();
-        } catch(Exception e){
-            throw  e;
-        }
-        finally {
+        } catch (Exception e) {
+            throw e;
+        } finally {
             this.desconectar();
         }
     }
@@ -59,9 +55,9 @@ public class EquipoDAO extends Conexion {
                     "       aa.nombre_aula      as area,\n" +
                     "       aa.id_area_aula     as idArea,\n" +
                     "       e.estado            as estado\n" +
-                    "FROM equipos e\n" +
-                    "         inner join categoria_equipos ce on e.id_categoria_equipos = ce.id_categoria_equipos\n" +
-                    "         inner join area_aula aa on e.id_area_aula = aa.id_area_aula\n" +
+                    "FROM laboratorio.equipos e\n" +
+                    "         inner join laboratorio.categoria_equipos ce on e.id_categoria_equipos = ce.id_categoria_equipos\n" +
+                    "         inner join laboratorio.area_aula aa on e.id_area_aula = aa.id_area_aula\n" +
                     "ORDER BY categoria ASC";
             this.conectar();
             PreparedStatement st = this.getConnection().prepareStatement(query);
@@ -120,7 +116,7 @@ public class EquipoDAO extends Conexion {
         List<AreaAula> listaAreasAulasID;
         ResultSet rs;
         try {
-            String query = "select * from area_aula where \"laboratorio_idLaboratorio\" =" + idLaboratorio;
+            String query = "select * from laboratorio.area_aula where \"laboratorio_idLaboratorio\" =" + idLaboratorio;
             this.conectar();
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
@@ -146,7 +142,7 @@ public class EquipoDAO extends Conexion {
         List<AreaAula> listaAreasAulas;
         ResultSet rs;
         try {
-            String query = "SELECT * FROM area_aula ORDER BY nombre_aula ASC";
+            String query = "SELECT * FROM laboratorio.area_aula ORDER BY nombre_aula ASC";
             this.conectar();
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
@@ -167,4 +163,29 @@ public class EquipoDAO extends Conexion {
         return listaAreasAulas;
     }
 
+    public ArrayList<Equipo> listarEquipos() throws Exception {
+        ArrayList<Equipo> lista = new ArrayList<>();
+        ResultSet rs;
+        try {
+            this.conectar();
+            String query = "select e.id_equipo as id_equipo, e.codigo as codigo, e.descripcion as descripcion, ce.nombre as categoria\n" +
+                    "from laboratorio.equipos e\n" +
+                    "         inner join laboratorio.categoria_equipos ce on ce.id_categoria_equipos = e.id_categoria_equipos order by categoria asc";
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                Equipo equipo = new Equipo();
+                equipo.setIdEquipo(rs.getInt("id_equipo"));
+                equipo.setCategoriaEquipo(rs.getString("categoria"));
+                equipo.setDescripcion(rs.getString("descripcion"));
+                equipo.setCodigo(rs.getString("codigo"));
+                lista.add(equipo);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return lista;
+    }
 }

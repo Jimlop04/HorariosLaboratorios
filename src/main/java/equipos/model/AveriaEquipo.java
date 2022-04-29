@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +31,6 @@ public class AveriaEquipo {
 
     private int idEquipo;
 
-    private int idEncarado;
+    private int idEncargado;
 
 }

@@ -1,46 +1,42 @@
 package equipos.controller;
 
 import equipos.DAO.AveriaEquipoDAO;
-import equipos.DAO.EquipoDAO;
 import equipos.model.AveriaEquipo;
-import equipos.model.CategoriaEquipo;
-import equipos.model.Equipo;
-import laboratorios.model.AreaAula;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import java.util.ArrayList;
+import java.io.Serializable;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @ManagedBean
 @SessionScoped
-public class AveriaEquipoMB {
+@Getter
+@Setter
+public class AveriaEquipoMB implements Serializable {
 
     private AveriaEquipoDAO dao;
 
 
-    private AveriaEquipo AveriaEquipo;
+    private AveriaEquipo averiaEquipo;
 
-    public void registrar()  {
+    public void registrar() throws Exception {
         try {
             dao = new AveriaEquipoDAO();
-            dao.resgistrar(AveriaEquipo);
+            System.out.println(averiaEquipo);
+            dao.resgistrar(averiaEquipo);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
-        }catch( Exception e){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" +e));
+        } catch (Exception e) {
+            System.out.println(averiaEquipo);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
         }
     }
 
     @PostConstruct
     public void init() {
-        this.AveriaEquipo = new AveriaEquipo();
+        this.averiaEquipo = new AveriaEquipo();
     }
 }

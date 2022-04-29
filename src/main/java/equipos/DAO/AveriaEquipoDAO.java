@@ -1,16 +1,12 @@
 package equipos.DAO;
 
 import equipos.model.AveriaEquipo;
-import equipos.model.Equipo;
 import global.Conexion;
-import laboratorios.model.AreaAula;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AveriaEquipoDAO extends Conexion {
 //    public List<AveriaEquipo> listarAreasAulasID(int idLaboratorio) throws Exception {
@@ -60,23 +56,21 @@ public class AveriaEquipoDAO extends Conexion {
 //        return lista;
 //    }
 
-    public void resgistrar(AveriaEquipo o) throws SQLException {
+    public void resgistrar(AveriaEquipo averia) throws SQLException {
         try {
-            String sql_registrar = "insert into averias_equipos (fecha_registro, id_encargado_laboratorio, tipo_danio, descripcion,id_equipo, prioridad)\n" +
-                    "values (?,?,?,?,?,?)";
+            String sql_registrar = "insert into laboratorio.averias_equipos (fecha_registro, id_encargado_laboratorio, tipo_danio, descripcion,id_equipo, prioridad) values (?,?,?,?,?,?)";
             this.conectar();
             PreparedStatement st = this.getConnection().prepareStatement(sql_registrar);
-            st.setDate(1,  new Date(o.getFechaRegistro().getTime()));
-            st.setInt(2, o.getIdEncarado());
-            st.setString(3, o.getTipoDanio());
-            st.setString(4, o.getDescripcion());
-            st.setInt(5, o.getIdEquipo());
-            st.setString(6, o.getPrioridad());
+            st.setDate(1, new Date(averia.getFechaRegistro().getTime()));
+            st.setInt(2, averia.getIdEncargado());
+            st.setString(3, averia.getTipoDanio());
+            st.setString(4, averia.getDescripcion());
+            st.setInt(5, averia.getIdEquipo());
+            st.setString(6, averia.getPrioridad());
             st.executeUpdate();
-        } catch(Exception e){
-            throw  e;
-        }
-        finally {
+        } catch (Exception e) {
+            throw e;
+        } finally {
             this.desconectar();
         }
     }

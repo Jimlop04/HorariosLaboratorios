@@ -1,20 +1,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/InicioTemplate.xhtml"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+>
 
     <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
-    <ui:define name="content">  
-        <div>           
-            <div id="nonAjaxLoad" > 
+    <ui:define name="content">
+        <div>
+            <div id="nonAjaxLoad">
                 <p:graphicImage style="
                                 width: 60px;
-                                height: 60px;" 
-                                name="ajax-document-loader.gif" 
-                                library="Images" />
+                                height: 60px;"
+                                name="ajax-document-loader.gif"
+                                library="Images"/>
             </div>
         </div>
 
@@ -29,41 +28,41 @@
         </script>
 
 
-
         <div class="container" style="background-color: #f2f2f7">
-            <div class="p-grid" >
-                <ui:fragment >
+            <div class="p-grid">
+                <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Solicitudes/AprobacionSolicitudes.xhtml">
-                            <div class="card-box bg-blue"> 
+                            <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3>Aprobacion de Solicitudes</h3>
                                     <p>Revision de solicitudes para su aprobación</p>
                                 </div>
                                 <div class="icon">
-                                    <i> 
-                                        <p:graphicImage class="imagenes" name="justificacionfaltas.png" library="Images" />
+                                    <i>
+                                        <p:graphicImage class="imagenes" name="justificacionfaltas.png"
+                                                        library="Images"/>
                                     </i>
                                 </div>
-                                <div class="card-box-footer">Ingresar 
+                                <div class="card-box-footer">Ingresar
                                     <i class="pi pi-arrow-circle-right"/>
                                 </div>
-                            </div>                        
+                            </div>
                         </a>
                     </div>
                 </ui:fragment>
 
-                <ui:fragment >
+                <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Equipos/registroEquipos.xhtml">
                             <div class="card-box bg-blue">
                                 <div class="inner">
-                                    <h3> Materiales y Equipos</h3>
-                                    <p>Administrar Materiales y Equipos</p>
+                                    <h3> Equipos </h3>
+                                    <p>Administrar Equipos</p>
                                 </div>
                                 <div class="icon">
                                     <i>
-                                        <p:graphicImage class="imagenes" name="asistencias.png" library="Images" />
+                                        <p:graphicImage class="imagenes" name="asistencias.png" library="Images"/>
                                     </i>
                                 </div>
                                 <div class="card-box-footer">Ingresar
@@ -75,10 +74,9 @@
                 </ui:fragment>
 
 
-
-                <ui:fragment >
+                <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
-                        <a href="../Calendario/Calendario.xhtml" >
+                        <a href="../Calendario/Calendario.xhtml">
                             <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3>Fechas y Horarios</h3>
@@ -86,7 +84,7 @@
                                 </div>
                                 <div class="icon">
                                     <i>
-                                        <p:graphicImage class="imagenes" name="reloj.png" library="Images" />
+                                        <p:graphicImage class="imagenes" name="reloj.png" library="Images"/>
                                     </i>
                                 </div>
                                 <div class="card-box-footer">Ingresar
@@ -95,8 +93,8 @@
                             </div>
                         </a>
                     </div>
-                </ui:fragment>   
-                <ui:fragment >
+                </ui:fragment>
+                <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Solicitudes/ModuloSolicitudes.xhtml">
                             <div class="card-box bg-blue">
@@ -106,7 +104,7 @@
                                 </div>
                                 <div class="icon">
                                     <i>
-                                        <p:graphicImage class="imagenes" name="blackboard.png" library="Images" />
+                                        <p:graphicImage class="imagenes" name="blackboard.png" library="Images"/>
                                     </i>
                                 </div>
                                 <div class="card-box-footer">Ingresar
@@ -115,8 +113,8 @@
                             </div>
                         </a>
                     </div>
-                </ui:fragment>   
-                <ui:fragment >
+                </ui:fragment>
+                <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Laboratorios/RegistrarLaboratorios.xhtml">
                             <div class="card-box bg-blue">
@@ -126,7 +124,7 @@
                                 </div>
                                 <div class="icon">
                                     <i>
-                                        <p:graphicImage class="imagenes" name="examen.png" library="Images" />
+                                        <p:graphicImage class="imagenes" name="examen.png" library="Images"/>
                                     </i>
                                 </div>
                                 <div class="card-box-footer">Ingresar
@@ -135,11 +133,11 @@
                             </div>
                         </a>
                     </div>
-                </ui:fragment>   
-              
-                <ui:fragment >
+                </ui:fragment>
+
+                <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
-                        <a href="../Seguridad/administrativePanel.xhtml" >
+                        <a href="../Seguridad/administrativePanel.xhtml">
                             <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3>Ajustes de Perfil</h3>
@@ -147,7 +145,7 @@
                                 </div>
                                 <div class="icon">
                                     <i>
-                                        <p:graphicImage class="imagenes" name="hojavida.png" library="Images" />
+                                        <p:graphicImage class="imagenes" name="hojavida.png" library="Images"/>
                                     </i>
                                 </div>
                                 <div class="card-box-footer">Ingresar
@@ -156,8 +154,8 @@
                             </div>
                         </a>
                     </div>
-                </ui:fragment>  
-                <ui:fragment >
+                </ui:fragment>
+                <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Administracion/Docentes.xhtml">
                             <div class="card-box bg-blue">
@@ -167,7 +165,8 @@
                                 </div>
                                 <div class="icon">
                                     <i>
-                                        <p:graphicImage class="imagenes" name="matriculaciononline.png" library="Images" />
+                                        <p:graphicImage class="imagenes" name="matriculaciononline.png"
+                                                        library="Images"/>
                                     </i>
                                 </div>
                                 <div class="card-box-footer">Ingresar
@@ -176,7 +175,7 @@
                             </div>
                         </a>
                     </div>
-                </ui:fragment>   
+                </ui:fragment>
             </div>
         </div>
         <h:outputStylesheet name="home.css" library="css"/>
