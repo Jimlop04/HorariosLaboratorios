@@ -11,6 +11,8 @@ public class Laboratorio {
     private int facultad_idfacultad;
     private String nombre_laboratorio;
     private String codigo_laboratorio;
+    private int capacidad;
+ 
 
     public Laboratorio() {
         
@@ -36,11 +38,20 @@ public class Laboratorio {
         this.codigo_laboratorio = codigo_laboratorio;
     }
 
+    public Laboratorio(int idLaboratorio, String codigo_laboratorio,String nombre_laboratorio, int capacidad) {
+        this.idLaboratorio = idLaboratorio;
+        this.codigo_laboratorio = codigo_laboratorio;
+        this.nombre_laboratorio = nombre_laboratorio;
+        this.capacidad = capacidad;
+    }
+    
+    
     public Laboratorio(int idFacultad, String nombre_facultad) {
         this.idFacultad = idFacultad;
         this.nombre_facultad = nombre_facultad;
     }
     
+   
 
     public int getIdFacultad() {
         return idFacultad;
@@ -90,5 +101,12 @@ public class Laboratorio {
         this.codigo_laboratorio = codigo_laboratorio;
     }
 
+    public int getCapacidad() {
+        return capacidad;
+    }
 
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+    
 }

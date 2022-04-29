@@ -7,7 +7,6 @@
 
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">            
-
             <ui:define name="title">Registrar Laboratorios</ui:define>
             <ui:define name="content">  
                 <ui:include src="./SubHeaderLaboratorios.xhtml"/> 
@@ -57,19 +56,19 @@
                                                 <p:outputLabel value="Codigo Laboratorio" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#" ></p:inputText>
+                                                    value="#{laboratorioMB.laboratorio.codigo_laboratorio}" />
                                             </div>
                                             <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel value="Nombre laboratorio" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#"></p:inputText>
+                                                    value="#{laboratorioMB.laboratorio.nombre_laboratorio}"/>
                                             </div>
                                             <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel value="Facultad" for="@next"/>
-                                                <p:selectOneMenu value="#{laboratorioMB.laboratorio.idFacultad}" editable="false">
-                                                    <f:selectItem itemLabel="Seleccione una Facultad" itemValue="" noSelectionOption="true"/>
-                                                    <p:ajax  process="@this"/>
+                                                <p:selectOneMenu value="#{laboratorioMB.laboratorio.idFacultad}">
+                                                    <f:selectItem itemLabel="Seleccione una Facultad"/>
+                                                 
                                                     <f:selectItems value="#{laboratorioMB.listafacultades}" 
                                                                    var="fa"
                                                                    itemLabel="#{fa.nombre_facultad}" 
@@ -145,11 +144,11 @@
                                     <f:facet name="footer">
                                         <p:commandButton 
                                             value="Guardar"
-                                            actionListener="#"
-                                            process="manage-laboratorio-form @this"
+                                            actionListener="#{laboratorioMB.registrarLaboratorio()}"
+                                             process="manage-laboratorio-form @this"
                                             icon="pi pi-check"
-                                            styleClass="ui-button-primary">
-                                        </p:commandButton>
+                                            styleClass="ui-button-primary" />
+                         
 
                                         <p:button  value="Cancelar" 
                                                    styleClass="ui-button-danger"
@@ -173,14 +172,19 @@
                                         class="ui-fluid">
                                         <p:outputPanel>
                                             <div class="p-field">
-                                                <p:outputLabel
-                                                    for="facultadLabo"
-                                                    value="Facultad: "></p:outputLabel>
-                                                <p:inputText
-                                                    id="facultadLabo"
-                                                    value="#{laboratorioMB.laboratorio.nombre_facultad}" 
-                                                    maxlength="50"
+                                                 <p:inputText
+                                                    value="#{laboratorioMB.laboratorio.idLaboratorio}" 
+                                                    style="display: none"
                                                     ></p:inputText>
+                                                <p:outputLabel value="Facultad:" for="@next"/>
+                                                <p:selectOneMenu value="#{laboratorioMB.laboratorio.idFacultad}">
+                                                    <f:selectItem itemLabel="Seleccione una Facultad"/>                                            
+                                                    <f:selectItems value="#{laboratorioMB.listafacultades}" 
+                                                                   var="fa"
+                                                                   itemLabel="#{fa.nombre_facultad}" 
+                                                                   itemValue="#{fa.idFacultad}">
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>                                               
                                                 <p:outputLabel
                                                     for="codigoLabo"
                                                     value="Codigo: "></p:outputLabel>
@@ -207,9 +211,11 @@
                                             value="Guardar" 
                                             icon="pi pi-check"
                                             styleClass="ui-button-primary"
-                                            update=":form-principal"
+                                            update=":form-principal:manage-laboratorio-form"
                                             process="manage-editarLaboratorio-form @this" 
-                                            actionListener="#"/>
+                                            actionListener="#{laboratorioMB.editarLaboratorio()}">
+                                         <p:resetInput target=":form-principal:manage-laboratorio-form"/>
+                                        </p:commandButton>
                                         <p:commandButton 
                                             value="Cancelar" 
                                             icon="pi pi-times"
@@ -234,7 +240,7 @@
                                         <div class="p-formgrid p-grid">
                                             <div class="p-field p-col-12 p-md-12">
                                                 <p:outputLabel value="Nombre Laboratorio" for="@next"/>
-                                                <p:selectOneMenu value="#{laboratorioMB.laboratorio.idLaboratorio}" editable="false">
+                                                <p:selectOneMenu value="#{areaAulaMB.areaAula.idLaboratorio}" editable="false">
                                                     <f:selectItem itemLabel="Seleccione un Laboratorio" itemValue="" noSelectionOption="true"/>
                                                     <p:ajax  process="@this"/>
                                                     <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
@@ -250,19 +256,19 @@
                                                 <p:outputLabel value="Codigo Aula" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#" ></p:inputText>
+                                                    value="#{areaAulaMB.areaAula.codigo}" ></p:inputText>
                                             </div>
                                             <div class="p-field p-col-12 p-md-8">
                                                 <p:outputLabel value="Nombre Aula" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#"></p:inputText>
+                                                    value="#{areaAulaMB.areaAula.nombre}"></p:inputText>
                                             </div>
                                             <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel value="Capacidad" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#"></p:inputText>
+                                                    value="#{areaAulaMB.areaAula.capacidad}"></p:inputText>
                                             </div>
                                         </div>
                                         <div class="card" style="margin-top: 5px;">
@@ -332,11 +338,11 @@
                                         </div>
                                     </p:outputPanel>
 
-                                    <!--                                    Botones-->
+                                    <!--Botones GUARDAR Y CANCERLAR DE REGISTRO AULA-->
                                     <f:facet name="footer">
                                         <p:commandButton 
                                             value="Guardar"
-                                            actionListener="#"
+                                            actionListener="#{areaAulaMB.registrarArea()}"
                                             process="manage-aula-form @this"
                                             icon="pi pi-check"
                                             styleClass="ui-button-primary">
@@ -364,14 +370,22 @@
                                         class="ui-fluid">
                                         <p:outputPanel>
                                             <div class="p-field">
-                                                <p:outputLabel
-                                                    for="AulaLab"
-                                                    value="Laboratorio: "></p:outputLabel>
-                                                <p:inputText
-                                                    id="AulaLab"
-                                                    value="#{areaAulaMB.areaAula.nombre_laboratorio}" 
-                                                    maxlength="50"
+                                                 <p:inputText
+                                                     value="#{areaAulaMB.areaAula.idAreaAula}" 
+                                                    style="display: none"
                                                     ></p:inputText>
+                                                <p:outputLabel
+                                                    value="Laboratorio: "></p:outputLabel>
+                                                <p:selectOneMenu value="#{areaAulaMB.areaAula.idLaboratorio}" editable="false">
+                                                    <f:selectItem itemLabel="Seleccione un Laboratorio" itemValue="" noSelectionOption="true"/>
+                                                    <p:ajax  process="@this"/>
+                                                    <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
+                                                                   var="la"
+                                                                   itemLabel="#{la.nombre_laboratorio}" 
+                                                                   itemValue="#{la.idLaboratorio}">
+
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
                                                 <p:outputLabel
                                                     for="AulaCo"
                                                     value="Codigo: "></p:outputLabel>
@@ -406,9 +420,9 @@
                                             value="Guardar" 
                                             icon="pi pi-check"
                                             styleClass="ui-button-primary"
-                                            update=":form-principal"
+                                            update=":form-principal:manage-aula-form"
                                             process="manage-editarAula-form @this" 
-                                            actionListener="#"/>
+                                            actionListener="#{areaAulaMB.editarArea()}"/>
                                         <p:commandButton 
                                             value="Cancelar" 
                                             icon="pi pi-times"
@@ -438,15 +452,14 @@
                                          scrollHeight="350" 
                                          size="small"
                                          selectionMode="single">
-
-                                <p:column headerText="Codigo" style="text-align: justify">
-                                    <h:outputText value="#{document.idLaboratorio}" />
-                                </p:column>
-                                <p:column headerText="Laboratorio">
-                                    <h:outputText value="#{document.nombre_laboratorio}" />
+                                <p:column headerText="Codigo">
+                                    <h:outputText value="#{document.codigo_laboratorio}" />
                                 </p:column>
                                  <p:column headerText="Laboratorio">
-                                    <h:outputText value="#{document.codigo_laboratorio}" />
+                                    <h:outputText value="#{document.nombre_laboratorio}" />
+                                </p:column>
+                                <p:column headerText="Capacidad">
+                                    <h:outputText value="#{document.capacidad}"/>
                                 </p:column>
                                
                             </p:treeTable>

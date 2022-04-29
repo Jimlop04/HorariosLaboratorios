@@ -28,6 +28,7 @@ public class LaboratorioDAO {
     private List<Laboratorio> listasoloLaboratorios;
     private List<Laboratorio> listafacultades;
     private TreeNode rootIntegracion;
+    String sentencia;
 
     public LaboratorioDAO() {
         laboratorio = new Laboratorio();
@@ -46,7 +47,7 @@ public class LaboratorioDAO {
     public List<Laboratorio> getLaboratorios() {
         List<Laboratorio> Laboratorios = new ArrayList<>();
 
-        String sql = String.format("select * from laboratorio l inner join facultad f on l.facultad_idFacultad = f.\"idFacultad\"");
+        String sql = String.format("select * from laboratorio.laboratorio l inner join laboratorio.facultad f on l.facultad_idFacultad = f.\"idFacultad\"");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
@@ -72,7 +73,7 @@ public class LaboratorioDAO {
     public List<Laboratorio> getsoloLaboratorios() {
         List<Laboratorio> soloLaboratorios = new ArrayList<>();
 
-        String sql = String.format("SELECT * FROM laboratorio");
+        String sql = String.format("SELECT * FROM laboratorio.laboratorio");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
@@ -94,7 +95,7 @@ public class LaboratorioDAO {
     public List<Laboratorio> getfacultades() {
         List<Laboratorio> facultades = new ArrayList<>();
 
-        String sql = String.format("SELECT * FROM facultad");
+        String sql = String.format("SELECT * FROM laboratorio.facultad");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
@@ -115,7 +116,7 @@ public class LaboratorioDAO {
     public List<AreaAula> getsoloAreas(int idArea) {
         List<AreaAula> soloAreas = new ArrayList<>();
 
-        String sql = String.format("SELECT * from public.area_aula");
+        String sql = String.format("SELECT * from laboratorio.area_aula");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
@@ -137,12 +138,37 @@ public class LaboratorioDAO {
         }
     }
 
+    public Laboratorio registrarLab(Laboratorio laboratorio) {
+        try {
+
+            sentencia = String.format("SELECT laboratorio.registrar_laboratorio(\n"
+                    + "	'" + laboratorio.getIdFacultad() + "', \n"
+                    + "	'" + laboratorio.getNombre_laboratorio().trim() + "', \n"
+                    + "	'" + laboratorio.getCodigo_laboratorio().trim() + "'\n"
+                    + ")");
+            conexion.ejecutarSql(sentencia);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return laboratorio;
+    }
+
     public void modificarLaboratorio(Laboratorio laboratorio) throws SQLException {
         try {
 
-            String sql = "";
-            conexion.ejecutarSql(sql);
-
+            sentencia = String.format("SELECT laboratorio.editar_laboratorio("
+                     + "'" + laboratorio.getIdLaboratorio() + "',"
+                    + "'" + laboratorio.getIdFacultad() + "',"
+                    + "'" + laboratorio.getNombre_laboratorio() + "',"
+                    + "'" + laboratorio.getCodigo_laboratorio() + "')");
+            
+            System.out.println(sentencia);
+            
+            conexion.ejecutarSql(sentencia);
+            System.out.println(sentencia);
         } catch (Exception e) {
             throw e;
         } finally {

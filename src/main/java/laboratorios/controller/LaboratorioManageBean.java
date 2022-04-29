@@ -3,6 +3,7 @@ package laboratorios.controller;
 
 import global.Mensajes;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -30,14 +31,11 @@ public class LaboratorioManageBean implements Serializable {
     private List<Laboratorio> listasoloLaboratorios = new ArrayList<>();
     private List<Laboratorio> listafacultades = new ArrayList<>();
     private List<AreaAula> listaAreas = new ArrayList<>();
-    private List<AreaAula> listaAreasNode;
     Mensajes mensajesJSF;
     private TreeNode rootIntegracion = new DefaultTreeNode("Root Node", null);
     TreeNode laboratorioTree;
     TreeNode aulasTree;
-   
 
-  
      @PostConstruct
     public void init() {
         System.out.println("PostConstruct");
@@ -46,8 +44,7 @@ public class LaboratorioManageBean implements Serializable {
         laboratorio = new Laboratorio();
         listasoloLaboratorios = laboratorioDAO.getsoloLaboratorios();
         listafacultades = laboratorioDAO.getfacultades();
-        llenarListaTableTree();
-        
+        llenarListaTableTree(); 
     } 
 
     public Laboratorio getLaboratorio() {
@@ -113,20 +110,45 @@ public class LaboratorioManageBean implements Serializable {
     public void setListaAreas(List<AreaAula> listaAreas) {
         this.listaAreas = listaAreas;
     }
-    
-    
-    
 
+ 
+
+     public void LabSelectOneMenu(){
+    
+   System.out.println("Que paso");
+      
+  }
+      
+ public void registrarLaboratorio() throws Exception {
+
+        try {
+            if ("".equals(laboratorio.getIdFacultad())) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Codigo Laboratorio");
+            } else if ("".equals(laboratorio .getNombre_laboratorio())) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Nombre Laboratorio");
+            } else if ("".equals(laboratorio.getNombre_facultad())){
+                mensajesJSF.mensajeDeAdvertencia("");    
+            } else {
+                this.laboratorioDAO.registrarLab(laboratorio);
+                mensajesJSF.mensajeDeExito("Registro Exitoso");
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+     
+     
+   
     
      public void editarLaboratorio() {
         try {
-            if ("".equals(laboratorio.getNombre_facultad())) {
+            if ("".equals(laboratorio.getIdFacultad())) {
                 FacesContext.getCurrentInstance().addMessage(null, 
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Facultad"));
-            } else if ("".equals(laboratorio.getCodigo_laboratorio())) {
+            } else if ("".equals(laboratorio.getNombre_laboratorio())) {
                 FacesContext.getCurrentInstance().addMessage(null, 
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Codigo Laboratorio"));
-            } else if ("".equals(laboratorio.getNombre_laboratorio())) {
+            } else if ("".equals(laboratorio.getCodigo_laboratorio())) {
                 FacesContext.getCurrentInstance().addMessage(null, 
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre Laboratorio"));
             } else {
@@ -137,32 +159,25 @@ public class LaboratorioManageBean implements Serializable {
                 
                 PrimeFaces.current().executeScript("PF('centroEditarLaboratorioDialog').hide()");
             }
-
         } catch (Exception e) {
             FacesContext.getCurrentInstance().
                     addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Error al guardar"));
         }
-        PrimeFaces.current().ajax().update(":form-principal:dtLaboratorio");
-    }
-     
+        PrimeFaces.current().ajax().update(":form-principal:integracionLaboratorio");
+    } 
+    
      /**  LLENAR LISTA DE LISTA LABORATORIOS TABLA TREE */
      public void llenarListaTableTree() {
         for (Laboratorio laboratorioT : listasoloLaboratorios) {
             laboratorioTree = new DefaultTreeNode(new Laboratorio(laboratorioT.getIdLaboratorio(), laboratorioT.getNombre_laboratorio(),
                     laboratorioT.getCodigo_laboratorio()), this.rootIntegracion);
             listaAreas = laboratorioDAO.getsoloAreas(laboratorioT.getIdLaboratorio());
-            
             for(AreaAula AreaT : listaAreas ){
-                
             if(laboratorioT.getIdLaboratorio() == AreaT.getLaboratorio_idLaboratorio() ){
-            aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(),AreaT.getCodigo(), AreaT.getNombre()),laboratorioTree);}
+            aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(),AreaT.getCodigo(), 
+                    AreaT.getNombre(),AreaT.getCapacidad()),laboratorioTree);}
             }
        
             }
         }
-
-
-     
-     
-
 }

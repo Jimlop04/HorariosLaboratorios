@@ -1,23 +1,191 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
-            <ui:define name="content">
-                <ui:include src="./SubHeaderAdministracion.xhtml"/> 
-                <h:form>
 
-                </h:form>
+    <h:body>
+        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml"> 
+            <ui:define name="content">  
+                <ui:include src="./SubHeaderAdministracion.xhtml"/> 
+                <div class="barra-navegacion">
+                    <h:form id="form-prin-rol">
+                        <p:growl id="messages" showDetail="true" severity="info, warn"/>
+                        <div class="card" style="margin-top: 5px;">
+                            <p:toolbarGroup>
+                                <!-- Boton Agregar Rol -->
+                                <p:commandButton 
+                                    value="Registrar Rol" 
+                                    styleClass="ui-button-primary" 
+                                    update=":form-prin-rol:manage-rol-form"
+                                    icon="pi pi-plus" 
+                                    process="@this"
+                                    oncomplete="PF('RegistrarRol').show()">
+                                    <p:resetInput 
+                                        target=":form-prin-rol:manage-rol-form"/>
+                                </p:commandButton>
+
+                                <!-- Dialogo Agregar Nuevo Rol-->
+                                <p:dialog header="Registrar Rol" 
+                                          showEffect="fade" 
+                                          modal="true"
+                                          widgetVar="RegistrarRol"
+                                          responsive="true" 
+                                          width="25%"
+                                          draggable="false" 
+                                          height="50" >
+                                    <p:outputPanel 
+                                        id="manage-rol-form" 
+                                        class="ui-fluid">
+                                        <div class="p-formgrid p-grid">
+
+                                            <div class="p-field p-col-12 p-md-3">
+                                                <p:outputLabel value="Codigo Rol" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="30"
+                                                    value="#" ></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-9">
+                                                <p:outputLabel value="Nombre rol" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="50"
+                                                    value="#" ></p:inputText>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                    <f:facet name="footer">
+                                        <p:commandButton 
+                                            value="Guardar"
+                                            actionListener="#"
+                                            process="manage-rol-form @this"
+                                            icon="pi pi-check"
+                                            styleClass="ui-button-primary">
+                                        </p:commandButton>
+
+                                        <p:button  value="Cancelar" 
+                                                   styleClass="ui-button-danger"
+                                                   icon="pi pi-times" 
+                                                   outcome="RegistrarEncargado"/>
+                                    </f:facet>
+                                </p:dialog>
+
+                        <!-- Editar Rol -->
+                        <p:dialog header="Modificar Rol" 
+                                  showEffect="fade" 
+                                  modal="true"
+                                  widgetVar="centroEditarRolDialog" 
+                                  responsive="true" 
+                                  width="25%"
+                                  draggable="false" 
+                                  height="120" >
+                            <p:outputPanel 
+                                id="manage-editarRol-form" 
+                                class="ui-fluid">
+                                <p:outputPanel>
+                                    <div class="p-field">
+                                        <p:outputLabel
+                                            value="Codigo Rol: "></p:outputLabel>
+                                        <p:inputText
+                                            value="#{encargadoMB.encargado.idRoles}" 
+                                            maxlength="50"
+                                            ></p:inputText>
+                                        <p:outputLabel
+                                            value="Nombre Rol: "></p:outputLabel>
+                                        <p:inputText
+                                            value="#{encargadoMB.encargado.nombre_rol}" 
+                                            maxlength="50"
+                                            ></p:inputText>
+                                    </div>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                            <!-- Botones Guardar/Cancelar-->
+                            <f:facet name="footer">
+                                <p:commandButton 
+                                    value="Guardar" 
+                                    icon="pi pi-check"
+                                    styleClass="ui-button-primary"
+                                    update=":form-prin-rol"
+                                    process="manage-editarRol-form @this" 
+                                    actionListener="#{encargadoMB.editarRol()}"/>
+                                <p:commandButton 
+                                    value="Cancelar" 
+                                    icon="pi pi-times"
+                                    onclick="PF('centroEditarRolDialog').hide()"  
+                                    styleClass="ui-button-danger"/>
+                            </f:facet>
+                        </p:dialog>
+
+                   </p:toolbarGroup>
+                </div>
+                        <div class="card" style="margin-top: 5px;" width="40%"
+                             draggable="false" 
+                             height="200">
+                            <p:toolbarGroup>
+                                <h:form>
+                                    <div class="p-grid p-justify-around">
+                                        <p:dataTable id="dtRol"
+                                                     paginator="true" 
+                                                     paginatorPosition="bottom"
+                                                     lazy="true"  
+                                                     editable="true" 
+                                                     reflow="true"
+                                                     rows="6"
+                                                     rowSelectMode="add"
+                                                     editInitEvent="dblclick" 
+                                                     editMode="cell"
+                                                     value="#{encargadoMB.listTotalRoles}"
+                                                     widgetVar="TablaRolesBus"
+                                                     var="TablaRoles"
+                                                     >
+                                            <f:facet name="header">
+                                                <div class="p-d-flex p-jc-between p-ai-center">
+                                                    <span style="font-size: 24px">Lista de Roles</span>
+                                                    <span class="filter-container ui-input-icon-left">
+                                                        <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                    </span>
+                                                </div>
+                                            </f:facet>
+                                            <p:column headerText="Codigo Rol" 
+                                                      filterStyle="display : none">
+                                                <h:outputText 
+                                                    value="#{TablaRoles.idRoles}"/>
+                                            </p:column>
+                                            <p:column headerText="Nombre Rol" 
+                                                      filterStyle="display : none">
+                                                <h:outputText 
+                                                    value="#{TablaRoles.nombre_rol}"/>
+                                            </p:column>
+                                            <p:column headerText="Acciones" filterStyle="display : none">
+                                                <p:commandButton 
+                                                    icon="pi pi-pencil" 
+                                                    update=":form-prin-rol:manage-editarRol-form"
+                                                    class="ui-button-primary rounded-button p-mr-2 p-mb-2"
+                                                    oncomplete="PF('centroEditarRolDialog').show()" 
+                                                    process="@this">
+                                                    <f:setPropertyActionListener 
+                                                        value="#{TablaRoles}" 
+                                                        target="#{encargadoMB.encargado}"/>
+                                                    <p:resetInput target=":form-prin-rol:manage-editarRol-form"/>
+                                                </p:commandButton>
+
+                                            </p:column>
+
+                                        </p:dataTable>
+                                    </div>
+
+                                </h:form>
+                            </p:toolbarGroup> 
+                        </div> 
+                        
+                        
+                        </h:form> 
+                </div>
+                <h:outputStylesheet name="home.css" library="css"/>
+                <h:outputStylesheet name="main.css" library="css"/>
             </ui:define>
-        </ui:composition>           
+        </ui:composition>
+
     </h:body>
 </html>
 

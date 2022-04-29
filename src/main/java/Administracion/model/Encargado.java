@@ -13,6 +13,7 @@ public class Encargado {
     
     private int idLaboratorio;
     private String nombre_laboratorio;
+    private String codigo_laboratorio;
     
     private int idRoles;
     private String nombre_rol;
@@ -42,6 +43,17 @@ public class Encargado {
         this.estado = estado;
         this.idEncargadoLaboratorio = idencargadoLaboratorioDetalle;
     }
+
+    public Encargado(int idPersona, String nombre_persona, String apellido_persona, int idLaboratorio, String nombre_laboratorio, String codigo_laboratorio) {
+        this.idPersona = idPersona;
+        this.nombre_persona = nombre_persona;
+        this.apellido_persona = apellido_persona;
+        this.idLaboratorio = idLaboratorio;
+        this.nombre_laboratorio = nombre_laboratorio;
+        this.codigo_laboratorio = codigo_laboratorio;
+    }
+    
+    
 
     public int getIdencargadoLaboratorioDetalle() {
         return idencargadoLaboratorioDetalle;
@@ -144,6 +156,16 @@ public class Encargado {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
+    public String getCodigo_laboratorio() {
+        return codigo_laboratorio;
+    }
+
+    public void setCodigo_laboratorio(String codigo_laboratorio) {
+        this.codigo_laboratorio = codigo_laboratorio;
+    }
+    
+    
 
     
    

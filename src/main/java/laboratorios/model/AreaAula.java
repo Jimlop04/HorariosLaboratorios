@@ -27,6 +27,10 @@ public class AreaAula {
         this.capacidad = capacidad;
     }
 
+    public Object getIdFacultad() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
 
     

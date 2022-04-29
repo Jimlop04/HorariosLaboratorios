@@ -8,15 +8,17 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import global.Mensajes;
-import java.sql.SQLException;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import org.primefaces.PrimeFaces;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author Jimmy
  */
 @ManagedBean(name = "encargadoMB")
-@SessionScoped
+@ViewScoped
 
 public class EncargadoManageBean implements Serializable {
 
@@ -24,13 +26,16 @@ public class EncargadoManageBean implements Serializable {
     private EncargadoDAO encargadoDAO = new EncargadoDAO();
     private List<Encargado> listaEncargados = new ArrayList<>();
     private List<Encargado> listaRoles = new ArrayList<>();
+    private List<Encargado> ListTotalRoles = new ArrayList<>();
     Mensajes mensajesJSF;
+    private int SelectonemenuLaboratorio;
 
     @PostConstruct
     public void init() {
         System.out.println("PostConstruct");
         listaEncargados = encargadoDAO.getEncargados();
         listaRoles = encargadoDAO.getRoles();
+        ListTotalRoles = encargadoDAO.getListRoles();
         mensajesJSF = new Mensajes();
         encargado = new Encargado();
     }
@@ -75,9 +80,56 @@ public class EncargadoManageBean implements Serializable {
     public void setListaRoles(List<Encargado> listaRoles) {
         this.listaRoles = listaRoles;
     }
+
+    public int getSelectonemenuLaboratorio() {
+        return SelectonemenuLaboratorio;
+    }
+
+    public void setSelectonemenuLaboratorio(int SelectonemenuLaboratorio) {
+        this.SelectonemenuLaboratorio = SelectonemenuLaboratorio;
+    }
+
+    public List<Encargado> getListTotalRoles() {
+        return ListTotalRoles;
+    }
+
+    public void setListTotalRoles(List<Encargado> ListTotalRoles) {
+        this.ListTotalRoles = ListTotalRoles;
+    }    
     
+   
     
+
+  public void LabSelectOneMenu(){
     
+   System.out.println(SelectonemenuLaboratorio);
+   System.out.println("Que paso");
+      
+  }
+    
+        public void editarRol() {
+        try {
+            if ("".equals(encargado.getIdRoles())) {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", ""));
+            } else if ("".equals(encargado.getNombre_rol())) {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre Rol"));
+           
+            } else {
+                this.encargadoDAO.modificarRol(encargado);
+                ListTotalRoles = encargadoDAO.getListRoles();
+                FacesContext.getCurrentInstance().
+                        addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Rol Guardado"));
+                
+                PrimeFaces.current().executeScript("PF('centroEditarRolDialog').hide()");
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Error al guardar"));
+        }
+        PrimeFaces.current().ajax().update(":form-principal:dtRol");
+    } 
     
     
 /**

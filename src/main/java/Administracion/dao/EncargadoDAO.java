@@ -35,9 +35,9 @@ public class EncargadoDAO {
   public List<Encargado> getEncargados(){
   List<Encargado> Encargados = new ArrayList<>();
   
-  String sql = String.format("select * from usuario u inner join persona p on u.\"persona_idPersona\" = p.\"idPersona\" inner join usuarioroles ur on ur.\"usuario_idUsuario\" = u.\"idUsuario\"\n" +
-"inner join roles r on r.\"idRoles\" = ur.\"roles_idRoles\" inner join encargado en on en.\"persona_idPersona\" = p.\"idPersona\" \n" +
-"inner join encargado_laboratorio el on el.\"encargado_idEncargado\" = en.\"idEncargado\" inner join laboratorio labo on labo.\"idLaboratorio\" = el.\"laboratoro_idLaboratorio\"");
+  String sql = String.format("select * from laboratorio.usuario u inner join laboratorio.persona p on u.\"persona_idPersona\" = p.\"idPersona\" inner join laboratorio.usuarioroles ur on ur.\"usuario_idUsuario\" = u.\"idUsuario\"\n" +
+"inner join laboratorio.roles r on r.\"idRoles\" = ur.\"roles_idRoles\" inner join laboratorio.encargado en on en.\"persona_idPersona\" = p.\"idPersona\" \n" +
+"inner join laboratorio.encargado_laboratorio el on el.\"encargado_idEncargado\" = en.\"idEncargado\" inner join laboratorio.laboratorio labo on labo.\"idLaboratorio\" = el.\"laboratoro_idLaboratorio\"");
   try{
        conexion.conectar();
        resultSet = conexion.ejecutarSql(sql);
@@ -67,15 +67,15 @@ public class EncargadoDAO {
     public List<Encargado> getRoles(){
   List<Encargado> roles = new ArrayList<>();
   
-  String sql = String.format("SELECT * from public.\"listar_tecnicos\"()");
+  String sql = String.format("SELECT * from laboratorio.lista_tecnicos()");
   try{
        conexion.conectar();
        resultSet = conexion.ejecutarSql(sql);
        
        while(resultSet.next()){
        roles.add(new Encargado(
-               resultSet.getInt("idRoles"),
-               resultSet.getString("nombre_rol")));
+               resultSet.getInt("idrol"),
+               resultSet.getString("nomrol")));
        }
   } catch (SQLException e) {
       System.out.println(e.getMessage());
@@ -84,6 +84,45 @@ public class EncargadoDAO {
   }
   return roles; 
   }
+    
+       public List<Encargado> getListRoles(){
+  List<Encargado> roles = new ArrayList<>();
+  
+  String sql = String.format("SELECT * from laboratorio.listar_roles()");
+  try{
+       conexion.conectar();
+       resultSet = conexion.ejecutarSql(sql);
+       
+       while(resultSet.next()){
+       roles.add(new Encargado(
+               resultSet.getInt("idrol"),
+               resultSet.getString("nomrol")));
+       }
+  } catch (SQLException e) {
+      System.out.println(e.getMessage());
+  } finally{
+     conexion.desconectar();
+  }
+  return roles; 
+  }
+       
+       public void modificarRol(Encargado encargado) throws SQLException {
+        try {
+
+            String sentencia = String.format("SELECT laboratorio.editar_rol("
+                    + "'" + encargado.getIdRoles() + "',"
+                    + "'" + encargado.getNombre_rol() + "')");
+            System.out.println(sentencia);
+            conexion.ejecutarSql(sentencia);
+            System.out.println(sentencia);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            conexion.desconectar();
+        }
+    }
+       
+       
     /**
      public Encargado registrarEncargado(Encargado encargado) throws SQLException {
         try {
