@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       lang="en">
 
 <h:head>
@@ -15,7 +15,7 @@
     <h:outputScript name="js/layout.js" library="manhattan-layout"/>
     <h:outputScript name="js/prism.js" library="manhattan-layout"/>
     <ui:insert name="head"/>
-
+    <f:event type="preRenderView" listener="#{loginMB.verificarInicioSesion()}"/>
 </h:head>
 
 <h:body>

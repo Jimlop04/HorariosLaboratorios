@@ -88,11 +88,23 @@ public class LoginMB extends Mensajes {
         try {
             if (usuarioSesion == null || usuarioSesion.getIdUsuario() < 1) {
                 context.getExternalContext()
-                        .redirect("./login.xhtml");
+                        .redirect(facesContext.getExternalContext().getRequestContextPath());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void cerrarSession() throws IOException {
+        System.out.println(httpSession.getAttribute(
+                "usuario") + "Holas CESION");
+        httpSession.removeAttribute("usuario");
+        System.out.println(httpSession.getAttribute(
+                "usuario") + "Holas CESION");
+        facesContext.getExternalContext().redirect(facesContext.getExternalContext().getRequestContextPath());
+        usuario.setPassword_usuario("");
+        usuario.setNombre_usuario("");
+        System.out.println(httpSession.getAttribute(
+                "usuario") + "Holas CESION");
     }
 
     //Verifica si la sesion tiene un usuario, devuelve un booleano
