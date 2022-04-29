@@ -2,42 +2,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"    
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       lang="en">
 
-    <h:head>
-        <f:facet name="first">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-            <meta name="apple-mobile-web-app-capable" content="yes"/>
-        </f:facet>
-        <h:outputScript name="js/layout.js" library="manhattan-layout"/>
-        <h:outputScript name="js/prism.js" library="manhattan-layout"/>
-        <ui:insert name="head"/>
-    
-    </h:head>
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+    </f:facet>
+    <h:outputScript name="js/layout.js" library="manhattan-layout"/>
+    <h:outputScript name="js/prism.js" library="manhattan-layout"/>
+    <ui:insert name="head"/>
 
-    <h:body >
-        
-        <div class="layout-wrapper">
-            <div class="layout-main">
-                <ui:include src="./HeaderPrincipal.xhtml"/>
-                <div class="layout-content">
-                    <ui:insert name="content">
-                    </ui:insert>
-                </div>
+</h:head>
+
+<h:body>
+
+    <div class="layout-wrapper">
+        <div class="layout-main">
+            <ui:include src="./HeaderPrincipal.xhtml"/>
+            <div class="layout-content">
+                <ui:insert name="content">
+                </ui:insert>
             </div>
         </div>
-        
-       <h:outputStylesheet library="css" name="cssLayout.css"/>
-        <h:outputStylesheet library="css" name="Login.css"/>
-        <h:outputStylesheet name="home.css" library="css"/>
-        <h:outputStylesheet name="main.css" library="css"/>
-        <h:outputStylesheet name="header.css" library="css"/>
-        <h:outputStylesheet library="manhattan-layout" name="css/primeflex.min.css"/>
-        <h:outputStylesheet library="manhattan-layout" name="css/layout-green-purple.css"/>
-        <h:outputStylesheet library="manhattan-layout" name="css/primeicons.css"/>
-    </h:body>
+    </div>
+
+    <h:outputStylesheet library="css" name="cssLayout.css"/>
+    <h:outputStylesheet library="css" name="Login.css"/>
+    <h:outputStylesheet name="home.css" library="css"/>
+    <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="header.css" library="css"/>
+    <h:outputStylesheet library="manhattan-layout" name="css/primeflex.min.css"/>
+    <h:outputStylesheet library="manhattan-layout" name="css/layout-green-purple.css"/>
+    <h:outputStylesheet library="manhattan-layout" name="css/primeicons.css"/>
+</h:body>
 
 </html>

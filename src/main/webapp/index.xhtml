@@ -23,7 +23,18 @@
     <title>Inicio de sessión</title>
 
 </h:head>
+<script type="text/javascript">
+    function preventbackbutton() {
+        window.history.forward();
+    }
+    setTimeout("preventbackbutton()", 0);
+    window.onunload = function () {
+        null
+    };
+</script>
 <h:body styleClass="login-body">
+    <p:growl id="growl" widgetVar="growl" showDetail="true" life="3000"/>
+
     <div id="top">
         <div class="layout-topbar">
             <h:graphicImage name="Images/logoUTEQ.png" height="60px" class="p-mr-1" style="width: 55px; height: 55px;
@@ -47,19 +58,21 @@
                             <h4>Usuario</h4>
                             <div class="input-wrapper ui-input-icon-left">
                                 <i class="pi pi-user"/>
-                                <p:inputText type="text"/>
+                                <p:inputText type="text" value="#{loginMB.usuario.nombre_usuario}"/>
                             </div>
                         </div>
                         <div class="ui-fluid">
                             <h4>Contraseña</h4>
                             <div class="input-wrapper ui-input-icon-left">
                                 <i class="pi pi-lock"/>
-                                <p:inputText type="password"/>
+                                <p:inputText type="password" value="#{loginMB.usuario.password_usuario}"/>
                             </div>
                         </div>
                         <div class="p-col-4 ">
-                            <p:button styleClass="ui-button-raised ui-button-success" outcome="/View/Global/Principal"
-                                      value="Entrar"></p:button>
+                            <p:commandButton
+                                    styleClass="ui-button-raised ui-button-success"
+                                    action="#{loginMB.iniciarSesion()}"
+                                      value="Entrar" update=":growl"></p:commandButton>
                         </div>
                     </div>
 
