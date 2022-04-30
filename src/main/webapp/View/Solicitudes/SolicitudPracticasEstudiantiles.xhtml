@@ -34,31 +34,34 @@
                                             <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel for="@next" value="Laboratorio" />
                                                  <p:selectOneMenu id="LaboratorioSelect"
-                                                                  value="#{encargadoMB.selectonemenuLaboratorio}"
+                                                                  value="#{encargadoMB.selectOneLaboratorio}"
                                                                   filter="true" >
                                                     
                                                     <f:selectItem itemLabel="Seleccione un Laboratorio" 
-                                                                  itemValue="0"
-                                                                  noSelectionOption="true"/>
+                                                                  itemValue="0"/>
                                                     <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
                                                                    var="la"
                                                                    itemLabel="#{la.nombre_laboratorio}" 
                                                                    itemValue="#{la.idLaboratorio}"></f:selectItems>
-                                                                   
-                                                   <p:ajax 
-                                                           listener="#{encargadoMB.labSelectOneMenu}"
-                                                           process=":form-SE:manage-Solicitud-form"/>
+                                                                   <p:ajax listener="#{encargadoMB.labolistarencargados}"
+                                                                            process=":form-SE:LaboratorioSelect"
+                                                                           update=":form-SE:EncargadoSelect"/>
                                                 </p:selectOneMenu>
                                                 
-
                                             </div>
                                             <div class="p-field p-col-12 p-md-3">
                                                 <p:outputLabel value="Responsable Laboratorio" for="@next"/>
-                                                <p:inputText 
-                                                    id="EncargadoLabSE"
-                                                    value="#" 
-                                                    maxlength="25"
-                                                    ></p:inputText>
+                                                <p:selectOneMenu id="EncargadoSelect"
+                                                                 value="#{encargadoMB.selectOneEncargado}"
+                                                                  filter="true" >
+                                                    <f:selectItem itemLabel="Seleccione un Laboratorio" 
+                                                                  itemValue="0"/>
+                                                    <f:selectItems value="#" 
+                                                                   var="la"
+                                                                   itemLabel="#" 
+                                                                   itemValue="#"></f:selectItems>
+                              
+                                                </p:selectOneMenu>
                                             </div>
                                             <div class="p-field p-col-12 p-md-3">
                                                 <p:outputLabel value="Materia" for="@next"/>

@@ -100,15 +100,12 @@ public class EncargadoDAO {
   return roles; 
   }
        
-       public void modificarRol(Encargado encargado) throws SQLException {
+       public void modificarRol(Encargado encargado) throws SQLException{
         try {
-
             String sentencia = String.format("SELECT laboratorio.editar_rol("
                     + "'" + encargado.getIdRoles() + "',"
                     + "'" + encargado.getNombre_rol() + "')");
-            System.out.println(sentencia);
             conexion.ejecutarSql(sentencia);
-            System.out.println(sentencia);
         } catch (Exception e) {
             throw e;
         } finally {
@@ -116,7 +113,34 @@ public class EncargadoDAO {
         }
     }
        
-       
+     public int getultimoIdRol(){
+         try {
+             conexion.conectar();
+             resultSet = conexion.ejecutarSql("SELECT laboratorio.obtenerultimoidroles()");
+             if(resultSet.next()){
+             return resultSet.getInt("obtenerultimoidroles");
+             }
+         } catch (Exception e) {
+             System.out.println("Error" + e.getMessage());
+         } finally{
+         conexion.desconectar();
+         }
+     return -1;
+     }
+     
+     public Encargado registrarRol(Encargado encargado) {
+        try {
+            String sentencia = String.format("SELECT laboratorio.registrar_rol(\n"
+                    + "	'" + encargado.getNombre_rol() + "')");
+            conexion.ejecutarSql(sentencia);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return encargado;
+    }
+           
     /**
      public Encargado registrarEncargado(Encargado encargado) throws SQLException {
         try {

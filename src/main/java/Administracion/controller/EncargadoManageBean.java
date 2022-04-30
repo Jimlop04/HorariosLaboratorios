@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 import javax.faces.view.ViewScoped;
+import org.eclipse.jdt.internal.compiler.util.Messages;
 
 /**
  *
@@ -28,7 +29,6 @@ public class EncargadoManageBean implements Serializable {
     private List<Encargado> listaRoles = new ArrayList<>();
     private List<Encargado> ListTotalRoles = new ArrayList<>();
     Mensajes mensajesJSF;
-    private int SelectonemenuLaboratorio;
 
     @PostConstruct
     public void init() {
@@ -38,6 +38,7 @@ public class EncargadoManageBean implements Serializable {
         ListTotalRoles = encargadoDAO.getListRoles();
         mensajesJSF = new Mensajes();
         encargado = new Encargado();
+      
     }
 
     public Encargado getEncargado() {
@@ -81,14 +82,6 @@ public class EncargadoManageBean implements Serializable {
         this.listaRoles = listaRoles;
     }
 
-    public int getSelectonemenuLaboratorio() {
-        return SelectonemenuLaboratorio;
-    }
-
-    public void setSelectonemenuLaboratorio(int SelectonemenuLaboratorio) {
-        this.SelectonemenuLaboratorio = SelectonemenuLaboratorio;
-    }
-
     public List<Encargado> getListTotalRoles() {
         return ListTotalRoles;
     }
@@ -96,31 +89,19 @@ public class EncargadoManageBean implements Serializable {
     public void setListTotalRoles(List<Encargado> ListTotalRoles) {
         this.ListTotalRoles = ListTotalRoles;
     }    
-    
-   
-    
 
-  public void LabSelectOneMenu(){
-    
-   System.out.println(SelectonemenuLaboratorio);
-   System.out.println("Que paso");
-      
-  }
+
     
         public void editarRol() {
         try {
-            if ("".equals(encargado.getIdRoles())) {
-                FacesContext.getCurrentInstance().addMessage(null, 
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", ""));
-            } else if ("".equals(encargado.getNombre_rol())) {
+            if ("".equals(encargado.getNombre_rol())) {
                 FacesContext.getCurrentInstance().addMessage(null, 
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre Rol"));
-           
             } else {
                 this.encargadoDAO.modificarRol(encargado);
                 ListTotalRoles = encargadoDAO.getListRoles();
                 FacesContext.getCurrentInstance().
-                        addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Rol Guardado"));
+                        addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Rol Editado Correctamante"));
                 
                 PrimeFaces.current().executeScript("PF('centroEditarRolDialog').hide()");
             }
@@ -131,7 +112,31 @@ public class EncargadoManageBean implements Serializable {
         PrimeFaces.current().ajax().update(":form-principal:dtRol");
     } 
     
+        public void idRolEditable(boolean editable) {
+        if (!editable) {
+            encargado = new Encargado();
+            int cod = encargadoDAO.getultimoIdRol();
+            if (cod > 0) {
+                encargado.setIdRoles(cod + 1);
+            }
+        } 
+        PrimeFaces.current().executeScript("PF('DialogEditarRol').show();");
+    }
     
+        public void registrarRoles() throws Exception {
+
+        try {
+            if ("".equals(encargado.getNombre_rol())) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Nombre");
+            } else {
+                this.encargadoDAO.registrarRol(encargado);
+                mensajesJSF.mensajeDeExito("Registro Exitoso");
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+        
 /**
     public void registrarEncargado() throws Exception {
 
