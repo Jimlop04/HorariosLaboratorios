@@ -8,220 +8,223 @@
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
             <ui:define name="content"> 
-                 <ui:include src="./SubHeaderSolicitudes.xhtml" />
+                <ui:include src="./SubHeaderSolicitudes.xhtml" />
                 <div class="barra-navegacion">
-                        <p:growl id="msgs" showDetail="true"/>         
-                        <div class="card" style="margin-top: 5px;">
-                            <p:toolbarGroup>
-                                <h:form id="form-SE">
-                                    <p:growl id="msgs" showDetail="true"/>  
-                                    <p:outputPanel 
-                                        id="manage-Solicitud-form"
-                                        class="ui-fluid">
-                                        <div class="p-formgrid p-grid">
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel value="Carrera" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-1">
-                                                 <p:outputLabel value="Codigo Laboratorio" for="@next"/>
-                                                <p:inputText
-                                                    id="CodLabSE"
-                                                    value="#" 
-                                                    readonly="true"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel for="@next" value="Laboratorio" />
-                                                 <p:selectOneMenu id="LaboratorioSelect"
-                                                                  value="#{encargadoMB.selectOneLaboratorio}"
-                                                                  filter="true" >
-                                                    
-                                                    <f:selectItem itemLabel="Seleccione un Laboratorio" 
-                                                                  itemValue="0"/>
-                                                    <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
-                                                                   var="la"
-                                                                   itemLabel="#{la.nombre_laboratorio}" 
-                                                                   itemValue="#{la.idLaboratorio}"></f:selectItems>
-                                                                   <p:ajax listener="#{encargadoMB.labolistarencargados}"
-                                                                            process=":form-SE:LaboratorioSelect"
-                                                                           update=":form-SE:EncargadoSelect"/>
-                                                </p:selectOneMenu>
-                                                
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Responsable Laboratorio" for="@next"/>
-                                                <p:selectOneMenu id="EncargadoSelect"
-                                                                 value="#{encargadoMB.selectOneEncargado}"
-                                                                  filter="true" >
-                                                    <f:selectItem itemLabel="Seleccione un Laboratorio" 
-                                                                  itemValue="0"/>
-                                                    <f:selectItems value="#" 
-                                                                   var="la"
-                                                                   itemLabel="#" 
-                                                                   itemValue="#"></f:selectItems>
-                              
-                                                </p:selectOneMenu>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Materia" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"
-                                                  ></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Docente" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-2">
-                                                <p:outputLabel value="Periodo Academico" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-2">
-                                                <p:outputLabel value="Semestre" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-2">
-                                                <p:outputLabel value="Paralelo" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-1">
-                                                <p:outputLabel value="Nro. Practica" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-8">
-                                                <p:outputLabel value="Tema de la Practica" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-1">
-                                                <p:outputLabel value="Nro. Estudiantes" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-1">
-                                                <p:outputLabel value="Fecha" for="@next"/>
-                                                <p:datePicker id="button"
-                                                              value="#{calendarView.date7}" 
-                                                              showIcon="true"/>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-1">
-                                                <p:outputLabel value="Hora" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-12">
-                                                <p:outputLabel value="Objetivo de la practica" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="25"></p:inputText>
-                                            </div>
+                    <p:growl id="msgs" showDetail="true"/>
+                    <div class="card" align="center">
+                        <p:toolbarGroup>
+                            <h4>Registro de Practicas Estudiantiles</h4>
+                        </p:toolbarGroup>
+                    </div>
+                    <div class="card" style="margin-top: 5px;">
+                        <p:toolbarGroup>
+                            <h:form id="form-SE">
+                                <p:growl id="msgs" showDetail="true"/>  
+                                <p:outputPanel 
+                                    id="manage-Solicitud-form"
+                                    class="ui-fluid">
+                                    <div class="p-formgrid p-grid">
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <p:outputLabel value="Carrera" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
                                         </div>
-                                    </p:outputPanel>
-                                    <f:facet name="footer">
-                                        <p:commandButton 
-                                            value="Guardar" 
-                                            icon="pi pi-check" 
-                                            styleClass="ui-button-primary">
-                                        </p:commandButton>
-                                        <p:commandButton 
-                                            value="Cancelar" 
-                                            icon="pi pi-times"
-                                            styleClass="ui-button-danger"/>
-                                    </f:facet>
-                                    <div class="card" style="margin-top: 5px;">
-                                        <p:toolbarGroup>
-                                            <h:form>
-                                                <div class="p-grid p-justify-around">
-                                                    <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                                 editInitEvent="dblclick" editMode="cell">
-                                                        <f:facet name="header">
-                                                            <div class="p-d-flex p-jc-between p-ai-center">
-                                                                <span style="font-size: 20px">Equipos</span>
-                                                                <span class="filter-container ui-input-icon-left">
-                                                                    <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                                </span>
-                                                            </div>
-                                                        </f:facet>
-                                                        <p:column headerText="Codigo" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Nombre" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Descripcion" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <p:outputLabel value="Codigo Laboratorio" for="@next"/>
+                                            <p:inputText
+                                                id="CodLabSE"
+                                                value="#" 
+                                                readonly="true"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <p:outputLabel for="@next" value="Laboratorio" />
+                                            <p:selectOneMenu id="LaboratorioSelect"
+                                                             value="#"
+                                                             filter="true" >
 
-                                                        <p:column headerText="Cantidad" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Tipo" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Estado" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column> 
-                                                        <p:column headerText="Acciones" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                    </p:dataTable>
-                                                </div>
-                                            </h:form>
-                                        </p:toolbarGroup> 
+                                                <f:selectItem itemLabel="Seleccione un Laboratorio" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
+                                                               var="la"
+                                                               itemLabel="#{la.nombre_laboratorio}" 
+                                                               itemValue="#{la.idLaboratorio}"></f:selectItems>
+
+                                            </p:selectOneMenu>
+
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <p:outputLabel value="Responsable Laboratorio" for="@next"/>
+                                            <p:selectOneMenu id="EncargadoSelect"
+                                                             value="#"
+                                                             filter="true" >
+                                                <f:selectItem itemLabel="Seleccione un Laboratorio" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#" 
+                                                               var="la"
+                                                               itemLabel="#" 
+                                                               itemValue="#"></f:selectItems>
+
+                                            </p:selectOneMenu>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <p:outputLabel value="Materia" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"
+                                                ></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <p:outputLabel value="Docente" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <p:outputLabel value="Periodo Academico" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <p:outputLabel value="Semestre" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <p:outputLabel value="Paralelo" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <p:outputLabel value="Nro. Practica" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-8">
+                                            <p:outputLabel value="Tema de la Practica" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <p:outputLabel value="Nro. Estudiantes" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <p:outputLabel value="Fecha" for="@next"/>
+                                            <p:datePicker id="button"
+                                                          value="#{calendarView.date7}" 
+                                                          showIcon="true"/>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <p:outputLabel value="Hora" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-12">
+                                            <p:outputLabel value="Objetivo de la practica" for="@next"/>
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                        </div>
                                     </div>
-                                    <div class="card" style="margin-top: 5px;">
-                                        <p:toolbarGroup>
-                                            <h:form>
-                                                <div class="p-grid p-justify-around">
-                                                    <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                                 editInitEvent="dblclick" editMode="cell">
-                                                        <f:facet name="header">
-                                                            <div class="p-d-flex p-jc-between p-ai-center">
-                                                                <span style="font-size: 20px">Lista de Estudiantes</span>
-                                                                <span class="filter-container ui-input-icon-left">
-                                                                    <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                                </span>
-                                                            </div>
-                                                        </f:facet>
-                                                        <p:column headerText="Numero" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Nombres" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Apellidos" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Cedula" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                        <p:column headerText="Asistencia" filterStyle="display : none">
-                                                            <h:outputText  />
-                                                        </p:column>
-                                                    </p:dataTable>
-                                                </div>
-                                            </h:form>
-                                        </p:toolbarGroup> 
-                                    </div>
-                                    <div align="right" >
-                                        <p:commandButton type="button" 
-                                                         value="Guardar"
-                                                         icon="pi pi-save" 
-                                                         styleClass="ui-button-success" />
-                                        <p:button  value="Cancelar" 
-                                                   styleClass="ui-button-danger"
-                                                   icon="pi pi-times" 
-                                                   outcome="ModuloSolicitudes"/>
-                                    </div>
-                                </h:form>
-                            </p:toolbarGroup> 
-                        </div>
-                   
+                                </p:outputPanel>
+                                <f:facet name="footer">
+                                    <p:commandButton 
+                                        value="Guardar" 
+                                        icon="pi pi-check" 
+                                        styleClass="ui-button-primary">
+                                    </p:commandButton>
+                                    <p:commandButton 
+                                        value="Cancelar" 
+                                        icon="pi pi-times"
+                                        styleClass="ui-button-danger"/>
+                                </f:facet>
+                                <div class="card" style="margin-top: 5px;">
+                                    <p:toolbarGroup>
+                                        <h:form>
+                                            <div class="p-grid p-justify-around">
+                                                <p:dataTable lazy="true"  editable="true" reflow="true"
+                                                             editInitEvent="dblclick" editMode="cell">
+                                                    <f:facet name="header">
+                                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                                            <span style="font-size: 20px">Equipos</span>
+                                                            <span class="filter-container ui-input-icon-left">
+                                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                            </span>
+                                                        </div>
+                                                    </f:facet>
+                                                    <p:column headerText="Codigo" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Nombre" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Descripcion" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+
+                                                    <p:column headerText="Cantidad" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Tipo" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Estado" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column> 
+                                                    <p:column headerText="Acciones" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </div>
+                                        </h:form>
+                                    </p:toolbarGroup> 
+                                </div>
+                                <div class="card" style="margin-top: 5px;">
+                                    <p:toolbarGroup>
+                                        <h:form>
+                                            <div class="p-grid p-justify-around">
+                                                <p:dataTable lazy="true"  editable="true" reflow="true"
+                                                             editInitEvent="dblclick" editMode="cell">
+                                                    <f:facet name="header">
+                                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                                            <span style="font-size: 20px">Lista de Estudiantes</span>
+                                                            <span class="filter-container ui-input-icon-left">
+                                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                            </span>
+                                                        </div>
+                                                    </f:facet>
+                                                    <p:column headerText="Numero" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Nombres" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Apellidos" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Cedula" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                    <p:column headerText="Asistencia" filterStyle="display : none">
+                                                        <h:outputText  />
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </div>
+                                        </h:form>
+                                    </p:toolbarGroup> 
+                                </div>
+                                <div align="right" >
+                                    <p:commandButton type="button" 
+                                                     value="Guardar"
+                                                     icon="pi pi-save" 
+                                                     styleClass="ui-button-success" />
+                                    <p:button  value="Cancelar" 
+                                               styleClass="ui-button-danger"
+                                               icon="pi pi-times" 
+                                               outcome="ModuloSolicitudes"/>
+                                </div>
+                            </h:form>
+                        </p:toolbarGroup> 
+                    </div>
+
                 </div>   
             </ui:define>
         </ui:composition>
