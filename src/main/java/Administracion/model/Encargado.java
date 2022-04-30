@@ -29,22 +29,29 @@ public class Encargado {
     public Encargado() {
     }
 
-    public Encargado(int idPersona, String nombre_persona, String apellido_persona, int idLaboratorio, String nombre_laboratorio, int idRoles, String nombre_rol, int idEncargadoLaboratorio, Date fecha_inicio, Date fecha_fin, Boolean estado) {
-        this.idPersona = idPersona;
+    public Encargado(String nombre_persona, 
+            String apellido_persona,
+            String nombre_laboratorio,
+            String nombre_rol, 
+            Date fecha_inicio, 
+            Date fecha_fin, 
+            Boolean estado) {
         this.nombre_persona = nombre_persona;
         this.apellido_persona = apellido_persona;
-        this.idLaboratorio = idLaboratorio;
         this.nombre_laboratorio = nombre_laboratorio;
-        this.idRoles = idRoles;
         this.nombre_rol = nombre_rol;
-        this.idEncargadoLaboratorio = idEncargadoLaboratorio;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.estado = estado;
         this.idEncargadoLaboratorio = idencargadoLaboratorioDetalle;
     }
 
-    public Encargado(int idPersona, String nombre_persona, String apellido_persona, int idLaboratorio, String nombre_laboratorio, String codigo_laboratorio) {
+    public Encargado(int idPersona, 
+            String nombre_persona, 
+            String apellido_persona, 
+            int idLaboratorio, 
+            String nombre_laboratorio, 
+            String codigo_laboratorio) {
         this.idPersona = idPersona;
         this.nombre_persona = nombre_persona;
         this.apellido_persona = apellido_persona;

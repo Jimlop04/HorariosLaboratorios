@@ -35,26 +35,20 @@ public class EncargadoDAO {
   public List<Encargado> getEncargados(){
   List<Encargado> Encargados = new ArrayList<>();
   
-  String sql = String.format("select * from laboratorio.usuario u inner join laboratorio.persona p on u.\"persona_idPersona\" = p.\"idPersona\" inner join laboratorio.usuarioroles ur on ur.\"usuario_idUsuario\" = u.\"idUsuario\"\n" +
-"inner join laboratorio.roles r on r.\"idRoles\" = ur.\"roles_idRoles\" inner join laboratorio.encargado en on en.\"persona_idPersona\" = p.\"idPersona\" \n" +
-"inner join laboratorio.encargado_laboratorio el on el.\"encargado_idEncargado\" = en.\"idEncargado\" inner join laboratorio.laboratorio labo on labo.\"idLaboratorio\" = el.\"laboratoro_idLaboratorio\"");
+  String sql = String.format("SELECT * from laboratorio.listar_encargados()");
   try{
        conexion.conectar();
        resultSet = conexion.ejecutarSql(sql);
        
        while(resultSet.next()){
        Encargados.add(new Encargado(
-               resultSet.getInt("idPersona"),
-               resultSet.getString("nombre_persona"),
-               resultSet.getString("apellido_persona"),
-               resultSet.getInt("idLaboratorio"),
-               resultSet.getString("nombre_laboratorio"),
-               resultSet.getInt("idRoles"),
-               resultSet.getString("nombre_rol"),
-               resultSet.getInt("idEncargadoLaboratorio"),
-               resultSet.getDate("fecha_inicio"),
-               resultSet.getDate("fecha_fin"),
-               resultSet.getBoolean("estado")));
+               resultSet.getString("nomper"),
+               resultSet.getString("apeper"),
+               resultSet.getString("nomlabo"),
+               resultSet.getString("nomrol"),
+               resultSet.getDate("fini"),
+               resultSet.getDate("ffin"),
+               resultSet.getBoolean("estad")));
        }
   } catch (SQLException e) {
       System.out.println(e.getMessage());

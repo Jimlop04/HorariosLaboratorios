@@ -10,17 +10,11 @@
             <ui:define name="content"> 
                  <ui:include src="./SubHeaderSolicitudes.xhtml" />
                 <div class="barra-navegacion">
-                    <h:form id="form-SE-principal">
-                        <p:growl id="msgs" showDetail="true"/>
-                        <div class="card" align="center">
-                            <p:toolbarGroup>
-                                <h4>Solicitud de Practicas Estudiantiles</h4>
-                                <h6>LABORATORIO DE QUÍMICA Y BIOQUÍMICA</h6>
-                            </p:toolbarGroup>
-                        </div>
+                        <p:growl id="msgs" showDetail="true"/>         
                         <div class="card" style="margin-top: 5px;">
                             <p:toolbarGroup>
                                 <h:form id="form-SE">
+                                    <p:growl id="msgs" showDetail="true"/>  
                                     <p:outputPanel 
                                         id="manage-Solicitud-form"
                                         class="ui-fluid">
@@ -41,21 +35,21 @@
                                                 <p:outputLabel for="@next" value="Laboratorio" />
                                                  <p:selectOneMenu id="LaboratorioSelect"
                                                                   value="#{encargadoMB.selectonemenuLaboratorio}"
-                                                                  filter="true" filterMatchMode="StarsWith">
-                                                     <p:ajax listener="#{encargadoMB.labSelectOneMenu}"
-                                                             process="@this"
-                                                              update="CodLabSE"
-                                                        />
+                                                                  filter="true" >
+                                                    
                                                     <f:selectItem itemLabel="Seleccione un Laboratorio" 
                                                                   itemValue="0"
                                                                   noSelectionOption="true"/>
                                                     <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
                                                                    var="la"
                                                                    itemLabel="#{la.nombre_laboratorio}" 
-                                                                   itemValue="#{la.idLaboratorio}">
-                                                    </f:selectItems>
-                                                   
+                                                                   itemValue="#{la.idLaboratorio}"></f:selectItems>
+                                                                   
+                                                   <p:ajax 
+                                                           listener="#{encargadoMB.labSelectOneMenu}"
+                                                           process=":form-SE:manage-Solicitud-form"/>
                                                 </p:selectOneMenu>
+                                                
 
                                             </div>
                                             <div class="p-field p-col-12 p-md-3">
@@ -224,7 +218,7 @@
                                 </h:form>
                             </p:toolbarGroup> 
                         </div>
-                    </h:form>
+                   
                 </div>   
             </ui:define>
         </ui:composition>
