@@ -1,4 +1,3 @@
-
 package Administracion.dao;
 
 import Administracion.model.Encargado;
@@ -7,17 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author Jimmy
  */
 public class EncargadoDAO {
-  
-   Conexion conexion = new Conexion();
-   private Encargado encargado;
-   private ResultSet resultSet;
-   private List<Encargado> listaEncargados;
-   private List<Encargado> listaRoles;
+
+    Conexion conexion = new Conexion();
+    private Encargado encargado;
+    private ResultSet resultSet;
+    private List<Encargado> listaEncargados;
+    private List<Encargado> listaRoles;
 
     public EncargadoDAO() {
         encargado = new Encargado();
@@ -31,76 +31,91 @@ public class EncargadoDAO {
         this.encargado = encargado;
     }
 
-   
-  public List<Encargado> getEncargados(){
-  List<Encargado> Encargados = new ArrayList<>();
-  
-  String sql = String.format("SELECT * from laboratorio.listar_encargados()");
-  try{
-       conexion.conectar();
-       resultSet = conexion.ejecutarSql(sql);
-       
-       while(resultSet.next()){
-       Encargados.add(new Encargado(
-               resultSet.getString("nomper"),
-               resultSet.getString("apeper"),
-               resultSet.getString("nomlabo"),
-               resultSet.getString("nomrol"),
-               resultSet.getDate("fini"),
-               resultSet.getDate("ffin"),
-               resultSet.getBoolean("estad")));
-       }
-  } catch (SQLException e) {
-      System.out.println(e.getMessage());
-  } finally{
-     conexion.desconectar();
-  }
-  return Encargados; 
-  }
-  
-    public List<Encargado> getRoles(){
-  List<Encargado> roles = new ArrayList<>();
-  
-  String sql = String.format("SELECT * from laboratorio.lista_tecnicos()");
-  try{
-       conexion.conectar();
-       resultSet = conexion.ejecutarSql(sql);
-       
-       while(resultSet.next()){
-       roles.add(new Encargado(
-               resultSet.getInt("idrol"),
-               resultSet.getString("nomrol")));
-       }
-  } catch (SQLException e) {
-      System.out.println(e.getMessage());
-  } finally{
-     conexion.desconectar();
-  }
-  return roles; 
-  }
-    
-       public List<Encargado> getListRoles(){
-  List<Encargado> roles = new ArrayList<>();
-  
-  String sql = String.format("SELECT * from laboratorio.listar_roles()");
-  try{
-       conexion.conectar();
-       resultSet = conexion.ejecutarSql(sql);
-       
-       while(resultSet.next()){
-       roles.add(new Encargado(
-               resultSet.getInt("idrol"),
-               resultSet.getString("nomrol")));
-       }
-  } catch (SQLException e) {
-      System.out.println(e.getMessage());
-  } finally{
-     conexion.desconectar();
-  }
-  return roles; 
-  }
-       
-       public void modificarRol(Encargado encargado) throws SQLException{
+    public List<Encargado> getEncargados() {
+        List<Encargado> Encargados = new ArrayList<>();
+
+        String sql = String.format("SELECT * from laboratorio.listar_tablaencargados()");
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql(sql);
+
+            while (resultSet.next()) {
+                Encargados.add(new Encargado(
+                        resultSet.getInt("idusu"),
+                        resultSet.getString("nomusu"),
+                        resultSet.getString("passwusu"),
+                        resultSet.getDate("fcreacionusu"),
+                        resultSet.getBoolean("estadusu"),
+                        resultSet.getInt("idpersona"),
+                        resultSet.getString("nompersona"),
+                        resultSet.getString("apepersona"),
+                        resultSet.getString("dnipersona"),
+                        resultSet.getDate("fdnpersona"),
+                        resultSet.getString("genpersona"),
+                        resultSet.getString("correopersona"),
+                        resultSet.getString("celupersona"),
+                        resultSet.getInt("idusuroles"),
+                        resultSet.getInt("idroles"),
+                        resultSet.getString("nomrol"),
+                        resultSet.getInt("idencarg"),
+                        resultSet.getInt("idencarglabo"),
+                        resultSet.getDate("finicio"),
+                        resultSet.getDate("ffin"),
+                        resultSet.getInt("idlabo"),
+                        resultSet.getString("nomlab"),
+                        resultSet.getString("codlab")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return Encargados;
+    }
+
+    public List<Encargado> getRoles() {
+        List<Encargado> roles = new ArrayList<>();
+
+        String sql = String.format("SELECT * from laboratorio.lista_tecnicos()");
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql(sql);
+
+            while (resultSet.next()) {
+                roles.add(new Encargado(
+                        resultSet.getInt("idrol"),
+                        resultSet.getString("nomrol")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return roles;
+    }
+
+    public List<Encargado> getListRoles() {
+        List<Encargado> roles = new ArrayList<>();
+
+        String sql = String.format("SELECT * from laboratorio.listar_roles()");
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql(sql);
+
+            while (resultSet.next()) {
+                roles.add(new Encargado(
+                        resultSet.getInt("idrol"),
+                        resultSet.getString("nomrol")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return roles;
+    }
+
+    public void modificarRol(Encargado encargado) throws SQLException {
         try {
             String sentencia = String.format("SELECT laboratorio.editar_rol("
                     + "'" + encargado.getIdRoles() + "',"
@@ -112,23 +127,23 @@ public class EncargadoDAO {
             conexion.desconectar();
         }
     }
-       
-     public int getultimoIdRol(){
-         try {
-             conexion.conectar();
-             resultSet = conexion.ejecutarSql("SELECT laboratorio.obtenerultimoidroles()");
-             if(resultSet.next()){
-             return resultSet.getInt("obtenerultimoidroles");
-             }
-         } catch (Exception e) {
-             System.out.println("Error" + e.getMessage());
-         } finally{
-         conexion.desconectar();
-         }
-     return -1;
-     }
-     
-     public Encargado registrarRol(Encargado encargado) {
+
+    public int getultimoIdRol() {
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql("SELECT laboratorio.obtenerultimoidroles()");
+            if (resultSet.next()) {
+                return resultSet.getInt("obtenerultimoidroles");
+            }
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return -1;
+    }
+
+    public Encargado registrarRol(Encargado encargado) {
         try {
             String sentencia = String.format("SELECT laboratorio.registrar_rol(\n"
                     + "	'" + encargado.getNombre_rol() + "')");
@@ -140,35 +155,60 @@ public class EncargadoDAO {
         }
         return encargado;
     }
-           
-    /**
-     public Encargado registrarEncargado(Encargado encargado) throws SQLException {
+
+    public void editarEncargado(Encargado encargado) throws SQLException {
         try {
-            conexion.conectar();
-            String sentencia = "Select public.registrarencargados('" + encargado.getNombre_encargado() + "',\n"
-                    + "'" + encargado.getApellidos_encargado() + "',\n"
-                    + "'" + encargado.getFecha_inicio() + "',\n"
-                    + "'" + encargado.getFecha_fin() + "',\n"
-                    + "'" + encargado.isEstado() + "',\n"
-                    + "'" + encargado.getNombre_rol() + "');";
+
+            String sentencia = String.format("SELECT laboratorio.editar_encargado("
+                    + "'" + encargado.getIdUsuario() + "',"
+                    + "'" + encargado.getNombre_usuario() + "',"
+                    + "'" + encargado.getPassword_usuario() + "',"
+                    + "'" + encargado.getFechacreacion_usuario() + "',"
+                    + "'" + encargado.getEstado_usuario() + "',"
+                    + "'" + encargado.getIdPersona() + "',"
+                    + "'" + encargado.getNombre_persona() + "',"
+                    + "'" + encargado.getApellido_persona() + "',"
+                    + "'" + encargado.getDni_persona() + "',"
+                    + "'" + encargado.getFechanacimiento_persona() + "',"
+                    + "'" + encargado.getGenero_persona() + "',"
+                    + "'" + encargado.getCorreo_persona() + "',"
+                    + "'" + encargado.getCelular_persona() + "',"
+                    + "'" + encargado.getIdUsuaRoles()+ "',"
+                    + "'" + encargado.getIdRoles() + "',"
+                    + "'" + encargado.getNombre_rol() + "',"
+                    + "'" + encargado.getIdEncargado() + "',"
+                    + "'" + encargado.getIdEncargadoLaboratorio() + "',"
+                    + "'" + encargado.getFecha_inicio() + "',"
+                    + "'" + encargado.getFecha_fin() + "',"
+                    + "'" + encargado.getIdLaboratorio() + "',"
+                    + "'" + encargado.getNombre_laboratorio() + "',"
+                    + "'" + encargado.getCodigo_laboratorio() + "')");
+
+            System.out.println(sentencia);
             conexion.ejecutarSql(sentencia);
-            
-            String sentencia2 = "INSERT INTO public.encargado_rol(\n" +
-"	 \"rol_idRol\", \"encargado_idEncargado\")\n" +
-"	VALUES ((select MAX(\"idRoles\") from public.roles),\n" +
-"			(select MAX(\"idEncargado\") from public.encargado));";
-            conexion.ejecutarSql(sentencia2);
-            
+            System.out.println(sentencia);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw e;
         } finally {
             conexion.desconectar();
         }
-        return encargado;
-    } **/
-    
-    
-    
-    
- 
+    }
+
+    /**
+     * public Encargado registrarEncargado(Encargado encargado) throws
+     * SQLException { try { conexion.conectar(); String sentencia = "Select
+     * public.registrarencargados('" + encargado.getNombre_encargado() + "',\n"
+     * + "'" + encargado.getApellidos_encargado() + "',\n" + "'" +
+     * encargado.getFecha_inicio() + "',\n" + "'" + encargado.getFecha_fin() +
+     * "',\n" + "'" + encargado.isEstado() + "',\n" + "'" +
+     * encargado.getNombre_rol() + "');"; conexion.ejecutarSql(sentencia);
+     *
+     * String sentencia2 = "INSERT INTO public.encargado_rol(\n" + "
+     * \"rol_idRol\", \"encargado_idEncargado\")\n" + "	VALUES ((select
+     * MAX(\"idRoles\") from public.roles),\n" + "	(select MAX(\"idEncargado\")
+     * from public.encargado));"; conexion.ejecutarSql(sentencia2);
+     *
+     * } catch (Exception e) { System.out.println(e.getMessage()); } finally {
+     * conexion.desconectar(); } return encargado; } *
+     */
 }

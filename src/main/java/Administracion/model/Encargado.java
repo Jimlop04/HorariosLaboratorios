@@ -7,43 +7,40 @@ import java.util.Date;
  * @author Jimmy
  */
 public class Encargado {
+    private int idUsuario;
+    private String nombre_usuario;
+    private String password_usuario;
+    private Date fechacreacion_usuario;
+    private Boolean estado_usuario;
+   
     private int idPersona;
     private String nombre_persona;
     private String apellido_persona;
+    private String dni_persona;
+    private Date fechanacimiento_persona;
+    private String genero_persona;
+    private String correo_persona;
+    private String celular_persona;
+    
+    private int idUsuaRoles;
+    
+    private int idRoles;
+    private String nombre_rol;
+    
+    private int idEncargado;
+    
+    private int idEncargadoLaboratorio;
+    private Date fecha_inicio;
+    private Date fecha_fin;
     
     private int idLaboratorio;
     private String nombre_laboratorio;
     private String codigo_laboratorio;
     
-    private int idRoles;
-    private String nombre_rol;
-    
-    private int idEncargadoLaboratorio;
-    private Date fecha_inicio;
-    private Date fecha_fin;
-    private Boolean estado;
-
     private int  idencargadoLaboratorioDetalle;
 
 
     public Encargado() {
-    }
-
-    public Encargado(String nombre_persona, 
-            String apellido_persona,
-            String nombre_laboratorio,
-            String nombre_rol, 
-            Date fecha_inicio, 
-            Date fecha_fin, 
-            Boolean estado) {
-        this.nombre_persona = nombre_persona;
-        this.apellido_persona = apellido_persona;
-        this.nombre_laboratorio = nombre_laboratorio;
-        this.nombre_rol = nombre_rol;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_fin = fecha_fin;
-        this.estado = estado;
-        this.idEncargadoLaboratorio = idencargadoLaboratorioDetalle;
     }
 
     public Encargado(int idPersona, 
@@ -59,6 +56,58 @@ public class Encargado {
         this.nombre_laboratorio = nombre_laboratorio;
         this.codigo_laboratorio = codigo_laboratorio;
     }
+
+    public Encargado(int idUsuario, 
+            String nombre_usuario, 
+            String password_usuario, 
+            Date fechacreacion_usuario, 
+            Boolean estado_usuario, 
+            int idPersona, 
+            String nombre_persona, 
+            String apellido_persona, 
+            String dni_persona, 
+            Date fechanacimiento_persona, 
+            String genero_persona, 
+            String correo_persona, 
+            String celular_persona, 
+            int idUsuaRoles, 
+            int idRoles, 
+            String nombre_rol, 
+            int idEncargado, 
+            int idEncargadoLaboratorio, 
+            Date fecha_inicio, 
+            Date fecha_fin, 
+            int idLaboratorio, 
+            String nombre_laboratorio, 
+            String codigo_laboratorio) {
+        this.idUsuario = idUsuario;
+        this.nombre_usuario = nombre_usuario;
+        this.password_usuario = password_usuario;
+        this.fechacreacion_usuario = fechacreacion_usuario;
+        this.estado_usuario = estado_usuario;
+        this.idPersona = idPersona;
+        this.nombre_persona = nombre_persona;
+        this.apellido_persona = apellido_persona;
+        this.dni_persona = dni_persona;
+        this.fechanacimiento_persona = fechanacimiento_persona;
+        this.genero_persona = genero_persona;
+        this.correo_persona = correo_persona;
+        this.celular_persona = celular_persona;
+        this.idUsuaRoles = idUsuaRoles;
+        this.idRoles = idRoles;
+        this.nombre_rol = nombre_rol;
+        this.idEncargado = idEncargado;
+        this.idEncargadoLaboratorio = idEncargadoLaboratorio;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.idLaboratorio = idLaboratorio;
+        this.nombre_laboratorio = nombre_laboratorio;
+        this.codigo_laboratorio = codigo_laboratorio;
+    }
+
+  
+    
+    
     
     
 
@@ -156,14 +205,7 @@ public class Encargado {
         this.fecha_fin = fecha_fin;
     }
 
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
+    
     public String getCodigo_laboratorio() {
         return codigo_laboratorio;
     }
@@ -171,6 +213,102 @@ public class Encargado {
     public void setCodigo_laboratorio(String codigo_laboratorio) {
         this.codigo_laboratorio = codigo_laboratorio;
     }
+
+    public String getDni_persona() {
+        return dni_persona;
+    }
+
+    public void setDni_persona(String dni_persona) {
+        this.dni_persona = dni_persona;
+    }
+
+    public Date getFechanacimiento_persona() {
+        return fechanacimiento_persona;
+    }
+
+    public void setFechanacimiento_persona(Date fechanacimiento_persona) {
+        this.fechanacimiento_persona = fechanacimiento_persona;
+    }
+
+    public String getGenero_persona() {
+        return genero_persona;
+    }
+
+    public void setGenero_persona(String genero_persona) {
+        this.genero_persona = genero_persona;
+    }
+
+    public String getCorreo_persona() {
+        return correo_persona;
+    }
+
+    public void setCorreo_persona(String correo_persona) {
+        this.correo_persona = correo_persona;
+    }
+
+    public String getCelular_persona() {
+        return celular_persona;
+    }
+
+    public void setCelular_persona(String celular_persona) {
+        this.celular_persona = celular_persona;
+    }
+
+    public int getIdEncargado() {
+        return idEncargado;
+    }
+
+    public void setIdEncargado(int idEncargado) {
+        this.idEncargado = idEncargado;
+    }
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNombre_usuario() {
+        return nombre_usuario;
+    }
+
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
+    }
+
+    public String getPassword_usuario() {
+        return password_usuario;
+    }
+
+    public void setPassword_usuario(String password_usuario) {
+        this.password_usuario = password_usuario;
+    }
+
+    public Date getFechacreacion_usuario() {
+        return fechacreacion_usuario;
+    }
+
+    public void setFechacreacion_usuario(Date fechacreacion_usuario) {
+        this.fechacreacion_usuario = fechacreacion_usuario;
+    }
+
+    public Boolean getEstado_usuario() {
+        return estado_usuario;
+    }
+
+    public void setEstado_usuario(Boolean estado_usuario) {
+        this.estado_usuario = estado_usuario;
+    }
+
+    public int getIdUsuaRoles() {
+        return idUsuaRoles;
+    }
+
+    public void setIdUsuaRoles(int idUsuaRoles) {
+        this.idUsuaRoles = idUsuaRoles;
+    }
+    
     
     
 
