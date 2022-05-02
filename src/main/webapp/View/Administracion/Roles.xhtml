@@ -33,29 +33,100 @@
                                     modal="true"
                                     widgetVar="RegistrarRol"
                                     responsive="true" 
-                                    width="25%"
+                                    width="80%"
                                     draggable="false"
                                     closeOnEscape="true"
-                                    height="50" >
+                                    height="650" >
                                     <p:outputPanel 
                                         id="manage-rol-form" 
                                         class="ui-fluid">
                                         <div class="p-formgrid p-grid">
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Codigo:" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="30"
-                                                    disabled="true" 
-                                                    style="background: #9dd2ee;"
-                                                    value="#{encargadoMB.encargado.idRoles}" ></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-9">
-                                                <p:outputLabel value="Nombre Rol:" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    value="#{encargadoMB.encargado.nombre_rol}" ></p:inputText>
-                                            </div>
+                                           <div class="p-field p-col-12 p-md-5">
+                                               <p:panel header="Datos del Rol">
+                                                    <p:inputText
+                                                        value="#{encargadoMB.encargado.idRoles}" 
+                                                        style="display: none"
+                                                        ></p:inputText>
+                                                    <p:outputLabel
+                                                        value="Codigo: "></p:outputLabel>
+                                                    <p:inputText
+                                                        value="#{encargadoMB.encargado.idRoles}" 
+                                                        maxlength="50"
+                                                        disabled="true" 
+                                                        style="background: #9dd2ee;"></p:inputText> 
+                                                    <p:outputLabel
+                                                        value="Nombre: "></p:outputLabel>
+                                                    <p:inputText
+                                                        value="#{encargadoMB.encargado.nombre_rol}" 
+                                                        maxlength="50"
+                                                        ></p:inputText> 
+                                                    <p:outputLabel
+                                                        value="Descripción: "></p:outputLabel>
+                                                    <p:inputText
+                                                        value="#{encargadoMB.encargado.descripcion_rol}" 
+                                                        maxlength="50"
+                                                        ></p:inputText>
+                                                    <p:outputLabel value="Estado" for="@next"/>
+                                                    <p:selectBooleanButton value="#{encargadoMB.encargado.estado_rol}"
+                                                                           onLabel="Habilitado" 
+                                                                           offLabel="Deshabilitado"
+                                                                           onIcon="pi pi-check " 
+                                                                           offIcon="pi pi-times " 
+                                                                           style="width:100%;"
+                                                                           />
+                                                    </p:panel>
+                                                </div>
+                                                <div class="p-field p-col-12 p-md-7">
+                                                 
+                                                    <p:panel header="Modulos y Vistas">
+                                                        <p:accordionPanel multiple="true" widgetVar="multiple1">
+                                                            <p:tab title="Administracion">
+                                                                <p class="p-m-0">
+                                                                    lista de las vistas
+                                                                    filas check box
+                                                                    roles
+                                                                    encargado
+                                                                    docente
+                                                                    Usuario
+                                                                </p>
+                                                            </p:tab>
+                                                            <p:tab title="Solicitudes Estudiante">
+                                                                <p class="p-m-0">
+                                                                    Sed ut perspiciatis unde omnis
+                                                                </p>
+                                                            </p:tab>
+                                                            <p:tab title="Solicitad de Tesis">
+                                                                <p class="p-m-0">At vero eos et a
+                                                                </p>
+                                                            </p:tab>
+                                                        </p:accordionPanel>
+                                                        </p:panel> 
+                                                        
+                                                                                         
+                                                </div>
                                         </div>
+                                        
+                                         <div class="card">
+                                             <p:panel header="Cualquier cosa">
+                            
+                                                        <p:accordionPanel multiple="true" widgetVar="multiple">
+                                                            <p:tab title="Header I">
+                                                                <p class="p-m-0">
+                                                                    Lorem ipsum dolor sit amet
+                                                                </p>
+                                                            </p:tab>
+                                                            <p:tab title="Header II">
+                                                                <p class="p-m-0">
+                                                                    Sed ut perspiciatis unde omnis
+                                                                </p>
+                                                            </p:tab>
+                                                            <p:tab title="Header III">
+                                                                <p class="p-m-0">At vero eos et a
+                                                                </p>
+                                                            </p:tab>
+                                                        </p:accordionPanel>
+                                                        </p:panel>
+                                                    </div>  
                                     </p:outputPanel>
                                     <f:facet name="footer">
                                         <p:commandButton 
@@ -82,13 +153,13 @@
                                     modal="true"
                                     widgetVar="centroEditarRolDialog" 
                                     responsive="true" 
-                                    width="24%"
+                                    width="30%"
                                     draggable="false" 
-                                    height="62" >
+                                    height="150" >
                                     <p:outputPanel 
                                         id="manage-editarRol-form" 
                                         class="ui-fluid">
-                                        <p:outputPanel>
+                                   
                                             <div class="p-field">
                                                 <div class="p-formgrid p-grid">
                                                     <div class="p-field p-col-12 p-md-2">
@@ -106,15 +177,35 @@
                                                     </div>
                                                     <div class="p-field p-col-12 p-md-10">
                                                         <p:outputLabel
-                                                            value="Nombre Rol: "></p:outputLabel>
+                                                            value="Nombre: "></p:outputLabel>
                                                         <p:inputText
                                                             value="#{encargadoMB.encargado.nombre_rol}" 
                                                             maxlength="50"
                                                             ></p:inputText>  
                                                     </div>
+                                                    <div class="p-field p-col-12 p-md-9">
+                                                        <p:outputLabel
+                                                            value="Descripción: "></p:outputLabel>
+                                                        <p:inputText
+                                                            value="#{encargadoMB.encargado.descripcion_rol}" 
+                                                            maxlength="50"
+                                                            ></p:inputText>  
+                                                    </div>
+                                                    <div class="p-field p-col-12 p-md-3">
+                                                        <p:outputLabel value="Estado" for="@next"/>
+                                                        <p:selectBooleanButton value="#{encargadoMB.encargado.estado_rol}"
+                                                                               onLabel="Habilitado" 
+                                                                               offLabel="Deshabilitado"
+                                                                               onIcon="pi pi-check " 
+                                                                               offIcon="pi pi-times " 
+                                                                               style="width:100%;"
+                                                                               />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </p:outputPanel>
+                                            
+                                            
+                                   
                                     </p:outputPanel>
                                     <!-- Botones Guardar/Cancelar-->
                                     <f:facet name="footer">
@@ -162,15 +253,28 @@
                                             </span>
                                         </div>
                                     </f:facet>
-                                    <p:column headerText="Codigo Rol" 
+                                    <p:column headerText="Codigo" 
                                               filterStyle="display : none">
                                         <h:outputText 
                                             value="#{TablaRoles.idRoles}"/>
                                     </p:column>
-                                    <p:column headerText="Nombre Rol" 
+                                    <p:column headerText="Nombre" 
                                               filterStyle="display : none">
                                         <h:outputText 
                                             value="#{TablaRoles.nombre_rol}"/>
+                                    </p:column>
+                                    <p:column headerText="Descripción" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaRoles.descripcion_rol}"/>
+                                    </p:column>
+                                    <p:column headerText="Estado" sortBy="#{TablaRoles.estado_rol}">
+                                        <p:tag severity="success" value="Habilitado"
+                                               style="font-size:12px;"
+                                               rendered="#{TablaRoles.estado_rol eq true}"/>
+                                        <p:tag severity="warning" value="Deshabilitado"
+                                               style="font-size:12px;"
+                                               rendered="#{TablaRoles.estado_rol eq false}"/>
                                     </p:column>
                                     <p:column headerText="Acciones" filterStyle="display : none">
                                         <p:commandButton 

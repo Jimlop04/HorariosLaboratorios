@@ -175,5 +175,22 @@ public class LaboratorioDAO {
             conexion.desconectar();
         }
     }
+    
+    
+        public Laboratorio getGrupoById(int id) {
+        
+        try {
+            conexion.conectar();
+            ResultSet result = conexion.ejecutarSql("select getgrupocuentabyid(" + id + ")");
+            if (result.next()) {
+                String cadenaJSON = result.getString("getgrupocuentabyid");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error getgrupocuenta: " + ex.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+    return laboratorio;
+    }
 
 }

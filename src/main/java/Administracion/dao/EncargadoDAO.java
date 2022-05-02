@@ -105,7 +105,9 @@ public class EncargadoDAO {
             while (resultSet.next()) {
                 roles.add(new Encargado(
                         resultSet.getInt("idrol"),
-                        resultSet.getString("nomrol")));
+                        resultSet.getString("nomrol"),
+                        resultSet.getString("descriprol"),
+                        resultSet.getBoolean("estadrol")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -119,7 +121,9 @@ public class EncargadoDAO {
         try {
             String sentencia = String.format("SELECT laboratorio.editar_rol("
                     + "'" + encargado.getIdRoles() + "',"
-                    + "'" + encargado.getNombre_rol() + "')");
+                    + "'" + encargado.getNombre_rol() + "',"
+                    + "'" + encargado.getDescripcion_rol() + "',"
+                    + "'" + encargado.getEstado_rol() + "')");
             conexion.ejecutarSql(sentencia);
         } catch (Exception e) {
             throw e;
@@ -173,7 +177,7 @@ public class EncargadoDAO {
                     + "'" + encargado.getGenero_persona() + "',"
                     + "'" + encargado.getCorreo_persona() + "',"
                     + "'" + encargado.getCelular_persona() + "',"
-                    + "'" + encargado.getIdUsuaRoles()+ "',"
+                    + "'" + encargado.getIdUsuaRoles() + "',"
                     + "'" + encargado.getIdRoles() + "',"
                     + "'" + encargado.getNombre_rol() + "',"
                     + "'" + encargado.getIdEncargado() + "',"

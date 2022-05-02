@@ -12,6 +12,7 @@ public class Laboratorio {
     private String nombre_laboratorio;
     private String codigo_laboratorio;
     private int capacidad;
+    
  
 
     public Laboratorio() {
@@ -107,6 +108,14 @@ public class Laboratorio {
 
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
+    }
+    
+    
+    @Override
+    public String toString() {
+        return "Laboratorio{" + "idLaboratorio=" + idLaboratorio + ", "
+                + "nombre_laboratorio=" + nombre_laboratorio + ", "
+                + "codigo_laboratorio=" + codigo_laboratorio + '}';
     }
     
 }

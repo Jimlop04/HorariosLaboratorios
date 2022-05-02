@@ -95,6 +95,12 @@ public class EncargadoManageBean implements Serializable {
             if ("".equals(encargado.getNombre_rol())) {
                 FacesContext.getCurrentInstance().addMessage(null, 
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre Rol"));
+                } else if ("".equals(encargado.getDescripcion_rol())) {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Descripción"));
+                } else if ("".equals(encargado.getEstado_rol())) {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Estado"));
             } else {
                 this.encargadoDAO.modificarRol(encargado);
                 ListTotalRoles = encargadoDAO.getListRoles();

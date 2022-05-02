@@ -26,6 +26,8 @@ public class Encargado {
     
     private int idRoles;
     private String nombre_rol;
+    private String descripcion_rol;
+    private Boolean estado_rol;
     
     private int idEncargado;
     
@@ -105,12 +107,20 @@ public class Encargado {
         this.codigo_laboratorio = codigo_laboratorio;
     }
 
-  
-    
-    
-    
-    
+    public Encargado(int idRoles, String nombre_rol, String descripcion_rol, Boolean estado_rol) {
+        this.idRoles = idRoles;
+        this.nombre_rol = nombre_rol;
+        this.descripcion_rol = descripcion_rol;
+        this.estado_rol = estado_rol;
+    }
 
+    public Encargado(int idRoles, String nombre_rol) {
+        this.idRoles = idRoles;
+        this.nombre_rol = nombre_rol;
+    }
+    
+    
+    
     public int getIdencargadoLaboratorioDetalle() {
         return idencargadoLaboratorioDetalle;
     }
@@ -118,13 +128,7 @@ public class Encargado {
     public void setIdencargadoLaboratorioDetalle(int idencargadoLaboratorioDetalle) {
         this.idencargadoLaboratorioDetalle = idencargadoLaboratorioDetalle;
     }
-
-
-    public Encargado(int idRoles, String nombre_rol) {
-        this.idRoles = idRoles;
-        this.nombre_rol = nombre_rol;
-    }
-
+    
     public int getIdPersona() {
         return idPersona;
     }
@@ -307,6 +311,22 @@ public class Encargado {
 
     public void setIdUsuaRoles(int idUsuaRoles) {
         this.idUsuaRoles = idUsuaRoles;
+    }
+
+    public String getDescripcion_rol() {
+        return descripcion_rol;
+    }
+
+    public void setDescripcion_rol(String descripcion_rol) {
+        this.descripcion_rol = descripcion_rol;
+    }
+
+    public Boolean getEstado_rol() {
+        return estado_rol;
+    }
+
+    public void setEstado_rol(Boolean estado_rol) {
+        this.estado_rol = estado_rol;
     }
     
     

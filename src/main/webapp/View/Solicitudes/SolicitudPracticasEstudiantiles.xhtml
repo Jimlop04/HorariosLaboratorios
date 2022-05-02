@@ -38,10 +38,14 @@
                                         </div>
                                         <div class="p-field p-col-12 p-md-4">
                                             <p:outputLabel for="@next" value="Laboratorio" />
-                                            <p:selectOneMenu id="LaboratorioSelect"
-                                                             value="#"
-                                                             filter="true" >
 
+                                            <p:selectOneMenu id="SelectLaboratorio"
+                                                             disabled="#{laboratorioMB.laboratorio.idLaboratorio != 0}"
+                                                             value="#{laboratorioMB.laboratorio.idLaboratorio}"
+                                                             filter="true" 
+                                                             filterMatchMode="startsWith">
+                                                <p:ajax listener="#{laboratorioMB.onLaboratorioChange}" 
+                                                      />
                                                 <f:selectItem itemLabel="Seleccione un Laboratorio" 
                                                               itemValue="0"/>
                                                 <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
@@ -137,71 +141,71 @@
                                         styleClass="ui-button-danger"/>
                                 </f:facet>
                                 <div class="card" style="margin-top: 5px;">
-                                            <div class="p-grid p-justify-around">
-                                                <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                             editInitEvent="dblclick" editMode="cell">
-                                                    <f:facet name="header">
-                                                        <div class="p-d-flex p-jc-between p-ai-center">
-                                                            <span style="font-size: 20px">Equipos</span>
-                                                            <span class="filter-container ui-input-icon-left">
-                                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                            </span>
-                                                        </div>
-                                                    </f:facet>
-                                                    <p:column headerText="Codigo" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Nombre" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Descripcion" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
+                                    <div class="p-grid p-justify-around">
+                                        <p:dataTable lazy="true"  editable="true" reflow="true"
+                                                     editInitEvent="dblclick" editMode="cell">
+                                            <f:facet name="header">
+                                                <div class="p-d-flex p-jc-between p-ai-center">
+                                                    <span style="font-size: 20px">Equipos</span>
+                                                    <span class="filter-container ui-input-icon-left">
+                                                        <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                    </span>
+                                                </div>
+                                            </f:facet>
+                                            <p:column headerText="Codigo" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Nombre" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Descripcion" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
 
-                                                    <p:column headerText="Cantidad" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Tipo" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Estado" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column> 
-                                                    <p:column headerText="Acciones" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                </p:dataTable>
-                                            </div>
+                                            <p:column headerText="Cantidad" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Tipo" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Estado" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column> 
+                                            <p:column headerText="Acciones" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
                                 </div>
                                 <div class="card" style="margin-top: 5px;">
-                                            <div class="p-grid p-justify-around">
-                                                <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                             editInitEvent="dblclick" editMode="cell">
-                                                    <f:facet name="header">
-                                                        <div class="p-d-flex p-jc-between p-ai-center">
-                                                            <span style="font-size: 20px">Lista de Estudiantes</span>
-                                                            <span class="filter-container ui-input-icon-left">
-                                                                <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                            </span>
-                                                        </div>
-                                                    </f:facet>
-                                                    <p:column headerText="Numero" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Nombres" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Apellidos" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Cedula" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                    <p:column headerText="Asistencia" filterStyle="display : none">
-                                                        <h:outputText  />
-                                                    </p:column>
-                                                </p:dataTable>
-                                            </div>
+                                    <div class="p-grid p-justify-around">
+                                        <p:dataTable lazy="true"  editable="true" reflow="true"
+                                                     editInitEvent="dblclick" editMode="cell">
+                                            <f:facet name="header">
+                                                <div class="p-d-flex p-jc-between p-ai-center">
+                                                    <span style="font-size: 20px">Lista de Estudiantes</span>
+                                                    <span class="filter-container ui-input-icon-left">
+                                                        <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
+                                                    </span>
+                                                </div>
+                                            </f:facet>
+                                            <p:column headerText="Numero" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Nombres" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Apellidos" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Cedula" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                            <p:column headerText="Asistencia" filterStyle="display : none">
+                                                <h:outputText  />
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
                                 </div>
                                 <div align="right" >
                                     <p:commandButton type="button" 

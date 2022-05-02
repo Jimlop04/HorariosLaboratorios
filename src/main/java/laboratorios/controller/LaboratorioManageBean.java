@@ -110,14 +110,6 @@ public class LaboratorioManageBean implements Serializable {
     public void setListaAreas(List<AreaAula> listaAreas) {
         this.listaAreas = listaAreas;
     }
-
- 
-
-     public void LabSelectOneMenu(){
-    
-   System.out.println("Que paso");
-      
-  }
       
  public void registrarLaboratorio() throws Exception {
 
@@ -180,4 +172,18 @@ public class LaboratorioManageBean implements Serializable {
        
             }
         }
+     
+      public void onLaboratorioChange() {
+          System.out.println("YA ENTRO PILAS");
+           System.out.println();
+        if (laboratorio.getIdLaboratorio() != 0) {
+            // primero obtener el codigo del grupo
+            String codigoLabo = laboratorioDAO.getGrupoById(laboratorio.getIdLaboratorio()).getCodigo_laboratorio();
+
+            
+            
+        } 
+    }
+     
+     
 }
