@@ -7,9 +7,11 @@ package login.controller;
 import global.Mensajes;
 import login.dao.LoginDAO;
 import login.model.Login;
+import login.model.Rol;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bouncycastle.asn1.x509.sigi.PersonalData;
 import org.primefaces.PrimeFaces;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean
 @ViewScoped
@@ -30,6 +33,8 @@ import java.util.ArrayList;
 public class LoginMB extends Mensajes {
     public Login usuario;
     public boolean band ;
+
+    public List<Rol> rolesid;
     private LoginDAO usuarioDAO;
     private final FacesContext facesContext = FacesContext.getCurrentInstance();
     public HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
@@ -40,6 +45,7 @@ public class LoginMB extends Mensajes {
         try {
             band = false;
             usuario = new Login();
+            rolesid =new ArrayList<>();
             usuarioDAO = new LoginDAO();
         } catch (Exception e) {
 
@@ -72,8 +78,8 @@ public class LoginMB extends Mensajes {
                             .getSessionMap().put("usuario", usuarioSesion);
 
                    if(usuarioDAO.masRol(usuario.getPersona_idPersona())){
-                       System.out.println(usuario.getPersona_idPersona());
-                       band = true;
+                       usuarioDAO.listarRolId(usuario);
+                       rolesid=usuarioDAO.listarRolId(usuario);
                       PrimeFaces.current().ajax().update("form:panelss");
                    }
                    System.out.println(band);
@@ -101,6 +107,10 @@ public class LoginMB extends Mensajes {
     public boolean renderRoles(boolean b){
        return usuarioDAO.masRol(10);
     }
+
+
+
+
     public void cerrarSession() throws IOException {
         System.out.println(httpSession.getAttribute(
                 "usuario") + "Holas CESION");
