@@ -46,7 +46,7 @@ public class LoginMB extends Mensajes {
         }
     }
 
-    public void iniciarSesion() throws IOException, SQLException {
+    public void iniciarSesion() throws Exception {
         ExternalContext ex = FacesContext.getCurrentInstance().getExternalContext();
         Login usuarioSesion = new Login();
         if ("".equals(usuario.getNombre_usuario())) {
@@ -70,10 +70,14 @@ public class LoginMB extends Mensajes {
                     //Registrar usuario en Session de JSF
                     FacesContext.getCurrentInstance().getExternalContext()
                             .getSessionMap().put("usuario", usuarioSesion);
-
+                    System.out.println(band + "1");
                    if(usuarioDAO.masRol(usuario.getPersona_idPersona())){
                        band = true;
-                      PrimeFaces.current().ajax().update("form:panelss");
+                       System.out.println(band);
+                       RolMB rm = new RolMB();
+                       System.out.println(usuario.getPersona_idPersona());
+                       rm.listarRolesID(usuario.getPersona_idPersona());
+                      PrimeFaces.current().ajax().update("form:panelss, rolRender");
                    }
                    System.out.println(band);
                 }
