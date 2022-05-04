@@ -9,16 +9,14 @@ import lombok.Data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 public class LoginDAO extends Conexion {
     Login usuario = new Login();
-    Rol roles = new Rol();
     ResultSet result;
+
 
     List<Rol> listaRoles;
 
@@ -60,37 +58,61 @@ public class LoginDAO extends Conexion {
         return usuarioAcceso;
     }
 
-    public List<Rol> listarRolId(Login l) {
-        List<Rol> miRol = new ArrayList<>();
-        Rol usuarioR = null;
+    public Login rol(Login l) {
+
+        Login usuarioAcceso = null;
         String sentencia = "";
         if (conectar()) {
             try {
                 sentencia = String.format(
-                        " select *from listar_rol_id('%1$s');",
+                        " select *from laboratorio.rol_by_id_usuario('%1$s');",
                         l.getPersona_idPersona());
                 result = ejecutarSql(sentencia);
 
                 while (result.next()) {
 
-                    usuarioR = new Rol(
+                    usuarioAcceso = new Login(
                             result.getInt("code"),
                             result.getString("reslt")
                     );
-                    miRol.add(usuarioR);
                 }
             } catch (SQLException e) {
                 System.out.println(e.toString());
             } finally {
                 desconectar();
             }
-            this.roles = usuarioR;
+            this.usuario = usuarioAcceso;
         }
-        return miRol;
+        return usuarioAcceso;
     }
 
     PreparedStatement pstatement;
 
+    public boolean masDeUnRol(int idP) {
+        boolean var = false;
+
+        String sql = "select count( ro.nombre_rol)\n" +
+                "                          from laboratorio.persona p\n" +
+                "                                   inner join laboratorio.usuario u\n" +
+                "                                              on p.id_persona = u.persona_id_persona\n" +
+                "                                   inner join laboratorio.usuario_rol ur\n" +
+                "                                              on u.id_usuario = ur.usuario_id_usuario\n" +
+                "                                   inner join laboratorio.rol ro\n" +
+                "                                              on ur.rol_id_rol = ro.id_rol\n" +
+                "                          where u.id_usuario = idP;";
+
+        try {
+            conectar();
+            pstatement = connection.prepareStatement(sql);
+            result = pstatement.executeQuery();
+            System.out.println(result + "HOla");
+        } catch (Exception e) {
+            return var;
+        } finally {
+            desconectar();
+        }
+        return var;
+    }
 
     public boolean masRol(int idP) {
         boolean band=false;

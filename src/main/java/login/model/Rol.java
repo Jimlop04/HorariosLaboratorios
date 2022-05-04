@@ -13,9 +13,4 @@ public class Rol {
     public Rol(){
 
     }
-
-    public Rol(int idRol, String nombreRol) {
-        this.idRol = idRol;
-        this.nombreRol = nombreRol;
-    }
 }
