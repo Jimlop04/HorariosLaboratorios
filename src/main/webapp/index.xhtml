@@ -27,6 +27,7 @@
     function preventbackbutton() {
         window.history.forward();
     }
+
     setTimeout("preventbackbutton()", 0);
     window.onunload = function () {
         null
@@ -35,52 +36,60 @@
 <h:body styleClass="login-body">
     <p:growl id="growl" widgetVar="growl" showDetail="true" life="3000"/>
 
+
     <div id="top">
         <div class="layout-topbar">
             <h:graphicImage name="Images/logoUTEQ.png" height="60px" class="p-mr-1" style="width: 55px; height: 55px;
                                 vertical-align: middle; margin-top: -1px"/>
         </div>
     </div>
-
     <h:form>
-        <div>
-            <div class="p-grid" style="margin-top: 3rem">
-                <div >
-                    <div class="card grid-item" style="margin-right: 14rem;margin-left: 2rem;border-radius: 20px">
-                        <p:graphicImage name="Images/coeEvaluacion.jpg"/>
+
+        <div class="login-panel" style="background-color: rgb(0,0,0,0.4);border-radius: 5%" >
+
+            <div class="p-grid" >
+                <div class="p-col-12 p-lg-6 left-side right-side" style="border-bottom-left-radius: 5%;border-top-left-radius: 5%;margin-top: 1%;margin-left: 1%;background-color: rgb(62,144,24,0.7);">
+                    <div>
+                        <p:graphicImage name="logoFCA.png" library="Images" class="login-image"/>
+
                     </div>
                 </div>
+                <div class="p-col-12 p-lg-5 right-side ui-fluid" >
+                    <div>
+                        <div class="p-col-12 container">
+                            <h3 style="color: white">Bienvenido</h3>
 
-                <div class="p-col-12 p-md-6 p-lg-3">
-                    <div class="card grid-item">
-                        <h2>Iniciar sesión</h2>
-                        <div class="ui-fluid">
-                            <h4>Usuario</h4>
+                            <h2 style="color: white">Iniciar Sesión </h2>
+
+
+                        </div>
+                        <div class="p-col-12">
                             <div class="input-wrapper ui-input-icon-left">
                                 <i class="pi pi-user"/>
-                                <p:inputText type="text" value="#{loginMB.usuario.nombre_usuario}"/>
+                                <p:inputText type="text" value="#{loginMB.usuario.nombre_usuario}"
+                                             placeholder="Username"/>
                             </div>
                         </div>
-                        <div class="ui-fluid">
-                            <h4>Contraseña</h4>
+                        <div class="p-col-12">
                             <div class="input-wrapper ui-input-icon-left">
                                 <i class="pi pi-lock"/>
-                                <p:inputText type="password" value="#{loginMB.usuario.password_usuario}"/>
+                                <p:inputText type="password" value="#{loginMB.usuario.password_usuario}"
+                                             placeholder="Password"/>
                             </div>
                         </div>
-                        <div class="p-col-4 ">
+                        <div class="p-col-12 button-container">
                             <p:commandButton
                                     styleClass="ui-button-raised ui-button-success"
                                     action="#{loginMB.iniciarSesion()}"
-                                      value="Entrar" update=":growl"></p:commandButton>
+                                    value="Entrar" update=":growl" />
                         </div>
                     </div>
-
                 </div>
             </div>
+
         </div>
-
-
     </h:form>
+
+
 </h:body>
 </html>
