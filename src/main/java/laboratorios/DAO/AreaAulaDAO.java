@@ -40,20 +40,20 @@ public class AreaAulaDAO {
     public List<AreaAula> getAreas() {
         List<AreaAula> Areas = new ArrayList<>();
 
-        String sql = String.format("select * from laboratorio.area_aula aa inner join laboratorio.laboratorio la on la.\"idLaboratorio\" = aa.\"laboratorio_idLaboratorio\"");
+        String sql = String.format("select * from laboratorio.area_aula aa inner join laboratorio.laboratorio la on la.id_laboratorio = aa.laboratorio_id_laboratorio");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
 
             while (resultSet.next()) {
                 Areas.add(new AreaAula(
-                        resultSet.getInt("id_area_aula"),
-                        resultSet.getInt("laboratorio_idLaboratorio"),
-                        resultSet.getString("codigo_aula"),
-                        resultSet.getString("nombre_aula"),
-                        resultSet.getShort("capacidad_aula"),
-                        resultSet.getInt("idLaboratorio"),
-                        resultSet.getInt("facultad_idfacultad"),
+                        resultSet.getInt("id_area"),
+                        resultSet.getInt("laboratorio_id_laboratorio"),
+                        resultSet.getString("codigo_area"),
+                        resultSet.getString("nombre_area"),
+                        resultSet.getShort("capacidad_area"),
+                        resultSet.getInt("id_laboratorio"),
+                        resultSet.getInt("facultad_id_facultad"),
                         resultSet.getString("nombre_laboratorio"),
                         resultSet.getString("codigo_laboratorio")));
 
@@ -69,7 +69,7 @@ public class AreaAulaDAO {
     public AreaAula registrarAula(AreaAula areaAula) {
         try {
 
-            String sentencia = String.format("SELECT laboratorio.registrar_aula(\n"
+            String sentencia = String.format("SELECT laboratorio.registrar_area(\n"
                     + "	'" + areaAula.getIdLaboratorio() + "', \n"
                     + "	'" + areaAula.getCodigo().trim() + "', \n"
                     + "	'" + areaAula.getNombre().trim() + "', \n"

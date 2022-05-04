@@ -34,7 +34,7 @@ public class EncargadoDAO {
     public List<Encargado> getEncargados() {
         List<Encargado> Encargados = new ArrayList<>();
 
-        String sql = String.format("SELECT * from laboratorio.listar_tablaencargados()");
+        String sql = String.format("SELECT * from laboratorio.listar_tabla_encargados()");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
@@ -76,7 +76,7 @@ public class EncargadoDAO {
     public List<Encargado> getRoles() {
         List<Encargado> roles = new ArrayList<>();
 
-        String sql = String.format("SELECT * from laboratorio.lista_tecnicos()");
+        String sql = String.format("SELECT * from laboratorio.listar_tecnicos()");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);

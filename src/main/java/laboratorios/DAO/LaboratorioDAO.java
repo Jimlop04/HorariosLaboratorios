@@ -47,17 +47,17 @@ public class LaboratorioDAO {
     public List<Laboratorio> getLaboratorios() {
         List<Laboratorio> Laboratorios = new ArrayList<>();
 
-        String sql = String.format("select * from laboratorio.laboratorio l inner join laboratorio.facultad f on l.facultad_idFacultad = f.\"idFacultad\"");
+        String sql = String.format("select * from laboratorio.laboratorio l inner join laboratorio.facultad f on l.facultad_id_facultad = f.id_facultad");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
 
             while (resultSet.next()) {
                 Laboratorios.add(new Laboratorio(
-                        resultSet.getInt("idFacultad"),
+                        resultSet.getInt("id_facultad"),
                         resultSet.getString("nombre_facultad"),
-                        resultSet.getInt("idLaboratorio"),
-                        resultSet.getInt("facultad_idfacultad"),
+                        resultSet.getInt("id_laboratorio"),
+                        resultSet.getInt("facultad_id_facultad"),
                         resultSet.getString("nombre_laboratorio"),
                         resultSet.getString("codigo_laboratorio")));
 
@@ -80,7 +80,7 @@ public class LaboratorioDAO {
 
             while (resultSet.next()) {
                 soloLaboratorios.add(new Laboratorio(
-                        resultSet.getInt("idLaboratorio"),
+                        resultSet.getInt("id_laboratorio"),
                         resultSet.getString("nombre_laboratorio"),
                         resultSet.getString("codigo_laboratorio")));
             }
@@ -102,7 +102,7 @@ public class LaboratorioDAO {
 
             while (resultSet.next()) {
                 facultades.add(new Laboratorio(
-                        resultSet.getInt("idFacultad"),
+                        resultSet.getInt("id_facultad"),
                         resultSet.getString("nombre_facultad")));
             }
         } catch (SQLException e) {
@@ -116,18 +116,18 @@ public class LaboratorioDAO {
     public List<AreaAula> getsoloAreas(int idArea) {
         List<AreaAula> soloAreas = new ArrayList<>();
 
-        String sql = String.format("SELECT * from laboratorio.area_aula");
+        String sql = String.format("SELECT * from laboratorio.listar_areas()");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
 
             while (resultSet.next()) {
                 soloAreas.add(new AreaAula(
-                        resultSet.getInt("id_area_aula"),
-                        resultSet.getInt("laboratorio_idLaboratorio"),
-                        resultSet.getString("codigo_aula"),
-                        resultSet.getString("nombre_aula"),
-                        resultSet.getShort("capacidad_aula")));
+                        resultSet.getInt("idarea"),
+                        resultSet.getInt("idlaboratoriofk"),
+                        resultSet.getString("codarea"),
+                        resultSet.getString("nomarea"),
+                        resultSet.getShort("caparea")));
 
             }
             return soloAreas;
