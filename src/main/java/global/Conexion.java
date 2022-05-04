@@ -115,4 +115,22 @@ import java.sql.Statement;
         return result;
     }
 
+    public boolean ejecutarSqlBool(int idP) {
+       boolean band = false;
+       int ret;
+        try{
+            conectar();
+            String sql = "select laboratorio.rol_boolean('"+idP+"');";
+
+            ret = statement.executeUpdate(sql);
+            System.out.println(ret);
+            band = true;
+
+        }catch (SQLException e){
+            System.out.println("Error: No se ejecuto la consulta: " + e.getMessage());
+        }
+        return band;
+    }
+
+
 }

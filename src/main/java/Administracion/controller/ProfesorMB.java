@@ -13,6 +13,9 @@ import javax.faces.bean.ViewScoped;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Asynchronous;
+
+import login.controller.LoginMB;
+import login.model.Login;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +33,7 @@ import org.primefaces.PrimeFaces;
 public class ProfesorMB extends Mensajes implements Serializable {
 
     static final String NUEVO = "Nuevo";
+    LoginMB prueba = new LoginMB();
     static final String EDITAR = "Editar";
     List<Profesor> listarProfesor;
     List<Profesor> profesores;
@@ -40,6 +44,7 @@ public class ProfesorMB extends Mensajes implements Serializable {
     @PostConstruct
     public void init() {
         try {
+            int var = (Integer) prueba.httpSession.getAttribute("chiquito");
             listarProfesor = new ArrayList<>();
             profesor = new Profesor();
             listarProfesores();
@@ -62,7 +67,7 @@ public class ProfesorMB extends Mensajes implements Serializable {
     public void nuevoProfesor() {
         this.profesorModo = NUEVO;
         this.profesor = new Profesor();
-        PrimeFaces.current().ajax().update(":form:dialogo_profesor");
+        PrimeFaces.current().ajax().update("form:dialogo_profesor");
 
     }
 

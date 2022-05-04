@@ -43,7 +43,7 @@
                                 vertical-align: middle; margin-top: -1px"/>
         </div>
     </div>
-    <h:form>
+    <h:form id="form">
 
         <div class="login-panel" style="background-color: rgb(0,0,0,0.4);border-radius: 5%" >
 
@@ -77,11 +77,26 @@
                                              placeholder="Password"/>
                             </div>
                         </div>
+                        <div class="p-col-12">
+                            <div class="input-wrapper ui-input-icon-left">
+                                <i class="pi pi-lock"/>
+                                <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}"   >
+                                    <f:selectItem itemLabel="Seleccione un rol" itemValue="" noSelectionOption="true"/>
+
+                                    <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}"
+                                                   var="la"
+                                                   itemLabel="#{la.nombre_laboratorio}"
+                                                   itemValue="#{la.idLaboratorio}">
+
+                                    </f:selectItems>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
                         <div class="p-col-12 button-container">
                             <p:commandButton
                                     styleClass="ui-button-raised ui-button-success"
                                     action="#{loginMB.iniciarSesion()}"
-                                    value="Entrar" update=":growl" />
+                                    value="Entrar" update=":growl, rolRender" />
                         </div>
                     </div>
                 </div>

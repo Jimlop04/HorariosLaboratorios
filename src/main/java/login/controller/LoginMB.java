@@ -10,6 +10,7 @@ import login.model.Login;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.primefaces.PrimeFaces;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -27,15 +28,17 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginMB extends Mensajes {
-    private Login usuario;
+    public Login usuario;
+    public boolean band ;
     private LoginDAO usuarioDAO;
     private final FacesContext facesContext = FacesContext.getCurrentInstance();
-    HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
+    public HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
 
     //Controla que en caso de que no haya un usuario conectado entonces redirija al incio.
     @PostConstruct
     public void init() {
         try {
+            band = false;
             usuario = new Login();
             usuarioDAO = new LoginDAO();
         } catch (Exception e) {
@@ -60,26 +63,27 @@ public class LoginMB extends Mensajes {
                     mensajeDeAdvertencia(usuarioSesion.getReslt());
 
                 } else {
-                    mensajeDeExito(usuarioSesion.getReslt());
-
                     usuario = usuarioSesion;
-
                     //Registrar usuario en HttpSession
                     httpSession.setAttribute("username", usuarioSesion);
-
+                    usuario = usuarioSesion;
                     //Registrar usuario en Session de JSF
                     FacesContext.getCurrentInstance().getExternalContext()
                             .getSessionMap().put("usuario", usuarioSesion);
-                    facesContext.getExternalContext()
-                            .redirect(ex.getRequestContextPath()+"/faces/View/Global/Principal.xhtml");
 
-
+                   if(usuarioDAO.masRol(usuario.getPersona_idPersona())){
+                       System.out.println(usuario.getPersona_idPersona());
+                       band = true;
+                      PrimeFaces.current().ajax().update(":form:rolRender");
+                   }
+                   System.out.println(band);
                 }
             } else {
                 mensajeDeAdvertencia("Error de conexión al intentar iniciar sesión.");
             }
         }
     }
+
 
     public void verificarInicioSesion() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -93,6 +97,9 @@ public class LoginMB extends Mensajes {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public boolean renderRoles(boolean b){
+       return usuarioDAO.masRol(10);
     }
     public void cerrarSession() throws IOException {
         System.out.println(httpSession.getAttribute(

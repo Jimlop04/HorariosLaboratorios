@@ -45,4 +45,9 @@ public class Login {
         this.password_usuario = password_usuario;
         this.persona_idPersona = persona_idPersona;
     }
+
+    public Login(int code, String reslt) {
+        this.code = code;
+        this.reslt = reslt;
+    }
 }
