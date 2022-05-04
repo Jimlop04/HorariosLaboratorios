@@ -91,10 +91,10 @@
                         <div class="p-col-12">
                                 <p:outputPanel id="panelss" >
                                     <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}">
-                                        <f:selectItem itemLabel="Seleccione un rol" itemValue=""
+                                        <f:selectItem itemLabel="Seleccione un rol" itemValue="#{loginMB.rolesid}"
                                                       noSelectionOption="true"/>
 
-                                        <f:selectItems value="#{loginMB.rolesid}"
+                                        <f:selectItems value=""
                                                        var="rl"
                                                        itemLabel="#{}">
 
