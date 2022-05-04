@@ -35,19 +35,18 @@
                                           responsive="true" 
                                           width="45%"
                                           draggable="false" 
-                                          height="400" >
+                                          height="200" >
 
                                     <p:outputPanel id="manage-encargado-form" class="ui-fluid">
                                         <div class="p-formgrid p-grid">
-                                            <p:outputLabel value="Cedula" for="@next"/>
-                                            <div class="p-field p-col-12 p-md-3">
+                                            <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel value="Cedula" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
                                                     value="#" ></p:inputText>
                                             </div>
 
-                                            <div class="p-field p-col-12 p-md-4">
+                                            <div class="p-field p-col-12 p-md-5">
                                                 <p:outputLabel value="Nombre" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
@@ -59,7 +58,13 @@
                                                     maxlength="50"
                                                     value="#"></p:inputText>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-6">
+                                             <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Codigo Laboratorio" for="@next"/>
+                                                <p:inputText 
+                                                    maxlength="50"
+                                                    value="#"></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-5">
 
                                                 <p:outputLabel value="Laboratorio" for="@next"/>
                                                 <p:selectOneMenu value="#{laboratorioMB.laboratorio.idLaboratorio}" editable="false">
@@ -73,7 +78,7 @@
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-6">
+                                            <div class="p-field p-col-12 p-md-5">
                                                 <p:outputLabel value="Cargo" for="@next"/>
                                                 <p:selectOneMenu value="#{encargadoMB.encargado.idRoles}" editable="false">
                                                     <f:selectItem itemLabel="Seleccione un Cargo" itemValue="" noSelectionOption="true"/>
@@ -138,9 +143,9 @@
                                     modal="true"
                                     widgetVar="centroEditarEncargadoDialog" 
                                     responsive="true" 
-                                    width="46%"
+                                    width="40%"
                                     draggable="false" 
-                                    height="280" >
+                                    height="250" >
                                     <p:outputPanel id="manage-editarEncargado-form" class="ui-fluid">
                                         <div class="p-formgrid p-grid">
                                             <div class="p-field p-col-12 p-md-2">
@@ -149,65 +154,28 @@
                                                     maxlength="50"
                                                     value="#{encargadoMB.encargado.dni_persona}" ></p:inputText>
                                             </div>
-
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Nombres" for="@next"/>
+                                            <div class="p-field p-col-12 p-md-4">
+                                                <p:outputLabel value="Nombre" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#{encargadoMB.encargado.nombre_persona}" ></p:inputText>
+                                                    value="#{encargadoMB.encargado.nombre_persona}" ></p:inputText>     
                                             </div>
-                                            <div class="p-field p-col-12 p-md-5">
+                                            <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel value="Apellidos" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#{encargadoMB.encargado.apellido_persona}"></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-2">
-                                                <p:outputLabel value="Fecha Nacimiento" for="@next"/>
-                                                <p:datePicker id="fnaciencargado"
-                                                              value="#{encargadoMB.encargado.fechanacimiento_persona}"
-                                                              showIcon="true"/>
+                                                    value="#{encargadoMB.encargado.apellido_persona}" ></p:inputText>    
                                             </div>
                                             <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Genero" for="@next"/>
-                                                <p:selectOneMenu id="opcionEditarGenero" value="#{encargadoMB.encargado.genero_persona}">
-                                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
-                                                    <f:selectItem itemLabel="Femenino" itemValue="F"/>
-                                                    <f:selectItem itemLabel="Otro" itemValue="O"/> 
-                                                </p:selectOneMenu>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-5">
-                                                <p:outputLabel value="Correo Electronico" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    value="#{encargadoMB.encargado.correo_persona}" ></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-2">
-                                                <p:outputLabel value="Celular" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    value="#{encargadoMB.encargado.celular_persona}" ></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-2">
-                                                <p:outputLabel value="Fecha Registro" for="@next"/>
-                                                <p:datePicker id="fencargadoregistro"
-                                                              disabled="true" 
-                                                              value="#{encargadoMB.encargado.fechacreacion_usuario}"
-                                                              showIcon="true"/>
-
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <div class="p-field p-col-12 p-md-6">
-                                                <p:outputLabel value="Codigo" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    disabled="true" 
-                                                    value="#{encargadoMB.encargado.codigo_laboratorio}" ></p:inputText>
+                                                <div class="p-field p-col-12 p-md-4">
+                                                    <p:outputLabel value="Codigo" for="@next"/>
+                                                    <p:inputText 
+                                                        maxlength="50"
+                                                        disabled="true" 
+                                                        value="#{encargadoMB.encargado.codigo_laboratorio}" ></p:inputText>
                                                     <p:commandButton type="button" icon="pi pi-refresh" styleClass="rounded-button" />
-                                                     </div>
+                                                </div>
                                             </div>
-
                                             <div class="p-field p-col-12 p-md-4">
                                                 <p:inputText value="#{encargadoMB.encargado.idLaboratorio}" 
                                                              style="display: none"
@@ -220,11 +188,10 @@
                                                                    var="la"
                                                                    itemLabel="#{la.nombre_laboratorio}" 
                                                                    itemValue="#{la.idLaboratorio}">
-
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-5">
+                                            <div class="p-field p-col-12 p-md-4">
                                                 <p:inputText value="#{encargadoMB.encargado.idRoles}" 
                                                              style="display: none"
                                                              ></p:inputText>
@@ -240,35 +207,21 @@
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </div>
-
-                                            <div class="p-field p-col-12 p-md-2">
-                                                    <p:outputLabel value="Fecha Incio" for="@next"/>
-                                                    <p:datePicker id="fencargadoinicio"
-                                                                  value="#{encargadoMB.encargado.fecha_inicio}"
-                                                                  showIcon="true"/>
+                                            <div class="p-field p-col-12 p-md-4">
+                                                <p:outputLabel value="Fecha Incio" for="@next"/>
+                                                <p:datePicker id="fencargadoinicio"
+                                                              value="#{encargadoMB.encargado.fecha_inicio}"
+                                                              showIcon="true"/>
                                             </div>
-
-                                            <div class="p-field p-col-12 p-md-2">
+                                            <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel value="Fecha Fin" for="@next"/>
                                                 <p:datePicker id="fencargadofin" 
                                                               value="#{encargadoMB.encargado.fecha_fin}"
                                                               showIcon="true"/>
                                             </div>
                                             <p:inputText value="#{encargadoMB.encargado.idUsuario}"  style="display: none"
-                                                ></p:inputText>
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Usuario" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    value="#{encargadoMB.encargado.nombre_usuario}" ></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel value="Contraseña" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    value="#{encargadoMB.encargado.password_usuario}" ></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-2">
+                                                         ></p:inputText>
+                                            <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel value="Estado" for="@next"/>
                                                 <p:selectBooleanButton value="#{encargadoMB.encargado.estado_usuario}"
                                                                        onLabel="Habilitado" 
@@ -329,20 +282,16 @@
                                         <h:outputText 
                                             value="#{TablaEncargados.dni_persona}"/>
                                     </p:column>
-                                    <p:column headerText="Nombre" 
+                                    <p:column headerText="Encargado" 
                                               filterStyle="display : none">
                                         <h:outputText 
-                                            value="#{TablaEncargados.nombre_persona}"/>
+                                            value="#{TablaEncargados.nombre_persona}
+                                            #{TablaEncargados.apellido_persona}"/>
                                     </p:column>
-                                    <p:column headerText="Apellidos" 
+                                    <p:column headerText="Codigo Laboratorio" 
                                               filterStyle="display : none">
                                         <h:outputText 
-                                            value="#{TablaEncargados.apellido_persona}"/>
-                                    </p:column>
-                                    <p:column headerText="Celular" 
-                                              filterStyle="display : none">
-                                        <h:outputText 
-                                            value="#{TablaEncargados.celular_persona}"/>
+                                            value="#{TablaEncargados.codigo_laboratorio}"/>
                                     </p:column>
                                     <p:column headerText="Laboratorio" 
                                               filterStyle="display : none">
