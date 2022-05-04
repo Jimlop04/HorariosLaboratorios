@@ -28,8 +28,8 @@ public class ProfesorDAO extends Conexion {
             while (result.next()) {
 
                 listProfesores.add(new Profesor(
-                        result.getInt("idP"),
                         result.getInt("idU"),
+                        result.getInt("idP"),
                         result.getInt("idR"),
                         result.getString("nombre"),
                         result.getString("apellido"),
@@ -106,13 +106,13 @@ public class ProfesorDAO extends Conexion {
             desconectar();
         }
     }
-    public boolean editarProfesor(int idP,int idU, Profesor pro){
+    public boolean editarProfesor(int idP,int idU,Profesor pro){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String sql = "select * from laboratorio.editar_docente('"+idP+"','"+idU+"',"
                 + "'"+pro.getNombre_persona()+"','"+pro.getApellido_persona()+"',"
                 + "'"+pro.getDni_persona()+"','"+dateFormat.format(pro.getFechanacimiento_persona())+"',"
                 + "'"+pro.getGenero_persona()+"','"+pro.getCorreo_persona()+"',"
-                + "'"+pro.getCelular_persona()+"','"+pro.getNombre_usuario()+"','"+pro.getPassword_usuario()+"');";
+                + "'"+pro.getCelular_persona()+"','"+pro.getNombre_usuario()+"','"+pro.getPassword_usuario()+"','"+pro.isEstado_usuario()+"');";
         try{
             conectar();
             result = ejecutarSql(sql);

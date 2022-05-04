@@ -2,17 +2,21 @@ package login.dao;
 
 import global.Conexion;
 import login.model.Login;
+import login.model.Rol;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 public class LoginDAO extends Conexion {
     Login usuario = new Login();
     ResultSet result;
+
+    List<Rol> listaRoles;
     public LoginDAO(){
 
     }

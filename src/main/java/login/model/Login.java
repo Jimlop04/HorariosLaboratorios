@@ -7,6 +7,8 @@ package login.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  *
  * @author ebert
@@ -23,6 +25,7 @@ public class Login {
     String password_usuario;
     boolean estado_usuario;
     int persona_idPersona;
+    List<Rol> roles;
 
     public Login() {
     }
