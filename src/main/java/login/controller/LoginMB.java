@@ -72,7 +72,6 @@ public class LoginMB extends Mensajes {
                             .getSessionMap().put("usuario", usuarioSesion);
 
                    if(usuarioDAO.masRol(usuario.getPersona_idPersona())){
-                       System.out.println(usuario.getPersona_idPersona());
                        band = true;
                       PrimeFaces.current().ajax().update("form:panelss");
                    }
