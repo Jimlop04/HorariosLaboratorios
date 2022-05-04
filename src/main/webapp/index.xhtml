@@ -3,7 +3,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head> <f:facet name="first">
@@ -45,62 +44,65 @@
     </div>
     <h:form id="form">
 
-        <div class="login-panel" style="background-color: rgb(0,0,0,0.4);border-radius: 5%" >
+        <div class="login-panel" style="background-color: rgb(0,0,0,0.4);border-radius: 5%">
+            <p:panel id="panelss"  styleClass="ui-panelgrid-blank">
+                <div class="p-grid">
+                    <div class="p-col-12 p-lg-6 left-side right-side"
+                         style="border-bottom-left-radius: 5%;border-top-left-radius: 5%;margin-top: 1%;margin-left: 1%;background-color: rgb(62,144,24,0.7);">
+                        <div>
+                            <p:graphicImage name="logoFCA.png" library="Images" class="login-image"/>
 
-            <div class="p-grid" >
-                <div class="p-col-12 p-lg-6 left-side right-side" style="border-bottom-left-radius: 5%;border-top-left-radius: 5%;margin-top: 1%;margin-left: 1%;background-color: rgb(62,144,24,0.7);">
-                    <div>
-                        <p:graphicImage name="logoFCA.png" library="Images" class="login-image"/>
-
-                    </div>
-                </div>
-                <div class="p-col-12 p-lg-5 right-side ui-fluid" >
-                    <div>
-                        <div class="p-col-12 container">
-                            <h3 style="color: white">Bienvenido</h3>
-
-                            <h2 style="color: white">Iniciar Sesión </h2>
-
-
-                        </div>
-                        <div class="p-col-12">
-                            <div class="input-wrapper ui-input-icon-left">
-                                <i class="pi pi-user"/>
-                                <p:inputText type="text" value="#{loginMB.usuario.nombre_usuario}"
-                                             placeholder="Username"/>
-                            </div>
-                        </div>
-                        <div class="p-col-12">
-                            <div class="input-wrapper ui-input-icon-left">
-                                <i class="pi pi-lock"/>
-                                <p:inputText type="password" value="#{loginMB.usuario.password_usuario}"
-                                             placeholder="Password"/>
-                            </div>
-                        </div>
-                        <div class="p-col-12">
-                            <div class="input-wrapper ui-input-icon-left">
-                                <i class="pi pi-lock"/>
-                                <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}"   >
-                                    <f:selectItem itemLabel="Seleccione un rol" itemValue="" noSelectionOption="true"/>
-
-                                    <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}"
-                                                   var="la"
-                                                   itemLabel="#{la.nombre_laboratorio}"
-                                                   itemValue="#{la.idLaboratorio}">
-
-                                    </f:selectItems>
-                                </p:selectOneMenu>
-                            </div>
-                        </div>
-                        <div class="p-col-12 button-container">
-                            <p:commandButton
-                                    styleClass="ui-button-raised ui-button-success"
-                                    action="#{loginMB.iniciarSesion()}"
-                                    value="Entrar" update=":growl, rolRender" />
                         </div>
                     </div>
+                    <div class="p-col-12 p-lg-5 right-side ui-fluid">
+                        <div>
+                            <div class="p-col-12 container">
+                                <h3 style="color: white">Bienvenido</h3>
+
+                                <h2 style="color: white">Iniciar Sesión </h2>
+
+
+                            </div>
+                            <div class="p-col-12">
+                                <div class="input-wrapper ui-input-icon-left">
+                                    <i class="pi pi-user"/>
+                                    <p:inputText type="text" value="#{loginMB.usuario.nombre_usuario}"
+                                                 placeholder="Username"/>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="input-wrapper ui-input-icon-left">
+                                    <i class="pi pi-lock"/>
+                                    <p:inputText type="password" value="#{loginMB.usuario.password_usuario}"
+                                                 placeholder="Password"/>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="input-wrapper ui-input-icon-left">
+                                    <i class="pi pi-lock"/>
+                                    <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}">
+                                        <f:selectItem itemLabel="Seleccione un rol" itemValue=""
+                                                      noSelectionOption="true"/>
+
+                                        <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}"
+                                                       var="la"
+                                                       itemLabel="#{la.nombre_laboratorio}"
+                                                       itemValue="#{la.idLaboratorio}">
+
+                                        </f:selectItems>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="p-col-12 button-container">
+                                <p:commandButton
+                                        styleClass="ui-button-raised ui-button-success"
+                                        action="#{loginMB.iniciarSesion()}"
+                                        value="Entrar" update=":growl, rolRender"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </p:panel>
 
         </div>
     </h:form>

@@ -6,14 +6,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
+
+
 import java.io.Serializable;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 @Getter
 @Setter
 public class AveriaEquipoMB implements Serializable {
