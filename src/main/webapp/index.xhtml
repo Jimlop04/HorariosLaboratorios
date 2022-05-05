@@ -92,7 +92,7 @@
                                 <p:outputPanel id="panelss" >
                                     <f:event type="preRenderView" listener="#{rolMB.listarRolesID(loginMB.httpSession.getAttribute('chiquito'))}"/>
 
-                                    <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}">
+                                    <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}" value="#{loginMB.idUsuarioRol}">
 <!--                                        <f:selectItem itemLabel="Seleccione un rol" itemValue=""-->
 <!--                                                      noSelectionOption="true"/>-->
                                         <f:selectItems

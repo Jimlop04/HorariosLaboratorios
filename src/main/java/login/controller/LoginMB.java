@@ -89,9 +89,11 @@ public class LoginMB extends Mensajes {
 
                             PrimeFaces.current().ajax().update("form:panelss");
 
+
                         } else {
                             facesContext.getExternalContext()
                                     .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
+                            System.out.println(idUsuarioRol);
                         }
 
                     }
