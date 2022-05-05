@@ -108,7 +108,7 @@ public class LoginMB extends Mensajes {
 
                 }
             } else {
-                mensajeDeAdvertencia("Error de conexión al intentar iniciar sesión.");
+                mensajeDeAdvertencia("Error de conexión en tus tapas al intentar iniciar sesión.");
             }
         }
     }
