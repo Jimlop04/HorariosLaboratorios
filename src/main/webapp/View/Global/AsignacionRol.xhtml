@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <h:form>
+        <h:outputLabel value="#{loginMB.httpSession.getAttribute('usuario')}"/>
+        <f:event type="preRenderView"
+                 listener="#{rolMB.listarRolesID(loginMB.httpSession.getAttribute('chiquito'))}"/>
+        <p:selectOneMenu id="panelss" value="#{loginMB.idUsuarioRol}">
+            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue=""/>
+            <p:ajax  process="@this"/>
+            <f:selectItems
+                    value="#{rolMB.listaRolresUsuarios}"
+                    var="ro"
+                    itemLabel="#{ro.nombreRol}"
+                    itemValue="#{ro.idUsuarioRol}"/>
+        </p:selectOneMenu>
+
+    </h:form>
+
+</h:body>
+
+</html>

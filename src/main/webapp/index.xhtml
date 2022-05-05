@@ -90,6 +90,8 @@
                         </div>
                         <div class="p-col-12">
                                 <p:outputPanel id="panelss" >
+                                    <f:event type="preRenderView" listener="#{rolMB.listarRolesID(loginMB.httpSession.getAttribute('chiquito'))}"/>
+
                                     <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}">
 <!--                                        <f:selectItem itemLabel="Seleccione un rol" itemValue=""-->
 <!--                                                      noSelectionOption="true"/>-->
@@ -106,7 +108,8 @@
                             <p:commandButton
                                     styleClass="ui-button-raised ui-button-success"
                                     action="#{loginMB.iniciarSesion()}"
-                                    value="Entrar" update=":growl, panelss, rolRender"/>
+                                    oncomplete="#{loginMB.msh()}"
+                                    value="Entrar" update=":growl,form:panelss"/>
                         </div>
                     </div>
                 </div>

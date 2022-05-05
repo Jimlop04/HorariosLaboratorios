@@ -7,6 +7,7 @@ package login.controller;
 import global.Mensajes;
 import login.dao.LoginDAO;
 import login.model.Login;
+import login.model.Rol;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,8 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class LoginMB extends Mensajes {
     public Login usuario;
-    public boolean band ;
+    public boolean band;
+    public int idUsuarioRol;
     private LoginDAO usuarioDAO;
     private final FacesContext facesContext = FacesContext.getCurrentInstance();
     public HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
@@ -38,6 +40,7 @@ public class LoginMB extends Mensajes {
     @PostConstruct
     public void init() {
         try {
+            idUsuarioRol=0;
             band = false;
             usuario = new Login();
             usuarioDAO = new LoginDAO();
@@ -71,15 +74,28 @@ public class LoginMB extends Mensajes {
                     FacesContext.getCurrentInstance().getExternalContext()
                             .getSessionMap().put("usuario", usuarioSesion);
                     System.out.println(band + "1");
-                   if(usuarioDAO.masRol(usuario.getPersona_idPersona())){
-                       band = true;
-                       System.out.println(band);
-                       RolMB rm = new RolMB();
-                       System.out.println(usuario.getPersona_idPersona());
-                       rm.listarRolesID(usuario.getPersona_idPersona());
-                      PrimeFaces.current().ajax().update("form:panelss, rolRender");
-                   }
-                   System.out.println(band);
+                    if (usuarioDAO.masRol(usuario.getPersona_idPersona())) {
+                        FacesContext.getCurrentInstance().getExternalContext()
+                                .getSessionMap().put("chiquito", usuarioSesion.getPersona_idPersona());
+                        //facesContext.getExternalContext().redirect(ex.getRequestContextPath()+"/faces/View/Global/AsignacionRol.xhtml");
+                        RolMB rm = new RolMB();
+                        rm.listarRolesID(usuario.getPersona_idPersona());
+                        band = true;
+                        System.out.println(band);
+                        System.out.println(usuario.getPersona_idPersona());
+                        PrimeFaces.current().ajax().update("form:panelss");
+                        if (idUsuarioRol == 0 ) {
+                            mensajeDeAdvertencia("Seleccione un rol: "+ idUsuarioRol);
+
+                            PrimeFaces.current().ajax().update("form:panelss");
+
+                        } else {
+                            facesContext.getExternalContext()
+                                    .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
+                        }
+
+                    }
+
                 }
             } else {
                 mensajeDeAdvertencia("Error de conexión al intentar iniciar sesión.");
@@ -87,6 +103,10 @@ public class LoginMB extends Mensajes {
         }
     }
 
+    public void msh() {
+        PrimeFaces.current().ajax().update("form:panelss, :form:rolRender");
+
+    }
 
     public void verificarInicioSesion() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -101,9 +121,11 @@ public class LoginMB extends Mensajes {
             e.printStackTrace();
         }
     }
-    public boolean renderRoles(boolean b){
-       return usuarioDAO.masRol(10);
+
+    public boolean renderRoles(boolean b) {
+        return usuarioDAO.masRol(10);
     }
+
     public void cerrarSession() throws IOException {
         System.out.println(httpSession.getAttribute(
                 "usuario") + "Holas CESION");
