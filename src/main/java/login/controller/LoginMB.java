@@ -75,6 +75,7 @@ public class LoginMB extends Mensajes {
                             .getSessionMap().put("usuario", usuarioSesion);
                     System.out.println(band + "1");
                     if (usuarioDAO.masRol(usuario.getPersona_idPersona())) {
+
                         FacesContext.getCurrentInstance().getExternalContext()
                                 .getSessionMap().put("chiquito", usuarioSesion.getPersona_idPersona());
                         //facesContext.getExternalContext().redirect(ex.getRequestContextPath()+"/faces/View/Global/AsignacionRol.xhtml");
@@ -89,10 +90,19 @@ public class LoginMB extends Mensajes {
 
                             PrimeFaces.current().ajax().update("form:panelss");
 
+
                         } else {
+
+
                             facesContext.getExternalContext()
                                     .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
+                            System.out.println(idUsuarioRol);
                         }
+
+                    }else{
+                        facesContext.getExternalContext()
+                                .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
+                        System.out.println(idUsuarioRol);
 
                     }
 

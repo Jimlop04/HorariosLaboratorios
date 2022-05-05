@@ -24,6 +24,7 @@ public class RolMB extends Mensajes {
 
     public List<Rol> listaRolresUsuarios;
 
+
     public void listarRolesID(int id) throws Exception {
         try {
             dao = new RolDAO();
@@ -32,6 +33,16 @@ public class RolMB extends Mensajes {
             throw e;
         }
         System.out.println(listaRolresUsuarios);
+    }
+    public void listarRolObt(int id){
+        try{
+            dao = new RolDAO();
+            this.rol = dao.listarRoleObtenido(id);
+
+        }catch (Exception e){
+
+        }
+
     }
 
     @PostConstruct

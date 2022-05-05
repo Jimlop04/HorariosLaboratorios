@@ -44,4 +44,32 @@ public class RolDAO extends Conexion {
         }
         return listaRoles;
     }
+
+
+
+    public Rol listarRoleObtenido(int id) throws Exception {
+        Rol listaRoles = new Rol();
+        ResultSet rs;
+        try {
+            String query = "SELECT ro.nombre_rol as rol" +
+                    "FROM laboratorio.usuario u\n" +
+                    "         inner join laboratorio.persona p on p.id_persona = u.persona_id_persona\n" +
+                    "         inner join laboratorio.usuario_rol on u.id_usuario = usuario_rol.usuario_id_usuario\n" +
+                    "         inner join laboatorio.rol ro on usuario_rol.rol_id_rol = ro.id_rol\n" +
+                    "where id_usuario_rol ="+id;
+            this.conectar();
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                Rol rol = new Rol();
+                rol.setNombreRol(rs.getString("rol"));
+                listaRoles=rol;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return listaRoles;
+    }
 }
