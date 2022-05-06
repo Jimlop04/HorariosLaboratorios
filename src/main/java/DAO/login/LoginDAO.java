@@ -1,63 +1,52 @@
 package DAO.login;
 
+import Model.administracion.Usuario;
+import Model.login.UsuarioSession;
 import global.Conexion;
-import Model.login.Login;
 import Model.login.Rol;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
 public class LoginDAO extends Conexion {
-    Login usuario = new Login();
     ResultSet result;
-
-
     List<Rol> listaRoles;
 
-    public LoginDAO() {
 
-    }
+    public UsuarioSession iniciarSesion(int idUr) throws SQLException {
 
-    public Login iniciarSesion(Login u) throws SQLException {
-
-        Login usuarioAcceso = null;
+        UsuarioSession usuarioSession = new UsuarioSession();
+        Usuario usuario = new Usuario();
         String sentencia = "";
         if (conectar()) {
             try {
                 sentencia = String.format(
-                        "SELECT * from laboratorio.iniciar_sesion('%1$s','%2$s')",
-                        u.getNombre_usuario(), u.getPassword_usuario());
+                        "SELECT * from laboratorio.iniciar_sesion('%1$s','%2$s','%3$s')",
+                        usuario.getNombreUsuario(),
+                        usuario.getPassword(),
+                        idUr);
                 result = ejecutarSql(sentencia);
 
                 while (result.next()) {
 
-                    usuarioAcceso = new Login(
-                            result.getInt("code"),
-                            result.getString("reslt"),
-                            result.getInt("iduser"),
-                            result.getString("name"),
-                            result.getString("surname"),
-                            result.getString("usrnm"),
-                            result.getString("pswrd"),
-                            result.getInt("idPersona")
-                    );
+                    usuarioSession.setIdUsuarioRol(result.getInt("idusuariorol"));
+                    usuarioSession.setIdPersona(result.getInt("idpersona"));
+                    usuarioSession.setIdRol(result.getInt("idusuario"));
+                    usuarioSession.setNombrePersona(result.getString("nombreusuario"));
+                    usuarioSession.setNombreRol(result.getString("nombrerol"));
                 }
             } catch (SQLException e) {
                 System.out.println(e.toString());
             } finally {
                 desconectar();
             }
-            this.usuario = usuarioAcceso;
-        }
-        return usuarioAcceso;
-    }
 
+        }
+        return usuarioSession;
+    }
+/*
     public Login rol(Login l) {
 
         Login usuarioAcceso = null;
@@ -85,7 +74,7 @@ public class LoginDAO extends Conexion {
         }
         return usuarioAcceso;
     }
-
+*/
     PreparedStatement pstatement;
 
     public boolean masDeUnRol(int idP) {
@@ -114,8 +103,9 @@ public class LoginDAO extends Conexion {
         return var;
     }
 
+    // Llena un selectOneMenu con los roles del usuario
     public boolean masRol(int idP) {
-        boolean band=false;
+        boolean band = false;
         System.out.println("DONDE ESTAS");
         int valor = 0;
         try {
@@ -127,7 +117,7 @@ public class LoginDAO extends Conexion {
                     "                                              on u.id_usuario = ur.usuario_id_usuario\n" +
                     "                                   inner join laboratorio.rol ro\n" +
                     "                                              on ur.rol_id_rol = ro.id_rol\n" +
-                    "                          where u.id_usuario ="+idP;
+                    "                          where u.id_usuario =" + idP;
             System.out.println(sql);
             conectar();
             pstatement = this.getConnection().prepareStatement(sql);
@@ -136,7 +126,7 @@ public class LoginDAO extends Conexion {
             while (result.next()) {
                 valor += 1;
             }
-            if(valor>1){
+            if (valor > 1) {
                 band = true;
             }
 

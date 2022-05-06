@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UsuarioSession {
     private int idUsuarioRol;
-    private Persona persona;
-    private Rol rol;
+    private int idPersona;
+    private int idRol;
     private String nombrePersona;
     private String nombreRol;
+
+
 }
