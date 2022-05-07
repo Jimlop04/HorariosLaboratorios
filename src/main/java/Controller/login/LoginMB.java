@@ -13,7 +13,6 @@ import global.Mensajes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.sf.jasperreports.olap.JROlapDataSource;
 import org.primefaces.PrimeFaces;
 
 import javax.annotation.PostConstruct;
@@ -86,18 +85,14 @@ public class LoginMB extends Mensajes {
                     facesContext.getExternalContext()
                             .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
 
-
                 } else {
                     mensajeDeAdvertencia("Seleccione un rol");
                     usuarioSesion = loginDAO.iniciarSesion(usuario);
                     System.out.println(usuarioSesion + "2 do");
                 }
                 break;
-
             }
-
         }
-
     }
 
     public void verificarInicioSesion() {

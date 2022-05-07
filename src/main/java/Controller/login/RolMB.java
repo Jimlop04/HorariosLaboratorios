@@ -42,7 +42,6 @@ public class RolMB extends Mensajes {
         }catch (Exception e){
 
         }
-
     }
 
     @PostConstruct
