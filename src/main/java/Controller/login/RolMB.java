@@ -1,5 +1,6 @@
 package Controller.login;
 
+import Model.administracion.Usuario;
 import global.Mensajes;
 import DAO.login.RolDAO;
 import Model.login.Rol;
@@ -20,7 +21,6 @@ public class RolMB extends Mensajes {
     private RolDAO dao;
     private  Rol rol;
 
-
     public List<Rol> listaRolresUsuarios;
 
 
@@ -33,6 +33,17 @@ public class RolMB extends Mensajes {
         }
         System.out.println(listaRolresUsuarios);
     }
+    //lista los roles de un usuario  por nombre de usuario
+    public void listarRolesNombre(Usuario username) throws Exception {
+        try {
+            dao = new RolDAO();
+            listaRolresUsuarios = dao.listarRolesByUserName(username);
+        } catch (Exception e) {
+            throw e;
+        }
+        System.out.println(listaRolresUsuarios);
+    }
+
     public void listarRolSession(int id){
         try{
             dao = new RolDAO();

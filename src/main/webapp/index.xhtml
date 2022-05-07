@@ -34,7 +34,6 @@
 </script>
 
 
-
 <h:body styleClass="login-body">
     <p:growl id="growl" widgetVar="growl" showDetail="true" life="3000"/>
 
@@ -89,19 +88,21 @@
                             </div>
                         </div>
                         <div class="p-col-12">
-                                <p:outputPanel id="panelss" >
-                                    <f:event type="preRenderView" listener="#{rolMB.listarRolesID(loginMB.httpSession.getAttribute('chiquito'))}"/>
+                            <p:outputPanel id="panelss">
+                                <f:event type="preRenderView" listener="#{rolMB.listarRolesNombre(loginMB.usuario)}"/>
 
-                                    <p:selectOneMenu id="rolRender" rendered="#{loginMB.band}" value="#{loginMB.usuario.idUsuarioRol}">
-<!--                                        <f:selectItem itemLabel="Seleccione un rol" itemValue=""-->
-<!--                                                      noSelectionOption="true"/>-->
-                                        <f:selectItems
-                                                value="#{rolMB.listaRolresUsuarios}"
-                                                var="ro"
-                                                itemLabel="#{ro.nombreRol}"
-                                                itemValue="#{ro.idUsuarioRol}"/>
-                                    </p:selectOneMenu>
-                                </p:outputPanel>
+
+
+                                <p:selectOneMenu id="rolRender" value="#{loginMB.usuario.idUsuarioRol}">
+                                    <!--                                        <f:selectItem itemLabel="Seleccione un rol" itemValue=""-->
+                                    <!--                                                      noSelectionOption="true"/>-->
+                                    <f:selectItems
+                                            value="#{rolMB.listaRolresUsuarios}"
+                                            var="ro"
+                                            itemLabel="#{ro.nombreRol}"
+                                            itemValue="#{ro.idUsuarioRol}"/>
+                                </p:selectOneMenu>
+                            </p:outputPanel>
 
                         </div>
                         <div class="p-col-12 button-container">

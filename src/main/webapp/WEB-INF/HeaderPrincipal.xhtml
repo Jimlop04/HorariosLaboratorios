@@ -14,7 +14,7 @@
         <div class="layout-topbar-menu-wrapper">        
             <ul class="topbar-menu navbar">
                 <li class="menu">
-                    <span class="user">  <h:outputText value="#{rolMB.rol.nombreRol} +1" style="font-size: 18px;"/></span>
+                    <span class="user">  <h:outputText value="#{loginMB.httpSession.getAttribute('chiquito')}" style="font-size: 18px;"/></span>
                     <p:graphicImage name="avatar.png" library="Images"/>
                     <div class="submenu">
                         <ul style="width: 100%">

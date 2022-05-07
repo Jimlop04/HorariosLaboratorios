@@ -8,6 +8,7 @@ import Model.login.Rol;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginDAO extends Conexion {
@@ -15,18 +16,14 @@ public class LoginDAO extends Conexion {
     List<Rol> listaRoles;
 
 
-    public UsuarioSession iniciarSesion(int idUr) throws SQLException {
+    public UsuarioSession iniciarSesion(Usuario usuario) throws SQLException {
 
         UsuarioSession usuarioSession = new UsuarioSession();
-        Usuario usuario = new Usuario();
         String sentencia = "";
         if (conectar()) {
             try {
-                sentencia = String.format(
-                        "SELECT * from laboratorio.iniciar_sesion('%1$s','%2$s','%3$s')",
-                        usuario.getNombreUsuario(),
-                        usuario.getPassword(),
-                        idUr);
+                sentencia = "SELECT * from laboratorio.iniciar_sesion('" + usuario.getNombreUsuario() + "','" + usuario.getPassword() + "','" + usuario.getIdUsuarioRol() + "')";
+
                 result = ejecutarSql(sentencia);
 
                 while (result.next()) {
@@ -46,38 +43,43 @@ public class LoginDAO extends Conexion {
         }
         return usuarioSession;
     }
-/*
-    public Login rol(Login l) {
 
-        Login usuarioAcceso = null;
-        String sentencia = "";
-        if (conectar()) {
-            try {
-                sentencia = String.format(
-                        " select *from laboratorio.rol_by_id_usuario('%1$s');",
-                        l.getPersona_idPersona());
-                result = ejecutarSql(sentencia);
 
-                while (result.next()) {
 
-                    usuarioAcceso = new Login(
-                            result.getInt("code"),
-                            result.getString("reslt")
-                    );
+
+
+    /*
+        public Login rol(Login l) {
+
+            Login usuarioAcceso = null;
+            String sentencia = "";
+            if (conectar()) {
+                try {
+                    sentencia = String.format(
+                            " select *from laboratorio.rol_by_id_usuario('%1$s');",
+                            l.getPersona_idPersona());
+                    result = ejecutarSql(sentencia);
+
+                    while (result.next()) {
+
+                        usuarioAcceso = new Login(
+                                result.getInt("code"),
+                                result.getString("reslt")
+                        );
+                    }
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                } finally {
+                    desconectar();
                 }
-            } catch (SQLException e) {
-                System.out.println(e.toString());
-            } finally {
-                desconectar();
+                this.usuario = usuarioAcceso;
             }
-            this.usuario = usuarioAcceso;
+            return usuarioAcceso;
         }
-        return usuarioAcceso;
-    }
-*/
+    */
     PreparedStatement pstatement;
 
-    public boolean masDeUnRol(int idP) {
+    public boolean masDeUnRol(Usuario u) {
         boolean var = false;
 
         String sql = "select count( ro.nombre_rol)\n" +
@@ -88,13 +90,15 @@ public class LoginDAO extends Conexion {
                 "                                              on u.id_usuario = ur.usuario_id_usuario\n" +
                 "                                   inner join laboratorio.rol ro\n" +
                 "                                              on ur.rol_id_rol = ro.id_rol\n" +
-                "                          where u.id_usuario = idP;";
-
+                "                          where u.nombre_usuario = '"+u.getNombreUsuario()+"';";
         try {
             conectar();
             pstatement = connection.prepareStatement(sql);
             result = pstatement.executeQuery();
-            System.out.println(result + "HOla");
+            while (result.next()) {
+                var = true;
+            }
+
         } catch (Exception e) {
             return var;
         } finally {
@@ -103,31 +107,18 @@ public class LoginDAO extends Conexion {
         return var;
     }
 
-    // Llena un selectOneMenu con los roles del usuario
-    public boolean masRol(int idP) {
+    // Verifica si un usuario existe en la bd
+    public boolean existeUsuario(Usuario u) {
         boolean band = false;
-        System.out.println("DONDE ESTAS");
-        int valor = 0;
         try {
-            String sql = "select ro.nombre_rol\n" +
-                    "                          from laboratorio.persona p\n" +
-                    "                                   inner join laboratorio.usuario u\n" +
-                    "                                              on p.id_persona = u.persona_id_persona\n" +
-                    "                                   inner join laboratorio.usuario_rol ur\n" +
-                    "                                              on u.id_usuario = ur.usuario_id_usuario\n" +
-                    "                                   inner join laboratorio.rol ro\n" +
-                    "                                              on ur.rol_id_rol = ro.id_rol\n" +
-                    "                          where u.id_usuario =" + idP;
+            String sql = "select  laboratorio.existe_usuario('"+u.getNombreUsuario()+"', '"+u.getPassword()+"');";
             System.out.println(sql);
             conectar();
             pstatement = this.getConnection().prepareStatement(sql);
             result = pstatement.executeQuery();
 
             while (result.next()) {
-                valor += 1;
-            }
-            if (valor > 1) {
-                band = true;
+                band = result.getBoolean(1);
             }
 
 
@@ -138,4 +129,9 @@ public class LoginDAO extends Conexion {
         }
         return band;
     }
+
+
+
+
+
 }

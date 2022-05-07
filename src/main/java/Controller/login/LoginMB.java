@@ -5,6 +5,7 @@
 package Controller.login;
 
 import DAO.login.LoginDAO;
+import DAO.login.RolDAO;
 import Model.administracion.Usuario;
 import Model.login.UsuarioRol;
 import Model.login.UsuarioSession;
@@ -12,6 +13,7 @@ import global.Mensajes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.sf.jasperreports.olap.JROlapDataSource;
 import org.primefaces.PrimeFaces;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +33,8 @@ import java.io.IOException;
 @AllArgsConstructor
 public class LoginMB extends Mensajes {
     public UsuarioRol usuarioRol;
+    public RolDAO rolDAO;
+    public RolMB rolMB;
     public boolean band;
     private LoginDAO loginDAO;
     private Usuario usuario;
@@ -41,7 +45,11 @@ public class LoginMB extends Mensajes {
     @PostConstruct
     public void init() {
         try {
+            idPersona = 0;
+            rolMB = new RolMB();
             band = false;
+            usuarioSesion = new UsuarioSession();
+            rolDAO = new RolDAO();
             usuarioRol = new UsuarioRol();
             loginDAO = new LoginDAO();
             this.usuario = new Usuario();
@@ -50,10 +58,10 @@ public class LoginMB extends Mensajes {
         }
     }
 
+    UsuarioSession usuarioSesion;
+
     public void iniciarSesion() throws Exception {
         ExternalContext ex = FacesContext.getCurrentInstance().getExternalContext();
-
-        UsuarioSession usuarioSesion = new UsuarioSession();
 
         if ("".equals(this.usuario.getNombreUsuario())) {
             mensajeDeAdvertencia("Ingrese un usuario");
@@ -62,66 +70,48 @@ public class LoginMB extends Mensajes {
             mensajeDeAdvertencia("Ingrese una contraseña");
         }
         if (!this.usuario.getNombreUsuario().isEmpty() && !this.usuario.getPassword().isEmpty()) {
-            if ("".equals(this.usuario.getIdUsuarioRol())) {
-                mensajeDeAdvertencia("Ingrese un rol");
 
-            } else {
-                usuarioSesion = loginDAO.iniciarSesion(usuario.getIdUsuarioRol());
-                if (usuarioSesion != null) {
-                    if (usuarioSesion.getIdPersona() < 1) {
-                        mensajeDeAdvertencia(usuarioSesion.getNombrePersona());
-
-                    } else {
-                        //Registrar usuario en HttpSession
-                        httpSession.setAttribute("username", usuarioSesion);
-
-                        //Registrar usuario en Session de JSF
-                        FacesContext.getCurrentInstance().getExternalContext()
-                                .getSessionMap().put("usuario", usuarioSesion);
-
-                        if (loginDAO.masRol(usuarioSesion.getIdPersona())) {
-
-                            FacesContext.getCurrentInstance().getExternalContext()
-                                    .getSessionMap().put("chiquito", usuarioSesion.getIdPersona());
-                            //facesContext.getExternalContext().redirect(ex.getRequestContextPath()+"/faces/View/Global/AsignacionRol.xhtml");
-                            RolMB rm = new RolMB();
-                            rm.listarRolesID(usuarioSesion.getIdPersona());
-                            rm.listarRolSession(usuarioSesion.getIdUsuarioRol());
-                            band = true;
-                            PrimeFaces.current().ajax().update("form:panelss");
-                            if (usuarioRol.getIdUsuarioRol() == 0) {
-                                mensajeDeAdvertencia("Seleccione un rol:");
-
-                                PrimeFaces.current().ajax().update("form:panelss");
-
-
-                            } else {
-
-
-                                facesContext.getExternalContext()
-                                        .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
-
-                            }
-
-                        } else {
-                            facesContext.getExternalContext()
-                                    .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
-
-
-                        }
-
-                    }
-                } else {
-                    mensajeDeAdvertencia("Error de conexión en tus tapas al intentar iniciar sesión.");
+            while (loginDAO.existeUsuario(usuario)) {
+                if (loginDAO.masDeUnRol(usuario)) {
+                    rolMB.listarRolesNombre(usuario);
+                    PrimeFaces.current().ajax().update("form:panelss");
                 }
+
+                if (usuarioSesion.getIdUsuarioRol() > 0) {
+                    usuarioSesion = loginDAO.iniciarSesion(usuario);
+                    FacesContext.getCurrentInstance().getExternalContext()
+                            .getSessionMap().put("chiquito", usuarioSesion.getNombrePersona());
+                    facesContext.getExternalContext()
+                            .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
+
+
+                } else {
+                    mensajeDeAdvertencia("Seleccione un rol");
+                    usuarioSesion = loginDAO.iniciarSesion(usuario);
+                    System.out.println(usuarioSesion + "2 do");
+                }
+                break;
+
             }
 
-
         }
+
     }
 
     public void verificarInicioSesion() {
 
+    }
+
+    int idPersona;
+
+    public void llamaRol() throws Exception {
+        try {
+            idPersona = rolDAO.personaByUserName(this.usuario);
+            System.out.println(rolDAO.personaByUserName(this.usuario));
+
+        } catch (Exception e) {
+
+        }
     }
 
     public void cerrarSession() throws IOException {
