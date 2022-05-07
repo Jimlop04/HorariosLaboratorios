@@ -80,7 +80,7 @@ public class LoginMB extends Mensajes {
                 if (usuarioSesion.getIdUsuarioRol() > 0) {
                     usuarioSesion = loginDAO.iniciarSesion(usuario);
                     FacesContext.getCurrentInstance().getExternalContext()
-                            .getSessionMap().put("chiquito", usuarioSesion.getNombrePersona() + usuarioSesion);
+                            .getSessionMap().put("chiquito", usuarioSesion.getNombrePersona() +" - "+ usuarioSesion.getNombreRol());
                     facesContext.getExternalContext()
                             .redirect(ex.getRequestContextPath() + "/faces/View/Global/Principal.xhtml");
 
