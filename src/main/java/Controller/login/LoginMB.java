@@ -4,12 +4,11 @@
  */
 package Controller.login;
 
+import DAO.login.LoginDAO;
 import Model.administracion.Usuario;
 import Model.login.UsuarioRol;
 import Model.login.UsuarioSession;
 import global.Mensajes;
-import DAO.login.LoginDAO;
-;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +21,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+;
 
 @ManagedBean
 @ViewScoped
@@ -43,6 +44,7 @@ public class LoginMB extends Mensajes {
             band = false;
             usuarioRol = new UsuarioRol();
             loginDAO = new LoginDAO();
+            this.usuario = new Usuario();
         } catch (Exception e) {
 
         }
@@ -50,7 +52,9 @@ public class LoginMB extends Mensajes {
 
     public void iniciarSesion() throws Exception {
         ExternalContext ex = FacesContext.getCurrentInstance().getExternalContext();
+
         UsuarioSession usuarioSesion = new UsuarioSession();
+
         if ("".equals(this.usuario.getNombreUsuario())) {
             mensajeDeAdvertencia("Ingrese un usuario");
         }

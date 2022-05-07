@@ -3,7 +3,6 @@ package Model.login;
 import Model.administracion.Usuario;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
 
 @Data
