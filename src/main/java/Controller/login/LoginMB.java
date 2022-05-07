@@ -39,6 +39,8 @@ public class LoginMB extends Mensajes {
     private LoginDAO loginDAO;
     private Usuario usuario;
     private final FacesContext facesContext = FacesContext.getCurrentInstance();
+    ExternalContext ex = FacesContext.getCurrentInstance().getExternalContext();
+
     public HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
 
     //Controla que en caso de que no haya un usuario conectado entonces redirija al incio.
@@ -61,7 +63,6 @@ public class LoginMB extends Mensajes {
     UsuarioSession usuarioSesion;
 
     public void iniciarSesion() throws Exception {
-        ExternalContext ex = FacesContext.getCurrentInstance().getExternalContext();
 
         if ("".equals(this.usuario.getNombreUsuario())) {
             mensajeDeAdvertencia("Ingrese un usuario");
@@ -73,6 +74,7 @@ public class LoginMB extends Mensajes {
 
             while (loginDAO.existeUsuario(usuario)) {
                 if (loginDAO.masDeUnRol(usuario)) {
+                    band = true;
                     rolMB.listarRolesNombre(usuario);
                     PrimeFaces.current().ajax().update("form:panelss");
                 }
@@ -115,6 +117,10 @@ public class LoginMB extends Mensajes {
     }
 
     public void cerrarSession() throws IOException {
+       httpSession.removeAttribute("chiquito");
+       usuarioSesion = null;
+        facesContext.getExternalContext()
+                .redirect(ex.getRequestContextPath());
 
     }
 

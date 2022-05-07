@@ -89,11 +89,11 @@
                         </div>
                         <div class="p-col-12">
                             <p:outputPanel id="panelss">
-                                <f:event type="preRenderView" listener="#{rolMB.listarRolesNombre(loginMB.usuario)}"/>
+                                <f:event  type="preRenderView" listener="#{rolMB.listarRolesNombre(loginMB.usuario)}"/>
 
 
 
-                                <p:selectOneMenu id="rolRender" value="#{loginMB.usuario.idUsuarioRol}">
+                                <p:selectOneMenu rendered="#{loginMB.band}" id="rolRender" value="#{loginMB.usuario.idUsuarioRol}">
                                     <!--                                        <f:selectItem itemLabel="Seleccione un rol" itemValue=""-->
                                     <!--                                                      noSelectionOption="true"/>-->
                                     <f:selectItems
