@@ -92,6 +92,10 @@ public class LoginMB extends Mensajes {
                 }
                 break;
             }
+            if(!loginDAO.existeUsuario(usuario)){
+                mensajeDeAdvertencia("Usuario no existe o las credenciales son incorrectas");
+            }
+
         }
     }
 
