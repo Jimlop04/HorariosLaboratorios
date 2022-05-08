@@ -2,7 +2,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/WEB-INF/InicioTemplate.xhtml"
 >
 
@@ -33,7 +32,7 @@
 
             <div class="p-grid">
                 <!--Equipos-->
-                <ui:fragment>
+                <ui:fragment rendered="#{loginMB.isDocente() == true}">
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Equipos/registroEquipos.xhtml">
                             <div class="card-box bg-blue">

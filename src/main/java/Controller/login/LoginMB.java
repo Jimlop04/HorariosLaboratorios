@@ -37,6 +37,15 @@ public class LoginMB extends Mensajes {
     public boolean band;
     private LoginDAO loginDAO;
     private Usuario usuario;
+
+    //Variables para controlar acceso a los modulos correspondientes al rol
+    private boolean isDecano=false;
+    private boolean isDocente=false;
+    private boolean isTecnicoRumiologia=false;
+    private boolean isTecnicoQuimicaBioquimica =false;
+    private boolean isTecnicoBiotecniologia=false;
+    private boolean isTecnicoBromatologia=false;
+    private boolean isTecnicoSuelosAguas=false;
     private final FacesContext facesContext = FacesContext.getCurrentInstance();
     ExternalContext ex = FacesContext.getCurrentInstance().getExternalContext();
 
@@ -80,6 +89,7 @@ public class LoginMB extends Mensajes {
 
                 if (usuarioSesion.getIdUsuarioRol() > 0) {
                     usuarioSesion = loginDAO.iniciarSesion(usuario);
+                    redireccioarMenuRol(usuarioSesion);
                     FacesContext.getCurrentInstance().getExternalContext()
                             .getSessionMap().put("chiquito", usuarioSesion.getNombrePersona() +" - "+ usuarioSesion.getNombreRol());
                     facesContext.getExternalContext()
@@ -96,6 +106,28 @@ public class LoginMB extends Mensajes {
                 mensajeDeAdvertencia("Usuario no existe o las credenciales son incorrectas");
             }
 
+        }
+    }
+
+    public void redireccioarMenuRol (UsuarioSession usuarioSesion){
+        String rol = usuarioSesion.getNombreRol();
+        switch(rol)
+        {
+            case "Docente":
+                isDocente=true;
+            case "Decano":
+                isDecano=true;
+            case "Técnico-Rumiología":
+                isTecnicoRumiologia=true;
+            case "Técnico-Quimica-Biologia":
+                isTecnicoQuimicaBioquimica =true;
+            case "Técnico-Bromatología":
+                isTecnicoBromatologia=true;
+            case "Técnico-Biotecnología":
+                isTecnicoBiotecniologia=true;
+            case "Técnico-Suelos-Aguas":
+                isTecnicoSuelosAguas=true;
+           //default;
         }
     }
 
