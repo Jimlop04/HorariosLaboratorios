@@ -1,56 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <h:head>
-               <link rel="shortcut icon" href="favicon.ico"/> 
-        <title>Laboratorio UTEQ</title>
-        <h:outputScript name="js/layout.js" library="manhattan-layout"/>
-        <h:outputScript name="js/prism.js" library="manhattan-layout"/>
-        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' />
-    </h:head>
-    <h:body>
-        <div>
-               <ui:insert name="top">
-                <div class="navbar-principal p-d-flex p-ai-center p-jc-between" >
-                    <div class="p-d-flex p-ai-center p-jc-start">
-                        <a href="/HorariosLaboratorios">
-                            <h:graphicImage name="Images/logoUTEQ.png"  height="60px" class="p-mr-1"/>
-                        </a>
-                        <h2>Laboratorio UTEQ</h2> 
-                    </div>
-
-
-                    <div>
-                        <p:ajaxStatus style="position: relative;">
-                            <f:facet name="start">
-                                <div class="spinner p-mr-3" style="position: relative;"></div>
-                            </f:facet>
-                        </p:ajaxStatus>
-                    </div>
-
+<h:head>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <title>Laboratorio UTEQ</title>
+    <h:outputScript name="js/layout.js" library="manhattan-layout"/>
+    <h:outputScript name="js/prism.js" library="manhattan-layout"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'/>
+</h:head>
+<h:body>
+    <div>
+        <ui:insert name="top">
+            <div class="navbar-principal p-d-flex p-ai-center p-jc-between">
+                <div class="p-d-flex p-ai-center p-jc-start">
+                    <a href="/HorariosLaboratorios">
+                        <h:graphicImage name="Images/logoUTEQ.png" height="60px" class="p-mr-1"/>
+                    </a>
+                    <h2>Laboratorio UTEQ</h2>
                 </div>
-            </ui:insert>
-            
-            <div class="p-grid" style="width: 99%">
-                <div class="p-col-12 p-md-12 p-lg-3 p-p-3">
-                    <ui:insert name="left">
-                        <h:form>
-                            <p:panelMenu stateful="true">
-                                <p:submenu label="Contabilidad" expanded="false">
-                                    <p:menuitem value="Inicio" action="/View/Calendario/Calendario"/>
-                                </p:submenu>
-                            </p:panelMenu>
-                        </h:form>
-                    </ui:insert>
-                    
+
+
+                <div>
+                    <p:ajaxStatus style="position: relative;">
+                        <f:facet name="start">
+                            <div class="spinner p-mr-3" style="position: relative;"></div>
+                        </f:facet>
+                    </p:ajaxStatus>
                 </div>
+
+            </div>
+        </ui:insert>
+
+        <div class="p-grid" style="width: 99%">
+            <div class="p-col-12 p-md-12 p-lg-3 p-p-3">
+                <ui:insert name="left">
+                    <h:form>
+                        <p:panelMenu stateful="true">
+                            <p:submenu label="Contabilidad" expanded="false">
+                                <p:menuitem value="Inicio" action="/View/Calendario/Calendario"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </ui:insert>
+
             </div>
         </div>
-    </h:body>
+    </div>
+</h:body>
 </html>
 

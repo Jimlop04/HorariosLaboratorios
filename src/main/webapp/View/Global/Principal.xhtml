@@ -8,8 +8,6 @@
 
     <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
     <ui:define name="content">
-
-
         <div>
             <div id="nonAjaxLoad">
                 <p:graphicImage style="
@@ -34,28 +32,7 @@
         <div class="container" style="background-color: #f2f2f7">
 
             <div class="p-grid">
-                <ui:fragment>
-                    <div class="p-col-12 p-lg-6 p-xl-3">
-                        <a href="../Solicitudes/AprobacionSolicitudes.xhtml">
-                            <div class="card-box bg-blue">
-                                <div class="inner">
-                                    <h3>Aprobacion de Solicitudes</h3>
-                                    <p>Revision de solicitudes para su aprobación</p>
-                                </div>
-                                <div class="icon">
-                                    <i>
-                                        <p:graphicImage class="imagenes" name="justificacionfaltas.png"
-                                                        library="Images"/>
-                                    </i>
-                                </div>
-                                <div class="card-box-footer">Ingresar
-                                    <i class="pi pi-arrow-circle-right"/>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </ui:fragment>
-
+                <!--Equipos-->
                 <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Equipos/registroEquipos.xhtml">
@@ -76,28 +53,7 @@
                         </a>
                     </div>
                 </ui:fragment>
-
-
-                <ui:fragment>
-                    <div class="p-col-12 p-lg-6 p-xl-3">
-                        <a href="../Calendario/Calendario.xhtml">
-                            <div class="card-box bg-blue">
-                                <div class="inner">
-                                    <h3>Fechas y Horarios</h3>
-                                    <p>Asignación de horarios</p>
-                                </div>
-                                <div class="icon">
-                                    <i>
-                                        <p:graphicImage class="imagenes" name="reloj.png" library="Images"/>
-                                    </i>
-                                </div>
-                                <div class="card-box-footer">Ingresar
-                                    <i class="pi pi-arrow-circle-right"/>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </ui:fragment>
+                <!--Solicitudes-->
                 <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Solicitudes/ModuloSolicitudes.xhtml">
@@ -118,6 +74,7 @@
                         </a>
                     </div>
                 </ui:fragment>
+                <!--Laboratorio-->
                 <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Laboratorios/RegistrarLaboratorios.xhtml">
@@ -138,7 +95,7 @@
                         </a>
                     </div>
                 </ui:fragment>
-
+                <!--Ajustes de perfil-->
                 <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Seguridad/administrativePanel.xhtml">
@@ -159,6 +116,7 @@
                         </a>
                     </div>
                 </ui:fragment>
+                <!--Administracion-->
                 <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Administracion/Docentes.xhtml">

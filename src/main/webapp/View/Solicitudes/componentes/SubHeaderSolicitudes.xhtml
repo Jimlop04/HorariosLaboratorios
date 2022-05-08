@@ -1,0 +1,27 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+    <div class="p-grid ui-fluid">
+        <div class="p-col-12">
+            <p:menubar>
+                <p:menuitem value="Solicitudes realizadas" outcome="/View/Solicitudes/ModuloSolicitudes"
+                            icon="pi pi-list"/>
+                <p:submenu label="Nueva Solicitud">
+                    <p:menuitem value="Practicas estudiantiles"
+                                outcome="/View/Solicitudes/SolicitudPracticasEstudiantiles"/>
+                    <p:menuitem value="Proyecto de investigacion"
+                                outcome="/View/Solicitudes/SolicitudPracticasProyectoInvestigacion"/>
+                    <p:menuitem value="Practicas de tesis" outcome="/View/Solicitudes/SolicitudPracticasTesis"/>
+                </p:submenu>
+                <p:menuitem value="Aprobacion de solicitudes" outcome="/View/Solicitudes/AprobacionSolicitudes"
+                            icon="pi pi-list"/>
+                <p:menuitem value="Horarios" outcome="/View/Solicitudes/Calendario"
+                            icon="pi pi-list"/>
+
+            </p:menubar>
+
+        </div>
+    </div>
+
+</ui:composition>
