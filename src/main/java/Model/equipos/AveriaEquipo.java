@@ -15,19 +15,7 @@ public class AveriaEquipo {
     private String tipoDanio;
     private String descripcion;
     private String prioridad;
-    private String categoriaEquipo;
-    private String facultad;
-    private String area;
-    private String encargado;
-    private String descripcionEquipo;
-    private String codigoEquipo;
-    private String imagen;
-    private String labotarorio;
-    private String marca;
-    private String numeroSerie;
-    private String modelo;
-    private String estadoEquipo;
-    private int idEquipo;
-    private int idEncargado;
+
+
 
 }

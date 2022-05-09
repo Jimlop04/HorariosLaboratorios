@@ -25,17 +25,17 @@ public class AveriaEquipoMB implements Serializable {
 
     private AveriaEquipo averiaEquipo;
 
-    public void registrar() throws Exception {
-        try {
-            dao = new AveriaEquipoDAO();
-            System.out.println(averiaEquipo);
-            dao.resgistrar(averiaEquipo);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
-        } catch (Exception e) {
-            System.out.println(averiaEquipo);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
-        }
-    }
+//    public void registrar() throws Exception {
+//        try {
+//            dao = new AveriaEquipoDAO();
+//            System.out.println(averiaEquipo);
+//            dao.resgistrar(averiaEquipo);
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
+//        } catch (Exception e) {
+//            System.out.println(averiaEquipo);
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
+//        }
+//    }
 
     @PostConstruct
     public void init() {
