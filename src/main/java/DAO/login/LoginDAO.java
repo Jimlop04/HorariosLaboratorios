@@ -30,9 +30,10 @@ public class LoginDAO extends Conexion {
 
                     usuarioSession.setIdUsuarioRol(result.getInt("idusuariorol"));
                     usuarioSession.setIdPersona(result.getInt("idpersona"));
-                    usuarioSession.setIdRol(result.getInt("idusuario"));
+                    usuarioSession.setIdRol(result.getInt("idrol"));
                     usuarioSession.setNombrePersona(result.getString("nombreusuario"));
                     usuarioSession.setNombreRol(result.getString("nombrerol"));
+                    usuarioSession.setIdUsuario(result.getInt("idusuario"));
                 }
             } catch (SQLException e) {
                 System.out.println(e.toString());

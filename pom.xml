@@ -48,6 +48,7 @@
             <artifactId>javax.faces</artifactId>
             <version>2.3.9</version>
         </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -100,6 +101,13 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api -->
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>jasperreports</groupId>
