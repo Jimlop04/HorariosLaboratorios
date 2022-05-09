@@ -4,7 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://java.sun.com/jsf/html">
+<h:head>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <title>Laboratorio UTEQ</title>
+    <h:outputScript name="js/layout.js" library="manhattan-layout"/>
+    <h:outputScript name="js/prism.js" library="manhattan-layout"/>
+    <h:outputStylesheet name="css/primeicons.css"
+                        library="manhattan-layout"/>
+    <h:outputStylesheet name="css/primeflex.min.css"
+                        library="manhattan-layout"/>
+
+    <h:outputStylesheet name="home.css" library="css"/>
+    <h:outputStylesheet name="home.css" library="css"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'/>
+</h:head>
 
 <h:body>
 
@@ -13,49 +27,66 @@
         <ui:define name="title">Perfil</ui:define>
         <ui:define name="content">
             <ui:include src="./componentes/SubHeaderAjustes.xhtml"/>
-            <h:form id="form-principal">
+            <h:form id="form">
+                <div class="p-grid ui-fluid">
+                    <div class="p-col-12">
+                        <div class="user-card">
+                            <div class="user-card-header" >
+                               <div class="card" jsfc="ui:fragment" >
 
-                <div class="p-col-12 p-lg-4">
-                    <div class="user-card">
-                        <div class="user-detail">
-                            <ul>
-                                <li class="clearfix">
-                                    <i class="pi pi-fw pi-sliders-h"/>
-                                    <span class="project-title">Tasks</span>
-                                    <span class="project-detail">3 open</span>
-                                    <div class="project-progressbar">
-                                        <div class="project-progressbar-value" style="width: 50%"></div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <i class="pi pi-fw pi-dollar"/>
-                                    <span class="project-title">Revenue</span>
-                                    <span class="project-detail">+20%</span>
-                                    <div class="project-progressbar">
-                                        <div class="project-progressbar-value" style="width: 20%"></div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <i class="pi pi-fw pi-money-bill"/>
-                                    <span class="project-title">Payments</span>
-                                    <span class="project-detail">24 new</span>
-                                    <div class="project-progressbar">
-                                        <div class="project-progressbar-value" style="width: 65%"></div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <i class="pi pi-fw pi-users"/>
-                                    <span class="project-title">Clients</span>
-                                    <span class="project-detail">+80%</span>
-                                    <div class="project-progressbar">
-                                        <div class="project-progressbar-value" style="width: 80%"></div>
-                                    </div>
-                                </li>
-                            </ul>
+                               </div>
+                             </div>
+                            <div class="user-card-content">
+                                <p:graphicImage name="images/avatar.png" library="manhattan-layout"/>
+                                <p:commandButton id="user-button" type="button" icon="pi pi-plus"
+                                                 styleClass="ui-button-secondary"/>
+
+                                <div class="user-card-name">
+                                    <span>Madison Hughes</span>
+                                </div>
+
+                                <div class="user-detail">
+                                    <ul>
+                                        <li class="clearfix">
+                                            <i class="pi pi-fw pi-sliders-h"/>
+                                            <span class="project-title">Tasks</span>
+                                            <span class="project-detail">3 open</span>
+                                            <div class="project-progressbar">
+                                                <div class="project-progressbar-value" style="width: 50%"></div>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <i class="pi pi-fw pi-dollar"/>
+                                            <span class="project-title">Revenue</span>
+                                            <span class="project-detail">+20%</span>
+                                            <div class="project-progressbar">
+                                                <div class="project-progressbar-value" style="width: 20%"></div>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <i class="pi pi-fw pi-money-bill"/>
+                                            <span class="project-title">Payments</span>
+                                            <span class="project-detail">24 new</span>
+                                            <div class="project-progressbar">
+                                                <div class="project-progressbar-value" style="width: 65%"></div>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <i class="pi pi-fw pi-users"/>
+                                            <span class="project-title">Clients</span>
+                                            <span class="project-detail">+80%</span>
+                                            <div class="project-progressbar">
+                                                <div class="project-progressbar-value" style="width: 80%"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
+
 
 
             </h:form>
