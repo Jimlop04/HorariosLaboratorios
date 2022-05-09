@@ -153,7 +153,6 @@ public class LoginMB extends Mensajes {
     public void cerrarSession() throws IOException {
        httpSession.removeAttribute("chiquito");
        usuarioSesion = null;
-       isDocente=false;
         facesContext.getExternalContext()
                 .redirect(ex.getRequestContextPath());
 
