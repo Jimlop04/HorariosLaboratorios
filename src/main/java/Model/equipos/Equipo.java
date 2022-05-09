@@ -1,5 +1,6 @@
 package Model.equipos;
 
+import Model.laboratorios.Area;
 import lombok.*;
 
 import java.util.Date;
@@ -17,8 +18,8 @@ public class Equipo {
     private String estado;
     private String imagen;
     private Date fechaAdquisicion;
-    private int idAreaAula;
-    private int idCategoriaEquipo;
-    private String areaAula;
-    private String categoriaEquipo;
+    //Relaciones entidades
+    private Area areaAula;
+    private CategoriaEquipo categoriaEquipo;
+
 }
