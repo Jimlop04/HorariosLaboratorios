@@ -79,14 +79,7 @@ public class MantenimientoMB implements Serializable {
     }
 
 
-    public void listarEquipos() throws Exception {
-        try {
-            dao = new MantenimientoDAO();
-            listaEquipos = dao.listarEquipos();
-        } catch (Exception e) {
-            throw e;
-        }
-    }
+
 
 
     @PostConstruct

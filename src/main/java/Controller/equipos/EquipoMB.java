@@ -3,15 +3,13 @@ package Controller.equipos;
 import DAO.equipos.EquipoDAO;
 import Model.equipos.CategoriaEquipo;
 import Model.equipos.Equipo;
-import Model.laboratorios.Area;
+import Model.laboratorios.AreaAula;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ public class EquipoMB implements Serializable {
 
     private List<Equipo> listaEquipos;
     private Equipo equipo;
-    private Area areaAula;
+    private AreaAula areaAula;
     private CategoriaEquipo categoriaEquipo;
     String msj = "";
 

@@ -1,6 +1,6 @@
 package Model.equipos;
 
-import Model.laboratorios.Area;
+import Model.laboratorios.AreaAula;
 import lombok.*;
 
 import java.util.Date;
@@ -19,7 +19,7 @@ public class Equipo {
     private String imagen;
     private Date fechaAdquisicion;
     //Relaciones entidades
-    private Area areaAula;
+    private AreaAula areaAula;
     private CategoriaEquipo categoriaEquipo;
 
 }

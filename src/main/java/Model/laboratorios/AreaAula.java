@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Area {
+public class AreaAula {
     private int idAreaAula;
     private int laboratorio_idLaboratorio;
     private String codigo;
@@ -19,7 +19,7 @@ public class Area {
     private String nombre_laboratorio;
     private String codigo_laboratorio;
 
-    public Area(int idAreaAula, int laboratorio_idLaboratorio, String codigo, String nombre, Short capacidad) {
+    public AreaAula(int idAreaAula, int laboratorio_idLaboratorio, String codigo, String nombre, Short capacidad) {
         this.idAreaAula = idAreaAula;
         this.laboratorio_idLaboratorio = laboratorio_idLaboratorio;
         this.codigo = codigo;

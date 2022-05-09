@@ -61,23 +61,7 @@ public class CategoriaEquipoMB implements Serializable {
 //        }
 //    }
 
-    public void listarAreasAulas() throws Exception {
-        EquipoDAO dao;
-        try {
-            dao = new EquipoDAO();
-            listaAreasAulas = dao.listarAreasAulas();
-        }catch( Exception e){
-            throw e;
-        }
-    }
 
-    public void listarAreasAulasID(int idLaboratorio) throws Exception {
-        EquipoDAO dao;
-        try {
-            dao = new EquipoDAO();
-            listaAreasAulas = dao.listarAreasAulasID(idLaboratorio);
-        }catch( Exception e){
-            throw e;
-        }
-    }
+
+
 }

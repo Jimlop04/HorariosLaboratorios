@@ -5,14 +5,11 @@ import Model.equipos.Equipo;
 import Model.laboratorios.Laboratorio;
 import Model.login.UsuarioSession;
 import global.Conexion;
-import Model.laboratorios.Area;
+import Model.laboratorios.AreaAula;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EquipoDAO extends Conexion {
 
@@ -175,7 +172,7 @@ public class EquipoDAO extends Conexion {
             while (rs.next()) {
                 Equipo equipo = new Equipo();
                 CategoriaEquipo categoriaEquipo = new CategoriaEquipo();
-                Area area = new Area();
+                AreaAula area = new AreaAula();
                 Laboratorio laboratorio = new Laboratorio();
 
                 equipo.setIdEquipo(rs.getInt("id_equipo"));
