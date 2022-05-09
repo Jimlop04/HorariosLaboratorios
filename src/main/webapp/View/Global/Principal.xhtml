@@ -2,6 +2,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/WEB-INF/InicioTemplate.xhtml"
 >
 
@@ -31,8 +32,10 @@
         <div class="container" style="background-color: #f2f2f7">
 
             <div class="p-grid">
+
                 <!--Equipos-->
-                <ui:fragment rendered="#{loginMB.isDocente()}">
+                <ui:fragment>
+
                     <div class="p-col-12 p-lg-6 p-xl-3">
                         <a href="../Equipos/registroEquipos.xhtml">
                             <div class="card-box bg-blue">
@@ -97,7 +100,7 @@
                 <!--Ajustes de perfil-->
                 <ui:fragment>
                     <div class="p-col-12 p-lg-6 p-xl-3">
-                        <a href="../Seguridad/administrativePanel.xhtml">
+                        <a href="../Ajustes/ajustesPerfl.xhtml">
                             <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3>Ajustes de Perfil</h3>
