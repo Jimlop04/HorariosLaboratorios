@@ -13,6 +13,7 @@ import global.Mensajes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jfree.chart.axis.SymbolAxis;
 import org.primefaces.PrimeFaces;
 
 import javax.annotation.PostConstruct;
@@ -110,9 +111,9 @@ public class LoginMB extends Mensajes {
         }
     }
 
-    public void redireccioarMenuRol (UsuarioSession usuarioSesion){
+    public void redireccioarMenuRol ( UsuarioSession usuarioSesion){
         String rol = usuarioSesion.getNombreRol();
-        switch(rol)
+        switch(rol.trim())
         {
             case "Docente":
                 isDocente=true;
@@ -130,6 +131,7 @@ public class LoginMB extends Mensajes {
                 isTecnicoSuelosAguas=true;
            //default;
         }
+        System.out.println(isDocente);
     }
 
     public void verificarInicioSesion() {
@@ -151,6 +153,7 @@ public class LoginMB extends Mensajes {
     public void cerrarSession() throws IOException {
        httpSession.removeAttribute("chiquito");
        usuarioSesion = null;
+       isDocente=false;
         facesContext.getExternalContext()
                 .redirect(ex.getRequestContextPath());
 
