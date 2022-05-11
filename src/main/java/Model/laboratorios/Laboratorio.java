@@ -52,6 +52,8 @@ public class Laboratorio {
         this.nombre_facultad = nombre_facultad;
     }
     
+    
+    
    
 
     public int getIdFacultad() {

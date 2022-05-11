@@ -1,6 +1,7 @@
 package DAO.administracion;
 
 import Model.administracion.Encargado;
+import Model.laboratorios.Laboratorio;
 import global.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +39,6 @@ public class EncargadoDAO {
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
-
             while (resultSet.next()) {
                 Encargados.add(new Encargado(
                         resultSet.getInt("idusu"),
@@ -65,6 +65,49 @@ public class EncargadoDAO {
                         resultSet.getString("nomlab"),
                         resultSet.getString("codlab")));
             }
+            System.out.println(Encargados);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return Encargados;
+    }
+    
+    public List<Encargado> getListaLaboratoriosXencargado(String dni) {
+        List<Encargado> Encargados = new ArrayList<>();
+
+        String sql = "SELECT * from laboratorio.listar_tabla_encargado_laboratorios('" + dni + "')";
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql(sql);
+            while (resultSet.next()) {
+                Encargados.add(new Encargado(
+                        resultSet.getInt("idusu"),
+                        resultSet.getString("nomusu"),
+                        resultSet.getString("passwusu"),
+                        resultSet.getDate("fcreacionusu"),
+                        resultSet.getBoolean("estadusu"),
+                        resultSet.getInt("idpersona"),
+                        resultSet.getString("nompersona"),
+                        resultSet.getString("apepersona"),
+                        resultSet.getString("dnipersona"),
+                        resultSet.getDate("fdnpersona"),
+                        resultSet.getString("genpersona"),
+                        resultSet.getString("correopersona"),
+                        resultSet.getString("celupersona"),
+                        resultSet.getInt("idusuroles"),
+                        resultSet.getInt("idroles"),
+                        resultSet.getString("nomrol"),
+                        resultSet.getInt("idencarg"),
+                        resultSet.getInt("idencarglabo"),
+                        resultSet.getDate("finicio"),
+                        resultSet.getDate("ffin"),
+                        resultSet.getInt("idlabo"),
+                        resultSet.getString("nomlab"),
+                        resultSet.getString("codlab")));
+            }
+            System.out.println(Encargados);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -76,11 +119,10 @@ public class EncargadoDAO {
     public List<Encargado> getRoles() {
         List<Encargado> roles = new ArrayList<>();
 
-        String sql = String.format("SELECT * from laboratorio.listar_tecnicos()");
+        String sql = String.format("SELECT * from laboratorio.listar_rol_t_d()");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sql);
-
             while (resultSet.next()) {
                 roles.add(new Encargado(
                         resultSet.getInt("idrol"),
@@ -196,6 +238,65 @@ public class EncargadoDAO {
         } finally {
             conexion.desconectar();
         }
+    }
+
+    public Laboratorio ObtenerCodigo(int id) {
+        Laboratorio cod = null;
+        try {
+            conexion.conectar();
+            ResultSet result = conexion.ejecutarSql("SELECT laboratorio.obtenercodigolaboratorio(" + id + ")");
+
+        } catch (Exception ex) {
+            System.out.println("Error No ahi Codigo" + ex.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return cod;
+    }
+
+    public void cargarFacturasPendientesPorCliente() {
+        encargado = new Encargado();
+    }
+
+    public Encargado verificarExisteEncargado(String dniencargado) {
+        encargado = new Encargado();
+        String sentencia = "SELECT* from laboratorio.verificar_dni('" + dniencargado + "')";
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql(sentencia);
+            while (resultSet.next()) {
+                encargado = new Encargado(
+                        resultSet.getInt("idusu"),
+                        resultSet.getString("nomusu"),
+                        resultSet.getString("passwusu"),
+                        resultSet.getDate("fcreacionusu"),
+                        resultSet.getBoolean("estadusu"),
+                        resultSet.getInt("idpersona"),
+                        resultSet.getString("nompersona"),
+                        resultSet.getString("apepersona"),
+                        resultSet.getString("dnipersona"),
+                        resultSet.getDate("fdnpersona"),
+                        resultSet.getString("genpersona"),
+                        resultSet.getString("correopersona"),
+                        resultSet.getString("celupersona"),
+                        resultSet.getInt("idusuroles"),
+                        resultSet.getInt("idroles"),
+                        resultSet.getString("nomrol"),
+                        resultSet.getInt("idencarg"),
+                        resultSet.getInt("idencarglabo"),
+                        resultSet.getDate("finicio"),
+                        resultSet.getDate("ffin"),
+                        resultSet.getInt("idlabo"),
+                        resultSet.getString("nomlab"),
+                        resultSet.getString("codlab"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+
+        return encargado;
     }
 
     /**

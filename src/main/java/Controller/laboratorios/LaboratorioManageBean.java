@@ -1,4 +1,3 @@
-
 package Controller.laboratorios;
 
 import global.Mensajes;
@@ -20,10 +19,9 @@ import org.primefaces.model.TreeNode;
  *
  * @author Jimmy
  */
-
 @ManagedBean(name = "laboratorioMB")
 public class LaboratorioManageBean implements Serializable {
-    
+
     private Laboratorio laboratorio = new Laboratorio();
     private LaboratorioDAO laboratorioDAO = new LaboratorioDAO();
     private List<Laboratorio> listaLaboratorios = new ArrayList<>();
@@ -35,7 +33,7 @@ public class LaboratorioManageBean implements Serializable {
     TreeNode laboratorioTree;
     TreeNode aulasTree;
 
-     @PostConstruct
+    @PostConstruct
     public void init() {
         System.out.println("PostConstruct");
         listaLaboratorios = laboratorioDAO.getLaboratorios();
@@ -43,8 +41,8 @@ public class LaboratorioManageBean implements Serializable {
         laboratorio = new Laboratorio();
         listasoloLaboratorios = laboratorioDAO.getsoloLaboratorios();
         listafacultades = laboratorioDAO.getfacultades();
-        llenarListaTableTree(); 
-    } 
+        llenarListaTableTree();
+    }
 
     public Laboratorio getLaboratorio() {
         return laboratorio;
@@ -109,16 +107,16 @@ public class LaboratorioManageBean implements Serializable {
     public void setListaAreas(List<AreaAula> listaAreas) {
         this.listaAreas = listaAreas;
     }
-      
- public void registrarLaboratorio() throws Exception {
+
+    public void registrarLaboratorio() throws Exception {
 
         try {
             if ("".equals(laboratorio.getIdFacultad())) {
                 mensajesJSF.mensajeDeAdvertencia("Ingrese Codigo Laboratorio");
-            } else if ("".equals(laboratorio .getNombre_laboratorio())) {
+            } else if ("".equals(laboratorio.getNombre_laboratorio())) {
                 mensajesJSF.mensajeDeAdvertencia("Ingrese Nombre Laboratorio");
-            } else if ("".equals(laboratorio.getNombre_facultad())){
-                mensajesJSF.mensajeDeAdvertencia("");    
+            } else if ("".equals(laboratorio.getNombre_facultad())) {
+                mensajesJSF.mensajeDeAdvertencia("");
             } else {
                 this.laboratorioDAO.registrarLab(laboratorio);
                 mensajesJSF.mensajeDeExito("Registro Exitoso");
@@ -127,62 +125,65 @@ public class LaboratorioManageBean implements Serializable {
             e.getMessage();
         }
     }
-     
-     
-   
-    
-     public void editarLaboratorio() {
+
+    public void editarLaboratorio() {
         try {
             if ("".equals(laboratorio.getIdFacultad())) {
-                FacesContext.getCurrentInstance().addMessage(null, 
+                FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Facultad"));
             } else if ("".equals(laboratorio.getNombre_laboratorio())) {
-                FacesContext.getCurrentInstance().addMessage(null, 
+                FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Codigo Laboratorio"));
             } else if ("".equals(laboratorio.getCodigo_laboratorio())) {
-                FacesContext.getCurrentInstance().addMessage(null, 
+                FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre Laboratorio"));
             } else {
                 this.laboratorioDAO.modificarLaboratorio(laboratorio);
-                listaLaboratorios = laboratorioDAO.getLaboratorios(); 
+                listaLaboratorios = laboratorioDAO.getLaboratorios();
                 FacesContext.getCurrentInstance().
                         addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Laboratorio Guardado"));
-                
+
                 PrimeFaces.current().executeScript("PF('centroEditarLaboratorioDialog').hide()");
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().
-                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Error al guardar"));
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error al guardar"));
         }
         PrimeFaces.current().ajax().update(":form-principal:integracionLaboratorio");
-    } 
-    
-     /**  LLENAR LISTA DE LISTA LABORATORIOS TABLA TREE */
-     public void llenarListaTableTree() {
+    }
+
+    /**
+     * LLENAR LISTA DE LISTA LABORATORIOS TABLA TREE
+     */
+    public void llenarListaTableTree() {
         for (Laboratorio laboratorioT : listasoloLaboratorios) {
             laboratorioTree = new DefaultTreeNode(new Laboratorio(laboratorioT.getIdLaboratorio(), laboratorioT.getNombre_laboratorio(),
                     laboratorioT.getCodigo_laboratorio()), this.rootIntegracion);
             listaAreas = laboratorioDAO.getsoloAreas(laboratorioT.getIdLaboratorio());
-            for(AreaAula AreaT : listaAreas ){
-            if(laboratorioT.getIdLaboratorio() == AreaT.getLaboratorio_idLaboratorio() ){
-            aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(),AreaT.getCodigo(), 
-                    AreaT.getNombre(),AreaT.getCapacidad()),laboratorioTree);}
+            for (AreaAula AreaT : listaAreas) {
+                if (laboratorioT.getIdLaboratorio() == AreaT.getLaboratorio_idLaboratorio()) {
+                    aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(), AreaT.getCodigo(),
+                            AreaT.getNombre(), AreaT.getCapacidad()), laboratorioTree);
+                }
             }
-       
-            }
-        }
-     
-      public void onLaboratorioChange() {
-          System.out.println("YA ENTRO PILAS");
-           System.out.println();
-        if (laboratorio.getIdLaboratorio() != 0) {
-            // primero obtener el codigo del grupo
-            String codigoLabo = laboratorioDAO.getGrupoById(laboratorio.getIdLaboratorio()).getCodigo_laboratorio();
 
-            
-            
-        } 
+        }
     }
-     
-     
+
+    public void onLaboratorioChange() {
+        System.out.println("YA ENTRO PILAS");
+
+    }
+
+    public void onLaboratorioEncargadoCodigoChange() {
+        System.out.println("Saber Codigo Laboratorio");
+        if (laboratorio.getIdLaboratorio() != 0) {
+
+            String codLaboratorio = laboratorioDAO.ObtenerCodigo(laboratorio.getIdLaboratorio());
+            System.out.println(codLaboratorio);
+
+        }
+
+    }
+
 }

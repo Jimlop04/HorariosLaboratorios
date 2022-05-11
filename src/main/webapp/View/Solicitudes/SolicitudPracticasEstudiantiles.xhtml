@@ -30,6 +30,7 @@
                                                 maxlength="25"></p:inputText>
                                         </div>
                                         <div class="p-field p-col-12 p-md-1">
+                                            
                                             <p:outputLabel value="Codigo Laboratorio" for="@next"/>
                                             <p:inputText
                                                 id="CodLabSE"
@@ -58,17 +59,9 @@
                                         </div>
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Responsable Laboratorio" for="@next"/>
-                                            <p:selectOneMenu id="EncargadoSelect"
-                                                             value="#"
-                                                             filter="true" >
-                                                <f:selectItem itemLabel="Seleccione un Laboratorio" 
-                                                              itemValue="0"/>
-                                                <f:selectItems value="#" 
-                                                               var="la"
-                                                               itemLabel="#" 
-                                                               itemValue="#"></f:selectItems>
-
-                                            </p:selectOneMenu>
+                                             <p:inputText
+                                                 value="#{rolMB.rol.nombreRol}" 
+                                                readonly="true"></p:inputText>
                                         </div>
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Materia" for="@next"/>
@@ -78,8 +71,9 @@
                                         </div>
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Docente" for="@next"/>
-                                            <p:inputText 
-                                                maxlength="25"></p:inputText>
+                                            <p:inputText
+                                                value="#{loginMB.usuarioSesion.idRol}"
+                                              ></p:inputText>
                                         </div>
                                         <div class="p-field p-col-12 p-md-2">
                                             <p:outputLabel value="Periodo Academico" for="@next"/>

@@ -160,13 +160,13 @@ public class LaboratorioDAO {
         try {
 
             sentencia = String.format("SELECT laboratorio.editar_laboratorio("
-                     + "'" + laboratorio.getIdLaboratorio() + "',"
+                    + "'" + laboratorio.getIdLaboratorio() + "',"
                     + "'" + laboratorio.getIdFacultad() + "',"
                     + "'" + laboratorio.getNombre_laboratorio() + "',"
                     + "'" + laboratorio.getCodigo_laboratorio() + "')");
-            
+
             System.out.println(sentencia);
-            
+
             conexion.ejecutarSql(sentencia);
             System.out.println(sentencia);
         } catch (Exception e) {
@@ -175,22 +175,29 @@ public class LaboratorioDAO {
             conexion.desconectar();
         }
     }
-    
-    
-        public Laboratorio getGrupoById(int id) {
-        
+
+    public String ObtenerCodigo(int id) {
+        String cadena = new String();
+       sentencia = String.format("SELECT laboratorio.obtenercodigolaboratorio("+id+")");
         try {
             conexion.conectar();
-            ResultSet result = conexion.ejecutarSql("select getgrupocuentabyid(" + id + ")");
-            if (result.next()) {
-                String cadenaJSON = result.getString("getgrupocuentabyid");
+            resultSet = conexion.ejecutarSql(sentencia);
+            if(resultSet.next()){
+                cadena = resultSet.getString(sentencia);
             }
-        } catch (SQLException ex) {
-            System.out.println("Error getgrupocuenta: " + ex.getMessage());
+            
+        } catch (SQLException e) {
         } finally {
             conexion.desconectar();
+            System.out.println("Error No ahi Codigo");
         }
-    return laboratorio;
+        return cadena;
     }
+       
+
+     
+        
+    
+    
 
 }

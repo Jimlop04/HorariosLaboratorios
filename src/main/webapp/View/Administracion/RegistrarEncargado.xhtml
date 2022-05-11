@@ -12,7 +12,9 @@
                 <ui:include src="./SubHeaderAdministracion.xhtml"/> 
                 <div class="barra-navegacion">
                     <h:form id="form-principal">
-                        <p:growl id="messages" showDetail="true" severity="info, warn"/>
+                        <p:growl id="messages" showDetail="true" severity="info, warn">
+                            <p:autoUpdate/>
+                        </p:growl>
                         <div class="card" style="margin-top: 5px;">
                             <p:toolbarGroup>
                                 <!-- Boton Agregar Encargado -->
@@ -33,89 +35,137 @@
                                           modal="true"
                                           widgetVar="RegistrarEncargado"
                                           responsive="true" 
-                                          width="45%"
+                                          width="60%"
                                           draggable="false" 
-                                          height="200" >
+                                          height="550" >
 
                                     <p:outputPanel id="manage-encargado-form" class="ui-fluid">
                                         <div class="p-formgrid p-grid">
+                                          
                                             <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel value="Cedula" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    value="#" ></p:inputText>
+                                                <p:inputText  value="#{encargadoMB.dni}" 
+                                                              style="margin-right: 6px">
+                                                </p:inputText>
+                                                
                                             </div>
-
-                                            <div class="p-field p-col-12 p-md-5">
+                                              <div class="p-field p-col-12 p-md-1">
+                                                <p:commandButton
+                                                    styleClass="rounded-button"
+                                                    icon="pi pi-search" 
+                                                    process="manage-encargado-form @this"
+                                                    actionListener="#{encargadoMB.encargadoExistente()}"
+                                                    update=":form-principal:manage-encargado-form"
+                                                    />    
+                                                <p:commandButton type="button" 
+                                                                 style="margin-top: 33% ; margin-right: 6%"
+                                                                 icon="pi pi-plus" 
+                                                                 styleClass="rounded-button ui-button-success" />
+                                            </div>
+                                           
+                                            <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel value="Nombre" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#" ></p:inputText>
+                                                    value="#{encargadoMB.encargado.nombre_persona}" ></p:inputText>
                                             </div>
                                             <div class="p-field p-col-12 p-md-5">
+
                                                 <p:outputLabel value="Apellidos" for="@next"/>
                                                 <p:inputText 
                                                     maxlength="50"
-                                                    value="#"></p:inputText>
+                                                    value="#{encargadoMB.encargado.apellido_persona}"></p:inputText>
                                             </div>
-                                             <div class="p-field p-col-12 p-md-2">
-                                                <p:outputLabel value="Codigo Laboratorio" for="@next"/>
-                                                <p:inputText 
-                                                    maxlength="50"
-                                                    value="#"></p:inputText>
-                                            </div>
+                                           
                                             <div class="p-field p-col-12 p-md-5">
 
                                                 <p:outputLabel value="Laboratorio" for="@next"/>
-                                                <p:selectOneMenu value="#{laboratorioMB.laboratorio.idLaboratorio}" editable="false">
+                                                <p:selectOneMenu disabled="#{laboratorioMB.laboratorio.idLaboratorio != 0}"
+                                                                 value="#{laboratorioMB.laboratorio.idLaboratorio}">
                                                     <f:selectItem itemLabel="Seleccione un Laboratorio" itemValue="" noSelectionOption="true"/>
-                                                    <p:ajax  process="@this"/>
+                                                    <p:ajax listener="#{laboratorioMB.onLaboratorioEncargadoCodigoChange}" 
+                                                            />
                                                     <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
                                                                    var="la"
                                                                    itemLabel="#{la.nombre_laboratorio}" 
-                                                                   itemValue="#{la.idLaboratorio}">
+                                                                   itemValue="#{la.idLaboratorio}"
+                                                                   >
 
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-5">
-                                                <p:outputLabel value="Cargo" for="@next"/>
-                                                <p:selectOneMenu value="#{encargadoMB.encargado.idRoles}" editable="false">
-                                                    <f:selectItem itemLabel="Seleccione un Cargo" itemValue="" noSelectionOption="true"/>
-                                                    <p:ajax  process="@this"/>
-                                                    <f:selectItems value="#{encargadoMB.listaRoles}" 
-                                                                   var="rol"
-                                                                   itemLabel="#{rol.nombre_rol}" 
-                                                                   itemValue="#{rol.idRoles}">
+                                             
 
-                                                    </f:selectItems>
+                                         
+                                            <div class="p-field p-col-12 p-md-12">
+                                                
+                                                <div class="card" style="margin-top: 5px;">
+                                                    <div class="p-grid p-justify-around">
+                                                        <p:dataTable id="dtRegistrarEncargados"
+                                                                     paginator="true" 
+                                                                     paginatorPosition="bottom"
+                                                                     lazy="true"  
+                                                                     editable="true" 
+                                                                     reflow="true"
+                                                                     rows="6"
+                                                                     rowSelectMode="add"
+                                                                     editInitEvent="dblclick" 
+                                                                     editMode="cell"
+                                                                     value="#{encargadoMB.listaLaboratoriosXencargado}"
+                                                                     widgetVar="TablaEncargadosBus"
+                                                                     var="TablaEncargados"
+                                                                     >
+                                                  
+                                                            
+                                                            <p:column headerText="Codigo Laboratorio" 
+                                                                      filterStyle="display : none">
+                                                                <h:outputText 
+                                                                    value="#{TablaEncargados.codigo_laboratorio}"/>
+                                                            </p:column>
+                                                            <p:column headerText="Laboratorio" 
+                                                                      filterStyle="display : none">
+                                                                <h:outputText 
+                                                                    value="#{TablaEncargados.nombre_laboratorio}"/>
+                                                            </p:column>
+                                                           
+                                                            <p:column headerText="Fecha Inicio" filterStyle="display : none">
+                                                                <h:outputText  
+                                                                    value="#{TablaEncargados.fecha_inicio}"/>
+                                                            </p:column>
+                                                            <p:column headerText="Fecha Fin" filterStyle="display : none">
+                                                                <h:outputText
+                                                                    value="#{TablaEncargados.fecha_fin}"/>
+                                                            </p:column>
+                                                            <p:column headerText="Estado" sortBy="#{TablaEncargados.estado_usuario}">
+                                                                <p:tag severity="success" value="Habilitado"
+                                                                       style="font-size:12px;"
+                                                                       rendered="#{TablaEncargados.estado_usuario eq true}"/>
+                                                                <p:tag severity="warning" value="Deshabilitado"
+                                                                       style="font-size:12px;"
+                                                                       rendered="#{TablaEncargados.estado_usuario eq 'null'}"/>
+                                                            </p:column>
+                                                            <p:column headerText="Acciones" filterStyle="display : none">
+                                                                <p:commandButton 
+                                                                    icon="pi pi-pencil" 
+                                                                    update=":form-principal:manage-editarEncargado-form"
+                                                                    class="ui-button-primary rounded-button p-mr-2 p-mb-2"
+                                                                    oncomplete="PF('centroEditarEncargadoDialog').show()" 
+                                                                    process="@this">
+                                                                    <f:setPropertyActionListener 
+                                                                        value="#{TablaEncargados}" 
+                                                                        target="#{encargadoMB.encargado}"/>
+                                                                    <p:resetInput target=":form-principal:manage-editarEncargado-form"/>
 
-                                                </p:selectOneMenu>
+                                                                </p:commandButton>
+                                                            </p:column>
+                                                        </p:dataTable>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
 
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:toolbarGroup >
-                                                    <p:outputLabel value="Fecha Incio" for="@next"/>
-                                                    <p:datePicker id="button"
-                                                                  value="#"
-                                                                  showIcon="true"/>
-                                                </p:toolbarGroup>
-                                            </div>
-
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel value="Fecha Fin" for="@next"/>
-                                                <p:datePicker id="button2" 
-                                                              value="#"
-                                                              showIcon="true"/>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel value="Estado" for="@next"/>
-                                                <p:selectOneMenu id="option">
-                                                    <f:selectItem itemLabel="Seleccione Estado" itemValue=""/>
-                                                    <f:selectItem itemLabel="Habilitado" itemValue="Option1"/>
-                                                    <f:selectItem itemLabel="Deshabilitado" itemValue="Option2"/>
-                                                </p:selectOneMenu>
-                                            </div>
+                                          
                                         </div>
 
                                     </p:outputPanel>
