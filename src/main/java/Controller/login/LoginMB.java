@@ -92,6 +92,19 @@ public class LoginMB extends Mensajes {
                     usuarioSesion = loginDAO.iniciarSesion(usuario);
                     redireccioarMenuRol(usuarioSesion);
                     System.out.println(usuarioSesion);
+                     FacesContext.getCurrentInstance().getExternalContext()
+                            .getSessionMap().put("idPersona", usuarioSesion.getIdPersona());
+                     FacesContext.getCurrentInstance().getExternalContext()
+                            .getSessionMap().put("idRol", usuarioSesion.getIdRol());
+                     FacesContext.getCurrentInstance().getExternalContext()
+                            .getSessionMap().put("idUsuario", usuarioSesion.getIdUsuario());
+                     FacesContext.getCurrentInstance().getExternalContext()
+                            .getSessionMap().put("idUsuarioRol", usuarioSesion.getIdUsuarioRol());
+                     FacesContext.getCurrentInstance().getExternalContext()
+                            .getSessionMap().put("nombrePersona", usuarioSesion.getNombrePersona());
+                     FacesContext.getCurrentInstance().getExternalContext()
+                            .getSessionMap().put("nombreRol", usuarioSesion.getNombreRol());
+                  
                     FacesContext.getCurrentInstance().getExternalContext()
                             .getSessionMap().put("chiquito", usuarioSesion.getNombrePersona() +" - "+ usuarioSesion.getNombreRol());
                     facesContext.getExternalContext()
