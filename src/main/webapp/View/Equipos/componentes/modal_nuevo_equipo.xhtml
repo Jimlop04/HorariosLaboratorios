@@ -17,7 +17,7 @@
                     <div class="p-formgrid p-grid">
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Tipo de activo" for="@next"/>
-                            <p:selectOneMenu value="#{equipoMB.equipo.idCategoriaEquipo}" lazy="true" filter="true">
+                            <p:selectOneMenu value="#{equipoMB.equipo.idCategoriaEquipo}"  filter="true">
                                 <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                 <f:selectItems
                                         value="#{categoriaEquipoMB.listaCategoriaEquipos}"

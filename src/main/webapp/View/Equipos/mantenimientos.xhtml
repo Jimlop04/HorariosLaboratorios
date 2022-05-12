@@ -9,7 +9,7 @@
 
         <ui:define name="title">Registrar Mantenimiento</ui:define>
         <ui:define name="content">
-            <!--            <f:event type="preRenderView" listener="#{mantenimientoMB.listar()}"/>-->
+            <!--            <f:event type="preRenderView" listener=""/>-->
 
             <!--MENU TOOLBAR-->
             <ui:include src="./componentes/toolbar_menu.xhtml"/>
@@ -86,8 +86,7 @@
                                         editInitEvent="dblclick"
                                         editMode="cell"
                                         value=""
-                                        var="equipo"
-                                        responsive="true">
+                                        var="equipo">
                                     <!-- Header DataTable-->
                                     <f:facet name="header">
                                         <div class="p-d-flex p-jc-between p-ai-center">

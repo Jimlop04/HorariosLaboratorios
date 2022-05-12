@@ -22,7 +22,7 @@
                         <!-- PERIODO -->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Periodo" for="@next"/>
-                            <p:datePicker showIcon="true" locale="es" required="true" navigator="true"
+                            <p:datePicker showIcon="true" locale="es" required="true"
                                           value="#{mantenimientoMB.mantenimiento.periodo}"/>
                         </div>
                         <!-- TIPO MANTENIMIENTO -->
@@ -55,8 +55,7 @@
                                         value="#{mantenimientoMB.listaEncargadosLaboratorio}"
                                         var="o"
                                         itemLabel="#{o.nombre_persona} #{o.apellido_persona}"
-                                        itemValue="#{o.idencargadoLaboratorioDetalle}"
-                                        required="true"/>
+                                        itemValue="#{o.idencargadoLaboratorioDetalle}"/>
                             </p:selectOneMenu>
                         </div>
                         <!-- EQUIPO -->
@@ -106,8 +105,7 @@
                                 editInitEvent="dblclick"
                                 editMode="cell"
                                 value=""
-                                var="equipo"
-                                responsive="true">
+                                var="equipo">
                             <!-- Header DataTable-->
                             <f:facet name="header">
                                 <div class="p-d-flex p-jc-between p-ai-center">
