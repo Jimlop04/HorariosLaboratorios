@@ -24,7 +24,23 @@
                                     id="manage-Solicitud-form"
                                     class="ui-fluid">
                                     <div class="p-formgrid p-grid">
-                                        <div class="p-field p-col-12 p-md-4">
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <p:outputLabel value="Facultad" for="@next"/>
+                                             <p:selectOneMenu id="SelectFacultad"
+                                                              disabled="#{laboratorioMB.laboratorio.idFacultad != 0}"
+                                                              value="#{laboratorioMB.laboratorio.idFacultad}">
+                                                <p:ajax listener="#{laboratorioMB.onFacultadChange}" 
+                                                      />
+                                                <f:selectItem itemLabel="Seleccione Facultad" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#{laboratorioMB.listafacultades}" 
+                                                               var="fa"
+                                                               itemLabel="#{fa.nombre_facultad}" 
+                                                               itemValue="#{fa.idFacultad}"></f:selectItems>
+
+                                            </p:selectOneMenu>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Carrera" for="@next"/>
                                             <p:inputText 
                                                 maxlength="25"></p:inputText>
@@ -37,17 +53,14 @@
                                                 value="#" 
                                                 readonly="true"></p:inputText>
                                         </div>
-                                        <div class="p-field p-col-12 p-md-4">
+                                        <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel for="@next" value="Laboratorio" />
-
                                             <p:selectOneMenu id="SelectLaboratorio"
                                                              disabled="#{laboratorioMB.laboratorio.idLaboratorio != 0}"
-                                                             value="#{laboratorioMB.laboratorio.idLaboratorio}"
-                                                             filter="true" 
-                                                             filterMatchMode="startsWith">
+                                                             value="#{laboratorioMB.laboratorio.idLaboratorio}">
                                                 <p:ajax listener="#{laboratorioMB.onLaboratorioChange}" 
                                                       />
-                                                <f:selectItem itemLabel="Seleccione un Laboratorio" 
+                                                <f:selectItem itemLabel="Seleccione Laboratorio" 
                                                               itemValue="0"/>
                                                 <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
                                                                var="la"
@@ -55,13 +68,22 @@
                                                                itemValue="#{la.idLaboratorio}"></f:selectItems>
 
                                             </p:selectOneMenu>
-
                                         </div>
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Responsable Laboratorio" for="@next"/>
-                                             <p:inputText
-                                                 value="#{rolMB.rol.nombreRol}" 
-                                                readonly="true"></p:inputText>
+                                                <p:selectOneMenu id="SelectResponsableLabo"
+                                                                 disabled="#{encargadoMB.encargado.idEncargadoLaboratorio != 0}"
+                                                             value="#{encargadoMB.encargado.idEncargadoLaboratorio}">
+                                                <p:ajax listener="#{laboratorioMB.onEncargadoLaboratorioChange}" 
+                                                      />
+                                                <f:selectItem itemLabel="Seleccione Encarcagado" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#{encargadoMB.listaEncargados}" 
+                                                               var="el"
+                                                               itemLabel="#{el.nombre_persona}" 
+                                                               itemValue="#{el.idEncargadoLaboratorio}"></f:selectItems>
+
+                                            </p:selectOneMenu>
                                         </div>
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Materia" for="@next"/>

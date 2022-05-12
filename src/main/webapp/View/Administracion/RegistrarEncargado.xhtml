@@ -79,7 +79,7 @@
                                            
                                             <div class="p-field p-col-12 p-md-5">
 
-                                                <p:outputLabel value="Laboratorio" for="@next"/>
+                                                <p:outputLabel value="Agregar Laboratorio" for="@next"/>
                                                 <p:selectOneMenu disabled="#{laboratorioMB.laboratorio.idLaboratorio != 0}"
                                                                  value="#{laboratorioMB.laboratorio.idLaboratorio}">
                                                     <f:selectItem itemLabel="Seleccione un Laboratorio" itemValue="" noSelectionOption="true"/>
@@ -93,6 +93,30 @@
 
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
+                                            </div>
+                                              <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Fecha Incio" for="@next"/>
+                                                <p:datePicker id="RegistroEncargadoFI"
+                                                              value="#{encargadoMB.encargado.fecha_inicio}"
+                                                              showIcon="true"/>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Fecha Fin" for="@next"/>
+                                                <p:datePicker id="RegistroEncargadoFF" 
+                                                              value="#{encargadoMB.encargado.fecha_fin}"
+                                                              showIcon="true"/>
+                                            </div>
+                                            <p:inputText value="#{encargadoMB.encargado.idUsuario}"  style="display: none"
+                                                         ></p:inputText>
+                                            <div class="p-field p-col-12 p-md-3">
+                                                <p:outputLabel value="Estado" for="@next"/>
+                                                <p:selectBooleanButton value="#{encargadoMB.encargado.estado_usuario}"
+                                                                       onLabel="Habilitado" 
+                                                                       offLabel="Deshabilitado"
+                                                                       onIcon="pi pi-check " 
+                                                                       offIcon="pi pi-times " 
+                                                                       style="width:98%;"
+                                                                       />
                                             </div>
                                              
 

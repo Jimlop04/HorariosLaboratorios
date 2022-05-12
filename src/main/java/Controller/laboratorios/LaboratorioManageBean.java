@@ -171,7 +171,17 @@ public class LaboratorioManageBean implements Serializable {
     }
 
     public void onLaboratorioChange() {
-        System.out.println("YA ENTRO PILAS");
+        System.out.println("LABORATORIO");
+
+    }
+    
+     public void onEncargadoLaboratorioChange() {
+        System.out.println("ENCARGADO LABORATORIO");
+
+    }
+    
+    public void onFacultadChange() {
+        System.out.println("FACULTAD");
 
     }
 
