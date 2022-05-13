@@ -1,6 +1,7 @@
 package Controller.equipos;
 
 import DAO.equipos.EquipoDAO;
+import Model.administracion.Usuario;
 import Model.equipos.CategoriaEquipo;
 import Model.equipos.Equipo;
 import Model.laboratorios.AreaAula;
@@ -28,24 +29,42 @@ public class EquipoMB implements Serializable {
     private CategoriaEquipo categoriaEquipo;
     String msj = "";
 
-    
-    
+    int idLaboratorio = 0;
+
     private EquipoDAO dao;
 
-
     public void registrar() {
+
         try {
             dao = new EquipoDAO();
-            dao.resgistrar(equipo);
-            this.msj = "Registro guardado con éxito";
-            System.out.println(equipo);
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
-        } catch (Exception e) {
-            this.msj = "Se produjo un error: " + e.getMessage();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo"));
-        }
-   }
 
+            dao.resgistrar(equipo);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
+        }
+
+    }
+
+    public void listarEquiposByLaboratorioId() throws Exception
+{
+        try {
+            dao = new EquipoDAO();
+            listaEquipos = dao.listarEquipos(idLaboratorio);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void listarEquiposByEncargado(int idPersona) throws Exception
+{
+        try {
+            dao = new EquipoDAO();
+            listaEquipos = dao.listarEquiposByEncargado(idPersona);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
     //        LISTAR
 //    public void listar() throws Exception {
@@ -56,7 +75,6 @@ public class EquipoMB implements Serializable {
 //            throw e;
 //        }
 //    }
-
 //    public void listarEquipos() throws Exception {
 //        try {
 //            dao = new EquipoDAO();
@@ -65,11 +83,11 @@ public class EquipoMB implements Serializable {
 //            throw e;
 //        }
 //    }
-
-
     @PostConstruct
     public void init() {
         this.equipo = new Equipo();
+        this.areaAula = new AreaAula();
+        this.categoriaEquipo = new CategoriaEquipo();
         this.listaEquipos = new ArrayList<>();
     }
 }

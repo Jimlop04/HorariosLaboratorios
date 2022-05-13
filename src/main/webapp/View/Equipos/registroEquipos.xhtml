@@ -11,7 +11,7 @@
                 <!--            <f:event type="preRenderView" listener=""/>-->
                 <f:event type="preRenderView" listener="#{generalMB.listarCategoriaEquipos()}"/>
                 <f:event type="preRenderView" listener="#{generalMB.listarLaboratoriosByEncargadoId(loginMB.httpSession.getAttribute('idPersona'))}"/>
-
+                <f:event type="preRenderView" listener="#{equipoMB.listarEquiposByEncargado(loginMB.httpSession.getAttribute('idPersona'))}"/>
        
 
                 <p:growl id="msj" showDetail="true"/>

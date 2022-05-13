@@ -64,6 +64,9 @@ public class GeneralMB implements Serializable {
     }
 
     public void listarAreaByLaboratorioId() throws Exception {
+        if(idLaboratorio==0){
+            listAreasLaboratorio = null;
+        }
         try {
             generalDao = new GeneralDAO();
             listAreasLaboratorio = generalDao.listarAreasByLaboratorioId(idLaboratorio);

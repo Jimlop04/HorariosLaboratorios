@@ -98,7 +98,7 @@
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Estado" for="@next"/>
                             <p:selectOneMenu required="true" value="#{equipoMB.equipo.estado}">
-                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="0"/>
                                 <f:selectItem itemValue="BUENO" itemLabel="1. BUENO"/>                  
                                 <f:selectItem itemValue="DESCOMPUESTO" itemLabel="2. DESCOMPUESTO"/>
                             </p:selectOneMenu>
@@ -110,7 +110,7 @@
                             <p:selectOneMenu id="comboLaboratorios" 
                                              required="true" 
                                              value="#{generalMB.idLaboratorio}">
-                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="0"/>
                                 <f:selectItems
                                     value="#{generalMB.listaLaboratoriosEncargado}"
                                     var="la"
@@ -126,13 +126,16 @@
                         <!--AREA-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Area" for="@next"/>
-                            <p:selectOneMenu id="comboAreas" required="true" value="" >
+                            <p:selectOneMenu id="comboAreas" 
+                                             required="true" 
+                                             value="#{equipoMB.equipo.areaAula}" 
+                                             converter="omnifaces.SelectItemsIndexConverter">
                                 <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                 <f:selectItems
                                     value="#{generalMB.listAreasLaboratorio}"
                                     var="ar"
                                     itemLabel="#{ar.nombre}"
-                                    itemValue="#{ar.idAreaAula}" />
+                                    itemValue="#{ar}" />
                             </p:selectOneMenu>
                         </div>
 
@@ -143,6 +146,7 @@
                 <f:facet name="footer">
                     <p:commandButton
                         value="Guardar"
+                        actionListener="#{equipoMB.registrar()}"
                         icon="pi pi-check"
                         styleClass="ui-button-primary"
                         update=":formData :msj "
