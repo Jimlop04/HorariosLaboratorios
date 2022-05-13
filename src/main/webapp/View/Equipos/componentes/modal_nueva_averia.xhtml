@@ -15,7 +15,8 @@
                       height="150">
                 <p:outputPanel id="manage-equipo-sdsdsdfdf" class="ui-fluid">
                     <div class="p-formgrid p-grid">
-                        <!--Fecha registro-->
+                        
+                        <!--FECHA REGISTRO-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Fecha de reporte" for="@next"/>
                             <p:datePicker
@@ -46,17 +47,21 @@
                                          rendered="comboEquipo"/>
                             </p:selectOneMenu>
                         </div>
-                        <!--Tipo daño-->
+                       
+                        <!--TIPO DAÑO-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Tipo de daño" for="@next"/>
-                            <p:inputText value="#{averiaEquipoMB.averiaEquipo.tipoDanio}"/>
+                            <p:inputText value="#{averiaEquipoMB.averiaEquipo.tipoDanio}"
+                                         onkeyup="javascript:this.value = this.value.toUpperCase();"/>
                         </div>
 
 
-                        <!--Prioridad-->
+                        <!--PRIORIDAD-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Prioridad" for="@next"/>
-                            <p:selectOneMenu id="comboProcedencia" value="#{averiaEquipoMB.averiaEquipo.prioridad}">
+                            <p:selectOneMenu id="comboProcedencia" 
+                                             value="#{averiaEquipoMB.averiaEquipo.prioridad}"
+                                             required="true">
                                 <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                 <f:selectItem itemLabel="ALTA" itemValue="ALTA"/>
                                 <f:selectItem itemLabel="MEDIA" itemValue="MEDIA"/>
@@ -64,13 +69,14 @@
                             </p:selectOneMenu>
                         </div>
 
-                        <!--Descripcion-->
+                        <!--DESCRIPCION-->
                         <div class="p-field p-col-12 p-md-6">
                             <p:outputLabel value="Descripción" for="@next"/>
                             <p:inputTextarea
                                     rows="1"
                                     cols="33"
-                                    value="#{averiaEquipoMB.averiaEquipo.descripcion}"/>
+                                    value="#{averiaEquipoMB.averiaEquipo.descripcion}"
+                                    onkeyup="javascript:this.value = this.value.toUpperCase();"/>
                         </div>
               
                         
@@ -100,7 +106,7 @@
                             icon="pi pi-check"
                             styleClass="ui-button-primary"
                             update=":msj"
-                           >
+                            actionListener="#{averiaEquipoMB.registrar()}">
                     </p:commandButton>
                     <p:commandButton
                             value="Cancelar"

@@ -52,18 +52,17 @@ public class AveriaEquipoDAO extends Conexion {
                 averiaEquipo.setPrioridad(rs.getNString("prioridad"));
                 averiaEquipo.setTipoDanio(rs.getString("tipo_danio"));
                 averiaEquipo.setDescripcion(rs.getString("descripcion"));
-                
+
                 averiaEquipo.setId_encargadoLaboratorio(rs.getInt("id_encargado_laboratorio"));
                 averiaEquipo.setEncargado(rs.getString("encargado"));
 
                 categoriaEquipo.setIdCategoriaEquipo(rs.getInt("id_categoria_equipo"));
                 categoriaEquipo.setNombre(rs.getString("categoria_equipo"));
-                
+
                 equipo.setCategoriaEquipo(categoriaEquipo);
-                
+
                 averiaEquipo.setEquipo(equipo);
-                
-                
+
                 lista.add(averiaEquipo);
             }
         } catch (Exception e) {
@@ -72,5 +71,25 @@ public class AveriaEquipoDAO extends Conexion {
             this.desconectar();
         }
         return lista;
+    }
+
+    public void resgistrar(AveriaEquipo averiaEquipo, int idEncargadoLaboratorio) throws SQLException {
+        try {
+            String query = "insert into laboratorio.averia_equipo (fecha_registro, id_encargado_laboratorio, tipo_danio, descripcion, id_equipo,prioridad)\n"
+                    + "values (?, ?, ?, ?, ?, ?)";
+            this.conectar();
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            st.setDate(1, new java.sql.Date(averiaEquipo.getFechaRegistro().getTime()));
+            st.setInt(2, idEncargadoLaboratorio);
+            st.setString(3, averiaEquipo.getTipoDanio());
+            st.setString(4, averiaEquipo.getDescripcion());
+            st.setInt(5, averiaEquipo.getEquipo().getIdEquipo());
+            st.setString(6, averiaEquipo.getPrioridad());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
     }
 }
