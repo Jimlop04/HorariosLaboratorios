@@ -12,6 +12,15 @@ public class Laboratorio {
     private String nombre_laboratorio;
     private String codigo_laboratorio;
     private int capacidad;
+
+    public int getIdEncargadoLaboratorio() {
+        return idEncargadoLaboratorio;
+    }
+
+    public void setIdEncargadoLaboratorio(int idEncargadoLaboratorio) {
+        this.idEncargadoLaboratorio = idEncargadoLaboratorio;
+    }
+    private int idEncargadoLaboratorio;
     
  
 

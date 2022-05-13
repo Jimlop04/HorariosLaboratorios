@@ -154,7 +154,7 @@ public class EquipoDAO extends Conexion {
                     + "       e.estado_equipo            as estado,\n"
                     + "       e.marca_equipo             as marca,\n"
                     + "       e.modelo_equipo            as modelo,\n"
-                    + "       e.fecha_adquisicion_equipo as fehca_adquisicion,\n"
+                    + "       e.fecha_adquisicion_equipo as fecha_adquisicion,\n"
                     + "       e.numero_serie_equipo      as numero_serie,\n"
                     + "       ce.nombre_categoria_equipo as categoria,\n"
                     + "       ce.id_categoria_equipo     as id_categoria_equipo,\n"
@@ -164,9 +164,11 @@ public class EquipoDAO extends Conexion {
                     + "       l.id_laboratorio           as id_laboratorio\n"
                     + "from laboratorio.equipo e\n"
                     + "         inner join laboratorio.categoria_equipo ce on ce.id_categoria_equipo = e.categoria_equipo_id_categoria_equipo\n"
-                    + "         inner join laboratorio.area_aula aa on aa.id_area = e.area_aula_id_area_aula\n"
+                    + "         inner join laboratorio.area_aula aa on aa.id_area = e.area_id_area\n"
                     + "         inner join laboratorio.laboratorio l on l.id_laboratorio = aa.laboratorio_id_laboratorio\n"
-                    + "where l.id_laboratorio = '" + idLaboratorio + "' \n"
+                    + "         inner join laboratorio.encargado_laboratorio el on l.id_laboratorio = el.laboratorio_id_laboratorio\n"
+                    + "         inner join laboratorio.encargado en on el.encargado_id_encargado = en.id_encargado\n"
+                    + "where l.id_laboratorio = '"+idLaboratorio+"'\n"
                     + "order by categoria asc";
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
@@ -231,7 +233,7 @@ public class EquipoDAO extends Conexion {
                     + "         inner join laboratorio.laboratorio l on l.id_laboratorio = aa.laboratorio_id_laboratorio\n"
                     + "         inner join laboratorio.encargado_laboratorio el on l.id_laboratorio = el.laboratorio_id_laboratorio\n"
                     + "         inner join laboratorio.encargado en on el.encargado_id_encargado = en.id_encargado\n"
-                    + "where en.persona_id_persona = '"+idPersona+"'\n"
+                    + "where en.persona_id_persona = '" + idPersona + "'\n"
                     + "order by categoria asc";
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();

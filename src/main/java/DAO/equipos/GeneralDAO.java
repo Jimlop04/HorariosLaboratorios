@@ -180,7 +180,7 @@ public class GeneralDAO extends Conexion {
         ResultSet rs;
         try {
             this.conectar();
-            String query = "select la.nombre_laboratorio as nombre_laboratorio, la.id_laboratorio as id_laboratorio, el.encargado_id_encargado\n"
+            String query = "select la.nombre_laboratorio as nombre_laboratorio, la.id_laboratorio as id_laboratorio,el.laboratorio_id_laboratorio as id_encargado_laboratorio\n"
                     + "from laboratorio.laboratorio la\n"
                     + "         inner join laboratorio.encargado_laboratorio el on la.id_laboratorio = el.laboratorio_id_laboratorio\n"
                     + "         inner join laboratorio.encargado en on el.encargado_id_encargado = en.id_encargado\n"
@@ -193,6 +193,7 @@ public class GeneralDAO extends Conexion {
                 Laboratorio obj = new Laboratorio();
                 obj.setIdLaboratorio(rs.getInt("id_laboratorio"));
                 obj.setNombre_laboratorio(rs.getString("nombre_laboratorio"));
+                obj.setIdEncargadoLaboratorio(rs.getInt("id_encargado_laboratorio"));
                 System.out.println(obj);
                 lista.add(obj);
             }

@@ -28,18 +28,24 @@
                                     locale="es"/>
                         </div>
 
-                        <!--Técnico-->
+                       <!--LABORATORIO-->
                         <div class="p-field p-col-12 p-md-3">
-                            <p:outputLabel value="Encargado"/>
-                            <p:selectOneMenu id="comoTecnico" value="#{averiaEquipoMB.averiaEquipo.idEncargado}">
+                            <p:outputLabel value="Laboratorio" for="@next"/>
+                            <p:selectOneMenu id="comboLaboratorios" 
+                                             required="true" 
+                                             value="#{equipoMB.idLaboratorio}">
+                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="0"/>
                                 <f:selectItems
-                                        value="#{generalMB.listaEncargados}"
-                                        var="au"
-                                        itemLabel="#{au.apellido_persona}"
-                                        itemValue="#{au.idencargadoLaboratorioDetalle}"/>
+                                    value="#{generalMB.listaLaboratoriosEncargado}"
+                                    var="la"
+                                    itemLabel="#{la.nombre_laboratorio}"
+                                    itemValue="#{la.idLaboratorio}" />
+                                <p:ajax  event="change" 
+                                         listener="#{equipoMB.listarEquiposByLaboratorioId()}"
+                                         update="comboEquipo"
+                                         rendered="comboEquipo"/>
                             </p:selectOneMenu>
                         </div>
-
                         <!--Tipo daño-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Tipo de daño" for="@next"/>
@@ -66,28 +72,22 @@
                                     cols="33"
                                     value="#{averiaEquipoMB.averiaEquipo.descripcion}"/>
                         </div>
-
-                        <!--     <div class="p-field p-col-12 p-md-6">
-                                 <p:outputLabel value="Encargado" for="@next"/>
-                                 <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                                 <p:selectOneMenu value="#{averiaEquipoMB.averiaEquipo.idEncargado}" required="true">
-                                     <f:selectItems
-                                             value="#{generalMB.listaEncargados}"
-                                             var="au"
-                                             itemLabel="#{au.apellido_persona}"
-                                             itemValue="#{au.idencargadoLaboratorioDetalle}"/>
-                                 </p:selectOneMenu>
-                             </div>-->
-                        <div class="p-field p-col-12 p-md-6">
+              
+                        
+                          <!--EQUIPO-->
+                        <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Equipo" for="@next"/>
-                            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                            <p:selectOneMenu id="comboEquipo" value="#{averiaEquipoMB.averiaEquipo.idEquipo}"
-                                             required="true">
+                            <p:selectOneMenu value="#{averiaEquipoMB.averiaEquipo.equipo}"  
+                                             id="comboEquipo"
+                                             filter="true" 
+                                             required="true"
+                                             converter="omnifaces.SelectItemsIndexConverter">
+                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                 <f:selectItems
-                                        value="#{equipoMB.listaEquipos}"
-                                        var="equi"
-                                        itemLabel="#{equi.codigo}"
-                                        itemValue="#{equi.idEquipo}"/>
+                                    value="#{equipoMB.listaEquipos}"
+                                    var="equi"
+                                    itemLabel="#{equi.codigo} -  #{equi.categoriaEquipo.nombre}"
+                                    itemValue="#{equi}" />
                             </p:selectOneMenu>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                             icon="pi pi-check"
                             styleClass="ui-button-primary"
                             update=":msj"
-                            actionListener="#{averiaEquipoMB.registrar()}">
+                           >
                     </p:commandButton>
                     <p:commandButton
                             value="Cancelar"

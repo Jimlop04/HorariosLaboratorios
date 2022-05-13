@@ -1,131 +1,76 @@
 package DAO.equipos;
 
 import Model.equipos.AveriaEquipo;
+import Model.equipos.CategoriaEquipo;
+import Model.equipos.Equipo;
 import global.Conexion;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AveriaEquipoDAO extends Conexion {
-//    public List<AveriaEquipo> listarAreasAulasID(int idLaboratorio) throws Exception {
-//        List<AveriaEquipo> lista;
-//        ResultSet rs;
-//        try {
-//            String query = "Select ce.nombre            as categoria,\n" +
-//                    "       eq.descripcion       as descripcion,\n" +
-//                    "       ae.id_averia_equipo  as id_averia,\n" +
-//                    "       eq.codigo            as codigo_equipo,\n" +
-//                    "       eq.id_equipo         as id_equipo,\n" +
-//                    "       eq.imagen            as imagen,\n" +
-//                    "       aa.nombre_aula       as area,\n" +
-//                    "       l.nombre_laboratorio as laboratorio,\n" +
-//                    "       f.nombre_facultad    as facultad\n" +
-//                    "from averias_equipos ae\n" +
-//                    "         inner join encargado_laboratorio el on ae.id_encargado_laboratorio = el.\"idEncargadoLaboratorio\"\n" +
-//                    "         inner join encargado e on el.\"encargado_idEncargado\" = e.\"idEncargado\"\n" +
-//                    "         inner join persona p on e.\"persona_idPersona\" = p.\"idPersona\"\n" +
-//                    "         inner join equipos eq on ae.id_equipo = eq.id_equipo\n" +
-//                    "         inner join categoria_equipos ce on eq.id_categoria_equipos = ce.id_categoria_equipos\n" +
-//                    "         inner join area_aula aa on eq.id_area_aula = aa.id_area_aula\n" +
-//                    "         inner join laboratorio l on aa.\"laboratorio_idLaboratorio\" = l.\"idLaboratorio\"\n" +
-//                    "         inner join facultad f on l.facultad_idfacultad = f.\"idFacultad\"";
-//            this.conectar();
-//            PreparedStatement st = this.getConnection().prepareStatement(query);
-//            rs = st.executeQuery();
-//            lista = new ArrayList<>();
-//            while (rs.next()) {
-//                AveriaEquipo o = new AveriaEquipo();
-//                o.setCategoriaEquipo("categoria");
-//                o.setDescripcion("descripcion");
-//                o.setIdAveria(rs.getInt("id_averia"));
-//                o.setCodigoEquipo("codigo_equipo");
-//                o.setIdEquipo(rs.getInt("id_equipo"));
-//                o.setImagen(rs.getString("imagen"));
-//                o.setArea(rs.getString("area"));
-//                o.setLabotarorio(rs.getString("laboratorio"));
-//                o.setFacultad(rs.getString("facultad"));
-//                lista.add(o);
-//            }
-//        } catch (Exception e) {
-//            throw e;
-//        } finally {
-//            this.desconectar();
-//        }
-//        return lista;
-//    }
 
-//    public void resgistrar(AveriaEquipo averia) throws SQLException {
-//        try {
-//            String sql_registrar = "insert into laboratorio.averias_equipos (fecha_registro, id_encargado_laboratorio, tipo_danio, descripcion,id_equipo, prioridad) values (?,?,?,?,?,?)";
-//            this.conectar();
-//            PreparedStatement st = this.getConnection().prepareStatement(sql_registrar);
-//            st.setDate(1, new Date(averia.getFechaRegistro().getTime()));
-//            st.setInt(2, averia.getIdEncargado());
-//            st.setString(3, averia.getTipoDanio());
-//            st.setString(4, averia.getDescripcion());
-//            st.setInt(5, averia.getIdEquipo());
-//            st.setString(6, averia.getPrioridad());
-//            st.executeUpdate();
-//        } catch (Exception e) {
-//            throw e;
-//        } finally {
-//            this.desconectar();
-//        }
-//    }
+    public List<AveriaEquipo> listarAverias(int IdEncargadoLaboratorio) throws Exception {
+        List<AveriaEquipo> lista = new ArrayList<>();
+        ResultSet rs;
+        try {
+            this.conectar();
+            String query = "select av.fecha_registro                                 as fechaRegistro,\n"
+                    + "       av.descripcion                                    as descripcion,\n"
+                    + "       av.tipo_danio                                     as tipo_danio,\n"
+                    + "       av.prioridad                                      as prioridad,\n"
+                    + "       eq.id_equipo                                      as id_equipo,\n"
+                    + "       ce.nombre_categoria_equipo                        as categoria_equipo,\n"
+                    + "       ce.id_categoria_equipo                            as id_categoria_equipo,\n"
+                    + "       la.id_laboratorio                                 as id_laboratorio,\n"
+                    + "       la.nombre_laboratorio                             as nombre_laboratorio,\n"
+                    + "       (pe.nombre_persona || ' ' || pe.apellido_persona) as encargado,\n"
+                    + "       el.id_encargado_laboratorio                       as id_encargado_laboratorio\n"
+                    + "from laboratorio.averia_equipo av\n"
+                    + "         inner join laboratorio.equipo eq on av.id_equipo = eq.id_equipo\n"
+                    + "         inner join laboratorio.categoria_equipo as ce\n"
+                    + "                    on eq.categoria_equipo_id_categoria_equipo = ce.id_categoria_equipo\n"
+                    + "         inner join laboratorio.area_aula au on eq.area_id_area = au.id_area\n"
+                    + "         inner join laboratorio.laboratorio la on au.laboratorio_id_laboratorio = la.id_laboratorio\n"
+                    + "         inner join laboratorio.encargado_laboratorio el on av.id_encargado_laboratorio = el.id_encargado_laboratorio\n"
+                    + "         inner join laboratorio.encargado en on el.encargado_id_encargado = en.id_encargado\n"
+                    + "         inner join laboratorio.persona pe on en.persona_id_persona = pe.id_persona\n"
+                    + "where av.id_encargado_laboratorio = '" + IdEncargadoLaboratorio + "'\n"
+                    + "order by la.nombre_laboratorio asc";
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                Equipo equipo = new Equipo();
+                AveriaEquipo averiaEquipo = new AveriaEquipo();
+                CategoriaEquipo categoriaEquipo = new CategoriaEquipo();
 
-//    public AveriaEquipo listarReporte(int idAveria) throws Exception {
-//        ResultSet rs;
-//        AveriaEquipo o = new AveriaEquipo();
-//        try {
-//            String query = "Select ce.nombre            as categoria,\n" +
-//                    "       eq.descripcion       as descripcion,\n" +
-//                    "       ae.id_averia_equipo  as id_averia,\n" +
-//                    "       eq.codigo            as codigoEquipo,\n" +
-//                    "       eq.id_equipo         as id_equipo,\n" +
-//                    "       eq.imagen            as imagen,\n" +
-//                    "       aa.nombre_aula       as Area,\n" +
-//                    "       l.nombre_laboratorio as laboratorio,\n" +
-//                    "       f.nombre_facultad    as facultad,\n" +
-//                    "       eq.modelo            as modelo,\n" +
-//                    "       eq.descripcion       as descripcion_equipo,\n" +
-//                    "       eq.codigo            as codigo_equipo,\n" +
-//                    "       eq.numero_serie      as numero_serie,\n" +
-//                    "       ae.tipo_danio        as tipo_danio\n" +
-//                    "from averias_equipos ae\n" +
-//                    "         inner join encargado_laboratorio el on ae.id_encargado_laboratorio = el.\"idEncargadoLaboratorio\"\n" +
-//                    "         inner join encargado e on el.\"encargado_idEncargado\" = e.\"idEncargado\"\n" +
-//                    "         inner join persona p on e.\"persona_idPersona\" = p.\"idPersona\"\n" +
-//                    "         inner join equipos eq on ae.id_equipo = eq.id_equipo\n" +
-//                    "         inner join categoria_equipos ce on eq.id_categoria_equipos = ce.id_categoria_equipos\n" +
-//                    "         inner join area_aula aa on eq.id_area_aula = aa.id_area_aula\n" +
-//                    "         inner join laboratorio l on aa.\"laboratorio_idLaboratorio\" = l.\"idLaboratorio\"\n" +
-//                    "         inner join facultad f on l.facultad_idfacultad = f.\"idFacultad\" where id_averia_equipo =" + idAveria;
-//            this.conectar();
-//            PreparedStatement st = this.getConnection().prepareStatement(query);
-//            rs = st.executeQuery();
-//            while (rs.next()) {
-//                o.setCategoriaEquipo(rs.getString("categoria"));
-//                o.setDescripcion(rs.getString("descripcion"));
-//                o.setIdAveria(rs.getInt("id_averia"));
-//                o.setCodigoEquipo(rs.getString("codigoEquipo"));
-//                o.setIdEquipo(rs.getInt("id_equipo"));
-//                o.setArea(rs.getString("area"));
-//                o.setLabotarorio(rs.getString(" laboratorio"));
-//                o.setFacultad(rs.getString("facultad"));
-//                o.setModelo(rs.getString("modelo"));
-//                o.setDescripcionEquipo(rs.getString("descripcion_equipo"));
-//                o.setCodigoEquipo(rs.getString("codigo_equipo"));
-//                o.setNumeroSerie(rs.getString("numero_serie"));
-//                o.setTipoDanio(rs.getString("tipo_danio"));
-//            }
-//        } catch (Exception e) {
-//            throw e;
-//        } finally {
-//            this.desconectar();
-//        }
-//        return o;
-//    }
+                averiaEquipo.setFechaRegistro(rs.getDate("fechaRegistro"));
+                averiaEquipo.setPrioridad(rs.getNString("prioridad"));
+                averiaEquipo.setTipoDanio(rs.getString("tipo_danio"));
+                averiaEquipo.setDescripcion(rs.getString("descripcion"));
+                
+                averiaEquipo.setId_encargadoLaboratorio(rs.getInt("id_encargado_laboratorio"));
+                averiaEquipo.setEncargado(rs.getString("encargado"));
+
+                categoriaEquipo.setIdCategoriaEquipo(rs.getInt("id_categoria_equipo"));
+                categoriaEquipo.setNombre(rs.getString("categoria_equipo"));
+                
+                equipo.setCategoriaEquipo(categoriaEquipo);
+                
+                averiaEquipo.setEquipo(equipo);
+                
+                
+                lista.add(averiaEquipo);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return lista;
+    }
 }
-

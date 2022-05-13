@@ -16,6 +16,8 @@ public class AveriaEquipo {
     private String descripcion;
     private String prioridad;
 
-
+private Equipo equipo;
+private String encargado;
+private int id_encargadoLaboratorio;
 
 }
