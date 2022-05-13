@@ -24,13 +24,37 @@
                                     id="manage-Solicitud-form"
                                     class="ui-fluid">
                                     <div class="p-formgrid p-grid">
+                                        <!--<!-- FACULTAD -->
                                         <div class="p-field p-col-12 p-md-2">
                                             <p:outputLabel value="Facultad" for="@next"/>
                                              <p:selectOneMenu id="SelectFacultad"
                                                               disabled="#{laboratorioMB.laboratorio.idFacultad != 0}"
                                                               value="#{laboratorioMB.laboratorio.idFacultad}">
-                                                <p:ajax listener="#{laboratorioMB.onFacultadChange}" 
+                                               
+                                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione Facultad" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#{laboratorioMB.listafacultades}" 
+                                                               var="fa"
+                                                               itemLabel="#{fa.nombre_facultad}" 
+                                                               itemValue="#{fa.idFacultad}">
+                                                
+                                                </f:selectItems>
+                                                <p:ajax event="change" 
+                                                        rendered="SelectCarrera" 
+                                                        update="SelectCarrera"
+                                                        listener="#{laboratorioMB.onFacultadChange}" 
                                                       />
+
+                                            </p:selectOneMenu>
+                                        </div>
+                                         <!--<!-- CARRERA -->
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <div class="p-field p-col-12 p-md-2">
+                                            <p:outputLabel value="Carrera" for="@next"/>
+                                             <p:selectOneMenu id="SelectCarrera"
+                                                              disabled="#{laboratorioMB.laboratorio.idFacultad != 0}"
+                                                              value="#{laboratorioMB.laboratorio.idFacultad}">
+                                               
                                                 <f:selectItem itemLabel="Seleccione Facultad" 
                                                               itemValue="0"/>
                                                 <f:selectItems value="#{laboratorioMB.listafacultades}" 
@@ -40,10 +64,6 @@
 
                                             </p:selectOneMenu>
                                         </div>
-                                        <div class="p-field p-col-12 p-md-3">
-                                            <p:outputLabel value="Carrera" for="@next"/>
-                                            <p:inputText 
-                                                maxlength="25"></p:inputText>
                                         </div>
                                         <div class="p-field p-col-12 p-md-1">
                                             

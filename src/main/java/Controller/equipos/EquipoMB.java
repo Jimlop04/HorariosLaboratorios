@@ -1,5 +1,6 @@
 package Controller.equipos;
 
+import Controller.login.LoginMB;
 import DAO.equipos.EquipoDAO;
 import Model.administracion.Usuario;
 import Model.equipos.CategoriaEquipo;
@@ -25,6 +26,7 @@ public class EquipoMB implements Serializable {
 
     private List<Equipo> listaEquipos;
     private Equipo equipo;
+    
     private AreaAula areaAula;
     private CategoriaEquipo categoriaEquipo;
     String msj = "";
@@ -37,7 +39,6 @@ public class EquipoMB implements Serializable {
 
         try {
             dao = new EquipoDAO();
-
             dao.resgistrar(equipo);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
         } catch (Exception e) {
@@ -47,6 +48,7 @@ public class EquipoMB implements Serializable {
     }
 
     public void listarEquiposByLaboratorioId() throws Exception
+           
 {
         try {
             dao = new EquipoDAO();
