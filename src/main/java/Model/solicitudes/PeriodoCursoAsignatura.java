@@ -4,10 +4,17 @@
  */
 package Model.solicitudes;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author ebert
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PeriodoCursoAsignatura {
     int idPeriodoCursoAsignatura;
     PeriodoCurso periodoCurso;

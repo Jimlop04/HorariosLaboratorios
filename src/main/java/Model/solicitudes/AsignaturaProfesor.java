@@ -7,6 +7,7 @@ package Model.solicitudes;
 import Model.administracion.Profesor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -14,6 +15,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class AsignaturaProfesor {
     int idAsignaturaProfesor;
     Asignatura asignatura;

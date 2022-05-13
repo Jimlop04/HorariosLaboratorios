@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Practica {
     Encargado encargado;
     Profesor profesor;
@@ -32,7 +33,5 @@ public class Practica {
     Date fecha_solicitud;
     Date fecha_estado;
 
-    public Practica(){
-    }
-    
+   
 }
