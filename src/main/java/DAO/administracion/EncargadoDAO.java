@@ -65,7 +65,6 @@ public class EncargadoDAO {
                         resultSet.getString("nomlab"),
                         resultSet.getString("codlab")));
             }
-            System.out.println(Encargados);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -107,7 +106,6 @@ public class EncargadoDAO {
                         resultSet.getString("nomlab"),
                         resultSet.getString("codlab")));
             }
-            System.out.println(Encargados);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -230,7 +228,6 @@ public class EncargadoDAO {
                     + "'" + encargado.getNombre_laboratorio() + "',"
                     + "'" + encargado.getCodigo_laboratorio() + "')");
 
-            System.out.println(sentencia);
             conexion.ejecutarSql(sentencia);
             System.out.println(sentencia);
         } catch (Exception e) {
