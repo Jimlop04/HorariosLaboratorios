@@ -18,9 +18,9 @@ public class Practica {
     Encargado encargado;
     Profesor profesor;
     Laboratorio laboratorio;
-    int idPeriodoAcademico;
+    PeriodoAcademico PeriodoAcademico;
     int idEstado;
-    int idTipoSolicitud;
+    TipoSolicitud idTipoSolicitud;
     int idPractica;
     int numero_estudiantes;
     Date fecha_reserva;
