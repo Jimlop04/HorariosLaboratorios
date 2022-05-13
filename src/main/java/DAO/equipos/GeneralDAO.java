@@ -1,15 +1,21 @@
 package DAO.equipos;
 
 import Model.administracion.Encargado;
+import Model.equipos.CategoriaEquipo;
+import Model.laboratorios.AreaAula;
+import Model.laboratorios.Laboratorio;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import global.Conexion;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GeneralDAO extends Conexion {
 
-/*
+    /*
     public ArrayList<Equipo> listarEncargados() throws Exception {
         ArrayList<Equipo> lista;
         ResultSet rs;
@@ -58,7 +64,7 @@ public class GeneralDAO extends Conexion {
         }
         return lista;
     }
-*/
+     */
 
  /*   public ArrayList<Encargado> listarEncargados() throws Exception {
         ArrayList<Encargado> lista = new ArrayList<>();
@@ -90,8 +96,6 @@ public class GeneralDAO extends Conexion {
         }
         return lista;
     }*/
-
-
  /*   public List<Encargado> listarEncargados() throws Exception {
         List<Encargado> lista = new ArrayList<>();
         ResultSet rs;
@@ -118,17 +122,15 @@ public class GeneralDAO extends Conexion {
         }
         return lista;
     }*/
-
-
-    public ArrayList<Encargado> listarEncargados() throws Exception {
+    public ArrayList<Encargado> listarEncargados() throws SQLException {
         ArrayList<Encargado> lista = new ArrayList<>();
         ResultSet rs;
         try {
             this.conectar();
-            String query = "select *\n" +
-                    "from laboratorio.encargado e\n" +
-                    "         inner join laboratorio.encargado_laboratorio el on e.\"idEncargado\" = el.\"encargado_idEncargado\"\n" +
-                    "         inner join laboratorio.persona p on p.\"idPersona\" = e.\"persona_idPersona\"";
+            String query = "select *\n"
+                    + "from laboratorio.encargado e\n"
+                    + "         inner join laboratorio.encargado_laboratorio el on e.\"idEncargado\" = el.\"encargado_idEncargado\"\n"
+                    + "         inner join laboratorio.persona p on p.\"idPersona\" = e.\"persona_idPersona\"";
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
             while (rs.next()) {
@@ -139,6 +141,32 @@ public class GeneralDAO extends Conexion {
                 encargado.setIdEncargadoLaboratorio(rs.getInt("idEncargado"));
                 lista.add(encargado);
             }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return lista;
+    }
+
+    public List<CategoriaEquipo> listarCategoriasEquipos() throws Exception {
+        List<CategoriaEquipo> lista;
+        ResultSet rs;
+        try {
+            this.conectar();
+            String query = "select *\n"
+                    + "from laboratorio.categoria_equipo order by nombre_categoria_equipo asc;";
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            lista = new ArrayList<>();
+            while (rs.next()) {
+                CategoriaEquipo obj = new CategoriaEquipo();
+                obj.setIdCategoriaEquipo(rs.getInt("id_categoria_equipo"));
+                obj.setNombre(rs.getString("nombre_categoria_equipo"));
+                obj.setDescripcion(rs.getString("descripcion_categoria_equipo"));
+
+                lista.add(obj);
+            }
         } catch (Exception e) {
             throw e;
         } finally {
@@ -147,7 +175,62 @@ public class GeneralDAO extends Conexion {
         return lista;
     }
 
+    public List<Laboratorio> listarLaboratoriosByEncargadoId(int idPersona) throws Exception {
+        List<Laboratorio> lista;
+        ResultSet rs;
+        try {
+            this.conectar();
+            String query = "select la.nombre_laboratorio as nombre_laboratorio, la.id_laboratorio as id_laboratorio, el.encargado_id_encargado\n"
+                    + "from laboratorio.laboratorio la\n"
+                    + "         inner join laboratorio.encargado_laboratorio el on la.id_laboratorio = el.laboratorio_id_laboratorio\n"
+                    + "         inner join laboratorio.encargado en on el.encargado_id_encargado = en.id_encargado\n"
+                    + "         inner join laboratorio.persona on en.persona_id_persona = persona.id_persona\n"
+                    + "where id_persona=" + idPersona;
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            lista = new ArrayList<>();
+            while (rs.next()) {
+                Laboratorio obj = new Laboratorio();
+                obj.setIdLaboratorio(rs.getInt("id_laboratorio"));
+                obj.setNombre_laboratorio(rs.getString("nombre_laboratorio"));
+                System.out.println(obj);
+                lista.add(obj);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+
+        return lista;
+
+    }
+
+    public List<AreaAula> listarAreasByLaboratorioId(int idLaboratorio) throws Exception {
+        List<AreaAula> lista;
+        ResultSet rs;
+        try {
+            this.conectar();
+            String query = "select aa.id_area as id_area, aa.nombre_area as nombre_area\n"
+                    + "from laboratorio.area_aula aa\n"
+                    + "where laboratorio_id_laboratorio=" + idLaboratorio;
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            rs = st.executeQuery();
+            lista = new ArrayList<>();
+            while (rs.next()) {
+                AreaAula obj = new AreaAula();
+                obj.setIdAreaAula(rs.getInt("id_area"));
+                obj.setNombre(rs.getString("nombre_area"));
+                lista.add(obj);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+
+        return lista;
+
+    }
 
 }
-
-

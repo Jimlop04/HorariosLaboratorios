@@ -9,32 +9,34 @@ import Model.laboratorios.AreaAula;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EquipoDAO extends Conexion {
 
-//    public void resgistrar(Equipo equipo) throws SQLException {
-//        try {
-//            String sql_registrar = "INSERT INTO laboratorio.equipos (descripcion, marca, modelo, numero_serie, estado, imagen, id_categoria_equipos, fecha_adquisicion, id_area_aula, codigo)VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//            this.conectar();
-//            PreparedStatement st = this.getConnection().prepareStatement(sql_registrar);
-//            st.setString(1, equipo.getDescripcion());
-//            st.setString(2, equipo.getMarca());
-//            st.setString(3, equipo.getModelo());
-//            st.setString(4, equipo.getNumeroSerie());
-//            st.setString(5, equipo.getEstado());
-//            st.setString(6, equipo.getImagen());
-//            st.setInt(7, equipo.getIdCategoriaEquipo());
-//            st.setDate(8, new Date(equipo.getFechaAdquisicion().getTime()));
-//            st.setInt(9, equipo.getIdAreaAula());
-//            st.setString(10, equipo.getCodigo());
-//            st.executeUpdate();
-//        } catch (Exception e) {
-//            throw e;
-//        } finally {
-//            this.desconectar();
-//        }
-//    }
+    public void resgistrar(Equipo equipo) throws SQLException {
+        try {
+            String query = "INSERT INTO laboratorio.equipos (descripcion, marca, modelo, numero_serie, estado, imagen, id_categoria_equipos, fecha_adquisicion, id_area_aula, codigo)VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            this.conectar();
+            PreparedStatement st = this.getConnection().prepareStatement(query);
+            st.setString(1, equipo.getDescripcion());
+            st.setString(2, equipo.getMarca());
+           st.setString(3, equipo.getModelo());
+           st.setString(4, equipo.getNumeroSerie());
+            st.setString(5, equipo.getEstado());
+            st.setString(6, equipo.getImagen());
+           st.setInt(7, equipo.getCategoriaEquipo().getIdCategoriaEquipo());
+            st.setDate(8, (java.sql.Date) new Date(equipo.getFechaAdquisicion().getTime()));
+           st.setInt(9, equipo.getAreaAula().getIdAreaAula());
+            st.setString(10, equipo.getCodigo());
+            st.executeUpdate();
+        } catch (SQLException e) {
+           throw e;
+        } finally {
+            this.desconectar();
+        }
+   }
 //
 //
 //    public ArrayList<Equipo> listar() throws Exception {

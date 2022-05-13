@@ -6,7 +6,6 @@ import lombok.*;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Equipo {
     private int idEquipo;
@@ -21,5 +20,7 @@ public class Equipo {
     //Relaciones entidades
     private AreaAula areaAula;
     private CategoriaEquipo categoriaEquipo;
+
+
 
 }

@@ -13,6 +13,8 @@ import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -26,22 +28,23 @@ public class EquipoMB implements Serializable {
     private CategoriaEquipo categoriaEquipo;
     String msj = "";
 
-    //    @Inject
+    
+    
     private EquipoDAO dao;
 
 
-//    public void registrar() {
-//        try {
-//            dao = new EquipoDAO();
-//            dao.resgistrar(equipo);
-//            this.msj = "Registro guardado con éxito";
-//            System.out.println(equipo);
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
-//        } catch (Exception e) {
-//            this.msj = "Se produjo un error: " + e.getMessage();
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo"));
-//        }
-//    }
+    public void registrar() {
+        try {
+            dao = new EquipoDAO();
+            dao.resgistrar(equipo);
+            this.msj = "Registro guardado con éxito";
+            System.out.println(equipo);
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
+        } catch (Exception e) {
+            this.msj = "Se produjo un error: " + e.getMessage();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo"));
+        }
+   }
 
 
     //        LISTAR
