@@ -24,78 +24,74 @@
                                     id="manage-Solicitud-form"
                                     class="ui-fluid">
                                     <div class="p-formgrid p-grid">
-                                        <!--<!-- FACULTAD -->
+                                        <!-- FACULTAD -->
                                         <div class="p-field p-col-12 p-md-2">
                                             <p:outputLabel value="Facultad" for="@next"/>
-                                             <p:selectOneMenu id="SelectFacultad"
-                                                              disabled="#{laboratorioMB.laboratorio.idFacultad != 0}"
-                                                              value="#{laboratorioMB.laboratorio.idFacultad}">
-                                               
-                                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione Facultad" 
+                                            <p:selectOneMenu id="SelectFacultad"
+                                                             value="#{solicitudesMB.idFacultad}">
+                                                <f:selectItem noSelectionOption="true"  itemLabel="Seleccione Facultad" 
                                                               itemValue="0"/>
+
                                                 <f:selectItems value="#{laboratorioMB.listafacultades}" 
                                                                var="fa"
                                                                itemLabel="#{fa.nombre_facultad}" 
                                                                itemValue="#{fa.idFacultad}">
-                                                
+
                                                 </f:selectItems>
-                                                <p:ajax event="change" 
+                                                <p:ajax event="change"                                                         
+                                                        listener="#{solicitudesMB.listarCareraByFacultadId()}" 
                                                         rendered="SelectCarrera" 
                                                         update="SelectCarrera"
-                                                        listener="#{laboratorioMB.onFacultadChange}" 
-                                                      />
+                                                        />
 
                                             </p:selectOneMenu>
                                         </div>
-                                         <!--<!-- CARRERA -->
-                                        <div class="p-field p-col-12 p-md-3">
-                                            <div class="p-field p-col-12 p-md-2">
+                                        <!-- CARRERA -->
+                                        <div class="p-field p-col-12 p-md-2">
+
                                             <p:outputLabel value="Carrera" for="@next"/>
-                                             <p:selectOneMenu id="SelectCarrera"
-                                                              disabled="#{laboratorioMB.laboratorio.idFacultad != 0}"
-                                                              value="#{laboratorioMB.laboratorio.idFacultad}">
-                                               
-                                                <f:selectItem itemLabel="Seleccione Facultad" 
+                                            <p:selectOneMenu  id="SelectCarrera"
+                                                              converter="omnifaces.SelectItemsIndexConverter"
+                                                              value="#{solicitudesMB.carrera.idCarrera}">
+
+                                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione Carrera" 
                                                               itemValue="0"/>
-                                                <f:selectItems value="#{laboratorioMB.listafacultades}" 
+                                                <f:selectItems value="#{solicitudesMB.listaCarrera}" 
                                                                var="fa"
-                                                               itemLabel="#{fa.nombre_facultad}" 
-                                                               itemValue="#{fa.idFacultad}"></f:selectItems>
+                                                               itemLabel="#{fa.nombreCarrera}" 
+                                                               itemValue="#{fa.idCarrera}"></f:selectItems>
 
                                             </p:selectOneMenu>
-                                        </div>
-                                        </div>
-                                        <div class="p-field p-col-12 p-md-1">
-                                            
-                                            <p:outputLabel value="Codigo Laboratorio" for="@next"/>
-                                            <p:inputText
-                                                id="CodLabSE"
-                                                value="#" 
-                                                readonly="true"></p:inputText>
-                                        </div>
+
+                                        </div>         
+
+
+                                        <!-- LABORATORIO -->
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel for="@next" value="Laboratorio" />
                                             <p:selectOneMenu id="SelectLaboratorio"
-                                                             disabled="#{laboratorioMB.laboratorio.idLaboratorio != 0}"
-                                                             value="#{laboratorioMB.laboratorio.idLaboratorio}">
-                                                <p:ajax listener="#{laboratorioMB.onLaboratorioChange}" 
-                                                      />
+                                                             value="#{solicitudesMB.idLaboratorio}">
+
                                                 <f:selectItem itemLabel="Seleccione Laboratorio" 
                                                               itemValue="0"/>
                                                 <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
                                                                var="la"
-                                                               itemLabel="#{la.nombre_laboratorio}" 
-                                                               itemValue="#{la.idLaboratorio}"></f:selectItems>
+                                                               itemLabel="#{la.nombre_laboratorio}-#{la.codigo_laboratorio}"                                                             
+                                                               itemValue="#{la.idLaboratorio}">
 
+                                                </f:selectItems>
+                                           
                                             </p:selectOneMenu>
                                         </div>
+                                        <!-- CODIGO LAB -->
+                                       
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Responsable Laboratorio" for="@next"/>
-                                                <p:selectOneMenu id="SelectResponsableLabo"
-                                                                 disabled="#{encargadoMB.encargado.idEncargadoLaboratorio != 0}"
+                                            <p:selectOneMenu id="SelectResponsableLabo"
+                                                             disabled="#{encargadoMB.encargado.idEncargadoLaboratorio != 0}"
                                                              value="#{encargadoMB.encargado.idEncargadoLaboratorio}">
                                                 <p:ajax listener="#{laboratorioMB.onEncargadoLaboratorioChange}" 
-                                                      />
+                                                        />
                                                 <f:selectItem itemLabel="Seleccione Encarcagado" 
                                                               itemValue="0"/>
                                                 <f:selectItems value="#{encargadoMB.listaEncargados}" 
@@ -114,8 +110,8 @@
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Docente" for="@next"/>
                                             <p:inputText
-                                                value="#{loginMB.usuarioSesion.idRol}"
-                                              ></p:inputText>
+                                                value="#{loginMB.httpSession.getAttribute('nombrePersona')}"
+                                                ></p:inputText>
                                         </div>
                                         <div class="p-field p-col-12 p-md-2">
                                             <p:outputLabel value="Periodo Academico" for="@next"/>

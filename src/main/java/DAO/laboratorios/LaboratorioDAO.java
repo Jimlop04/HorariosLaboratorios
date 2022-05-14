@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import Model.laboratorios.AreaAula;
 import Model.laboratorios.Laboratorio;
+import Model.solicitudes.Facultad;
+import java.sql.PreparedStatement;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -92,6 +94,7 @@ public class LaboratorioDAO {
         return soloLaboratorios;
     }
 
+   
     public List<Laboratorio> getfacultades() {
         List<Laboratorio> facultades = new ArrayList<>();
 
@@ -111,6 +114,28 @@ public class LaboratorioDAO {
             conexion.desconectar();
         }
         return facultades;
+    }
+
+    public List<Facultad> listarFacultades() {
+        List<Facultad> lista = null;
+
+        String sql = String.format("SELECT * FROM laboratorio.facultad");
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql(sql);
+            lista = new ArrayList<>();
+            while (resultSet.next()) {
+                Facultad obj = new Facultad();
+                obj.setIdFacultad(resultSet.getInt("idFacultad"));
+                obj.setNombreFacultad(resultSet.getNString("nombreFacultad"));
+                lista.add(obj);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return lista;
     }
 
     public List<AreaAula> getsoloAreas(int idArea) {
@@ -178,14 +203,14 @@ public class LaboratorioDAO {
 
     public String ObtenerCodigo(int id) {
         String cadena = new String();
-       sentencia = String.format("SELECT laboratorio.obtenercodigolaboratorio("+id+")");
+        sentencia = String.format("SELECT laboratorio.obtenercodigolaboratorio(" + id + ")");
         try {
             conexion.conectar();
             resultSet = conexion.ejecutarSql(sentencia);
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 cadena = resultSet.getString(sentencia);
             }
-            
+
         } catch (SQLException e) {
         } finally {
             conexion.desconectar();
@@ -193,11 +218,5 @@ public class LaboratorioDAO {
         }
         return cadena;
     }
-       
-
-     
-        
-    
-    
 
 }

@@ -18,4 +18,5 @@ import lombok.NoArgsConstructor;
 public class Facultad {
     int idFacultad;
     String nombreFacultad;
+
 }

@@ -107,7 +107,7 @@ public class LaboratorioManageBean implements Serializable {
     public void setListaAreas(List<AreaAula> listaAreas) {
         this.listaAreas = listaAreas;
     }
-
+   
     public void registrarLaboratorio() throws Exception {
 
         try {
