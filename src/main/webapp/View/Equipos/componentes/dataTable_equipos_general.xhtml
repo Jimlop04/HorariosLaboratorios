@@ -78,6 +78,16 @@
                                     <p:outputLabel value="#{equipo.areaAula.nombre}"/>
                                 </p:column>
 
+                                <!--ESTADO-->
+                                <p:column headerText="Estado" sortBy="#{equipo.estado}">
+                                      <p:tag severity="success" value="BUENO"
+                                           style="font-size:12px;"
+                                           rendered="#{equipo.estado.trim() eq 'BUENO'}"/>
+                                    <p:tag severity="danger" value="DAÑADO"
+                                           style="font-size:12px;"
+                                           rendered="#{equipo.estado.trim() eq 'MALO'}"/>
+                                </p:column>
+
                             </p:dataTable>
                         </div>
                     </p:toolbarGroup>

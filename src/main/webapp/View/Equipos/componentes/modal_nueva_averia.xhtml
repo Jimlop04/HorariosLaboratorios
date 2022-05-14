@@ -1,8 +1,8 @@
 <ui:composition
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui"
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="p-grid ui-fluid">
         <div class="p-col-12">
             <p:dialog header="Reportar avería"
@@ -15,21 +15,21 @@
                       height="150">
                 <p:outputPanel id="manage-equipo-sdsdsdfdf" class="ui-fluid">
                     <div class="p-formgrid p-grid">
-                        
+
                         <!--FECHA REGISTRO-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Fecha de reporte" for="@next"/>
                             <p:datePicker
-                                    showIcon="true"
-                                    value="#{averiaEquipoMB.averiaEquipo.fechaRegistro}"
-                                    required="true"
-                                    monthNavigator="true"
-                                    yearNavigator="true"
-                                    showWeek="true"
-                                    locale="es"/>
+                                showIcon="true"
+                                value="#{averiaEquipoMB.averiaEquipo.fechaRegistro}"
+                                required="true"
+                                monthNavigator="true"
+                                yearNavigator="true"
+                                showWeek="true"
+                                locale="es"/>
                         </div>
 
-                       <!--LABORATORIO-->
+                        <!--LABORATORIO-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Laboratorio" for="@next"/>
                             <p:selectOneMenu id="comboLaboratorios" 
@@ -47,12 +47,12 @@
                                          rendered="comboEquipo"/>
                             </p:selectOneMenu>
                         </div>
-                       
+
                         <!--TIPO DAÑO-->
                         <div class="p-field p-col-12 p-md-3">
                             <p:outputLabel value="Tipo de daño" for="@next"/>
-                            <p:inputText value="#{averiaEquipoMB.averiaEquipo.tipoDanio}"
-                                         onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+                            <p:inputText   required="true" value="#{averiaEquipoMB.averiaEquipo.tipoDanio}"
+                                           onkeyup="javascript:this.value = this.value.toUpperCase();"/>
                         </div>
 
 
@@ -73,14 +73,16 @@
                         <div class="p-field p-col-12 p-md-6">
                             <p:outputLabel value="Descripción" for="@next"/>
                             <p:inputTextarea
-                                    rows="1"
-                                    cols="33"
-                                    value="#{averiaEquipoMB.averiaEquipo.descripcion}"
-                                    onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+                                required="true"
+                                rows="1"
+                                cols="33"
+                                value="#{averiaEquipoMB.averiaEquipo.descripcion}"
+                                onkeyup="javascript:this.value = this.value.toUpperCase();" />
+
                         </div>
-              
-                        
-                          <!--EQUIPO-->
+
+
+                        <!--EQUIPO-->
                         <div class="p-field p-col-12 p-md-4">
                             <p:outputLabel value="Equipo" for="@next"/>
                             <p:selectOneMenu value="#{averiaEquipoMB.averiaEquipo.equipo}"  
@@ -102,16 +104,16 @@
                 <!-- Botones Acciones Form-->
                 <f:facet name="footer">
                     <p:commandButton
-                            value="Guardar"
-                            icon="pi pi-check"
-                            styleClass="ui-button-primary"
-                            update=":msj"
-                            actionListener="#{averiaEquipoMB.registrar()}">
+                        value="Guardar"
+                        icon="pi pi-check"
+                        styleClass="ui-button-primary"
+                        update=":msj"
+                        actionListener="#{averiaEquipoMB.registrar()}">
                     </p:commandButton>
                     <p:commandButton
-                            value="Cancelar"
-                            icon="pi pi-times"
-                            styleClass="ui-button-danger"/>
+                        value="Cancelar"
+                        icon="pi pi-times"
+                        styleClass="ui-button-danger"/>
                 </f:facet>
             </p:dialog>
         </div>

@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/InicioTemplate.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">Laboratorio UTEQ - Inicio</ui:define>
+    <ui:define name="content">
+
+        <!--        Barra navegación-->
+        <div class="barra-navegacion">
+            <h:form>
+                <!--                TOP-->
+                <div class="card" align="center">
+                    <p:toolbarGroup>
+                        <h2>MANTENIMIENTO DE EQUIPOS</h2>
+                    </p:toolbarGroup>
+                </div>
+
+                <!--                CONTENT-->
+                <div class="card" style="margin-top: 5px;">
+                    <p:toolbarGroup>
+                        <h:form>
+                            <p:outputPanel
+                                    id="manage-mantenimiento-form"
+                                    class="ui-fluid">
+                                <div class="p-formgrid p-grid">
+
+                                    <!--                                    Tipo mantenimiento-->
+                                    <div class="p-field p-col-12 p-md-2">
+                                        <p:outputLabel value="Tipo mantenimiento" for="@next"/>
+                                        <p:selectOneMenu id="tipo">
+                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                            <f:selectItem itemLabel="Preventivo" itemValue="Option1"/>
+                                            <f:selectItem itemLabel="Correctivo" itemValue="Option2"/>
+                                            <f:facet name="footer">
+                                                <p:divider styleClass="p-mt-0"/>
+                                                <h:outputText value="2 options" style="font-weight:bold;"/>
+                                            </f:facet>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <!--&lt;!&ndash;                                    Equipo&ndash;&gt;-->
+                                    <!--                                    <div class="p-field p-col-12 p-md-4">-->
+                                    <!--                                        <p:outputLabel value="Equipo" for="@next"/>-->
+                                    <!--                                        <p:inputText-->
+                                    <!--                                                maxlength="25">-->
+                                    <!--                                        </p:inputText>-->
+                                    <!--                                    </div>-->
+
+                                    <!--                                    Fecha-->
+                                    <div class="p-field p-col-12 p-md-2">
+                                        <p:outputLabel value="Fecha" for="@next"/>
+                                        <p:datePicker id="fecha"/>
+                                    </div>
+
+                                    <!--                                    Descripción-->
+                                    <div class="p-field p-col-12 p-md-5">
+                                        <p:outputLabel value="Descripción" for="@next"/>
+                                        <p:inputTextarea rows="1" cols="33"/>
+                                    </div>
+
+                                    <!--                                    Agregar equipo-->
+                                    <div class="p-field p-col-12 p-md-1">
+                                        <p:outputLabel value="." for="@next"/>
+                                        <p:commandButton
+                                                type="button"
+                                                value="Agregar"
+                                                icon="pi pi-plus"
+                                                styleClass="ui-button-primary"
+                                        />
+
+                                    </div>
+                                </div>
+                            </p:outputPanel>
+
+                            <!--                            DATA-TABLE-->
+                            <div class="card" style="margin-top: 5px;">
+                                <p:toolbarGroup>
+                                    <h:form>
+                                        <div class="p-grid p-justify-around">
+                                            <p:dataTable lazy="true" editable="true" reflow="true"
+                                                         editInitEvent="dblclick" editMode="cell">
+
+                                                <!--                                                Header Data-Table-->
+                                                <f:facet name="header">
+                                                <div class="p-d-flex p-jc-between p-ai-center">
+                                                    <span style="font-size: 24px">Equipos de Laboratorios</span>
+                                                    <span class="filter-container ui-input-icon-left">
+                                                         <i class="pi pi-search"/><p:inputText placeholder="Buscar"/>
+                                                    </span>
+                                                </div>
+                                                </f:facet>
+
+                                                <p:column headerText="Codigo equipo" filterStyle="display : none">
+                                                    <h:outputText/>
+                                                </p:column>
+                                                <p:column headerText="nombre" filterStyle="display : none">
+                                                    <h:outputText/>
+                                                </p:column>
+                                                <p:column headerText="numero de serie" filterStyle="display : none">
+                                                    <h:outputText/>
+                                                </p:column>
+                                                <p:column headerText="Fecha" filterStyle="display : none">
+                                                    <h:outputText/>
+                                                </p:column>
+                                                <p:column headerText="tipo Mantenimiento" filterStyle="display : none">
+                                                    <h:outputText/>
+                                                </p:column>
+                                                <p:column headerText="imagen" filterStyle="display : none">
+                                                    <h:outputText/>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </div>
+                                    </h:form>
+                                </p:toolbarGroup>
+                            </div>
+
+
+                            <div align="right">
+                                <p:commandButton type="button"
+                                                 value="Guardar"
+                                                 icon="pi pi-save"
+                                                 styleClass="ui-button-success"/>
+                                <p:button value="Cancelar"
+                                          styleClass="ui-button-danger"
+                                          icon="pi pi-times"
+                                          outcome="ingresoEquipos"/>
+                            </div>
+
+                        </h:form>
+                    </p:toolbarGroup>
+                </div>
+            </h:form>
+        </div>
+        <h:outputStylesheet name="home.css" library="css"/>
+        <h:outputStylesheet name="main.css" library="css"/>
+    </ui:define>
+</ui:composition>
