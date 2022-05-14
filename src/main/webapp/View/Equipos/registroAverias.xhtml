@@ -23,23 +23,22 @@
                     <ui:include src="./componentes/modal_nueva_averia.xhtml"/>
                 </h:form>
 
-                <!--BOTON - NUEVA AVERÍA-->
-                <div class="card" style="margin-top: 5px;">
-                    <p:toolbarGroup>
-                        <p:commandButton
-                            value="Nueva avería"
-                            styleClass="ui-button-primary"
-                            icon="pi pi-plus"
-                            process="@this"
-                            oncomplete="PF('modalNuevaAveria').show()"/>
-                    </p:toolbarGroup>
-                </div>
-
-                <!--            Detalle-->
+                <!--DETALLE-->
                 <h:form id="formDataAverias">
                     <div class="card p-mt-0">
                         <p:outputPanel id="manage-averias-Detalle" class="ui-fluid">
                             <div class="p-field p-col-12 p-md-12">
+                                <!--BOTON - NUEVA AVERÍA-->
+                                <p:toolbar>
+                                    <p:toolbarGroup>
+                                        <p:commandButton
+                                            value="Nueva avería"
+                                            styleClass="rounded-button" 
+                                            icon="pi pi-plus"
+                                            process="@this"
+                                            oncomplete="PF('modalNuevaAveria').show()"/>
+                                    </p:toolbarGroup>
+                                </p:toolbar>
                                 <p:fieldset>
                                     <p:dataTable
                                         id="dataAverias"
@@ -84,12 +83,8 @@
                                         <p:column headerText="Codigo del bien" filterStyle="display : none">
                                             <p:outputLabel value="#{av.equipo.codigo}"/>
                                         </p:column>
-                                        <p:column headerText="Acciones" filterStyle="display : none">
-                                            <p:commandLink   ajax="false"
-
-                                                             actionListener="#{averiaEquipoMB.datosReporteAveriaByIdAveria(av)}"
-                                                             />
-                                            <h:commandButton value="PDF" actionListener="#{averiaEquipoMB.printPDF(av)}"/>
+                                        <p:column headerText="Acciones" filterStyle="display : none">  
+                                            <p:commandButton ajax="false"  icon="pi pi-file-pdf" styleClass="rounded-button ui-button-warning"  actionListener="#{averiaEquipoMB.printPDF(av)}" />
                                         </p:column>
                                     </p:dataTable>
                                 </p:fieldset>
