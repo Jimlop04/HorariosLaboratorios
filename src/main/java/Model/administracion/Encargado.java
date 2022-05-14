@@ -11,7 +11,7 @@ public class Encargado {
     private String nombre_usuario;
     private String password_usuario;
     private Date fechacreacion_usuario;
-    private Boolean estado_usuario;
+    private boolean estado_usuario;
    
     private int idPersona;
     private String nombre_persona;
@@ -27,19 +27,24 @@ public class Encargado {
     private int idRoles;
     private String nombre_rol;
     private String descripcion_rol;
-    private Boolean estado_rol;
+    private boolean estado_rol;
     
     private int idEncargado;
     
     private int idEncargadoLaboratorio;
     private Date fecha_inicio;
     private Date fecha_fin;
+     private boolean estado_EncargadoLaboratorio;
     
     private int idLaboratorio;
     private String nombre_laboratorio;
     private String codigo_laboratorio;
     
     private int  idencargadoLaboratorioDetalle;
+    
+    private Date fecha_inicio_registro;
+    private Date fecha_fin_registro;
+    private boolean estado_rel = true;
 
 
     public Encargado() {
@@ -63,7 +68,7 @@ public class Encargado {
             String nombre_usuario, 
             String password_usuario, 
             Date fechacreacion_usuario, 
-            Boolean estado_usuario, 
+            boolean estado_usuario, 
             int idPersona, 
             String nombre_persona, 
             String apellido_persona, 
@@ -79,6 +84,7 @@ public class Encargado {
             int idEncargadoLaboratorio, 
             Date fecha_inicio, 
             Date fecha_fin, 
+            boolean estado_EncargadoLaboratorio,
             int idLaboratorio, 
             String nombre_laboratorio, 
             String codigo_laboratorio) {
@@ -102,12 +108,13 @@ public class Encargado {
         this.idEncargadoLaboratorio = idEncargadoLaboratorio;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
+        this.estado_EncargadoLaboratorio = estado_EncargadoLaboratorio;
         this.idLaboratorio = idLaboratorio;
         this.nombre_laboratorio = nombre_laboratorio;
         this.codigo_laboratorio = codigo_laboratorio;
     }
 
-    public Encargado(int idRoles, String nombre_rol, String descripcion_rol, Boolean estado_rol) {
+    public Encargado(int idRoles, String nombre_rol, String descripcion_rol, boolean estado_rol) {
         this.idRoles = idRoles;
         this.nombre_rol = nombre_rol;
         this.descripcion_rol = descripcion_rol;
@@ -118,6 +125,33 @@ public class Encargado {
         this.idRoles = idRoles;
         this.nombre_rol = nombre_rol;
     }
+
+    public Encargado(int idUsuario, String nombre_usuario, 
+            String password_usuario, Date fechacreacion_usuario, 
+            boolean estado_usuario, int idPersona, String nombre_persona, 
+            String apellido_persona, String dni_persona, 
+            Date fechanacimiento_persona, String genero_persona, 
+            String correo_persona, String celular_persona, int idUsuaRoles, 
+            int idRoles, String nombre_rol, boolean estado_rol) {
+        this.idUsuario = idUsuario;
+        this.nombre_usuario = nombre_usuario;
+        this.password_usuario = password_usuario;
+        this.fechacreacion_usuario = fechacreacion_usuario;
+        this.estado_usuario = estado_usuario;
+        this.idPersona = idPersona;
+        this.nombre_persona = nombre_persona;
+        this.apellido_persona = apellido_persona;
+        this.dni_persona = dni_persona;
+        this.fechanacimiento_persona = fechanacimiento_persona;
+        this.genero_persona = genero_persona;
+        this.correo_persona = correo_persona;
+        this.celular_persona = celular_persona;
+        this.idUsuaRoles = idUsuaRoles;
+        this.idRoles = idRoles;
+        this.nombre_rol = nombre_rol;
+        this.estado_rol = estado_rol;
+    }
+    
     
     
     
@@ -297,11 +331,11 @@ public class Encargado {
         this.fechacreacion_usuario = fechacreacion_usuario;
     }
 
-    public Boolean getEstado_usuario() {
+    public boolean getEstado_usuario() {
         return estado_usuario;
     }
 
-    public void setEstado_usuario(Boolean estado_usuario) {
+    public void setEstado_usuario(boolean estado_usuario) {
         this.estado_usuario = estado_usuario;
     }
 
@@ -321,12 +355,44 @@ public class Encargado {
         this.descripcion_rol = descripcion_rol;
     }
 
-    public Boolean getEstado_rol() {
+    public boolean getEstado_rol() {
         return estado_rol;
     }
 
-    public void setEstado_rol(Boolean estado_rol) {
+    public void setEstado_rol(boolean estado_rol) {
         this.estado_rol = estado_rol;
+    }
+
+    public boolean getEstado_EncargadoLaboratorio() {
+        return estado_EncargadoLaboratorio;
+    }
+
+    public void setEstado_EncargadoLaboratorio(boolean estado_EncargadoLaboratorio) {
+        this.estado_EncargadoLaboratorio = estado_EncargadoLaboratorio;
+    }
+
+    public Date getFecha_inicio_registro() {
+        return fecha_inicio_registro;
+    }
+
+    public void setFecha_inicio_registro(Date fecha_inicio_registro) {
+        this.fecha_inicio_registro = fecha_inicio_registro;
+    }
+
+    public Date getFecha_fin_registro() {
+        return fecha_fin_registro;
+    }
+
+    public void setFecha_fin_registro(Date fecha_fin_registro) {
+        this.fecha_fin_registro = fecha_fin_registro;
+    }
+
+    public boolean getEstado_rel() {
+        return estado_rel;
+    }
+
+    public void setEstado_rel(boolean estado_rel) {
+        this.estado_rel = estado_rel;
     }
     
     

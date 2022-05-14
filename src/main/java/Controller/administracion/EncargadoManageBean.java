@@ -8,6 +8,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import global.Mensajes;
+import java.sql.SQLException;
+import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
@@ -25,9 +27,9 @@ public class EncargadoManageBean implements Serializable {
     private Encargado encargado = new Encargado();
     private EncargadoDAO encargadoDAO = new EncargadoDAO();
     private List<Encargado> listaEncargados = new ArrayList<>();
-     private List<Encargado> listaLaboratoriosXencargado = new ArrayList<>();
+    private List<Encargado> listaLaboratoriosXencargado = new ArrayList<>();
     private List<Encargado> listaRoles = new ArrayList<>();
-    private List<Encargado> ListTotalRoles = new ArrayList<>();
+    private List<Encargado> listaUsuarios = new ArrayList<>();
     Mensajes mensajesJSF;
     String dni = "";
 
@@ -36,10 +38,10 @@ public class EncargadoManageBean implements Serializable {
         System.out.println("PostConstruct");
         listaEncargados = encargadoDAO.getEncargados();
         listaLaboratoriosXencargado = encargadoDAO.getListaLaboratoriosXencargado(dni);
-        listaRoles = encargadoDAO.getRoles();
-        ListTotalRoles = encargadoDAO.getListRoles();
+        listaRoles = encargadoDAO.getListRoles();
         mensajesJSF = new Mensajes();
         encargado = new Encargado();
+        listaUsuarios = encargadoDAO.getUsuarios();
 
     }
 
@@ -83,14 +85,6 @@ public class EncargadoManageBean implements Serializable {
         this.listaRoles = listaRoles;
     }
 
-    public List<Encargado> getListTotalRoles() {
-        return ListTotalRoles;
-    }
-
-    public void setListTotalRoles(List<Encargado> ListTotalRoles) {
-        this.ListTotalRoles = ListTotalRoles;
-    }
-
     public String getDni() {
         return dni;
     }
@@ -106,7 +100,15 @@ public class EncargadoManageBean implements Serializable {
     public void setListaLaboratoriosXencargado(List<Encargado> listaLaboratoriosXencargado) {
         this.listaLaboratoriosXencargado = listaLaboratoriosXencargado;
     }
-    
+
+    public List<Encargado> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<Encargado> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
     public void editarRol() {
         try {
             if ("".equals(encargado.getNombre_rol())) {
@@ -120,7 +122,7 @@ public class EncargadoManageBean implements Serializable {
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Estado"));
             } else {
                 this.encargadoDAO.modificarRol(encargado);
-                ListTotalRoles = encargadoDAO.getListRoles();
+                listaRoles = encargadoDAO.getListRoles();
                 FacesContext.getCurrentInstance().
                         addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Rol Editado Correctamante"));
 
@@ -145,10 +147,16 @@ public class EncargadoManageBean implements Serializable {
     }
 
     public void registrarRoles() throws Exception {
-
         try {
             if ("".equals(encargado.getNombre_rol())) {
-                mensajesJSF.mensajeDeAdvertencia("Ingrese Nombre");
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre Rol"));
+            } else if ("".equals(encargado.getDescripcion_rol())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Descripción"));
+            } else if ("".equals(encargado.getEstado_rol())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Habilite Rol si Desea"));
             } else {
                 this.encargadoDAO.registrarRol(encargado);
                 mensajesJSF.mensajeDeExito("Registro Exitoso");
@@ -159,79 +167,28 @@ public class EncargadoManageBean implements Serializable {
     }
 
     public void editarEncargado() {
+
         try {
-            if ("".equals(encargado.getNombre_usuario())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Usuario"));
-            } else if ("".equals(encargado.getPassword_usuario())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Contraseña"));
-            } else if (encargado.getFechacreacion_usuario() == null) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", ""));
-            } else if (encargado.getEstado_usuario()) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Estado Usuario"));
-            } else if ("".equals(encargado.getIdPersona())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese "));
-            } else if ("".equals(encargado.getNombre_persona())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getApellido_persona())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese "));
-            } else if ("".equals(encargado.getDni_persona())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if (encargado.getFechanacimiento_persona() == null) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getGenero_persona())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getCorreo_persona())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getCelular_persona())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getIdRoles())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getIdUsuario())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getNombre_rol())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getFecha_inicio())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getFecha_fin())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
+            if (encargado.getFecha_inicio() == null) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Inicio");
+            } else if (encargado.getFecha_fin() == null) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Fin");
             } else if ("".equals(encargado.getIdLaboratorio())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Laboratorio");
             } else if ("".equals(encargado.getIdEncargado())) {
+                mensajesJSF.mensajeDeAdvertencia("Se necesita ID Encargado");
+            } else if (encargado.getEstado_EncargadoLaboratorio()) {
                 FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getNombre_laboratorio())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
-            } else if ("".equals(encargado.getCodigo_laboratorio())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese"));
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Habilite Estado"));
             } else {
-                this.encargadoDAO.editarEncargado(encargado);
+                this.encargadoDAO.updateEncargado(encargado);
                 listaEncargados = encargadoDAO.getEncargados();
                 FacesContext.getCurrentInstance().
                         addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Encargado Editado"));
 
                 PrimeFaces.current().executeScript("PF('centroEditarEncargadoDialog').hide()");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             FacesContext.getCurrentInstance().
                     addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error al guardar"));
         }
@@ -247,31 +204,46 @@ public class EncargadoManageBean implements Serializable {
         listaLaboratoriosXencargado = encargadoDAO.getListaLaboratoriosXencargado(dni);
     }
 
-    /**
-     * public void registrarEncargado() throws Exception {
-     *
-     * try {
-     *
-     * if ("".equals(encargado.getNombre_encargado())) {
-     * mensajesJSF.mensajeDeAdvertencia("Ingrese un Nombre"); //
-     * PrimeFaces.current().ajax().update("form:messages"); } else if
-     * ("".equals(encargado.getApellidos_encargado())) {
-     * mensajesJSF.mensajeDeAdvertencia("Ingrese un Apellido"); } else if
-     * ("".equals(encargado.getNombre_rol())) {
-     * mensajesJSF.mensajeDeAdvertencia("Ingrese Cargo");
-     *
-     * } else if ("".equals(encargado.getFecha_inicio())) {
-     * mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Inicio");
-     *
-     * } else if ("".equals(encargado.getFecha_fin())) {
-     * mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Fin");
-     *
-     * } else if ("".equals(encargado.isEstado())) {
-     * mensajesJSF.mensajeDeAdvertencia("Ingrese Estado");
-     *
-     * } else { this.encargadoDAO.registrarEncargado(encargado);
-     * mensajesJSF.mensajeDeExito("Registro Exitoso"); } } catch (SQLException
-     * e) { e.getMessage(); }
-    }*
-     */
+    public void eliminarAsignacionLaboratorio() {
+        try {
+            this.encargadoDAO.deleteAsignacionLaboratorio(encargado.getIdEncargadoLaboratorio());
+            listaEncargados = encargadoDAO.getEncargados();
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Asignacion de Laboratorio Eliminada"));
+            PrimeFaces.current().executeScript("PF('dtEncargados').hide()");
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error al eliminar"));
+        }
+    }
+
+    public void registrarEncargadoLaboratorio() throws Exception {
+
+        try {
+
+            if (encargado.getFecha_inicio_registro() == null) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Inicio");
+            } else if (encargado.getFecha_fin_registro() == null) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Fin");
+            } else if ("".equals(encargado.getIdLaboratorio())) {
+                mensajesJSF.mensajeDeAdvertencia("Ingrese Laboratorio");
+            } else if ("".equals(encargado.getIdEncargado())) {
+                mensajesJSF.mensajeDeAdvertencia("Ingresar identificacion Encargado");
+            } else if (encargado.getEstado_rel()) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Habilite Estado"));
+            } else {
+                this.encargadoDAO.insertEncargadolaboratorio(encargado);
+                FacesContext.getCurrentInstance().
+                        addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Registro Exitoso"));
+
+                PrimeFaces.current().executeScript("PF('dtEncargados').hide()");
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
+                            "Error al guardar"));
+        }
+    }
+
 }

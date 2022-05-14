@@ -14,7 +14,7 @@
                         <p:growl id="messages" showDetail="true" severity="info, warn"/>
                         <div class="card" style="margin-top: 5px;">
                             <p:toolbarGroup>
-                                <p:inputText value="#" maxlength="50" ></p:inputText>
+                                <p:inputText maxlength="50" ></p:inputText>
                                 <p:button icon="pi pi-search"/>
 
                                 <!-- Boton Agregar Rol -->
@@ -36,80 +36,124 @@
                                     modal="true"
                                     widgetVar="RegistrarUsuario"
                                     responsive="true" 
-                                    width="40%"
+                                    width="48%"
                                     draggable="false"
                                     closeOnEscape="true"
-                                    height="200" >
+                                    height="300" >
                                     <p:outputPanel 
                                         id="manage-Usuario-form" 
                                         class="ui-fluid">
                                         <div class="p-formgrid p-grid">
-                                            <div class="p-field p-col-12 p-md-6">
-
+                                            <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel
                                                     value="Cedula: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.dni_persona}" 
                                                     maxlength="50"
                                                     ></p:inputText> 
-
-
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel
                                                     value="Nombre: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.nombre_persona}"  
                                                     maxlength="50"
                                                     ></p:inputText>
-
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel
                                                     value="Apellidos: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.apellido_persona}" 
                                                     maxlength="50"
                                                     ></p:inputText>
-
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel
                                                     value="Fecha Nacimiento: "></p:outputLabel>
-                                                <p:inputText
-                                                    value="#" 
-                                                    maxlength="50"
-                                                    ></p:inputText>                                    
-
-                                                <p:outputLabel
-                                                    value="Genero: "></p:outputLabel>
-                                                <p:inputText
-                                                    value="#" 
-                                                    maxlength="50"
-                                                    ></p:inputText>
-
+                                                <p:datePicker id="FNregistroUsuario"
+                                                              value="#{encargadoMB.encargado.fechanacimiento_persona}"
+                                                              showIcon="true"/>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel for="@next" value="Genero"/>
+                                                <p:selectOneMenu id="GeneroUsuarioR" value="#{encargadoMB.encargado.genero_persona}" >
+                                                    <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                                                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                                                    <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                                                    <f:selectItem itemLabel="Otro" itemValue="O"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel
                                                     value="Correo: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.correo_persona}" 
                                                     maxlength="50"
                                                     ></p:inputText>
-
-
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel
                                                     value="Celular: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.celular_persona}" 
                                                     maxlength="50"
                                                     ></p:inputText>
-
-
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-6">
-                                                
-
                                             </div>
 
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Estado Rol: " for="@next"></p:outputLabel>
+                                                <p:selectBooleanButton value="#{encargadoMB.encargado.estado_rol}"
+                                                                       onLabel="Habilitado" 
+                                                                       offLabel="Deshabilitado"
+                                                                       onIcon="pi pi-check " 
+                                                                       offIcon="pi pi-times " 
+                                                                       style="width:98%;"
+                                                                       />
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-4">
+                                                <p:outputLabel
+                                                    value="Rol: "></p:outputLabel>
+                                                <p:selectOneMenu value="#{encargadoMB.encargado.idRoles}">
+                                                    <f:selectItem itemLabel="Seleccionar Rol" itemValue="" noSelectionOption="true"/>
+                                                    <f:selectItems value="#{encargadoMB.listaRoles}" 
+                                                                   var="rol"
+                                                                   itemLabel="#{rol.nombre_rol}" 
+                                                                   itemValue="#{rol.idRoles}"
+                                                                   >
 
-
-
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Estado Usuario: " for="@next"></p:outputLabel>
+                                                <p:selectBooleanButton value="#{encargadoMB.encargado.estado_usuario}"
+                                                                       onLabel="Habilitado" 
+                                                                       offLabel="Deshabilitado"
+                                                                       onIcon="pi pi-check " 
+                                                                       offIcon="pi pi-times " 
+                                                                       style="width:98%;"
+                                                                       />
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Usuario: "></p:outputLabel>
+                                                <p:inputText
+                                                    value="#{encargadoMB.encargado.nombre_usuario}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Contraseña: "></p:outputLabel>
+                                                <p:inputText
+                                                    value="#{encargadoMB.encargado.password_usuario}"  
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                            </div>
                                         </div>
-
-
                                     </p:outputPanel>
                                     <f:facet name="footer">
                                         <p:commandButton 
@@ -136,16 +180,16 @@
                                     modal="true"
                                     widgetVar="centroEditarUsuarioDialog" 
                                     responsive="true" 
-                                    width="40%"
+                                    width="50%"
                                     draggable="false" 
-                                    height="280" >
+                                    height="250" >
                                     <p:outputPanel id="manage-editarUsuario-form" class="ui-fluid">
                                         <div class="p-formgrid p-grid">
-                                            <div class="p-field p-col-12 p-md-3">
+                                            <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel
                                                     value="Cedula: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.dni_persona}" 
                                                     maxlength="50"
                                                     ></p:inputText> 
                                             </div>
@@ -153,69 +197,104 @@
                                                 <p:outputLabel
                                                     value="Nombre: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.nombre_persona}" 
                                                     maxlength="50"
                                                     ></p:inputText>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-5">
+                                            <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel
                                                     value="Apellidos: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.apellido_persona}"  
                                                     maxlength="50"
                                                     ></p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-3">
-                                                <p:outputLabel
-                                                    value="Fecha Nacimiento: "></p:outputLabel>
-                                                <p:inputText
-                                                    value="#" 
-                                                    maxlength="50"
-                                                    ></p:inputText>                                    
                                             </div>
                                             <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel
-                                                    value="Genero: "></p:outputLabel>
-                                                <p:inputText
-                                                    value="#" 
-                                                    maxlength="50"
-                                                    ></p:inputText>
-
+                                                    value="Fecha Nacimiento: "></p:outputLabel>
+                                                <p:datePicker id="FNeditarUsuario"
+                                                              value="#{encargadoMB.encargado.fechanacimiento_persona}"
+                                                              showIcon="true"/>
                                             </div>
-                                            <div class="p-field p-col-12 p-md-5">
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel for="@next" value="Genero"/>
+                                                <p:selectOneMenu id="GeneroUsuarioEdit" value="#{encargadoMB.encargado.genero_persona}" >
+                                                    <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                                                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                                                    <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                                                    <f:selectItem itemLabel="Otro" itemValue="O"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-6">
                                                 <p:outputLabel
                                                     value="Correo: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.correo_persona}"  
                                                     maxlength="50"
                                                     ></p:inputText>
-
                                             </div>
                                             <div class="p-field p-col-12 p-md-2">
                                                 <p:outputLabel
                                                     value="Celular: "></p:outputLabel>
                                                 <p:inputText
-                                                    value="#" 
+                                                    value="#{encargadoMB.encargado.celular_persona}" 
                                                     maxlength="50"
                                                     ></p:inputText>
-
                                             </div>
-                                            <div class="p-field p-col-12 p-md-12">
-                                                <p:inputText value="#{encargadoMB.encargado.idRoles}" 
-                                                             style="display: none"
-                                                             ></p:inputText>
-                                                <p:outputLabel value="Agregar Rol " for="@next"/>
-                                                <p:selectOneMenu value="#{encargadoMB.encargado.idRoles}" editable="false">
-                                                    <f:selectItem itemLabel="Seleccione un Cargo" itemValue="" noSelectionOption="true"/>
-                                                    <p:ajax  process="@this"/>
+
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Estado Rol: " for="@next"></p:outputLabel>
+                                                <p:selectBooleanButton value="#{encargadoMB.encargado.estado_rol}"
+                                                                       onLabel="Habilitado" 
+                                                                       offLabel="Deshabilitado"
+                                                                       onIcon="pi pi-check " 
+                                                                       offIcon="pi pi-times " 
+                                                                       style="width:98%;"
+                                                                       />
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-4">
+                                                <p:outputLabel
+                                                    value="Rol: "></p:outputLabel>
+                                                <p:selectOneMenu value="#{encargadoMB.encargado.idRoles}">
+                                                    <f:selectItem itemLabel="Seleccionar Rol" itemValue="" noSelectionOption="true"/>
                                                     <f:selectItems value="#{encargadoMB.listaRoles}" 
                                                                    var="rol"
                                                                    itemLabel="#{rol.nombre_rol}" 
-                                                                   itemValue="#{rol.idRoles}">
+                                                                   itemValue="#{rol.idRoles}"
+                                                                   >
 
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Estado Usuario: " for="@next"></p:outputLabel>
+                                                <p:selectBooleanButton value="#{encargadoMB.encargado.estado_usuario}"
+                                                                       onLabel="Habilitado" 
+                                                                       offLabel="Deshabilitado"
+                                                                       onIcon="pi pi-check " 
+                                                                       offIcon="pi pi-times " 
+                                                                       style="width:98%;"
+                                                                       />
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Usuario: "></p:outputLabel>
+                                                <p:inputText
+                                                    value="#{encargadoMB.encargado.nombre_usuario}"  
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel
+                                                    value="Contraseña: "></p:outputLabel>
+                                                <p:inputText
+                                                    value="#{encargadoMB.encargado.password_usuario}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                            </div>
+
 
                                         </div>
                                     </p:outputPanel>
@@ -240,80 +319,96 @@
                             </p:toolbarGroup>
                         </div>
 
-                        <div class="card">
-                            <h:form>
-                                <p:dataTable var="product" 
-                                             value="#{encargadoMB.listaEncargados}" 
-                                             rowKey="#{encargadoMB.encargado.idEncargado}"
-                                             lazy="true"  >
+                        <div class="card" style="margin-top: 5px;">
+                            <div class="p-grid p-justify-around">
+                                <p:dataTable id="dtUsuario"
+                                             paginator="true" 
+                                             paginatorPosition="bottom"
+                                             lazy="true"  
+                                             editable="true" 
+                                             reflow="true"
+                                             rows="6"
+                                             rowSelectMode="add"
+                                             editInitEvent="dblclick" 
+                                             editMode="cell"
+                                             value="#{encargadoMB.listaUsuarios}"
+                                             widgetVar="TablaUsuariosBus"
+                                             var="TablaUsuarios"
+                                             >
                                     <f:facet name="header">
-                                        LISTA USUARIOS
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            <span style="font-size: 24px">Encargados</span>
+                                        </div>
                                     </f:facet>
-                                    <p:column style="width:2rem">
-                                        <p:rowToggler/>
+                                    <p:column headerText="Cedula" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.dni_persona}"/>
+                                    </p:column>
+                                    <p:column headerText="Rol" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.nombre_rol}"/>
+                                    </p:column>
+                                    <p:column headerText="Nombre" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.nombre_persona}"/>
+                                    </p:column>
+                                    <p:column headerText="Apellido" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.apellido_persona}"/>
+                                    </p:column>
+                                    <p:column headerText="F.Nacimiento" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.fechanacimiento_persona}"/>
+                                    </p:column>
+                                    <p:column headerText="Genero" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.genero_persona}"/>
+                                    </p:column>
+                                    <p:column headerText="Correo" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.correo_persona}"/>
+                                    </p:column>
+                                    <p:column headerText="Celular" 
+                                              filterStyle="display : none">
+                                        <h:outputText 
+                                            value="#{TablaUsuarios.celular_persona}"/>
                                     </p:column>
 
-                                    <p:column headerText="Cedula">
-                                        <h:outputText value="#{encargadoMB.encargado.dni_persona}"/>
-                                    </p:column>
-
-
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{encargadoMB.encargado.dni_persona}">
-                                            <f:convertNumber type="currency" currencySymbol="$"/>
-                                        </h:outputText>
-                                    </p:column>
-
-                                    <p:column headerText="Apellido">
-                                        <h:outputText value="#{encargadoMB.encargado.dni_persona}"/>
-                                    </p:column>
-
-                                    <p:column headerText="Fecha Nacimiento">
-                                        <h:outputText value="#{encargadoMB.encargado.dni_persona}"/>
-                                    </p:column>
-
-                                    <p:column headerText="Genero">
-                                        <h:outputText value="#{encargadoMB.encargado.dni_persona}"/>
-                                    </p:column>
-                                    <p:column headerText="Correo Electronico">
-                                        <h:outputText value="#{encargadoMB.encargado.dni_persona}"/>
-                                    </p:column>
-                                    <p:column headerText="Celular">
-                                        <h:outputText value="#{encargadoMB.encargado.dni_persona}"/>
+                                    <p:column headerText="Estado" sortBy="#{TablaUsuarios.estado_usuario}">
+                                        <p:tag severity="success" value="Habilitado"
+                                               style="font-size:12px;"
+                                               rendered="#{TablaUsuarios.estado_usuario eq true}"/>
+                                        <p:tag severity="warning" value="Deshabilitado"
+                                               style="font-size:12px;"
+                                               rendered="#{TablaUsuarios.estado_usuario eq false}"/>
                                     </p:column>
                                     <p:column headerText="Acciones" filterStyle="display : none">
+                                        <p:commandButton 
+                                            icon="pi pi-pencil" 
+                                            update=":form-prin-usuario:manage-editarUsuario-form"
+                                            class="ui-button-primary rounded-button p-mr-2 p-mb-2"
+                                            oncomplete="PF('centroEditarUsuarioDialog').show()" 
+                                            process="@this">
+                                            <f:setPropertyActionListener 
+                                                value="#{TablaUsuarios}" 
+                                                target="#{encargadoMB.encargado}"/>
+                                            <p:resetInput target=":form-prin-usuario:manage-editarUsuario-form"/>
+                                        </p:commandButton>
+
+
 
 
                                     </p:column>
-
-                                    <p:rowExpansion>
-                                        <div class="product">
-                                            <div class="product-list-item">
-
-                                                <div class="product-list-detail">
-                                                    <div class="product-name">#</div>
-                                                    <div class="product-description">#</div>
-
-                                                </div>
-                                                <div class="product-list-action">
-
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </p:rowExpansion>
-
-
                                 </p:dataTable>
-                            </h:form>
+                            </div>
                         </div>
-
-
-
-
-
-
 
 
 
