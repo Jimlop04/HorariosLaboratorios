@@ -77,7 +77,7 @@ public class AveriaEquipoDAO extends Conexion {
         return lista;
     }
 
-    public List<AveriaEquipo> listar() throws Exception {
+    public List<AveriaEquipo> listar(int idPersona) throws Exception {
         List<AveriaEquipo> lista = new ArrayList<>();
         ResultSet rs;
         try {
@@ -105,6 +105,7 @@ public class AveriaEquipoDAO extends Conexion {
                     + "         inner join laboratorio.laboratorio la on el.laboratorio_id_laboratorio = la.id_laboratorio\n"
                     + "         inner join laboratorio.persona pe on en.persona_id_persona = pe.id_persona\n"
                     + "         inner join laboratorio.area_aula as aa on eq.area_id_area = aa.id_area\n"
+                    + "         WHERE pe.id_persona = '"+idPersona+"'\n"
                     + "order by av.fecha_registro desc";
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();

@@ -66,11 +66,11 @@ public class AveriaEquipoMB implements Serializable {
 
     }
 
-    public void listar() throws Exception {
+    public void listar(int idPersona) throws Exception {
 
         try {
             dao = new AveriaEquipoDAO();
-            listaAverias = dao.listar();
+            listaAverias = dao.listar(idPersona);
         } catch (Exception e) {
             throw e;
         }
