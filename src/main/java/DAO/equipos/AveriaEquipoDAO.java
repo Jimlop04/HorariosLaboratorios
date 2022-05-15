@@ -145,7 +145,7 @@ public class AveriaEquipoDAO extends Conexion {
         } finally {
             this.desconectar();
         }
-        return lista;
+        return lista   ;
     }
 
     public List<ReporteAveria> listarAveriaReporteById(AveriaEquipo averia) throws Exception {
@@ -179,7 +179,8 @@ public class AveriaEquipoDAO extends Conexion {
                     + "         inner join laboratorio.encargado en on el.encargado_id_encargado = en.id_encargado\n"
                     + "         inner join laboratorio.persona pe on en.persona_id_persona = pe.id_persona\n"
                     + "         inner join laboratorio.facultad fa on la.facultad_id_facultad = fa.id_facultad\n"
-                    + "where id_averia_equipo ="+ averia.getIdAveria();
+                    + "where id_averia_equipo =" + averia.getIdAveria();
+
             PreparedStatement st = this.getConnection().prepareStatement(query);
             rs = st.executeQuery();
             while (rs.next()) {
@@ -224,10 +225,10 @@ public class AveriaEquipoDAO extends Conexion {
             st.setString(6, averiaEquipo.getPrioridad());
             st.executeUpdate();
             st.close();
-            
-            String queyUpdate ="UPDATE laboratorio.equipo SET estado_equipo='DAÑADO' WHERE id_equipo ='"+averiaEquipo.getEquipo().getIdEquipo()+"'";
-              PreparedStatement stUp = this.getConnection().prepareStatement(queyUpdate);
-              stUp.executeUpdate();
+
+            String queyUpdate = "UPDATE laboratorio.equipo SET estado_equipo='DAÑADO' WHERE id_equipo ='" + averiaEquipo.getEquipo().getIdEquipo() + "'";
+            PreparedStatement stUp = this.getConnection().prepareStatement(queyUpdate);
+            stUp.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {
