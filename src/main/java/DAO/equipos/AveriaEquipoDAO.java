@@ -223,6 +223,11 @@ public class AveriaEquipoDAO extends Conexion {
             st.setInt(5, averiaEquipo.getEquipo().getIdEquipo());
             st.setString(6, averiaEquipo.getPrioridad());
             st.executeUpdate();
+            st.close();
+            
+            String queyUpdate ="UPDATE laboratorio.equipo SET estado_equipo='DAÑADO' WHERE id_equipo ='"+averiaEquipo.getEquipo().getIdEquipo()+"'";
+              PreparedStatement stUp = this.getConnection().prepareStatement(queyUpdate);
+              stUp.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {
