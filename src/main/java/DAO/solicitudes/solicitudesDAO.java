@@ -4,7 +4,9 @@
  */
 package DAO.solicitudes;
 
+import Controller.login.LoginMB;
 import Model.laboratorios.Laboratorio;
+import Model.solicitudes.Asignatura;
 import Model.solicitudes.Carrera;
 import Model.solicitudes.Facultad;
 import global.Conexion;
@@ -68,7 +70,7 @@ public class solicitudesDAO extends Conexion {
         List<Laboratorio> lista;
         ResultSet rs;
         try {
-            String sql = "select*from laboratorio.laboratorio where id_laboratorio="+idLab;
+            String sql = "select*from laboratorio.laboratorio where id_laboratorio=" + idLab;
             conectar();
             PreparedStatement st = getConnection().prepareStatement(sql);
             rs = st.executeQuery();
@@ -76,6 +78,39 @@ public class solicitudesDAO extends Conexion {
             while (rs.next()) {
                 Laboratorio obj = new Laboratorio();
                 obj.setCodigo_laboratorio(rs.getNString("codigo_laboratorio"));
+
+                lista.add(obj);
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            desconectar();
+        }
+
+        return lista;
+    }
+
+    public List<Asignatura> listMateriaDocente(int idPersona) throws Exception {
+        List<Asignatura> lista;
+        LoginMB login = new LoginMB();
+        ResultSet rs;
+        try {
+            String sql = "select nombre_asignatura, id_asignatura from laboratorio.profesor p inner join\n"
+                    + "    laboratorio.asignatura_profesor ap\n"
+                    + "        on p.id_profesor = ap.profesor_id_profesor\n"
+                    + "inner join laboratorio.asignatura a\n"
+                    + "    on a.id_asignatura = ap.asignatura_id_asignatura\n"
+                    + "inner join laboratorio.persona p2 on p.persona_id_persona = p2.id_persona\n"
+                    + "where id_persona='"+idPersona+"'";
+            conectar();
+            PreparedStatement st = getConnection().prepareStatement(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList<>();
+            while (rs.next()) {
+                Asignatura obj = new Asignatura();
+                obj.setNombreAsignatura(rs.getString("nombre_asignatura"));
+                obj.setIdAsignatura(rs.getInt("id_asignatura"));
 
                 lista.add(obj);
             }

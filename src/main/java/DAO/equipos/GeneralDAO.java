@@ -4,7 +4,6 @@ import Model.administracion.Encargado;
 import Model.equipos.CategoriaEquipo;
 import Model.laboratorios.AreaAula;
 import Model.laboratorios.Laboratorio;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import global.Conexion;
 
 import java.sql.PreparedStatement;
