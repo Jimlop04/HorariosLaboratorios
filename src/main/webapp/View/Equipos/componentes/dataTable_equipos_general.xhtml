@@ -36,7 +36,7 @@
                                     <p:outputLabel value="#{equipo.codigo}"/>
                                 </p:column>
                                 <!--CATEGORIA-->
-                                <p:column headerText="Categoria de equipo" sortBy="#{equipo.categoriaEquipo.nombre}" filterBy="#{equipo.categoriaEquipo.nombre}" filterMatchMode="contains">
+                                <p:column headerText="Categoria de equipo"  filterBy="#{equipo.categoriaEquipo.nombre}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.categoriaEquipo.nombre}"/>
                                 </p:column>
                                 <!--DESCRIPCION-->
@@ -60,7 +60,7 @@
                                     <p:outputLabel value="#{equipo.fechaAdquisicion}"/>
                                 </p:column>
                                 <!--AREA-->
-                                <p:column headerText="Área" filterBy="#{equipo.areaAula.nombre}" filterMatchMode="contains">
+                                <p:column headerText="Área"  filterBy="#{equipo.areaAula.nombre}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.areaAula.nombre}"/>
                                 </p:column>
 
