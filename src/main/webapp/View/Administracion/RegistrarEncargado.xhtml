@@ -204,6 +204,8 @@
                                         <div class="p-formgrid p-grid">
                                             <p:inputText value="#{encargadoMB.encargado.idEncargado}" style="display: none" >
                                             </p:inputText>
+                                            <p:inputText value="#{encargadoMB.encargado.idEncargadoLaboratorio}" style="display: none" >
+                                            </p:inputText>
                                             <div class="p-field p-col-12 p-md-4">
                                                 <p:outputLabel value="Codigo" for="@next"/>
                                                 <p:inputText 
@@ -263,81 +265,7 @@
                                     </f:facet>
                                 </p:dialog>
 
-                                <!-- Eliminar Cargo de laboratorio-->
-                                <p:confirmDialog 
-                                    widgetVar="deletecargolaboratorioDialog"
-                                    showEffect="fade"
-                                    width="30%"
-                                    header="Eliminar Asignacion de Laboratorio"
-                                    message="Seguro Desea Eliminar la Asignacion de Laboratorio"
-                                    severity="warn"
 
-                                    >
-                                    <p:outputPanel id="manage-deletecargolaboratorio-form" class="ui-fluid">
-                                        <div class="p-grid" style="text-align: left">
-                                            <p:inputText value="#{encargadoMB.encargado.idEncargadoLaboratorio}"
-                                                         style="display: none" >
-                                            </p:inputText>
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel >Código:</p:outputLabel>
-                                                <p:inputText value="#{encargadoMB.encargado.codigo_laboratorio}"
-                                                             disabled="true">
-
-                                                </p:inputText>
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-8">
-                                                <p:outputLabel >Nombre:</p:outputLabel>
-                                                <p:inputText value="#{encargadoMB.encargado.nombre_laboratorio}"
-                                                             disabled="true">
-                                                </p:inputText>
-                                            </div>
-
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel value="Fecha Incio" for="@next"/>
-                                                <p:datePicker id="fencargadoiniciob"
-                                                              value="#{encargadoMB.encargado.fecha_inicio}"
-                                                              showIcon="true"
-                                                              disabled="true" />
-                                            </div>
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel value="Fecha Fin" for="@next"/>
-                                                <p:datePicker id="fencargadofinb" 
-                                                              value="#{encargadoMB.encargado.fecha_fin}"
-                                                              showIcon="true"
-                                                              disabled="true"/>
-                                            </div>
-                                            <p:inputText value="#{encargadoMB.encargado.idUsuario}"  style="display: none"
-                                                         ></p:inputText>
-                                            <div class="p-field p-col-12 p-md-4">
-                                                <p:outputLabel value="Estado" for="@next"/>
-                                                <p:selectBooleanButton value="#{encargadoMB.encargado.estado_EncargadoLaboratorio}"
-                                                                       onLabel="Habilitado" 
-                                                                       offLabel="Deshabilitado"
-                                                                       onIcon="pi pi-check " 
-                                                                       offIcon="pi pi-times " 
-                                                                       style="width:98%;"
-                                                                       disabled="true"/>
-                                            </div>
-                                        </div>
-                                    </p:outputPanel>
-                                    <p:commandButton 
-                                        value="Si" 
-                                        icon="pi pi-check" 
-                                        actionListener="#{encargadoMB.eliminarAsignacionLaboratorio()}"
-                                        process="manage-deletecargolaboratorio-form @this" 
-                                        oncomplete="PF('deletecargolaboratorioDialog').hide()">
-
-                                    </p:commandButton>
-                                    <p:commandButton value="No" 
-                                                     type="button" 
-                                                     styleClass="ui-button-danger" 
-                                                     icon="pi pi-times"
-                                                     onclick="PF('deletecargolaboratorioDialog').hide()">
-
-                                    </p:commandButton>
-
-
-                                </p:confirmDialog>
 
                             </p:toolbarGroup>
                         </div>
@@ -413,19 +341,6 @@
                                                 target="#{encargadoMB.encargado}"/>
                                             <p:resetInput target=":form-principal:manage-editarEncargado-form"/>
                                         </p:commandButton>
-
-                                        <p:commandButton 
-                                            icon="pi pi-times" 
-                                            update=":form-principal:manage-deletecargolaboratorio-form"
-                                            class="ui-button-danger rounded-button p-mr-2 p-mb-2"
-                                            oncomplete="PF('deletecargolaboratorioDialog').show()" 
-                                            process="@this">
-                                            <f:setPropertyActionListener 
-                                                value="#{TablaEncargados}" 
-                                                target="#{encargadoMB.encargado}"/>
-                                            <p:resetInput target=":form-principal:manage-deletecargolaboratorio-form"/>
-                                        </p:commandButton>
-
 
                                     </p:column>
                                 </p:dataTable>
