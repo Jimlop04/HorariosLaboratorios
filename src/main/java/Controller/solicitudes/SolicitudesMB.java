@@ -4,21 +4,26 @@
  */
 package Controller.solicitudes;
 
+import Controller.login.LoginMB;
 import DAO.laboratorios.LaboratorioDAO;
 import DAO.solicitudes.solicitudesDAO;
 import Model.administracion.Encargado;
 import Model.laboratorios.Laboratorio;
+import Model.login.Login;
+import Model.solicitudes.Asignatura;
 import Model.solicitudes.Carrera;
 import Model.solicitudes.Facultad;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.PostActivate;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
+import sun.util.logging.resources.logging;
 
 /**
  *
@@ -33,16 +38,24 @@ public class SolicitudesMB implements Serializable {
     private LaboratorioDAO laboratorioDAO;    
     private List<Facultad> listafacultades;
     private List<Carrera> listaCarrera ;
+    private List<Asignatura> listAsignatura ;
     private List<Laboratorio> listaLaboratorio ;
     private Facultad facultad;
+    private Asignatura asignatura;
+    
     private Carrera carrera;
     private Encargado encargado;
     private Laboratorio laboratorio;
     private solicitudesDAO dao;
     int idFacultad = 0;
     int idLaboratorio = 0;
+     LoginMB l ;
+     @PostConstruct
+     public void init(){
+         asignatura = new Asignatura();
+     }
 
-
+  
     public void listarFacultades(){
         try{
              dao= new solicitudesDAO();
@@ -70,6 +83,15 @@ public class SolicitudesMB implements Serializable {
         try {
             dao = new solicitudesDAO();
            listaLaboratorio = dao.getCodigoLab(idLaboratorio);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    public void listaAsignatura( int post) throws Exception {
+
+        try {
+            dao = new solicitudesDAO();
+            listAsignatura = dao.listMateriaDocente(post);
         } catch (Exception e) {
             throw e;
         }

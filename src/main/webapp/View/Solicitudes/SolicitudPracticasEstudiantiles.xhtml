@@ -8,7 +8,10 @@
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
             <ui:define name="content"> 
+                   <f:event type="preRenderView" listener="#{solicitudesMB.listaAsignatura(loginMB.httpSession.getAttribute('idPersona'))}"/>
+                 
                 <ui:include src="componentes/SubHeaderSolicitudes.xhtml" />
+                               
                 <div class="barra-navegacion">
                     <p:growl id="msgs" showDetail="true"/>
                     <div class="card" align="center">
@@ -18,7 +21,9 @@
                     </div>
                     <div class="card" style="margin-top: 5px;">
                         <p:toolbarGroup>
+                            
                             <h:form id="form-SE">
+                                        
                                 <p:growl id="msgs" showDetail="true"/>  
                                 <p:outputPanel 
                                     id="manage-Solicitud-form"
@@ -80,11 +85,11 @@
                                                                itemValue="#{la.idLaboratorio}">
 
                                                 </f:selectItems>
-                                           
+
                                             </p:selectOneMenu>
                                         </div>
                                         <!-- CODIGO LAB -->
-                                       
+
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Responsable Laboratorio" for="@next"/>
                                             <p:selectOneMenu id="SelectResponsableLabo"
@@ -101,11 +106,22 @@
 
                                             </p:selectOneMenu>
                                         </div>
+                                        <!-- ASIGNATURA -->
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Materia" for="@next"/>
-                                            <p:inputText 
-                                                maxlength="25"
-                                                ></p:inputText>
+                                            <p:selectOneMenu id="SelectAsignatura"
+                                                             value="#{solicitudesMB.asignatura.idAsignatura}">
+
+                                                <f:selectItem itemLabel="Seleccione Asigantura" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#{solicitudesMB.listAsignatura}"
+                                                               var="la"
+                                                               itemLabel="#{la.nombreAsignatura}"                                                             
+                                                               itemValue="#{la.idAsignatura}">
+
+                                                </f:selectItems>
+
+                                            </p:selectOneMenu>
                                         </div>
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel value="Docente" for="@next"/>
@@ -146,6 +162,7 @@
                                         <div class="p-field p-col-12 p-md-1">
                                             <p:outputLabel value="Fecha" for="@next"/>
                                             <p:datePicker id="button"
+                                                          
                                                           value="#{calendarView.date7}" 
                                                           showIcon="true"/>
                                         </div>
