@@ -29,6 +29,7 @@ public class EncargadoManageBean implements Serializable {
     private List<Encargado> listaEncargados = new ArrayList<>();
     private List<Encargado> listaLaboratoriosXencargado = new ArrayList<>();
     private List<Encargado> listaRoles = new ArrayList<>();
+     private List<Encargado> listaRolesTRUE = new ArrayList<>();
     private List<Encargado> listaUsuarios = new ArrayList<>();
     Mensajes mensajesJSF;
     String dni = "";
@@ -39,6 +40,7 @@ public class EncargadoManageBean implements Serializable {
         listaEncargados = encargadoDAO.getEncargados();
         listaLaboratoriosXencargado = encargadoDAO.getListaLaboratoriosXencargado(dni);
         listaRoles = encargadoDAO.getListRoles();
+        listaRolesTRUE = encargadoDAO.getListRolesTRUE();
         mensajesJSF = new Mensajes();
         encargado = new Encargado();
         listaUsuarios = encargadoDAO.getUsuarios();
@@ -80,10 +82,18 @@ public class EncargadoManageBean implements Serializable {
     public List<Encargado> getListaRoles() {
         return listaRoles;
     }
-
+    
     public void setListaRoles(List<Encargado> listaRoles) {
         this.listaRoles = listaRoles;
     }
+
+    public List<Encargado> getListaRolesTRUE() {
+        return listaRolesTRUE;
+    }
+
+    public void setListaRolesTRUE(List<Encargado> listaRolesTRUE) {
+        this.listaRolesTRUE = listaRolesTRUE;
+    }  
 
     public String getDni() {
         return dni;

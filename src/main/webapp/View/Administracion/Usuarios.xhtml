@@ -365,10 +365,11 @@
                                         <h:outputText 
                                             value="#{TablaUsuarios.fechanacimiento_persona}"/>
                                     </p:column>
-                                    <p:column headerText="Genero" 
-                                              filterStyle="display : none">
-                                        <h:outputText 
-                                            value="#{TablaUsuarios.genero_persona}"/>
+                                    <p:column headerText="Genero">
+                                        <h:outputText value="Masculino"
+                                               rendered="#{TablaUsuarios.genero_persona eq 'M'}"/>
+                                         <h:outputText value="Femenino"
+                                               rendered="#{TablaUsuarios.genero_persona eq 'F'}"/>
                                     </p:column>
                                     <p:column headerText="Correo" 
                                               filterStyle="display : none">
