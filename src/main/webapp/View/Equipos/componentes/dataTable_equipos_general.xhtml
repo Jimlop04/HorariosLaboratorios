@@ -40,7 +40,7 @@
                                     <p:outputLabel value="#{equipo.categoriaEquipo.nombre}"/>
                                 </p:column>
                                 <!--DESCRIPCION-->
-                                <p:column headerText="Descripción" filterBy="#{equipo.descripcion}" filterMatchMode="contains">
+                                <p:column colspan="2" headerText="Descripción" filterBy="#{equipo.descripcion}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.descripcion}"/>
                                 </p:column>
                                 <!--MARCA-->
@@ -60,12 +60,12 @@
                                     <p:outputLabel value="#{equipo.fechaAdquisicion}"/>
                                 </p:column>
                                 <!--AREA-->
-                                <p:column headerText="Área"  filterBy="#{equipo.areaAula.nombre}" filterMatchMode="contains">
+                                <p:column resizable="true" headerText="Área"  filterBy="#{equipo.areaAula.nombre}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.areaAula.nombre}"/>
                                 </p:column>
 
                                 <!--ESTADO-->
-                                <p:column headerText="Estado" sortBy="#{equipo.estado}" filterBy="#{equipo.estado}" filterMatchMode="contains">
+                                <p:column colspan="1" headerText="Estado" sortBy="#{equipo.estado}" filterBy="#{equipo.estado}" filterMatchMode="contains">
                                     <p:tag severity="success" value="BUENO"
                                            style="font-size:12px;"
                                            rendered="#{equipo.estado.trim() eq 'BUENO'}"/>
