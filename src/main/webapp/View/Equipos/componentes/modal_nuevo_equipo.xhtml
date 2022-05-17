@@ -149,13 +149,14 @@
                 <!-- BOTONES FORM-->
                 <f:facet name="footer">
                     <p:commandButton
+                        ajax="false"
                         value="Guardar"
                         actionListener="#{equipoMB.registrar()}"
                         icon="pi pi-check"
                         styleClass="ui-button-primary"
-                        update=":formData :msj "
+                        update=":formData :msj"
                         oncomplete="PF('modalNuevoEquipo').hide()">
-                         <p:ajax   resetValues="true"/>
+                         <p:resetInput target="panel-form-registro"/>
                     </p:commandButton>
                     <p:commandButton
                         value="Cancelar"

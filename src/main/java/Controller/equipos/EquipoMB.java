@@ -41,6 +41,7 @@ public class EquipoMB implements Serializable {
         try {
             dao = new EquipoDAO();
             dao.resgistrar(equipo);
+            equipo=null;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
