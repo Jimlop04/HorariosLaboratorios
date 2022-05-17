@@ -5,7 +5,7 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="p-grid ui-fluid">
         <div class="p-col-12">
-            <p:dialog header="Agregar Equipo"
+            <p:dialog header="NUEVO EQUIPO"
                       showEffect="fade"
                       modal="true"
                       widgetVar="modalNuevoEquipo"
@@ -13,134 +13,138 @@
                       width="70%"
                       draggable="false"
                       height="250">
-                <p:outputPanel id="panel-form-registro" class="ui-fluid">
-                    <div class="p-formgrid p-grid">
 
-                        <!--CATEGORIA EQUIPO-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Tipo de activo" for="@next"/>
-                            <p:selectOneMenu value="#{equipoMB.equipo.categoriaEquipo}"  
-                                             filter="true" 
-                                             required="true"
-                                             converter="omnifaces.SelectItemsIndexConverter">
-                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                                <f:selectItems
-                                    value="#{generalMB.listaCategoriaEquipos}"
-                                    var="ce"
-                                    itemLabel="#{ce.nombre}"
-                                    itemValue="#{ce}" />
-                            </p:selectOneMenu>
+                <p:fieldset legend="Datos del Equipo"  >
+                    <p:outputPanel id="panel-form-registro" class="ui-fluid">
+                        <div class="p-formgrid p-grid">
+
+                            <!--FECHA ADQUISICIÓN-->
+                            <div class="p-field p-col-12 p-md-2">
+                                <p:outputLabel value="Fecha de adquisición" for="@next"/>
+                                <p:datePicker
+                                    showIcon="true"                         
+                                    required="true"
+                                    monthNavigator="true"
+                                    yearNavigator="true"
+                                    showWeek="true"
+                                    locale="es"
+                                    value="#{equipoMB.equipo.fechaAdquisicion}"/>
+                            </div>
+
+
+                            <!--CATEGORIA EQUIPO-->
+                            <div class="p-field p-col-12 p-md-4">
+                                <p:outputLabel value="Tipo de activo" for="@next"/>
+                                <p:selectOneMenu value="#{equipoMB.equipo.categoriaEquipo}"  
+                                                 filter="true" 
+                                                 required="true"
+                                                 converter="omnifaces.SelectItemsIndexConverter">
+                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                    <f:selectItems
+                                        value="#{generalMB.listaCategoriaEquipos}"
+                                        var="ce"
+                                        itemLabel="#{ce.nombre}"
+                                        itemValue="#{ce}" />
+                                </p:selectOneMenu>
+                            </div>
+
+                            <!--CODIGO DEL BIEN-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Codigo del bien" for="@next"/>
+                                <p:inputText maxlength="50"  required="true"
+                                             placeholder="Ejemplo 000-00-000-00000"
+                                             onkeyup="javascript:this.value = this.value.toUpperCase();"
+                                             value="#{equipoMB.equipo.codigo}"/>
+                            </div>
+
+                            <!--MARCA-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Marca" for="@next"/>
+                                <p:inputText maxlength="50"  placeholder="Ingrese marca"
+                                             onkeyup="javascript:this.value = this.value.toUpperCase();"
+                                             value="#{equipoMB.equipo.marca}"/>
+                            </div>
+
+                            <!--MODELO-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Modelo" for="@next"/>
+                                <p:inputText maxlength="50" 
+                                             placeholder="Ingrese modelo" 
+                                             onkeyup="javascript:this.value = this.value.toUpperCase();"
+                                             value="#{equipoMB.equipo.modelo}"/>
+
+                            </div>
+
+                            <!--NÚMERO DE SERIE-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Número de serie" for="@next"/>
+                                <p:inputText
+                                    maxlength="25" 
+                                    placeholder="Ingrese N° serie"
+                                    onkeyup="javascript:this.value = this.value.toUpperCase();"
+                                    value="#{equipoMB.equipo.numeroSerie}"/>
+                            </div>
+
+                            <!--DESCRIPCIÓN-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Descripción" for="@next"/>
+                                <p:inputTextarea
+                                    rows="1"
+                                    cols="33"
+                                    required="true"
+                                    placeholder="Ingrese descripción"
+                                    onkeyup="javascript:this.value = this.value.toUpperCase();"
+                                    value="#{equipoMB.equipo.descripcion}"/>
+                            </div>
+
+                            <!--ESTADO-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Estado" for="@next"/>
+                                <p:selectOneMenu required="true" value="#{equipoMB.equipo.estado}">
+                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="0"/>
+                                    <f:selectItem itemValue="BUENO" itemLabel="1. BUENO"/>                  
+                                    <f:selectItem itemValue="DESCOMPUESTO" itemLabel="2. DESCOMPUESTO"/>
+                                </p:selectOneMenu>
+                            </div>
+
+                            <!--LABORATORIO-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Laboratorio" for="@next"/>
+                                <p:selectOneMenu id="comboLaboratorios" 
+                                                 required="true" 
+                                                 value="#{generalMB.idLaboratorio}">
+                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="0"/>
+                                    <f:selectItems
+                                        value="#{generalMB.listaLaboratoriosEncargado}"
+                                        var="la"
+                                        itemLabel="#{la.nombre_laboratorio}"
+                                        itemValue="#{la.idLaboratorio}" />
+                                    <p:ajax  event="change" 
+                                             listener="#{generalMB.listarAreaByLaboratorioId()}"
+                                             update="comboAreas"
+                                             rendered="comboAreas"/>
+                                </p:selectOneMenu>
+                            </div>
+
+                            <!--AREA-->
+                            <div class="p-field p-col-12 p-md-3">
+                                <p:outputLabel value="Area" for="@next"/>
+                                <p:selectOneMenu id="comboAreas" 
+                                                 required="true" 
+                                                 value="#{equipoMB.equipo.areaAula}" 
+                                                 converter="omnifaces.SelectItemsIndexConverter">
+                                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                    <f:selectItems
+                                        value="#{generalMB.listAreasLaboratorio}"
+                                        var="ar"
+                                        itemLabel="#{ar.nombre}"
+                                        itemValue="#{ar}" />
+                                </p:selectOneMenu>
+                            </div>
+
                         </div>
-
-                        <!--DESCRIPCIÓN-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Descripción" for="@next"/>
-                            <p:inputTextarea
-                                rows="1"
-                                cols="33"
-                                required="true"
-                                placeholder="Ingrese descripción"
-                                onkeyup="javascript:this.value = this.value.toUpperCase();"
-                                value="#{equipoMB.equipo.descripcion}"/>
-                        </div>
-
-                        <!--CODIGO DEL BIEN-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Codigo del bien" for="@next"/>
-                            <p:inputText maxlength="50"  required="true"
-                                         placeholder="Ejemplo 000-00-000-00000"
-                                         onkeyup="javascript:this.value = this.value.toUpperCase();"
-                                         value="#{equipoMB.equipo.codigo}"/>
-                        </div>
-
-                        <!--MARCA-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Marca" for="@next"/>
-                            <p:inputText maxlength="50"  placeholder="Ingrese marca"
-                                         onkeyup="javascript:this.value = this.value.toUpperCase();"
-                                         value="#{equipoMB.equipo.marca}"/>
-                        </div>
-
-                        <!--MODELO-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Modelo" for="@next"/>
-                            <p:inputText maxlength="50" 
-                                         placeholder="Ingrese modelo" 
-                                         onkeyup="javascript:this.value = this.value.toUpperCase();"
-                                         value="#{equipoMB.equipo.modelo}"/>
-
-                        </div>
-
-                        <!--NÚMERO DE SERIE-->
-                        <div class="p-field p-col-12 p-md-4">
-                            <p:outputLabel value="Número de serie" for="@next"/>
-                            <p:inputText
-                                maxlength="25" 
-                                placeholder="Ingrese N° serie"
-                                onkeyup="javascript:this.value = this.value.toUpperCase();"
-                                value="#{equipoMB.equipo.numeroSerie}"/>
-                        </div>
-
-                        <!--FECHA ADQUISICIÓN-->
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:outputLabel value="Fecha de adquisición" for="@next"/>
-                            <p:datePicker
-                                showIcon="true"                         
-                                required="true"
-                                monthNavigator="true"
-                                yearNavigator="true"
-                                showWeek="true"
-                                locale="es"
-                                value="#{equipoMB.equipo.fechaAdquisicion}"/>
-                        </div>
-
-                        <!--ESTADO-->
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:outputLabel value="Estado" for="@next"/>
-                            <p:selectOneMenu required="true" value="#{equipoMB.equipo.estado}">
-                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="0"/>
-                                <f:selectItem itemValue="BUENO" itemLabel="1. BUENO"/>                  
-                                <f:selectItem itemValue="DESCOMPUESTO" itemLabel="2. DESCOMPUESTO"/>
-                            </p:selectOneMenu>
-                        </div>
-
-                        <!--LABORATORIO-->
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:outputLabel value="Laboratorio" for="@next"/>
-                            <p:selectOneMenu id="comboLaboratorios" 
-                                             required="true" 
-                                             value="#{generalMB.idLaboratorio}">
-                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="0"/>
-                                <f:selectItems
-                                    value="#{generalMB.listaLaboratoriosEncargado}"
-                                    var="la"
-                                    itemLabel="#{la.nombre_laboratorio}"
-                                    itemValue="#{la.idLaboratorio}" />
-                                <p:ajax  event="change" 
-                                         listener="#{generalMB.listarAreaByLaboratorioId()}"
-                                         update="comboAreas"
-                                         rendered="comboAreas"/>
-                            </p:selectOneMenu>
-                        </div>
-
-                        <!--AREA-->
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:outputLabel value="Area" for="@next"/>
-                            <p:selectOneMenu id="comboAreas" 
-                                             required="true" 
-                                             value="#{equipoMB.equipo.areaAula}" 
-                                             converter="omnifaces.SelectItemsIndexConverter">
-                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                                <f:selectItems
-                                    value="#{generalMB.listAreasLaboratorio}"
-                                    var="ar"
-                                    itemLabel="#{ar.nombre}"
-                                    itemValue="#{ar}" />
-                            </p:selectOneMenu>
-                        </div>
-
-                    </div>
-                </p:outputPanel>
+                    </p:outputPanel>
+                </p:fieldset> 
 
                 <!-- BOTONES FORM-->
                 <f:facet name="footer">
@@ -151,11 +155,17 @@
                         styleClass="ui-button-primary"
                         update=":formData :msj "
                         oncomplete="PF('modalNuevoEquipo').hide()">
+                         <p:ajax   resetValues="true"/>
                     </p:commandButton>
                     <p:commandButton
                         value="Cancelar"
                         icon="pi pi-times"
-                        styleClass="ui-button-danger"/>
+                        immediate="true"
+                        update="@form"
+                        oncomplete="PF('modalNuevoEquipo').hide()"
+                        styleClass="ui-button-danger">
+                        <p:ajax update="panel-form-registro" resetValues="true"/>
+                    </p:commandButton>
                 </f:facet>
             </p:dialog>
         </div>

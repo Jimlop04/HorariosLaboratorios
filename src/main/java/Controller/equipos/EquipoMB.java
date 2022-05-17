@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 public class EquipoMB implements Serializable {
 
     private List<Equipo> listaEquipos;
+     private List<Equipo> listaEquiposFiltro = new ArrayList<>();
     private Equipo equipo;
     
     private AreaAula areaAula;
@@ -91,5 +92,8 @@ public class EquipoMB implements Serializable {
         this.areaAula = new AreaAula();
         this.categoriaEquipo = new CategoriaEquipo();
         this.listaEquipos = new ArrayList<>();
+      
     }
+    
+    
 }

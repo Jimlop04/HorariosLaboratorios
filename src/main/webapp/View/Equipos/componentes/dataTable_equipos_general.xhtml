@@ -11,7 +11,7 @@
                     <p:toolbarGroup>
                         <p:commandButton
                             value="Nuevo equipo"
-                                 styleClass="rounded-button" 
+                            styleClass="rounded-button" 
                             icon="pi pi-plus"
                             process="@this"
                             oncomplete="PF('modalNuevoEquipo').show()"/>
@@ -22,65 +22,51 @@
                         <div class="p-grid p-justify-around">
                             <p:dataTable
                                 id="dataEquipos"
-                                lazy="true"
-                                editable="true"
-                                reflow="true"
-                                editInitEvent="dblclick"
-                                editMode="cell"
+                                emptyMessage="No se encontraron registros"
                                 value="#{equipoMB.listaEquipos}"
                                 var="equipo"
-                                rows="5"
                                 paginator="true"
-                                paginatorPosition="bottom">
+                                widgetVar="dataEquiposWV"
+                                paginatorPosition="bottom"
+                                stripedRows="true">
                                 <!--HEADER - DATATABLE-->
-                                <f:facet name="header">
-                                    <div class="p-d-flex p-jc-between p-ai-center">
-                                        <span style="font-size: 24px">EQUIPOS</span>                                    
-                                        <span class="filter-container ui-input-icon-left">
-                                            <i class="pi pi-search"/>
-                                            <p:inputText placeholder="Buscar"/>
-                                        </span>
-                                    </div>
-                                </f:facet>
+                             
                                 <!--CODIGO DEL BIEN-->
-                                <p:column headerText="Código" filterStyle="display : none" responsivePriority="1">
+                                <p:column headerText="Código"   filterBy="#{equipo.codigo}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.codigo}"/>
                                 </p:column>
                                 <!--CATEGORIA-->
-                                <p:column headerText="Categoria de equipo" filterStyle="display : none"
-                                          responsivePriority="2">
+                                <p:column headerText="Categoria de equipo"  filterBy="#{equipo.categoriaEquipo.nombre}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.categoriaEquipo.nombre}"/>
                                 </p:column>
                                 <!--DESCRIPCION-->
-                                <p:column headerText="Descripción" filterStyle="display : none" responsivePriority="3">
+                                <p:column headerText="Descripción" filterBy="#{equipo.descripcion}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.descripcion}"/>
                                 </p:column>
                                 <!--MARCA-->
-                                <p:column headerText="Marca" filterStyle="display : none" responsivePriority="4">
+                                <p:column headerText="Marca" filterBy="#{equipo.marca}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.marca}"/>
                                 </p:column>
                                 <!--MODELO-->
-                                <p:column headerText="Modelo" filterStyle="display : none" responsivePriority="5">
+                                <p:column headerText="Modelo" filterBy="#{equipo.modelo}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.modelo}"/>
                                 </p:column>
                                 <!--NUMERO DE SERIE-->
-                                <p:column headerText="Número de serie" filterStyle="display : none"
-                                          responsivePriority="6">
+                                <p:column headerText="Número de serie" filterBy="#{equipo.numeroSerie}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.numeroSerie}"/>
                                 </p:column>
                                 <!--FECHA - ADQUISICIÓN-->
-                                <p:column headerText="fecha de adquisición" filterStyle="display : none"
-                                          responsivePriority="7">
+                                <p:column headerText="fecha de adquisición" filterBy="#{equipo.fechaAdquisicion}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.fechaAdquisicion}"/>
                                 </p:column>
                                 <!--AREA-->
-                                <p:column headerText="Área" filterStyle="display : none" responsivePriority="8">
+                                <p:column headerText="Área" filterBy="#{equipo.areaAula.nombre}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.areaAula.nombre}"/>
                                 </p:column>
 
                                 <!--ESTADO-->
-                                <p:column headerText="Estado" sortBy="#{equipo.estado}">
-                                      <p:tag severity="success" value="BUENO"
+                                <p:column headerText="Estado" sortBy="#{equipo.estado}" filterBy="#{equipo.estado}" filterMatchMode="contains">
+                                    <p:tag severity="success" value="BUENO"
                                            style="font-size:12px;"
                                            rendered="#{equipo.estado.trim() eq 'BUENO'}"/>
                                     <p:tag severity="danger" value="DAÑADO"

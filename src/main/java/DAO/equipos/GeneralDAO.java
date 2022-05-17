@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class GeneralDAO extends Conexion {
@@ -231,6 +232,26 @@ public class GeneralDAO extends Conexion {
         }
 
         return lista;
+
+    }
+
+    public void calcularFechas(Calendar inicio, Calendar fin) {
+        //
+        int HoraA = inicio.getTime().getHours();
+        int MinutoA = inicio.getTime().getMinutes();
+
+        int HoraB = fin.getTime().getHours();
+        int MinutoB = fin.getTime().getMinutes();
+        int horaX = 0;
+        int minutoX = 0;
+
+        while ((HoraA & MinutoA) < (MinutoB & HoraB)) {
+            //
+            int horaI = 0;
+            int minutoI = 0;
+            
+            
+        }
 
     }
 
