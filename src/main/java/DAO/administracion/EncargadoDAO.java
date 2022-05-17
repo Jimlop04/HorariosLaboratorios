@@ -127,8 +127,8 @@ public class EncargadoDAO {
             while (resultSet.next()) {
                 roles.add(new Encargado(
                         resultSet.getInt("idrol"),
-                        resultSet.getString("nomrol"),
-                        resultSet.getString("descriprol"),
+                        resultSet.getString("nomrol").trim(),
+                        resultSet.getString("descriprol").trim(),
                         resultSet.getBoolean("estadrol")));
             }
         } catch (SQLException e) {
@@ -149,8 +149,8 @@ public class EncargadoDAO {
             while (resultSet.next()) {
                 roles.add(new Encargado(
                         resultSet.getInt("idrol"),
-                        resultSet.getString("nomrol"),
-                        resultSet.getString("descriprol"),
+                        resultSet.getString("nomrol").trim(),
+                        resultSet.getString("descriprol").trim(),
                         resultSet.getBoolean("estadrol")));
             }
         } catch (SQLException e) {
@@ -322,21 +322,21 @@ public class EncargadoDAO {
             while (resultSet.next()) {
                 Encargados.add(new Encargado(
                         resultSet.getInt("idusu"),
-                        resultSet.getString("nomusu"),
-                        resultSet.getString("passwusu"),
+                        resultSet.getString("nomusu").trim(),
+                        resultSet.getString("passwusu").trim(),
                         resultSet.getDate("fcreacionusu"),
                         resultSet.getBoolean("estadusu"),
                         resultSet.getInt("idpersona"),
-                        resultSet.getString("nompersona"),
-                        resultSet.getString("apepersona"),
-                        resultSet.getString("dnipersona"),
+                        resultSet.getString("nompersona").trim(),
+                        resultSet.getString("apepersona").trim(),
+                        resultSet.getString("dnipersona").trim(),
                         resultSet.getDate("fdnpersona"),
-                        resultSet.getString("genpersona"),
-                        resultSet.getString("correopersona"),
-                        resultSet.getString("celupersona"),
+                        resultSet.getString("genpersona").trim(),
+                        resultSet.getString("correopersona").trim(),
+                        resultSet.getString("celupersona").trim(),
                         resultSet.getInt("idusuroles"),
                         resultSet.getInt("idroles"),
-                        resultSet.getString("nomrol"),
+                        resultSet.getString("nomrol").trim(),
                         resultSet.getBoolean("estadrol")));
             }
         } catch (SQLException e) {

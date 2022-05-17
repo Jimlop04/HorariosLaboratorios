@@ -57,11 +57,11 @@ public class LaboratorioDAO {
             while (resultSet.next()) {
                 Laboratorios.add(new Laboratorio(
                         resultSet.getInt("id_facultad"),
-                        resultSet.getString("nombre_facultad"),
+                        resultSet.getString("nombre_facultad").trim(),
                         resultSet.getInt("id_laboratorio"),
                         resultSet.getInt("facultad_id_facultad"),
-                        resultSet.getString("nombre_laboratorio"),
-                        resultSet.getString("codigo_laboratorio")));
+                        resultSet.getString("nombre_laboratorio").trim(),
+                        resultSet.getString("codigo_laboratorio").trim()));
 
             }
         } catch (SQLException e) {
@@ -83,8 +83,8 @@ public class LaboratorioDAO {
             while (resultSet.next()) {
                 soloLaboratorios.add(new Laboratorio(
                         resultSet.getInt("id_laboratorio"),
-                        resultSet.getString("nombre_laboratorio"),
-                        resultSet.getString("codigo_laboratorio")));
+                        resultSet.getString("nombre_laboratorio").trim(),
+                        resultSet.getString("codigo_laboratorio").trim()));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -106,7 +106,7 @@ public class LaboratorioDAO {
             while (resultSet.next()) {
                 facultades.add(new Laboratorio(
                         resultSet.getInt("id_facultad"),
-                        resultSet.getString("nombre_facultad")));
+                        resultSet.getString("nombre_facultad").trim()));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -150,8 +150,8 @@ public class LaboratorioDAO {
                 soloAreas.add(new AreaAula(
                         resultSet.getInt("idarea"),
                         resultSet.getInt("idlaboratoriofk"),
-                        resultSet.getString("codarea"),
-                        resultSet.getString("nomarea"),
+                        resultSet.getString("codarea").trim(),
+                        resultSet.getString("nomarea").trim(),
                         resultSet.getShort("caparea")));
 
             }
@@ -187,8 +187,8 @@ public class LaboratorioDAO {
             sentencia = String.format("SELECT laboratorio.editar_laboratorio("
                     + "'" + laboratorio.getIdLaboratorio() + "',"
                     + "'" + laboratorio.getIdFacultad() + "',"
-                    + "'" + laboratorio.getNombre_laboratorio() + "',"
-                    + "'" + laboratorio.getCodigo_laboratorio() + "')");
+                    + "'" + laboratorio.getNombre_laboratorio().trim() + "',"
+                    + "'" + laboratorio.getCodigo_laboratorio().trim() + "')");
 
             System.out.println(sentencia);
 
