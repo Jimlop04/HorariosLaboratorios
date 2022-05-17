@@ -46,13 +46,13 @@ public class AreaAulaDAO {
                 Areas.add(new AreaAula(
                         resultSet.getInt("id_area"),
                         resultSet.getInt("laboratorio_id_laboratorio"),
-                        resultSet.getString("codigo_area"),
-                        resultSet.getString("nombre_area"),
+                        resultSet.getString("codigo_area").trim(),
+                        resultSet.getString("nombre_area").trim(),
                         resultSet.getShort("capacidad_area"),
                         resultSet.getInt("id_laboratorio"),
                         resultSet.getInt("facultad_id_facultad"),
-                        resultSet.getString("nombre_laboratorio"),
-                        resultSet.getString("codigo_laboratorio")));
+                        resultSet.getString("nombre_laboratorio").trim(),
+                        resultSet.getString("codigo_laboratorio").trim()));
 
             }
         } catch (SQLException e) {
