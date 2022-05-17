@@ -138,6 +138,28 @@ public class EncargadoDAO {
         }
         return roles;
     }
+      public List<Encargado> getListRolesTRUE() {
+        List<Encargado> roles = new ArrayList<>();
+
+        String sql = String.format("SELECT * from laboratorio.listar_roles_true()");
+        try {
+            conexion.conectar();
+            resultSet = conexion.ejecutarSql(sql);
+
+            while (resultSet.next()) {
+                roles.add(new Encargado(
+                        resultSet.getInt("idrol"),
+                        resultSet.getString("nomrol"),
+                        resultSet.getString("descriprol"),
+                        resultSet.getBoolean("estadrol")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return roles;
+    }
 
     public void modificarRol(Encargado encargado) {
         try {
