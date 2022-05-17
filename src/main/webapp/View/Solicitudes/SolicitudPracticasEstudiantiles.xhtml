@@ -8,10 +8,10 @@
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
             <ui:define name="content"> 
-                   <f:event type="preRenderView" listener="#{solicitudesMB.listaAsignatura(loginMB.httpSession.getAttribute('idPersona'))}"/>
-                 
+                <f:event type="preRenderView" listener="#{solicitudesMB.listaAsignatura(loginMB.httpSession.getAttribute('idPersona'))}"/>
+
                 <ui:include src="componentes/SubHeaderSolicitudes.xhtml" />
-                               
+
                 <div class="barra-navegacion">
                     <p:growl id="msgs" showDetail="true"/>
                     <div class="card" align="center">
@@ -21,9 +21,9 @@
                     </div>
                     <div class="card" style="margin-top: 5px;">
                         <p:toolbarGroup>
-                            
+
                             <h:form id="form-SE">
-                                        
+
                                 <p:growl id="msgs" showDetail="true"/>  
                                 <p:outputPanel 
                                     id="manage-Solicitud-form"
@@ -75,17 +75,19 @@
                                         <div class="p-field p-col-12 p-md-3">
                                             <p:outputLabel for="@next" value="Laboratorio" />
                                             <p:selectOneMenu id="SelectLaboratorio"
-                                                             value="#{solicitudesMB.idLaboratorio}">
+                                                             value="#{equipoMB.idLaboratorio}">
 
                                                 <f:selectItem itemLabel="Seleccione Laboratorio" 
                                                               itemValue="0"/>
                                                 <f:selectItems value="#{laboratorioMB.listasoloLaboratorios}" 
                                                                var="la"
-                                                               itemLabel="#{la.nombre_laboratorio}-#{la.codigo_laboratorio}"                                                             
+                                                               itemLabel="#{la.nombre_laboratorio}"                                                             
                                                                itemValue="#{la.idLaboratorio}">
-
                                                 </f:selectItems>
 
+                                                <p:ajax event="change"                                                         
+                                                        listener="#{equipoMB.listarEquiposByLaboratorioId()}"
+                                                        update="comboEquipos"/>
                                             </p:selectOneMenu>
                                         </div>
                                         <!-- CODIGO LAB -->
@@ -120,7 +122,6 @@
                                                                itemValue="#{la.idAsignatura}">
 
                                                 </f:selectItems>
-
                                             </p:selectOneMenu>
                                         </div>
                                         <div class="p-field p-col-12 p-md-3">
@@ -162,7 +163,7 @@
                                         <div class="p-field p-col-12 p-md-1">
                                             <p:outputLabel value="Fecha" for="@next"/>
                                             <p:datePicker id="button"
-                                                          
+
                                                           value="#{calendarView.date7}" 
                                                           showIcon="true"/>
                                         </div>
@@ -189,43 +190,26 @@
                                         icon="pi pi-times"
                                         styleClass="ui-button-danger"/>
                                 </f:facet>
+
+                                <!-- EQUIPOS -->
+
                                 <div class="card" style="margin-top: 5px;">
                                     <div class="p-grid p-justify-around">
-                                        <p:dataTable lazy="true"  editable="true" reflow="true"
-                                                     editInitEvent="dblclick" editMode="cell">
-                                            <f:facet name="header">
-                                                <div class="p-d-flex p-jc-between p-ai-center">
-                                                    <span style="font-size: 20px">Equipos</span>
-                                                    <span class="filter-container ui-input-icon-left">
-                                                        <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
-                                                    </span>
-                                                </div>
-                                            </f:facet>
-                                            <p:column headerText="Codigo" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>
-                                            <p:column headerText="Nombre" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>
-                                            <p:column headerText="Descripcion" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>
-
-                                            <p:column headerText="Cantidad" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>
-                                            <p:column headerText="Tipo" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>
-                                            <p:column headerText="Estado" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column> 
-                                            <p:column headerText="Acciones" filterStyle="display : none">
-                                                <h:outputText  />
-                                            </p:column>
-                                        </p:dataTable>
+                                        <div class="p-field p-col-12 p-md-12">
+                                            <p:fieldset legend="EQUIPOS requeridos">
+                                                <p:selectCheckboxMenu id="comboEquipos" value="#{solicitudesMB.listaEquipos}" label="Cities" style="min-width: 15rem"
+                                                                      multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
+                                                    <p:ajax event="itemUnselect" />
+                                                    <f:selectItems value="#{equipoMB.listaEquipos}" 
+                                                                   var="equipo" 
+                                                                   itemLabel="#{equipo.categoriaEquipo.nombre} - #{equipo.descripcion}"/>                       
+                                                </p:selectCheckboxMenu>
+                                            </p:fieldset> 
+                                        </div>
                                     </div>
                                 </div>
+
+
                                 <div class="card" style="margin-top: 5px;">
                                     <div class="p-grid p-justify-around">
                                         <p:dataTable lazy="true"  editable="true" reflow="true"

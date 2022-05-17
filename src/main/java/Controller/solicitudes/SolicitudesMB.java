@@ -8,6 +8,7 @@ import Controller.login.LoginMB;
 import DAO.laboratorios.LaboratorioDAO;
 import DAO.solicitudes.solicitudesDAO;
 import Model.administracion.Encargado;
+import Model.equipos.Equipo;
 import Model.laboratorios.Laboratorio;
 import Model.login.Login;
 import Model.solicitudes.Asignatura;
@@ -40,6 +41,10 @@ public class SolicitudesMB implements Serializable {
     private List<Carrera> listaCarrera ;
     private List<Asignatura> listAsignatura ;
     private List<Laboratorio> listaLaboratorio ;
+    
+    
+    private List<Equipo> listaEquipos;
+            
     private Facultad facultad;
     private Asignatura asignatura;
     
@@ -50,9 +55,13 @@ public class SolicitudesMB implements Serializable {
     int idFacultad = 0;
     int idLaboratorio = 0;
      LoginMB l ;
+     
+     
+     
      @PostConstruct
      public void init(){
          asignatura = new Asignatura();
+         listaEquipos = new ArrayList<>();
      }
 
   
