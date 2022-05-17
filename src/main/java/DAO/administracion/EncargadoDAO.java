@@ -208,8 +208,8 @@ public class EncargadoDAO {
 
     public void updateEncargado(Encargado encargado) throws SQLException {
         try {
-            String sentencia = "SELECT laboratorio.editar_encargado("
-                    + "'" + encargado.getIdEncargado() + "',"
+            String sentencia = "SELECT laboratorio.editar_encargado_laboratorio("
+                    + "'" + encargado.getIdEncargadoLaboratorio() + "',"
                     + "'" + encargado.getFecha_inicio() + "',"
                     + "'" + encargado.getFecha_fin() + "',"
                     + "'" + encargado.getIdLaboratorio() + "',"

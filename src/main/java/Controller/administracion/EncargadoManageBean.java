@@ -169,7 +169,7 @@ public class EncargadoManageBean implements Serializable {
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Habilite Rol si Desea"));
             } else {
                 this.encargadoDAO.registrarRol(encargado);
-                mensajesJSF.mensajeDeExito("Registro Exitoso");
+                 mensajesJSF.mensajeDeExito("Registro Exitoso");
             }
         } catch (Exception e) {
             e.getMessage();
@@ -179,25 +179,12 @@ public class EncargadoManageBean implements Serializable {
     public void editarEncargado() {
 
         try {
-            if (encargado.getFecha_inicio() == null) {
-                mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Inicio");
-            } else if (encargado.getFecha_fin() == null) {
-                mensajesJSF.mensajeDeAdvertencia("Ingrese Fecha Fin");
-            } else if ("".equals(encargado.getIdLaboratorio())) {
-                mensajesJSF.mensajeDeAdvertencia("Ingrese Laboratorio");
-            } else if ("".equals(encargado.getIdEncargado())) {
-                mensajesJSF.mensajeDeAdvertencia("Se necesita ID Encargado");
-            } else if (encargado.getEstado_EncargadoLaboratorio()) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Habilite Estado"));
-            } else {
-                this.encargadoDAO.updateEncargado(encargado);
+                encargadoDAO.updateEncargado(encargado);
                 listaEncargados = encargadoDAO.getEncargados();
                 FacesContext.getCurrentInstance().
                         addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Encargado Editado"));
-
                 PrimeFaces.current().executeScript("PF('centroEditarEncargadoDialog').hide()");
-            }
+            
         } catch (SQLException e) {
             FacesContext.getCurrentInstance().
                     addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error al guardar"));
