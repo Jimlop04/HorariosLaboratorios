@@ -138,8 +138,9 @@ public class EncargadoDAO {
         }
         return roles;
     }
-      public List<Encargado> getListRolesTRUE() {
-        List<Encargado> roles = new ArrayList<>();
+
+    public List<Encargado> getListRolesTRUE() {
+        List<Encargado> rolestrue = new ArrayList<>();
 
         String sql = String.format("SELECT * from laboratorio.listar_roles_true()");
         try {
@@ -147,7 +148,7 @@ public class EncargadoDAO {
             resultSet = conexion.ejecutarSql(sql);
 
             while (resultSet.next()) {
-                roles.add(new Encargado(
+                rolestrue.add(new Encargado(
                         resultSet.getInt("idrol"),
                         resultSet.getString("nomrol").trim(),
                         resultSet.getString("descriprol").trim(),
@@ -158,7 +159,7 @@ public class EncargadoDAO {
         } finally {
             conexion.desconectar();
         }
-        return roles;
+        return rolestrue;
     }
 
     public void modificarRol(Encargado encargado) {
@@ -195,8 +196,8 @@ public class EncargadoDAO {
         try {
             String sentencia = "SELECT laboratorio.registrar_rol("
                     + "'" + encargado.getNombre_rol() + "',"
-                    + "'" + encargado.getDescripcion_rol()+ "',"
-                    + "'" + encargado.getEstado_rol()+ "')";
+                    + "'" + encargado.getDescripcion_rol() + "',"
+                    + "'" + encargado.getEstado_rol() + "')";
             conexion.ejecutarSql(sentencia);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -345,6 +346,60 @@ public class EncargadoDAO {
             conexion.desconectar();
         }
         return Encargados;
+    }
+
+    public Encargado updateusuario(Encargado encargado) throws SQLException {
+        try {
+            String sentencia = "SELECT laboratorio.editar_usuario("
+                    + "'" + encargado.getIdUsuario() + "',"
+                    + "'" + encargado.getNombre_usuario() + "',"
+                    + "'" + encargado.getPassword_usuario() + "',"
+                    + "'" + encargado.getFechacreacion_usuario() + "',"
+                    + "'" + encargado.getEstado_usuario() + "',"
+                    + "'" + encargado.getIdPersona() + "',"
+                    + "'" + encargado.getNombre_persona() + "',"
+                    + "'" + encargado.getApellido_persona() + "',"
+                    + "'" + encargado.getDni_persona()+ "',"
+                    + "'" + encargado.getFechanacimiento_persona() + "',"
+                    + "'" + encargado.getGenero_persona() + "',"
+                    + "'" + encargado.getCorreo_persona() + "',"
+                    + "'" + encargado.getCelular_persona() + "',"
+                    + "'" + encargado.getIdUsuaRoles() + "',"
+                    + "'" + encargado.getIdRoles()+ "')";
+            conexion.ejecutarSql(sentencia);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return encargado;
+    }
+
+    public Encargado insertUsuario(Encargado encargado) {
+        try {
+            String sentencia = "SELECT laboratorio.registrar_usuario_persona("
+                    + "'" + encargado.getNombre_persona() + "',"
+                    + "'" + encargado.getApellido_persona() + "',"
+                    + "'" + encargado.getDni_persona() + "',"
+                    + "'" + encargado.getFechanacimiento_persona() + "',"
+                    + "'" + encargado.getGenero_persona() + "',"
+                    + "'" + encargado.getCorreo_persona() + "',"
+                    + "'" + encargado.getCelular_persona() + "',"
+                    + "'" + encargado.getNombre_usuario() + "',"
+                    + "'" + encargado.getPassword_usuario() + "',"
+                    + "'" + encargado.getFechacreacion_usuario() + "',"
+                    + "'" + encargado.getEstado_usuario() + "',"
+                    + "'" + encargado.getIdRoles() + "',"
+                    + "'" + encargado.getFechacreacion_usuario() + "')";
+            conexion.ejecutarSql(sentencia);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        return encargado;
     }
 
 }

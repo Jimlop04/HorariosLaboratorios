@@ -29,7 +29,7 @@ public class EncargadoManageBean implements Serializable {
     private List<Encargado> listaEncargados = new ArrayList<>();
     private List<Encargado> listaLaboratoriosXencargado = new ArrayList<>();
     private List<Encargado> listaRoles = new ArrayList<>();
-     private List<Encargado> listaRolesTRUE = new ArrayList<>();
+    private List<Encargado> listaRolesTRUE = new ArrayList<>();
     private List<Encargado> listaUsuarios = new ArrayList<>();
     Mensajes mensajesJSF;
     String dni = "";
@@ -82,7 +82,7 @@ public class EncargadoManageBean implements Serializable {
     public List<Encargado> getListaRoles() {
         return listaRoles;
     }
-    
+
     public void setListaRoles(List<Encargado> listaRoles) {
         this.listaRoles = listaRoles;
     }
@@ -93,7 +93,7 @@ public class EncargadoManageBean implements Serializable {
 
     public void setListaRolesTRUE(List<Encargado> listaRolesTRUE) {
         this.listaRolesTRUE = listaRolesTRUE;
-    }  
+    }
 
     public String getDni() {
         return dni;
@@ -169,7 +169,7 @@ public class EncargadoManageBean implements Serializable {
                         new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Habilite Rol si Desea"));
             } else {
                 this.encargadoDAO.registrarRol(encargado);
-                 mensajesJSF.mensajeDeExito("Registro Exitoso");
+                mensajesJSF.mensajeDeExito("Registro Exitoso");
             }
         } catch (Exception e) {
             e.getMessage();
@@ -179,12 +179,12 @@ public class EncargadoManageBean implements Serializable {
     public void editarEncargado() {
 
         try {
-                encargadoDAO.updateEncargado(encargado);
-                listaEncargados = encargadoDAO.getEncargados();
-                FacesContext.getCurrentInstance().
-                        addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Encargado Editado"));
-                PrimeFaces.current().executeScript("PF('centroEditarEncargadoDialog').hide()");
-            
+            encargadoDAO.updateEncargado(encargado);
+            listaEncargados = encargadoDAO.getEncargados();
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Encargado Editado"));
+            PrimeFaces.current().executeScript("PF('centroEditarEncargadoDialog').hide()");
+
         } catch (SQLException e) {
             FacesContext.getCurrentInstance().
                     addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error al guardar"));
@@ -240,6 +240,70 @@ public class EncargadoManageBean implements Serializable {
             FacesContext.getCurrentInstance().
                     addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
                             "Error al guardar"));
+        }
+    }
+
+    public void editarUsuarios() {
+
+        try {
+            encargadoDAO.updateusuario(encargado);
+            listaUsuarios = encargadoDAO.getUsuarios();
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Usuario Editado"));
+            PrimeFaces.current().executeScript("PF('centroEditarUsuarioDialog').hide()");
+
+        } catch (SQLException e) {
+            FacesContext.getCurrentInstance().
+                    addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error al guardar"));
+        }
+        PrimeFaces.current().ajax().update(":form-prin-usuario:dtUsuario");
+    }
+
+    public void registrarUsuario() throws Exception {
+        try {
+            if ("".equals(encargado.getNombre_persona())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Nombre"));
+            } else if ("".equals(encargado.getApellido_persona())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Apellidos"));
+            } else if ("".equals(encargado.getDni_persona())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese DNI"));
+            } else if (encargado.getFechanacimiento_persona() == null) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Fecha de Nacimiento"));
+            } else if ("".equals(encargado.getGenero_persona())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Elija Genero"));
+            } else if ("".equals(encargado.getCorreo_persona())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Correo Electronico"));
+            } else if ("".equals(encargado.getCelular_persona())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese numero de Celular"));
+            } else if ("".equals(encargado.getNombre_usuario())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese nombre usuario"));
+            } else if ("".equals(encargado.getPassword_usuario())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Contraseña"));
+            } else if ("".equals(encargado.getFechacreacion_usuario())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Ingrese Contraseña"));
+            } else if ("".equals(encargado.getEstado_usuario())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Su estado de Usuario esta Desactivado"));
+                } else if ("".equals(encargado.getIdRoles())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Elija un Rol"));
+                
+            } else {
+                this.encargadoDAO.insertUsuario(encargado);
+                mensajesJSF.mensajeDeExito("Registro Exitoso");
+            }
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 
