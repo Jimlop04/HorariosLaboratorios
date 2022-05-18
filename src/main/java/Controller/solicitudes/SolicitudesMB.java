@@ -85,6 +85,7 @@ public class SolicitudesMB implements Serializable {
         try {
             dao = new solicitudesDAO();
             listaPeriodoAcademico = new ArrayList<>();
+           
             listaPeriodoAcademico = dao.listPeriodoAcademico();
         } catch (Exception e) {
             throw e;
@@ -142,7 +143,11 @@ public class SolicitudesMB implements Serializable {
 
         try {
             dao = new solicitudesDAO();
-            listaPersona = new ArrayList<>();                    
+            listaPersona = new ArrayList<>(); 
+            if(idAsignatura ==0||idProfesor==0){
+                listaPersona = null;
+                
+            }
             listaPersona = dao.listaAlumnoByAsignaturaByProfesor(idAsignatura,idProfesor);
         } catch (Exception e) {
             throw e;

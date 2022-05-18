@@ -118,6 +118,11 @@
                                                        itemValue="#{la.idAsignatura}">
 
                                         </f:selectItems>
+                                        <p:ajax event="change"                                                         
+                                                listener="#{solicitudesMB.listaAlumnoByProfesor(solicitudesMB.asignatura.idAsignatura,loginMB.httpSession.getAttribute('idPersona') )}" 
+                                                rendered=":dialogEstudiante:listaEstudiantesElegir" 
+                                                update=":dialogEstudiante:listaEstudiantesElegir"
+                                                />
                                     </p:selectOneMenu>
                                 </div>
                                 <div class="p-field p-col-12 p-md-3">
@@ -145,6 +150,7 @@
                                                 rendered="SelectParalelo" 
                                                 update="SelectParalelo"
                                                 />
+                                        
 
                                     </p:selectOneMenu>
                                 </div>

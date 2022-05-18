@@ -83,7 +83,7 @@ public class solicitudesDAO extends Conexion {
         ResultSet rs;
         try {
             conectar();
-            String sql = "select alno.id_alumno, per.nombre_persona,per.apellido_persona,per.dni_persona  from  (Select ap.id_asignatura_profesor from laboratorio.persona per\n"
+            String sql = "select alno.id_alumno, per.nombre_persona,per.apellido_persona,per.dni_persona,per.genero_persona from  (Select ap.id_asignatura_profesor from laboratorio.persona per\n"
                     + "inner join laboratorio.profesor pro\n"
                     + "on pro.persona_id_persona = per.id_persona\n"
                     + "inner join laboratorio.asignatura_profesor ap\n"
@@ -101,11 +101,11 @@ public class solicitudesDAO extends Conexion {
             lista = new ArrayList<>();
             while (rs.next()) {
                 Persona persona = new Persona();
-                Alumno alumno = new Alumno();
-                alumno.setIdAlumno(rs.getInt("id_alumno"));
+                persona.setIdPersona(rs.getInt("id_alumno"));
                 persona.setNombre(rs.getString("nombre_persona"));
                 persona.setApellido(rs.getString("apellido_persona"));
                 persona.setDni(rs.getString("dni_persona"));
+                persona.setGenero(rs.getString("genero_persona"));
                 lista.add(persona);
             }
         } catch (SQLException e) {

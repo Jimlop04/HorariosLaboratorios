@@ -18,6 +18,7 @@
                                     <p:dataTable id="dtEstudiantesagregar" editable="true" reflow="true"
                                                  widgetVar="tablabuscarestudiantes"
                                                  lazy="true"
+                                                 value="#{solicitudesMB.listaPersona}" 
                                                  editInitEvent="dblclick" editMode="cell"
                                                  var="TablaEstudiantes">
                                         <f:facet name="header">
@@ -37,23 +38,16 @@
                                             </p:selectBooleanCheckbox>
 
                                         </p:column>
-
                                         <p:column headerText="Cedula" filterStyle="display : none">
-                                            <h:outputText value="#{TablaEstudiantes.persona.dni}" />
+                                            <h:outputText value="#{TablaEstudiantes.dni}"  />
                                         </p:column>
                                         <p:column headerText="Alumnno" filterStyle="display : none">
-                                            <h:outputText value="#{TablaEstudiantes.persona.nombre}
-                                                          #{TablaEstudiantes.persona.apellido}" />
+                                            <h:outputText value="#{TablaEstudiantes.nombre}
+                                                          #{TablaEstudiantes.apellido}" />
                                         </p:column>
                                         <p:column headerText="Genero" filterStyle="display : none">
-                                            <h:outputText value="#{TablaEstudiantes.persona.genero}" />
-                                        </p:column>
-                                        <p:column headerText="Correo" filterStyle="display : none">
-                                            <h:outputText value="#{TablaEstudiantes.persona.correo}" />
-                                        </p:column>
-                                        <p:column headerText="Estado" filterStyle="display : none">
-                                            <h:outputText value="#{TablaEstudiantes.estadoAlumno}" />
-                                        </p:column>
+                                            <h:outputText value="#{TablaEstudiantes.genero}" />
+                                        </p:column>                                      
                                     </p:dataTable>
                                 </div>
                             </div>
