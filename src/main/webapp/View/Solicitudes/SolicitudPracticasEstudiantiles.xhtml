@@ -130,10 +130,27 @@
                                                 value="#{loginMB.httpSession.getAttribute('nombrePersona')}"
                                                 ></p:inputText>
                                         </div>
+                                        <!-- Periodo Academico -->
                                         <div class="p-field p-col-12 p-md-2">
                                             <p:outputLabel value="Periodo Academico" for="@next"/>
-                                            <p:inputText 
-                                                maxlength="25"></p:inputText>
+                                            <p:selectOneMenu id="SelectPeriodo"
+                                                             value="#{solicitudesMB.periodoAcademico.idPeriodoAcademico}">
+
+                                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione Periodo" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#{solicitudesMB.listaPeriodoAcademico}"
+                                                               var="la"
+                                                               itemLabel="#{la.periodoAcademico}"                                                             
+                                                               itemValue="#{la.idPeriodoAcademico}">
+
+                                                </f:selectItems>
+                                                  <p:ajax event="change"                                                         
+                                                          listener="#{solicitudesMB.listarCursoByPeriodo()}" 
+                                                        rendered="SelectParalelo" 
+                                                        update="SelectParalelo"
+                                                        />
+
+                                            </p:selectOneMenu>
                                         </div>
                                         <div class="p-field p-col-12 p-md-2">
                                             <p:outputLabel value="Semestre" for="@next"/>
@@ -142,8 +159,17 @@
                                         </div>
                                         <div class="p-field p-col-12 p-md-2">
                                             <p:outputLabel value="Paralelo" for="@next"/>
-                                            <p:inputText 
-                                                maxlength="25"></p:inputText>
+                                            <p:selectOneMenu  id="SelectParalelo"
+                                                              value="#{solicitudesMB.curso.idCurso}">
+
+                                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione Paralelo" 
+                                                              itemValue="0"/>
+                                                <f:selectItems value="#{solicitudesMB.listaCurso}" 
+                                                               var="fa"
+                                                               itemLabel="#{fa.nombreCurso}" 
+                                                               itemValue="#{fa.idCurso}"></f:selectItems>
+
+                                            </p:selectOneMenu>
                                         </div>
                                         <div class="p-field p-col-12 p-md-1">
                                             <p:outputLabel value="Nro. Practica" for="@next"/>
