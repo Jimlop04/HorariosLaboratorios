@@ -5,7 +5,9 @@
 package DAO.solicitudes;
 
 import Controller.login.LoginMB;
+import Model.administracion.Persona;
 import Model.laboratorios.Laboratorio;
+import Model.solicitudes.Alumno;
 import Model.solicitudes.Asignatura;
 import Model.solicitudes.Carrera;
 import Model.solicitudes.Curso;
@@ -67,6 +69,44 @@ public class solicitudesDAO extends Conexion {
                 obj.setIdCurso(rs.getInt("id_curso"));
                 obj.setNombreCurso(rs.getString("nombre_curso"));
                 lista.add(obj);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            desconectar();
+        }
+        return lista;
+    }
+
+    public List<Persona> listaAlumnoByAsignaturaByProfesor(int idAsignatura, int idPersona) throws Exception {
+        List<Persona> lista;
+        ResultSet rs;
+        try {
+            conectar();
+            String sql = "select alno.id_alumno, per.nombre_persona,per.apellido_persona,per.dni_persona  from  (Select ap.id_asignatura_profesor from laboratorio.persona per\n"
+                    + "inner join laboratorio.profesor pro\n"
+                    + "on pro.persona_id_persona = per.id_persona\n"
+                    + "inner join laboratorio.asignatura_profesor ap\n"
+                    + "    on ap.profesor_id_profesor = pro.id_profesor\n"
+                    + "inner join laboratorio.asignatura asig\n"
+                    + "on ap.asignatura_id_asignatura = asig.id_asignatura\n"
+                    + "where per.id_persona ='" + idPersona + "' and asig.id_asignatura='" + idAsignatura + "')as X\n"
+                    + "      inner join laboratorio.asignatura_profesor_alumno apa\n"
+                    + "on apa.asignatura_profesor_id_asignatura_profesor = X.id_asignatura_profesor\n"
+                    + "inner join laboratorio.alumno alno\n"
+                    + "on apa.alumno_id_alumno = alno.id_alumno\n"
+                    + "      inner join laboratorio.persona per on alno.persona_id_persona=per.id_persona;";
+            PreparedStatement st = this.getConnection().prepareStatement(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList<>();
+            while (rs.next()) {
+                Persona persona = new Persona();
+                Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("id_alumno"));
+                persona.setNombre(rs.getString("nombre_persona"));
+                persona.setApellido(rs.getString("apellido_persona"));
+                persona.setDni(rs.getString("dni_persona"));
+                lista.add(persona);
             }
         } catch (SQLException e) {
             throw e;

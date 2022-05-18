@@ -8,6 +8,7 @@ import Controller.login.LoginMB;
 import DAO.laboratorios.LaboratorioDAO;
 import DAO.solicitudes.solicitudesDAO;
 import Model.administracion.Encargado;
+import Model.administracion.Persona;
 import Model.equipos.Equipo;
 import Model.laboratorios.Laboratorio;
 import Model.solicitudes.Asignatura;
@@ -39,7 +40,10 @@ public class SolicitudesMB implements Serializable {
     private List<Carrera> listaCarrera;
     private List<Asignatura> listAsignatura;
     private List<Laboratorio> listaLaboratorio;
-      private List<Curso> listaCurso;
+    private List<Curso> listaCurso;
+    private List<Persona> listaPersona;
+    
+    private List<Persona> listaPersonaAleterna;
     private List<PeriodoAcademico> listaPeriodoAcademico;
 
     private List<Equipo> listaEquipos;
@@ -50,6 +54,7 @@ public class SolicitudesMB implements Serializable {
     private Carrera carrera;
     private Curso curso;
     private Encargado encargado;
+    private Persona persona;
     private Laboratorio laboratorio;
     private solicitudesDAO dao;
     int idFacultad = 0;
@@ -59,7 +64,9 @@ public class SolicitudesMB implements Serializable {
     @PostConstruct
     public void init() {
         asignatura = new Asignatura();
+        listaPersonaAleterna = new ArrayList<>();
         periodoAcademico = new PeriodoAcademico();
+        persona = new Persona();
         curso = new Curso();
         listaEquipos = new ArrayList<>();
         listarPeriodoAcademico();
@@ -96,7 +103,8 @@ public class SolicitudesMB implements Serializable {
             throw e;
         }
     }
-        public void listarCursoByPeriodo() throws Exception {
+
+    public void listarCursoByPeriodo() throws Exception {
         if (periodoAcademico.getIdPeriodoAcademico() == 0) {
             listaCarrera = null;
         }
@@ -125,11 +133,20 @@ public class SolicitudesMB implements Serializable {
         try {
             dao = new solicitudesDAO();
             listAsignatura = dao.listMateriaDocente(post);
+            System.out.println(asignatura);
         } catch (Exception e) {
             throw e;
         }
     }
+      public void listaAlumnoByProfesor(int idAsignatura,int idProfesor) throws Exception {
 
- 
+        try {
+            dao = new solicitudesDAO();
+            listaPersona = new ArrayList<>();                    
+            listaPersona = dao.listaAlumnoByAsignaturaByProfesor(idAsignatura,idProfesor);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
 }
