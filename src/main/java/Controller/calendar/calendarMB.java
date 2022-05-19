@@ -33,8 +33,8 @@ public class calendarMB implements Serializable {
 	private String slotDuration="00:30:00";
 	private String slotLabelInterval;
 	private String scrollTime="06:00:00";
-	private String minTime="04:00:00";
-	private String maxTime="20:00:00";
+	private String minTime="07:30:00";
+	private String maxTime="17:30:00";
 	private String locale="en";
 	private String timeZone="";
 	private String clientTimeZone="local";
@@ -44,50 +44,7 @@ public class calendarMB implements Serializable {
 	public void init() {
 		eventModel = new DefaultScheduleModel();
 
-		DefaultScheduleEvent event = DefaultScheduleEvent.builder()
-				.title("Client A Meeting")
-				.startDate(previousDay8Pm())
-				.endDate(previousDay11Pm())
-				.description("Gather Requirements")
-				.build();
-		eventModel.addEvent(event);
-
-		event = DefaultScheduleEvent.builder()
-				.title("Sales Reports")
-				.startDate(today1Pm())
-				.endDate(today6Pm())
-				.description("Review Reports")
-				.overlapAllowed(true)
-				.build();
-		eventModel.addEvent(event);
-
-		event = DefaultScheduleEvent.builder()
-				.title("Webinar")
-				.startDate(nextDay9Am())
-				.endDate(nextDay11Am())
-				.description("Live Event")
-				.overlapAllowed(true)
-				.build();
-		eventModel.addEvent(event);
-
-		event = DefaultScheduleEvent.builder()
-				.title("Client B Meeting")
-				.startDate(theDayAfter3Pm())
-				.endDate(fourDaysLater3pm())
-				.description("Introduce Team")
-				.build();
-		eventModel.addEvent(event);
-
-		DefaultScheduleEvent scheduleEventAllDay=DefaultScheduleEvent.builder()
-				.title("Team Meeting")
-				.startDate(sevenDaysLater0am())
-				.endDate(eightDaysLater0am())
-				.description("Discuss Revenue Stream")
-				.allDay(true)
-				.build();
-		eventModel.addEvent(scheduleEventAllDay);
-	}
-	
+        }
 	public LocalDateTime getRandomDateTime(LocalDateTime base) {
 		LocalDateTime dateTime = base.withMinute(0).withSecond(0).withNano(0);
 		return dateTime.plusDays(((int) (Math.random()*30)));
@@ -97,47 +54,7 @@ public class calendarMB implements Serializable {
 	public ScheduleModel getEventModel() {
 		return eventModel;
 	}
-
-	private LocalDateTime previousDay8Pm() {
-    	return LocalDateTime.now().minusDays(1).withHour(20).withMinute(0).withSecond(0).withNano(0);
-	}
-	
-	private LocalDateTime previousDay11Pm() {
-		return LocalDateTime.now().minusDays(1).withHour(23).withMinute(0).withSecond(0).withNano(0);
-	}
-	
-	private LocalDateTime today1Pm() {
-		return LocalDateTime.now().withHour(13).withMinute(0).withSecond(0).withNano(0);
-	}
-	
-	private LocalDateTime theDayAfter3Pm() {
-		return LocalDateTime.now().plusDays(1).withHour(15).withMinute(0).withSecond(0).withNano(0);
-	}
-
-	private LocalDateTime today6Pm() {
-		return LocalDateTime.now().withHour(18).withMinute(0).withSecond(0).withNano(0);
-	}
-	
-	private LocalDateTime nextDay9Am() {
-		return LocalDateTime.now().plusDays(1).withHour(9).withMinute(0).withSecond(0).withNano(0);
-	}
-	
-	private LocalDateTime nextDay11Am() {
-		return LocalDateTime.now().plusDays(1).withHour(11).withMinute(0).withSecond(0).withNano(0);
-	}
-	
-	private LocalDateTime fourDaysLater3pm() {
-		return LocalDateTime.now().plusDays(4).withHour(15).withMinute(0).withSecond(0).withNano(0);
-	}
-
-	private LocalDateTime sevenDaysLater0am() {
-		return LocalDateTime.now().plusDays(7).withHour(0).withMinute(0).withSecond(0).withNano(0);
-	}
-
-	private LocalDateTime eightDaysLater0am() {
-		return LocalDateTime.now().plusDays(7).withHour(0).withMinute(0).withSecond(0).withNano(0);
-	}
-	
+		
 	public LocalDate getInitialDate() {
 		return LocalDate.now().plusDays(1);
 	}

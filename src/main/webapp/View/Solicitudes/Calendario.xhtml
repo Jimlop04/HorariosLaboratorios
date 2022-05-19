@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -8,93 +8,140 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:body>
-    <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
-        <ui:define name="head">
+    <h:body>
+        <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
+            <ui:define name="head">
 
-            <h:outputScript name="js/chart.js" library="demo"/>
-            <script type="text/javascript">
-                $(function () {
-                    var ordersChart = new Chart(document.getElementById("sales-chart").getContext('2d'), {
-                        type: 'line',
-                        data: {
-                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                            datasets: [
-                                {
-                                    label: 'First Dataset',
-                                    data: [65, 59, 80, 81, 56, 55, 40],
-                                    fill: false,
-                                    borderColor: '#FFC107'
-                                },
-                                {
-                                    label: 'Second Dataset',
-                                    data: [28, 48, 40, 19, 86, 27, 90],
-                                    fill: false,
-                                    borderColor: '#03A9F4'
-                                }
-                            ]
-                        }
+                <h:outputScript name="js/chart.js" library="demo"/>
+                <script type="text/javascript">
+                    $(function () {
+                        var ordersChart = new Chart(document.getElementById("sales-chart").getContext('2d'), {
+                            type: 'line',
+                            data: {
+                                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                datasets: [
+                                    {
+                                        label: 'First Dataset',
+                                        data: [65, 59, 80, 81, 56, 55, 40],
+                                        fill: false,
+                                        borderColor: '#FFC107'
+                                    },
+                                    {
+                                        label: 'Second Dataset',
+                                        data: [28, 48, 40, 19, 86, 27, 90],
+                                        fill: false,
+                                        borderColor: '#03A9F4'
+                                    }
+                                ]
+                            }
+                        });
                     });
-                });
-            </script>
+                </script>
 
-        </ui:define>
+            </ui:define>
 
-        <ui:define name="content">
-            <ui:include src="componentes/SubHeaderSolicitudes.xhtml"/>
-            <h:form>
-                <div class="p-grid">
-                    <div class="p-col-12 p-lg-6">
-                        <div class="card">
-                            <h:form>
-                                <p:dataTable lazy="true" editable="true" reflow="true"
-                                             editInitEvent="dblclick" editMode="cell">
-                                    <f:facet name="header">
-                                        <div class="p-d-flex p-jc-between p-ai-center">
-                                            <span style="font-size: 24px">Horarios de Laboratorio</span>
-                                            <span class="filter-container ui-input-icon-left">
+            <ui:define name="content">
+                <ui:include src="componentes/SubHeaderSolicitudes.xhtml"/>
+                <h:form>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-lg-6">
+                            <div class="card">
+                                <h:form>
+                                    <p:dataTable lazy="true" editable="true" reflow="true"
+                                                 editInitEvent="dblclick" editMode="cell">
+                                        <f:facet name="header">
+                                            <div class="p-d-flex p-jc-between p-ai-center">
+                                                <span style="font-size: 24px">Horarios de Laboratorio</span>
+                                                <span class="filter-container ui-input-icon-left">
                                                     <i class="pi pi-search"></i><p:inputText placeholder="Buscar"/>
                                                 </span>
-                                        </div>
-                                    </f:facet>
-                                    <p:column headerText="Materia" filterStyle="display : none">
-                                        <h:outputText/>
-                                    </p:column>
-                                    <p:column headerText="Laboratorio" filterStyle="display : none">
-                                        <h:outputText/>
-                                    </p:column>
-                                    <p:column headerText="Fecha" filterStyle="display : none">
-                                        <h:outputText/>
-                                    </p:column>
-                                    <p:column headerText="Hora" filterStyle="display : none">
-                                        <h:outputText/>
-                                    </p:column>
+                                            </div>
+                                        </f:facet>
+                                        <p:column headerText="Materia" filterStyle="display : none">
+                                            <h:outputText/>
+                                        </p:column>
+                                        <p:column headerText="Laboratorio" filterStyle="display : none">
+                                            <h:outputText/>
+                                        </p:column>
+                                        <p:column headerText="Fecha" filterStyle="display : none">
+                                            <h:outputText/>
+                                        </p:column>
+                                        <p:column headerText="Hora" filterStyle="display : none">
+                                            <h:outputText/>
+                                        </p:column>
 
-                                    <p:column headerText="Acciones" filterStyle="display : none">
-                                        <h:outputText/>
-                                    </p:column>
-                                </p:dataTable>
-                            </h:form>
+                                        <p:column headerText="Acciones" filterStyle="display : none">
+                                            <h:outputText/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="p-col-12 p-lg-6">
-                        <div>
-                            <p:panel header="Calendario" style="height:100%">
+                        <div class="p-col-12 p-lg-6">
+
+                            <p:panel header="Calendario">
                                 <p:schedule
-                                        value="#{calendarMB.eventModel}"
-                                        draggable="true"
-                                        resizable="true"
-                                        showWeekends="true"
-                                        leftHeaderTemplate="prev,next today"/>
-                            </p:panel>
-                        </div>
-                    </div>
+                                    value="#{calendarMB.eventModel}"
+                                    draggable="true"
+                                    resizable="true"
+                                    showWeekends="false"
+                                    allDaySlot="false"
+                                    maxTime="18:30:00"
+                                    minTime="07:30:00"
+                                    slotDuration="01:00:00"
+                                    height="auto"
+                                    leftHeaderTemplate="prev,next today">   
+                                    <p:ajax event="dateSelect" 
+                                            listener="#{calendarMB.onDateSelect}" 
+                                            update="eventDetails"
+                                            oncomplete="PF('eventDialog').show();"/>
+                                    <p:ajax event="eventSelect" 
+                                            listener="#{calendarMB.onEventSelect}" 
+                                            update="eventDetails"
+                                            oncomplete="PF('eventDialog').show();"/>
+                                    <p:ajax event="eventMove" 
+                                            listener="#{calendarMB.onEventMove}" 
+                                            />
+                                    <p:ajax event="eventResize" 
+                                            listener="#{calendarMB.onEventResize}" 
+                                          />
+                                    <p:ajax event="viewChange" 
+                                            listener="#{calendarMB.onViewChange}" 
+                                          />
 
-                </div>
-            </h:form>
-        </ui:define>
-    </ui:composition>
-</h:body>
+                                </p:schedule>
+                            </p:panel>
+
+                        </div>
+                        <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="fade" hideEffect="fade">
+                            <h:panelGrid id="eventDetails" columns="2" cellpadding="7">
+                                <p:outputLabel for="title" value="Titles" styleClass="p-text-bold"/>
+                                <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true"/>
+
+                                <p:outputLabel for="from" value="From" styleClass="p-text-bold"/>
+                                <p:datePicker id="from" value="#{scheduleJava8View.event.startDate}" pattern="dd/MM/yyyy"
+                                              showTime="true" appendTo="@(body)"/>
+
+                                <p:outputLabel for="to" value="To" styleClass="p-text-bold"/>
+                                <p:datePicker id="to" value="#{scheduleJava8View.event.endDate}" pattern="dd/MM/yyyy"
+                                              showTime="true" appendTo="@(body)"/>
+
+                                <p:outputLabel for="allDay" value="All Day" styleClass="p-text-bold"/>
+                                <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}"/>
+                            </h:panelGrid>
+
+                            <div class="p-d-flex p-jc-between p-mt-3">
+                                <p:commandButton type="reset" value="Reset" styleClass="p-text-bold ui-button-outlined"/>
+                                <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}"
+                                                 oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                            </div>
+                        </p:dialog>
+
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 
