@@ -6,7 +6,7 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html">
     <div class="p-grid ui-fluid">
         <p:dialog header="Seleccionar Estudiantes" showEffect="fade" modal="true"
-                  widgetVar="listaEstudiantes" responsive="true" width="75%"
+                  widgetVar="listaEstudiantesElegir" responsive="true" width="75%"
                   draggable="false" height="500">
 
             <p:outputPanel id="listaEstudiantesElegir" class="ui-fluid">
@@ -15,9 +15,10 @@
                         <div class="p-col-11">
                             <div class="p-grid">
                                 <div class="p-col-12">
-                                    <p:dataTable id="dtEstudiantesagregar" editable="true" reflow="true"
+                                    <p:dataTable id="dtEstudiantesagregar" reflow="true"
                                                  widgetVar="tablabuscarestudiantes"
                                                  lazy="true"
+                                                 paginatorPosition="bottom" 
                                                  value="#{solicitudesMB.listaPersona}" 
                                                  editInitEvent="dblclick" editMode="cell"
                                                  var="TablaEstudiantes">
@@ -32,8 +33,10 @@
                                             </div>
                                         </f:facet>
                                         <p:column headerText="Acciones">
-                                            <p:selectBooleanCheckbox value="#">
+                                            <p:selectBooleanCheckbox value="#{TablaEstudiantes.verifica}">
                                                 <p:ajax 
+                                                    event="change"
+                                                    listener="#{solicitudesMB.addPersonaEstudiante(TablaEstudiantes)}"
                                                     />
                                             </p:selectBooleanCheckbox>
 
@@ -56,10 +59,10 @@
                                 <div class="p-col-2">
                                     <p:commandButton value="Confirmar"  
                                                      icon="pi pi-check" 
-
+                                                     actionListener="#{solicitudesMB.llenaProductoConfirmado()}"
                                                      styleClass="ui-button-primary"
-                                                     update=":dialogEstudiante :msgs"
-                                                     process=":dialogEstudiante @this"
+                                                     update=":form-SE:TablaestudiantesSolicitud :msgs"
+                                                     process=":dialogEstudiante:listaEstudiantesElegir @this"
                                                      oncomplete="PF('listaEstudiantesElegir').hide()"/>
                                 </div>
                                 <div class="p-col-2">

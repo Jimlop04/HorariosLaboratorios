@@ -242,31 +242,35 @@
                             <div class="p-grid p-justify-around">
                                 <p:dataTable id="TablaestudiantesSolicitud"
                                              lazy="true"  
+                                             value="#{solicitudesMB.listaPersonaConfirmada}"
                                              editable="true" 
+                                             var="estudiante"
                                              reflow="true"
                                              editInitEvent="dblclick" editMode="cell">
                                     <f:facet name="header">
                                         <div class="p-d-flex p-jc-between p-ai-center">
                                             <span style="font-size: 20px">Lista de Estudiantes</span>
                                             <span class="filter-container ui-input-icon-left">
-                                                <p:commandButton value="Agregar Estudiantes" icon="pi pi-plus" oncomplete="PF('listaEstudiantes').show()"/>
+                                                <p:commandButton value="Agregar Estudiantes" icon="pi pi-plus" oncomplete="PF('listaEstudiantesElegir').show()"/>
                                             </span>
                                         </div>
                                     </f:facet>
                                     <p:column headerText="Cedula" filterStyle="display : none">
-                                        <h:outputText  />
+                                        <h:outputText value="#{estudiante.dni}"  />
                                     </p:column>
                                     <p:column headerText="Alumnno" filterStyle="display : none">
-                                        <h:outputText  />
+                                        <h:outputText value="#{estudiante.nombre} #{estudiante.apellido}" />
                                     </p:column>
                                     <p:column headerText="Genero" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Correo" filterStyle="display : none">
-                                        <h:outputText  />
-                                    </p:column>
-                                    <p:column headerText="Estado" filterStyle="display : none">
-                                        <h:outputText  />
+                                        <h:outputText  value="#{estudiante.genero}"/>
+                                    </p:column>    
+                                    <p:column headerText="Acciones">
+                                        <p:commandButton icon="pi pi-trash" actionListener="#{solicitudesMB.deleteFila(estudiante)}"
+                                                     styleClass="edit-button rounded-button ui-button-danger"
+                                                     update=":form-SE:TablaestudiantesSolicitud"
+                                                     process="@this">
+
+                                    </p:commandButton>
                                     </p:column>
                                 </p:dataTable>
                             </div>

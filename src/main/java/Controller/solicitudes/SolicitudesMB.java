@@ -33,8 +33,9 @@ import lombok.Setter;
 @ViewScoped
 @Getter
 @Setter
-public class SolicitudesMB implements Serializable {
+public class SolicitudesMB extends global.Mensajes implements Serializable {
 
+    private boolean verifica;
     private LaboratorioDAO laboratorioDAO;
     private List<Facultad> listafacultades;
     private List<Carrera> listaCarrera;
@@ -42,7 +43,7 @@ public class SolicitudesMB implements Serializable {
     private List<Laboratorio> listaLaboratorio;
     private List<Curso> listaCurso;
     private List<Persona> listaPersona;
-    
+    private List<Persona> listaPersonaConfirmada;
     private List<Persona> listaPersonaAleterna;
     private List<PeriodoAcademico> listaPeriodoAcademico;
 
@@ -66,6 +67,7 @@ public class SolicitudesMB implements Serializable {
         asignatura = new Asignatura();
         listaPersonaAleterna = new ArrayList<>();
         periodoAcademico = new PeriodoAcademico();
+        listaPersonaConfirmada = new ArrayList<>();
         persona = new Persona();
         curso = new Curso();
         listaEquipos = new ArrayList<>();
@@ -85,7 +87,7 @@ public class SolicitudesMB implements Serializable {
         try {
             dao = new solicitudesDAO();
             listaPeriodoAcademico = new ArrayList<>();
-           
+
             listaPeriodoAcademico = dao.listPeriodoAcademico();
         } catch (Exception e) {
             throw e;
@@ -139,19 +141,65 @@ public class SolicitudesMB implements Serializable {
             throw e;
         }
     }
-      public void listaAlumnoByProfesor(int idAsignatura,int idProfesor) throws Exception {
+
+    public void listaAlumnoByProfesor(int idAsignatura, int idProfesor) throws Exception {
 
         try {
             dao = new solicitudesDAO();
-            listaPersona = new ArrayList<>(); 
-            if(idAsignatura ==0||idProfesor==0){
+            listaPersona = new ArrayList<>();
+            if (idAsignatura == 0 || idProfesor == 0) {
                 listaPersona = null;
-                
+
             }
-            listaPersona = dao.listaAlumnoByAsignaturaByProfesor(idAsignatura,idProfesor);
+            listaPersona = dao.listaAlumnoByAsignaturaByProfesor(idAsignatura, idProfesor);
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public void addPersonaEstudiante(Persona persona) {
+
+        if (persona.isVerifica() == true) {
+            listaPersonaAleterna.add(new Persona(
+                    persona.getIdPersona(),
+                    persona.getNombre(),
+                    persona.getApellido(),
+                    persona.getDni(),
+                    persona.getGenero()));
+
+        } else {
+            for (Persona lista : listaPersonaAleterna) {
+                if (lista.getIdPersona() == persona.getIdPersona()) {
+                    listaPersonaAleterna.remove(lista);
+                }
+            }
+        }
+        System.out.println(listaPersonaAleterna+"addPersonaEstudiante");
+    }
+
+    public void llenaProductoConfirmado() {
+        for (Persona lista : listaPersonaAleterna) {
+            if (duplicidadDatos(lista)) {
+                mensajeDeAdvertencia("El estudiante ya se encuentra agregado");
+            } else {
+                listaPersonaConfirmada.add(lista);
+            }
+        }
+        System.out.println(listaPersonaConfirmada+"llena producto confirmado");
+    }
+
+    public void deleteFila(Persona persona) {
+        listaPersonaConfirmada.remove(persona);
+    }
+
+    public boolean duplicidadDatos(Persona producto) {
+        boolean confirmacion = false;
+        for (Persona lista : listaPersonaConfirmada) {
+            if (lista.getIdPersona() == producto.getIdPersona()) {
+                confirmacion = true;
+            }
+        }
+        return confirmacion;
     }
 
 }
