@@ -1,0 +1,92 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+    <div class="p-grid ui-fluid">
+        <p:dialog 
+            id="DialogCalendarioHorario" 
+            header="Horario" 
+            showEffect="fade" 
+            modal="true"
+            widgetVar="SeleccionarHorario"
+            responsive="true" 
+            width="60%"
+            draggable="false"
+            closeOnEscape="true" >
+            <p:outputPanel id="manage-rol-form" class="ui-fluid">
+                    <p:panel header="Calendario">
+                        <p:schedule
+                            value="#{calendarMB.eventModel}"
+                            draggable="true"
+                            
+                            resizable="true"
+                            showWeekends="false"
+                            allDaySlot="false"
+                            maxTime="18:30:00"
+                            minTime="07:30:00"
+                            slotDuration="01:00:00"
+                            rightHeaderTemplate="timeGridWeek"
+                            height="auto"
+                            leftHeaderTemplate="prev,next today">   
+                            <p:ajax event="dateSelect" 
+                                    listener="#{calendarMB.onDateSelect}" 
+                                    update="eventDetails"
+                                    oncomplete="PF('eventDialog').show();"/>
+                            <p:ajax event="eventSelect" 
+                                    listener="#{calendarMB.onEventSelect}" 
+                                    update="eventDetails"
+                                    oncomplete="PF('eventDialog').show();"/>
+                            <p:ajax event="eventMove" 
+                                    listener="#{calendarMB.onEventMove}" 
+                                    />
+                            <p:ajax event="eventResize" 
+                                    listener="#{calendarMB.onEventResize}" 
+                                    />
+                            <p:ajax event="viewChange" 
+                                    listener="#{calendarMB.onViewChange}" 
+                                    />
+
+                        </p:schedule>
+                    </p:panel>
+
+          
+                
+                <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="fade" hideEffect="fade">
+                    <h:panelGrid id="eventDetails" columns="2" cellpadding="7">
+                        <p:outputLabel for="title" value="Titles" styleClass="p-text-bold"/>
+                        <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true"/>
+
+                        <p:outputLabel for="from" value="From" styleClass="p-text-bold"/>
+                        <p:datePicker id="from" value="#{scheduleJava8View.event.startDate}" pattern="dd/MM/yyyy"
+                                      showTime="true" appendTo="@(body)"/>
+
+                        <p:outputLabel for="to" value="To" styleClass="p-text-bold"/>
+                        <p:datePicker id="to" value="#{scheduleJava8View.event.endDate}" pattern="dd/MM/yyyy"
+                                      showTime="true" appendTo="@(body)"/>
+
+                        <p:outputLabel for="allDay" value="All Day" styleClass="p-text-bold"/>
+                        <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}"/>
+                    </h:panelGrid>
+
+                    <div class="p-d-flex p-jc-between p-mt-3">
+                        <p:commandButton type="reset" value="Reset" styleClass="p-text-bold ui-button-outlined"/>
+                        <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}"
+                                         oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                    </div>
+                </p:dialog>
+
+
+            </p:outputPanel>
+
+        </p:dialog>
+
+
+    </div>    
+
+</ui:composition>
+
+

@@ -26,7 +26,7 @@
                             class="ui-fluid">
                             <div class="p-formgrid p-grid">
                                 <!-- FACULTAD -->
-                                <div class="p-field p-col-12 p-md-2">
+                                <div class="p-field p-col-12 p-md-3">
                                     <p:outputLabel value="Facultad" for="@next"/>
                                     <p:selectOneMenu id="SelectFacultad"
                                                      value="#{solicitudesMB.idFacultad}">
@@ -48,7 +48,7 @@
                                     </p:selectOneMenu>
                                 </div>
                                 <!-- CARRERA -->
-                                <div class="p-field p-col-12 p-md-2">
+                                <div class="p-field p-col-12 p-md-3">
 
                                     <p:outputLabel value="Carrera" for="@next"/>
                                     <p:selectOneMenu  id="SelectCarrera"
@@ -150,7 +150,7 @@
                                                 rendered="SelectParalelo" 
                                                 update="SelectParalelo"
                                                 />
-                                        
+
 
                                     </p:selectOneMenu>
                                 </div>
@@ -188,18 +188,18 @@
                                     <p:inputText 
                                         maxlength="25"></p:inputText>
                                 </div>
-                                <div class="p-field p-col-12 p-md-1">
-                                    <p:outputLabel value="Fecha" for="@next"/>
-                                    <p:datePicker id="button"
+                                <div class="p-field p-col-12 p-md-2">
+                                    <p:outputLabel value="Hora y Fecha"/>
+                                    <p:commandButton 
+                                        value="Elegir Horario" 
+                                        icon="pi pi-check" 
+                                        styleClass="ui-button-primary"
+                                        oncomplete="PF('SeleccionarHorario').show()">
+                                    </p:commandButton>
 
-                                                  value="#{calendarView.date7}" 
-                                                  showIcon="true"/>
+
                                 </div>
-                                <div class="p-field p-col-12 p-md-1">
-                                    <p:outputLabel value="Hora" for="@next"/>
-                                    <p:inputText 
-                                        maxlength="25"></p:inputText>
-                                </div>
+
                                 <div class="p-field p-col-12 p-md-12">
                                     <p:outputLabel value="Objetivo de la practica" for="@next"/>
                                     <p:inputText 
@@ -266,11 +266,11 @@
                                     </p:column>    
                                     <p:column headerText="Acciones">
                                         <p:commandButton icon="pi pi-trash" actionListener="#{solicitudesMB.deleteFila(estudiante)}"
-                                                     styleClass="edit-button rounded-button ui-button-danger"
-                                                     update=":form-SE:TablaestudiantesSolicitud"
-                                                     process="@this">
+                                                         styleClass="edit-button rounded-button ui-button-danger"
+                                                         update=":form-SE:TablaestudiantesSolicitud"
+                                                         process="@this">
 
-                                    </p:commandButton>
+                                        </p:commandButton>
                                     </p:column>
                                 </p:dataTable>
                             </div>
@@ -290,6 +290,9 @@
 
                     <h:form id="dialogEstudiante">
                         <ui:include src="./componentes/dialogoListaEstudiantes.xhtml"/>
+                    </h:form>
+                    <h:form id="dialogCalendario">
+                        <ui:include src="./componentes/dialogoCalendario.xhtml"/>
                     </h:form>
 
                 </div>
