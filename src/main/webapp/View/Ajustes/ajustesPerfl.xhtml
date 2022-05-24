@@ -9,7 +9,10 @@
     <h:body>
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
             <ui:define name="content"> 
+                <f:event type="preRenderView" listener="#{ajustePerfilMB.listarPerfil(loginMB.httpSession.getAttribute('idUsuarioRol'), loginMB.httpSession.getAttribute('idPersona'), loginMB.httpSession.getAttribute('idUsuario'))}"/>
+
                 <ui:include src="./componentes/SubHeaderAjustes.xhtml"/>
+                
                 <div class="barra-navegacion">
                     <p:growl id="msgs" showDetail="true"/>
                     <div class="card" align="center">
@@ -26,34 +29,34 @@
                                                 
                                                 <div class="p-field p-col-12 p-md-1">
                                                     <p:outputLabel value="Cedula" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                    <p:inputText value="#{ajustePerfilMB.ajustePerfil.cedula}"/>
                                                 </div>
                                                 <div class="p-field p-col-12 p-md-2">
                                                    <p:outputLabel value="Nombre" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                   <p:inputText value="#{ajustePerfilMB.ajustePerfil.nombre}"/>
                                                 </div>
                                                 <div class="p-field p-col-12 p-md-2">
                                                     <p:outputLabel value="Apellido" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                    <p:inputText value="#{ajustePerfilMB.ajustePerfil.apellido}"/>
                                                 </div>
                                                 <div class="p-field p-col-12 p-md-2">
                                                      <p:outputLabel value="Fecha Nacimiento" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.fechaNacimiento}"/>
                                                 </div>
                                     
                                                 <div class="p-field p-col-12 p-md-2">
                                                      <p:outputLabel value="Genero" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.genero}"/>
                                                 </div>
 
                                                 <div class="p-field p-col-12 p-md-2">
                                                      <p:outputLabel value="Correo" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.correo}"/>
 
                                                 </div>
                                                 <div class="p-field p-col-12 p-md-1">
                                                      <p:outputLabel value="Celular" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.celular}"/>
                                                 </div>
                                             </div>
                                   
@@ -65,17 +68,17 @@
                                             <div class="p-formgrid p-grid">
                                                 <div class="p-field p-col-12 p-md-2">
                                                      <p:outputLabel value="ESTADO USUARIO" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.estadoUsuario}"/>
 
                                                 </div>
                                                   <div class="p-field p-col-12 p-md-5">
                                                      <p:outputLabel value="USUARIO:" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.usuario}"/>
 
                                                 </div>
                                                   <div class="p-field p-col-12 p-md-5">
                                                      <p:outputLabel value="CONTRASEÑA:" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.password}"/>
                                                 </div>
                                             </div>
                                     </p:outputPanel>
