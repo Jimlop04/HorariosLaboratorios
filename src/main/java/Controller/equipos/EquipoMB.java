@@ -25,9 +25,11 @@ import javax.faces.context.FacesContext;
 public class EquipoMB implements Serializable {
 
     private List<Equipo> listaEquipos;
-     private List<Equipo> listaEquiposFiltro = new ArrayList<>();
+    private List<Equipo> listaEquiposFiltro = new ArrayList<>();
     private Equipo equipo;
     
+    private String accion;
+
     private AreaAula areaAula;
     private CategoriaEquipo categoriaEquipo;
     String msj = "";
@@ -41,7 +43,7 @@ public class EquipoMB implements Serializable {
         try {
             dao = new EquipoDAO();
             dao.resgistrar(equipo);
-            equipo=null;
+            equipo = null;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró correctamente"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Ocurrio un error al registrar, vuelva a intentarlo" + e));
@@ -49,9 +51,7 @@ public class EquipoMB implements Serializable {
 
     }
 
-    public void listarEquiposByLaboratorioId() throws Exception
-           
-{
+    public void listarEquiposByLaboratorioId() throws Exception {
         try {
             dao = new EquipoDAO();
             listaEquipos = dao.listarEquipos(idLaboratorio);
@@ -59,9 +59,8 @@ public class EquipoMB implements Serializable {
             throw e;
         }
     }
-    
-    public void listarEquiposByEncargado(int idPersona) throws Exception
-{
+
+    public void listarEquiposByEncargado(int idPersona) throws Exception {
         try {
             dao = new EquipoDAO();
             listaEquipos = dao.listarEquiposByEncargado(idPersona);
@@ -69,6 +68,32 @@ public class EquipoMB implements Serializable {
             throw e;
         }
     }
+
+    public void equipoByID(Equipo equipo) throws Exception {
+        Equipo temp;
+        try {
+            dao = new EquipoDAO();
+            temp= dao.equipoByID(equipo);
+            
+            if(temp != null){
+                this.equipo=temp;
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+        public void modificarEquipo() throws Exception {
+        try {
+            dao = new EquipoDAO();
+            dao.equipoByID(equipo);
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    
 
     //        LISTAR
 //    public void listar() throws Exception {
@@ -93,8 +118,7 @@ public class EquipoMB implements Serializable {
         this.areaAula = new AreaAula();
         this.categoriaEquipo = new CategoriaEquipo();
         this.listaEquipos = new ArrayList<>();
-      
+
     }
-    
-    
+
 }

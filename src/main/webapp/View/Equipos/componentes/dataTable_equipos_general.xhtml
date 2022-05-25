@@ -14,6 +14,7 @@
                             styleClass="rounded-button" 
                             icon="pi pi-plus"
                             process="@this"
+                            onclick="#{equipoMB.setAccion('Registrar')}"
                             oncomplete="PF('modalNuevoEquipo').show()"/>
                     </p:toolbarGroup>
                 </p:toolbar>
@@ -30,7 +31,7 @@
                                 paginatorPosition="bottom"
                                 stripedRows="true">
                                 <!--HEADER - DATATABLE-->
-                             
+
                                 <!--CODIGO DEL BIEN-->
                                 <p:column headerText="Código"   filterBy="#{equipo.codigo}" filterMatchMode="contains">
                                     <p:outputLabel value="#{equipo.codigo}"/>
@@ -73,6 +74,21 @@
                                            style="font-size:12px;"
                                            rendered="#{equipo.estado.trim() eq 'DAÑADO'}"/>
                                 </p:column>
+
+                                <!--ACCIONES-->
+                                <p:column  headerText="Acciones">
+                                    <p:commandButton 
+                                        icon="pi pi-pencil" 
+                                        class="ui-button-primary rounded-button p-mr-2 p-mb-2"
+                                        onclick="#{equipoMB.setAccion('Modificar')}"
+                                        actionListener="#{equipoMB.equipoByID(equipo)}"
+                                        oncomplete="PF('modalNuevoEquipo').show()"
+                                        process="@this"
+                                        update=":formRegistro">
+                                    </p:commandButton>
+                                </p:column>
+
+
 
                             </p:dataTable>
                         </div>
