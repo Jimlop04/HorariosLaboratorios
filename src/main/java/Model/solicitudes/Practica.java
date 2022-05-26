@@ -32,6 +32,7 @@ public class Practica {
     String objetivo_practica;
     Date fecha_solicitud;
     Date fecha_estado;
+    String estado;
 
    
 }

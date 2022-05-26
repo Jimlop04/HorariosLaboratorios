@@ -16,7 +16,9 @@ import Model.solicitudes.Carrera;
 import Model.solicitudes.Curso;
 import Model.solicitudes.Facultad;
 import Model.solicitudes.PeriodoAcademico;
+import Model.solicitudes.Practica;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -48,6 +50,7 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
     private List<PeriodoAcademico> listaPeriodoAcademico;
 
     private List<Equipo> listaEquipos;
+    private Practica practicaLaboratorio;
 
     private Facultad facultad;
     private Asignatura asignatura;
@@ -72,6 +75,7 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
         curso = new Curso();
         listaEquipos = new ArrayList<>();
         listarPeriodoAcademico();
+        practicaLaboratorio = new Practica();
     }
 
     public void listarFacultades() {
@@ -174,7 +178,7 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
                 }
             }
         }
-        System.out.println(listaPersonaAleterna+"addPersonaEstudiante");
+        System.out.println(listaPersonaAleterna + "addPersonaEstudiante");
     }
 
     public void llenaProductoConfirmado() {
@@ -185,7 +189,7 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
                 listaPersonaConfirmada.add(lista);
             }
         }
-        System.out.println(listaPersonaConfirmada+"llena producto confirmado");
+        System.out.println(listaPersonaConfirmada + "llena producto confirmado");
     }
 
     public void deleteFila(Persona persona) {
@@ -200,6 +204,24 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
             }
         }
         return confirmacion;
+    }
+
+    public void asignacionHorarios() {
+
+        try {
+            LocalDate todaysDate = LocalDate.now();
+            practicaLaboratorio = new Practica();
+            if (dao.registrarHorario(practicaLaboratorio,listaEquipos,listaPersonaConfirmada) > 0) {
+                System.out.println("    Correcto");
+            }else{
+                System.out.println("   Incorrecto");
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(e.toString());
+        }
+
     }
 
 }

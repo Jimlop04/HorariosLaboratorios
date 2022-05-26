@@ -6,6 +6,7 @@ package DAO.solicitudes;
 
 import Controller.login.LoginMB;
 import Model.administracion.Persona;
+import Model.equipos.Equipo;
 import Model.laboratorios.Laboratorio;
 import Model.solicitudes.Alumno;
 import Model.solicitudes.Asignatura;
@@ -14,10 +15,12 @@ import Model.solicitudes.Curso;
 import Model.solicitudes.Facultad;
 import Model.solicitudes.HorarioLaboratorio;
 import Model.solicitudes.PeriodoAcademico;
+import Model.solicitudes.Practica;
 import global.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -249,4 +252,59 @@ public class solicitudesDAO extends Conexion {
 
         return null;
     }
+
+    public int registrarHorario(Practica practica, List<Equipo> listEquipo, List<Persona> listEstudiante) {
+        int aux = 0;
+        try {
+            ResultSet rs;
+            String sentencia;
+            String jsonEquipo = "[";
+            String jsonEstudiante = "[";
+            for (Equipo eqObj : listEquipo) {
+                jsonEquipo += "{\n"
+                        + "  \"idEquipo\": " + eqObj.getCodigo() + ",\n"
+                        + "},";
+            }
+            jsonEquipo = jsonEquipo.substring(0, jsonEquipo.length() - 1);
+            jsonEquipo += "]";
+            for (Persona alObj : listEstudiante) {
+                jsonEstudiante += "{\n"
+                        + "  \"idEstudiante\": " + alObj.getIdPersona()+ ",\n"
+                        + "},";
+            }
+            jsonEstudiante = jsonEstudiante.substring(0, jsonEstudiante.length() - 1);
+            jsonEstudiante += "]";
+            sentencia = "SELECT laboratorio.\"insertPractica\"(\n"
+                    + "	" + practica.getPeriodoAcademico().getIdPeriodoAcademico() + ", \n"
+                    + "	" + practica.getProfesor().getIdPersona() + ", \n"
+                    + "	" + practica.getIdTipoSolicitud().getTipoSolicitud() + ", \n"
+                    + "	" + practica.getNumero_practica() + ", \n"
+                    + "	'" + practica.getFecha_reserva() + "', \n"
+                    + "	'" + practica.getHora_inicio() + "', \n"
+                    + "	'" + practica.getHora_fin() + "', \n"
+                    + "	" + practica.getNumero_practica() + ", \n"
+                    + "	'" + practica.getTema_practica() + "', \n"
+                    + "	'" + practica.getObjetivo_practica() + "', \n"
+                    + "	'" + practica.getFecha_solicitud() + "', \n"
+                    + "	'" + practica.getEncargado().getIdEncargado() + "', \n"
+                    + "	'" + practica.getEstado() + "', \n"
+                    + "	'" + jsonEstudiante + "', \n"
+                    + "'" + jsonEquipo + "'\n"
+                    + ")";
+
+            conectar();
+            rs = ejecutarSql(sentencia);
+            while (rs.next()) {
+                aux = Integer.parseInt(rs.getString("insertPractica"));
+            }
+            return aux;
+
+        } catch (SQLException e) {
+            return aux;
+        } finally {
+            desconectar();
+        }
+
+    }
+
 }
