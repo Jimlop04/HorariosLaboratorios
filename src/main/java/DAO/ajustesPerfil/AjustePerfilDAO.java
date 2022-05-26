@@ -4,6 +4,7 @@
  */
 package DAO.ajustesPerfil;
 
+import Model.login.Rol;
 import global.AjustePerfil;
 import global.Conexion;
 import java.sql.ResultSet;
@@ -51,6 +52,27 @@ public class AjustePerfilDAO extends Conexion {
                 obj.setRol(resultSet.getString("nombre_rol"));
              
 
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            desconectar();
+        }
+        return obj;
+    }
+    public Rol roles(int idRol){
+        
+        ResultSet resultSet;
+        Rol obj = new Rol();
+        String sql = "select * from laboratorio.rol r WHERE r.id_rol="+idRol;
+        try {
+            conectar();
+            resultSet = ejecutarSql(sql);
+
+            while (resultSet.next()) {                
+                obj.setNombreRol(resultSet.getString("nombre_rol"));
+                obj.setEstadoRol(resultSet.getBoolean("estado_rol"));
+                obj.setDescripcionRol(resultSet.getString("descripcion_rol"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

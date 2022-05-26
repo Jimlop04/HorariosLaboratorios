@@ -5,6 +5,7 @@
 package Controller.ajustesPerfil;
 
 import DAO.ajustesPerfil.AjustePerfilDAO;
+import Model.login.Rol;
 import global.AjustePerfil;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,28 @@ public class AjustePerfilMB {
     AjustePerfil ajustePerfil;
     List<AjustePerfil> listaAjustePefil;
     AjustePerfilDAO daoPerfil;
+    Rol rol;
 
     @PostConstruct
     public void init() {
         ajustePerfil = new AjustePerfil();
-        listaAjustePefil = new ArrayList<>();
-        daoPerfil = new AjustePerfilDAO();             
+        listaAjustePefil = new ArrayList<>();        
+        daoPerfil = new AjustePerfilDAO(); 
+        rol = new Rol();
     }
     
     public void listarPerfil(int usuarioRol, int idPersona, int idUsuario){
         try{
             ajustePerfil = daoPerfil.ajustePerfil(usuarioRol, idPersona, idUsuario);
+            
+        }catch(Exception e){
+            
+        }
+    }
+    
+    public void listaRol(int idRol){
+        try{
+            rol = daoPerfil.roles(idRol);
             
         }catch(Exception e){
             

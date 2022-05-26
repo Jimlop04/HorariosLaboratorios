@@ -1,0 +1,100 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <div class="p-grid ui-fluid">
+        <p:dialog header="Editar Perfil" showEffect="fade" modal="true"
+                  widgetVar="listaEstudiantesElegir" responsive="true" width="75%"
+                  draggable="false" height="auto">
+
+
+            <p:fieldset legend="DATOS PERSONALES">
+                <p:outputPanel id="manage-perfilDatosPersonales-edit" class="ui-accordion-content">
+                    <div class="p-formgrid p-grid">
+
+                        <div class="p-field p-col-12 p-md-2">
+                            <p:outputLabel value="Cedula" class="p-col-12"/>
+                            <p:inputText  value="#{ajustePerfilMB.ajustePerfil.cedula}"/>
+                        </div>
+                        <div class="p-field p-col-12 p-md-5">
+                            <p:outputLabel value="Nombre" class="p-col-12"/>
+                            <p:inputText  value="#{ajustePerfilMB.ajustePerfil.nombre}"/>
+                        </div>
+                        <div class="p-field p-col-12 p-md-5">
+                            <p:outputLabel value="Apellido" class="p-col-12"/>
+                            <p:inputText  value="#{ajustePerfilMB.ajustePerfil.apellido}"/>
+                        </div>                       
+                    </div>
+                    <div class="p-formgrid p-grid">
+
+
+                        <div class="p-field p-col-12 p-md-2">
+                            <p:outputLabel value="Fecha Nacimiento" class="p-col-12"/>
+                            <p:inputText value="#{ajustePerfilMB.ajustePerfil.fechaNacimiento}"/>
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-2">
+                            <p:outputLabel value="Genero" class="p-col-12"/>
+                            <p:inputText  value="#{ajustePerfilMB.ajustePerfil.genero}"/>
+                        </div>
+                        <div class="p-field p-col-12 p-md-2">
+                            <p:outputLabel value="Celular" class="p-col-12"/>
+                            <p:inputText  value="#{ajustePerfilMB.ajustePerfil.celular}"/>
+                        </div> 
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Correo" class="p-col-12"/>
+                            <p:inputText  value="#{ajustePerfilMB.ajustePerfil.correo}"/>
+
+                        </div>
+
+                    </div>
+
+                </p:outputPanel>
+            </p:fieldset>
+
+            <p:fieldset legend="SISTEMA" style="margin-top: 12px;">
+                <p:outputPanel id="manage-perfilSistema-edit" class="ui-fluid" >
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-2">
+                            <p:outputLabel value="ESTADO USUARIO" class="p-col-12"/>
+                               <p:selectBooleanButton value="#{ajustePerfilMB.ajustePerfil.estadoUsuario}"
+                                                                       onLabel="Habilitado" 
+                                                                       offLabel="Deshabilitado"
+                                                                       onIcon="pi pi-check " 
+                                                                       offIcon="pi pi-times " 
+                                                                      
+                                                                       />
+                            
+                            
+                       
+
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel value="USUARIO:" class="p-col-12"/>
+                            <p:inputText  value="#{ajustePerfilMB.ajustePerfil.usuario}"/>
+
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:outputLabel value="CONTRASEÑA:" class="p-col-12"/>
+                            <p:inputText type="password" value="#{ajustePerfilMB.ajustePerfil.password}"/>
+                        </div>
+                    </div>
+                </p:outputPanel>
+            </p:fieldset>
+
+            <p:outputPanel class="ui-fluid">
+                <br/>
+                <div class="p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-1">
+                        <p:commandButton styleClass=""  value="Guardar" />                                    
+                    </div>                                      
+                </div>                                     
+            </p:outputPanel>
+
+
+
+        </p:dialog>
+    </div>
+</ui:composition>

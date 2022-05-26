@@ -10,9 +10,10 @@
         <ui:composition template="../../WEB-INF/InicioTemplate.xhtml">
             <ui:define name="content"> 
                 <f:event type="preRenderView" listener="#{ajustePerfilMB.listarPerfil(loginMB.httpSession.getAttribute('idUsuarioRol'), loginMB.httpSession.getAttribute('idPersona'), loginMB.httpSession.getAttribute('idUsuario'))}"/>
+                <f:event type="preRenderView" listener="#{ajustePerfilMB.listaRol(loginMB.httpSession.getAttribute('idRol'))}"/>
 
                 <ui:include src="./componentes/SubHeaderAjustes.xhtml"/>
-                
+
                 <div class="barra-navegacion">
                     <p:growl id="msgs" showDetail="true"/>
                     <div class="card" align="center">
@@ -21,92 +22,113 @@
                         </p:toolbarGroup>
                     </div>
                     <div class="card" style="margin-top: 5px;">
-                        <p:toolbarGroup>
-                            <h:form id="form-Perfil">
+                        <h:form id="form-Perfil"> <p:toolbarGroup>
+                           
                                 <p:fieldset legend="DATOS PERSONALES">
                                     <p:outputPanel id="manage-perfilDatosPersonales-form" class="ui-fluid">
-                                            <div class="p-formgrid p-grid">
-                                                
-                                                <div class="p-field p-col-12 p-md-1">
-                                                    <p:outputLabel value="Cedula" class="p-col-12"/>
-                                                    <p:inputText value="#{ajustePerfilMB.ajustePerfil.cedula}"/>
-                                                </div>
-                                                <div class="p-field p-col-12 p-md-2">
-                                                   <p:outputLabel value="Nombre" class="p-col-12"/>
-                                                   <p:inputText value="#{ajustePerfilMB.ajustePerfil.nombre}"/>
-                                                </div>
-                                                <div class="p-field p-col-12 p-md-2">
-                                                    <p:outputLabel value="Apellido" class="p-col-12"/>
-                                                    <p:inputText value="#{ajustePerfilMB.ajustePerfil.apellido}"/>
-                                                </div>
-                                                <div class="p-field p-col-12 p-md-2">
-                                                     <p:outputLabel value="Fecha Nacimiento" class="p-col-12"/>
-                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.fechaNacimiento}"/>
-                                                </div>
-                                    
-                                                <div class="p-field p-col-12 p-md-2">
-                                                     <p:outputLabel value="Genero" class="p-col-12"/>
-                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.genero}"/>
-                                                </div>
+                                        <div class="p-formgrid p-grid">
 
-                                                <div class="p-field p-col-12 p-md-2">
-                                                     <p:outputLabel value="Correo" class="p-col-12"/>
-                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.correo}"/>
-
-                                                </div>
-                                                <div class="p-field p-col-12 p-md-1">
-                                                     <p:outputLabel value="Celular" class="p-col-12"/>
-                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.celular}"/>
-                                                </div>
+                                            <div class="p-field p-col-12 p-md-1">
+                                                <p:outputLabel value="Cedula" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.cedula}"/>
                                             </div>
-                                  
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Nombre" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.nombre}"/>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Apellido" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.apellido}"/>
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Fecha Nacimiento" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.fechaNacimiento}"/>
+                                            </div>
+
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Genero" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.genero}"/>
+                                            </div>
+
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="Correo" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.correo}"/>
+
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-1">
+                                                <p:outputLabel value="Celular" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.celular}"/>
+                                            </div>
+                                        </div>
+
                                     </p:outputPanel>
                                 </p:fieldset>
-                                
-                                 <p:fieldset legend="SISTEMA" style="margin-top: 12px;">
+
+                                <p:fieldset legend="SISTEMA" style="margin-top: 12px;">
                                     <p:outputPanel id="manage-perfilSistema-form" class="ui-fluid" >
-                                            <div class="p-formgrid p-grid">
-                                                <div class="p-field p-col-12 p-md-2">
-                                                     <p:outputLabel value="ESTADO USUARIO" class="p-col-12"/>
-                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.estadoUsuario}"/>
+                                        <div class="p-formgrid p-grid">
+                                            <div class="p-field p-col-12 p-md-2">
+                                                <p:outputLabel value="ESTADO USUARIO" class="p-col-12"/>
+                                                <p:outputPanel>
+                                                      <p:tag severity="success"  style="font-size:12px;" value='Habilitado' rendered="#{ajustePerfilMB.ajustePerfil.estadoUsuario eq true}"/>
+                                                    <p:tag severity="warning"  style="font-size:12px;" value='Deshabilitado' rendered="#{ajustePerfilMB.ajustePerfil.estadoUsuario eq false}"/>
 
-                                                </div>
-                                                  <div class="p-field p-col-12 p-md-5">
-                                                     <p:outputLabel value="USUARIO:" class="p-col-12"/>
-                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.usuario}"/>
-
-                                                </div>
-                                                  <div class="p-field p-col-12 p-md-5">
-                                                     <p:outputLabel value="CONTRASEÑA:" class="p-col-12"/>
-                                                     <p:inputText value="#{ajustePerfilMB.ajustePerfil.password}"/>
-                                                </div>
+                                                </p:outputPanel>
+                                              
                                             </div>
+                                            <div class="p-field p-col-12 p-md-3">
+                                                <p:outputLabel value="USUARIO:" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.ajustePerfil.usuario}"/>
+
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-3">
+                                                <p:outputLabel value="CONTRASEÑA:" class="p-col-12"/>
+                                                <p:inputText type="password" disabled="true" value="#{ajustePerfilMB.ajustePerfil.password}"/>
+                                            </div>
+                                        </div>
                                     </p:outputPanel>
                                 </p:fieldset>
-                                
-                                   <p:fieldset legend="ROL" style="margin-top: 12px;">
+
+                                <p:fieldset legend="ROL" style="margin-top: 12px;">
                                     <p:outputPanel id="manage-perfilRol-form" class="ui-fluid" >
-                                            <div class="p-formgrid p-grid">
-                                                <div class="p-field p-col-12 p-md-2">
-                                                     <p:outputLabel value="ESTADO ROL" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                        <div class="p-formgrid p-grid">
+                                            <div class="p-field p-col-12 p-md-1">
+                                                <p:outputLabel value="ESTADO ROL" class="p-col-12"/>
+                                                <p:outputPanel >
+                                                    <p:tag severity="success"  style="font-size:12px;" value='Habilitado' rendered="#{ajustePerfilMB.rol.estadoRol eq true}"/>
+                                                    <p:tag severity="warning"  style="font-size:12px;" value='Deshabilitado' rendered="#{ajustePerfilMB.rol.estadoRol eq false}"/>
 
-                                                </div>
-                                                  <div class="p-field p-col-12 p-md-5">
-                                                     <p:outputLabel value="ROL" class="p-col-12"/>
-                                                    <p:inputText value=""/>
+                                                </p:outputPanel>
 
-                                                </div>
-                                                  <div class="p-field p-col-12 p-md-5">
-                                                     <p:outputLabel value="DESCRIPCIÓN" class="p-col-12"/>
-                                                    <p:inputText value=""/>
-                                                </div>
                                             </div>
+                                            <div class="p-field p-col-12 p-md-4">
+                                                <p:outputLabel value="ROL" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.rol.nombreRol}"/>
+
+                                            </div>
+                                            <div class="p-field p-col-12 p-md-4">
+                                                <p:outputLabel value="DESCRIPCIÓN" class="p-col-12"/>
+                                                <p:inputText disabled="true" value="#{ajustePerfilMB.rol.descripcionRol}"/>
+                                            </div>
+                                        </div>
                                     </p:outputPanel>
                                 </p:fieldset>
-                                
-                            </h:form>
-                        </p:toolbarGroup> 
+                                <p:outputPanel class="ui-fluid">
+                                    <br/>
+                                    <div class="p-formgrid p-grid">
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <p:commandButton onclick ="PF('listaEstudiantesElegir').show()" value="Editar" />                                    
+                                        </div>                                      
+                                    </div>                                     
+                                </p:outputPanel>
+                                    
+                           
+                        </p:toolbarGroup>  
+                        </h:form>
+                        
+                        <h:form>
+                             <ui:include src="./componentes/dialogoEditarPerfil.xhtml"/>
+                        </h:form>
                     </div>
                 </div>   
             </ui:define>
