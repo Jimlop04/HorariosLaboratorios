@@ -84,6 +84,9 @@
                                         <p:ajax event="change"                                                         
                                                 listener="#{equipoMB.listarEquiposByLaboratorioId()}"
                                                 update="comboEquipos"/>
+                                        <p:ajax event="change"                                                         
+                                                listener="#{laboratorioMB.onEncargadoLaboratorioChange(equipoMB.idLaboratorio)}"
+                                                />
                                     </p:selectOneMenu>
                                 </div>
                                 <!-- CODIGO LAB -->

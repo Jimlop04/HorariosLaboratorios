@@ -116,6 +116,12 @@
                                                                 <h:outputText 
                                                                     value="#{TablaLaboratorios.nombre_laboratorio}"/>
                                                             </p:column>
+                                                            
+                                                             <p:column headerText="Capacidad" 
+                                                                      filterStyle="display : none">
+                                                                <h:outputText 
+                                                                    value="#{TablaLaboratorios.capacidad_laboratorio}"/>
+                                                            </p:column>
 
                                                             <p:column headerText="Acciones" filterStyle="display : none">
                                                                 <p:commandButton 
@@ -195,6 +201,14 @@
                                                 <p:inputText
                                                     id="nombreLabo"
                                                     value="#{laboratorioMB.laboratorio.nombre_laboratorio}" 
+                                                    maxlength="50"
+                                                    ></p:inputText>
+                                                  <p:outputLabel
+                                                    for="capacidadLabo"
+                                                    value="Capacidad: "></p:outputLabel>
+                                                <p:inputText
+                                                    id="capacidadLabo"
+                                                    value="#{laboratorioMB.laboratorio.capacidad_laboratorio}" 
                                                     maxlength="50"
                                                     ></p:inputText>
                                             </div>
@@ -451,7 +465,7 @@
                                     <h:outputText value="#{document.nombre_laboratorio}" />
                                 </p:column>
                                 <p:column headerText="Capacidad">
-                                    <h:outputText value="#{document.capacidad}"/>
+                                    <h:outputText value="#{document.capacidad_laboratorio}"/>
                                 </p:column>
                                
                             </p:treeTable>

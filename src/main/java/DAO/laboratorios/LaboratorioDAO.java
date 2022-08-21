@@ -61,7 +61,8 @@ public class LaboratorioDAO {
                         resultSet.getInt("id_laboratorio"),
                         resultSet.getInt("facultad_id_facultad"),
                         resultSet.getString("nombre_laboratorio").trim(),
-                        resultSet.getString("codigo_laboratorio").trim()));
+                        resultSet.getString("codigo_laboratorio").trim(),
+                        resultSet.getShort("capacidad_laboratorio")));
 
             }
         } catch (SQLException e) {
@@ -84,7 +85,8 @@ public class LaboratorioDAO {
                 soloLaboratorios.add(new Laboratorio(
                         resultSet.getInt("id_laboratorio"),
                         resultSet.getString("nombre_laboratorio").trim(),
-                        resultSet.getString("codigo_laboratorio").trim()));
+                        resultSet.getString("codigo_laboratorio").trim(),
+                        resultSet.getShort("capacidad_laboratorio")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,7 +96,6 @@ public class LaboratorioDAO {
         return soloLaboratorios;
     }
 
-   
     public List<Laboratorio> getfacultades() {
         List<Laboratorio> facultades = new ArrayList<>();
 

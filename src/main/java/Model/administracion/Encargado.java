@@ -126,6 +126,14 @@ public class Encargado {
         this.nombre_rol = nombre_rol;
     }
 
+    public Encargado(int idPersona, String nombre_persona, String apellido_persona) {
+        this.idPersona = idPersona;
+        this.nombre_persona = nombre_persona;
+        this.apellido_persona = apellido_persona;
+    }
+
+    
+    
     public Encargado(int idUsuario, String nombre_usuario, 
             String password_usuario, Date fechacreacion_usuario, 
             boolean estado_usuario, int idPersona, String nombre_persona, 

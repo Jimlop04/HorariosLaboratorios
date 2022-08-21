@@ -107,7 +107,7 @@ public class LaboratorioManageBean implements Serializable {
     public void setListaAreas(List<AreaAula> listaAreas) {
         this.listaAreas = listaAreas;
     }
-   
+
     public void registrarLaboratorio() throws Exception {
 
         try {
@@ -158,12 +158,12 @@ public class LaboratorioManageBean implements Serializable {
     public void llenarListaTableTree() {
         for (Laboratorio laboratorioT : listasoloLaboratorios) {
             laboratorioTree = new DefaultTreeNode(new Laboratorio(laboratorioT.getIdLaboratorio(), laboratorioT.getNombre_laboratorio(),
-                    laboratorioT.getCodigo_laboratorio()), this.rootIntegracion);
+                    laboratorioT.getCodigo_laboratorio(), laboratorioT.getCapacidad_laboratorio()), this.rootIntegracion);
             listaAreas = laboratorioDAO.getsoloAreas(laboratorioT.getIdLaboratorio());
             for (AreaAula AreaT : listaAreas) {
                 if (laboratorioT.getIdLaboratorio() == AreaT.getLaboratorio_idLaboratorio()) {
                     aulasTree = new DefaultTreeNode(new Laboratorio(AreaT.getIdAreaAula(), AreaT.getCodigo(),
-                            AreaT.getNombre(), AreaT.getCapacidad()), laboratorioTree);
+                            AreaT.getNombre()), laboratorioTree);
                 }
             }
 
@@ -174,12 +174,20 @@ public class LaboratorioManageBean implements Serializable {
         System.out.println("LABORATORIO");
 
     }
-    
-     public void onEncargadoLaboratorioChange() {
-        System.out.println("ENCARGADO LABORATORIO");
+
+    public void onEncargadoLaboratorioChange(int encargado) throws Exception {
+
+        try {
+
+            System.out.print(encargado);
+            System.out.println(" ESTE ES EL ENCARGADO DE LABORATORIO");
+
+        } catch (Exception e) {
+            throw e;
+        }
 
     }
-    
+
     public void onFacultadChange() {
         System.out.println("FACULTAD");
 

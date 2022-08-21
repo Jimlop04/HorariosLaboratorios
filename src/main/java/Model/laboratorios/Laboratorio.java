@@ -5,13 +5,14 @@ package Model.laboratorios;
  * @author Jimmy
  */
 public class Laboratorio {
+
     private int idFacultad;
     private String nombre_facultad;
     private int idLaboratorio;
     private int facultad_idfacultad;
     private String nombre_laboratorio;
     private String codigo_laboratorio;
-    private int capacidad;
+    private Short capacidad_laboratorio;
 
     public int getIdEncargadoLaboratorio() {
         return idEncargadoLaboratorio;
@@ -21,25 +22,25 @@ public class Laboratorio {
         this.idEncargadoLaboratorio = idEncargadoLaboratorio;
     }
     private int idEncargadoLaboratorio;
-    
- 
 
     public Laboratorio() {
-        
+
     }
 
-    public Laboratorio(int idFacultad, 
-            String nombre_facultad, 
-            int idLaboratorio, 
-            int facultad_idfacultad, 
-            String nombre_laboratorio, 
-            String codigo_laboratorio) {
+    public Laboratorio(int idFacultad,
+            String nombre_facultad,
+            int idLaboratorio,
+            int facultad_idfacultad,
+            String nombre_laboratorio,
+            String codigo_laboratorio,
+            Short capacidad_laboratorio) {
         this.idFacultad = idFacultad;
         this.nombre_facultad = nombre_facultad;
         this.idLaboratorio = idLaboratorio;
         this.facultad_idfacultad = facultad_idfacultad;
         this.nombre_laboratorio = nombre_laboratorio;
         this.codigo_laboratorio = codigo_laboratorio;
+        this.capacidad_laboratorio = capacidad_laboratorio;
     }
 
     public Laboratorio(int idLaboratorio, String nombre_laboratorio, String codigo_laboratorio) {
@@ -48,22 +49,17 @@ public class Laboratorio {
         this.codigo_laboratorio = codigo_laboratorio;
     }
 
-    public Laboratorio(int idLaboratorio, String codigo_laboratorio,String nombre_laboratorio, int capacidad) {
+    public Laboratorio(int idLaboratorio, String nombre_laboratorio, String codigo_laboratorio, Short capacidad_laboratorio) {
         this.idLaboratorio = idLaboratorio;
-        this.codigo_laboratorio = codigo_laboratorio;
         this.nombre_laboratorio = nombre_laboratorio;
-        this.capacidad = capacidad;
+        this.codigo_laboratorio = codigo_laboratorio;
+        this.capacidad_laboratorio = capacidad_laboratorio;
     }
-    
-    
+
     public Laboratorio(int idFacultad, String nombre_facultad) {
         this.idFacultad = idFacultad;
         this.nombre_facultad = nombre_facultad;
     }
-    
-    
-    
-   
 
     public int getIdFacultad() {
         return idFacultad;
@@ -113,20 +109,19 @@ public class Laboratorio {
         this.codigo_laboratorio = codigo_laboratorio;
     }
 
-    public int getCapacidad() {
-        return capacidad;
+    public Short getCapacidad_laboratorio() {
+        return capacidad_laboratorio;
     }
 
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+    public void setCapacidad_laboratorio(Short capacidad_laboratorio) {
+        this.capacidad_laboratorio = capacidad_laboratorio;
     }
-    
-    
+
     @Override
     public String toString() {
         return "Laboratorio{" + "idLaboratorio=" + idLaboratorio + ", "
                 + "nombre_laboratorio=" + nombre_laboratorio + ", "
                 + "codigo_laboratorio=" + codigo_laboratorio + '}';
     }
-    
+
 }
