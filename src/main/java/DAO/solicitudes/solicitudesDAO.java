@@ -5,6 +5,7 @@
 package DAO.solicitudes;
 
 import Controller.login.LoginMB;
+import Model.administracion.Encargado;
 import Model.administracion.Persona;
 import Model.equipos.Equipo;
 import Model.laboratorios.Laboratorio;
@@ -269,7 +270,7 @@ public class solicitudesDAO extends Conexion {
             jsonEquipo += "]";
             for (Persona alObj : listEstudiante) {
                 jsonEstudiante += "{\n"
-                        + "  \"idEstudiante\": " + alObj.getIdPersona()+ ",\n"
+                        + "  \"idEstudiante\": " + alObj.getIdPersona() + ",\n"
                         + "},";
             }
             jsonEstudiante = jsonEstudiante.substring(0, jsonEstudiante.length() - 1);
@@ -306,5 +307,34 @@ public class solicitudesDAO extends Conexion {
         }
 
     }
+
+    public List<Encargado> listarEncargadoBYlaboratorio(int encargadobylabo) throws Exception {
+        List<Encargado> lista = new ArrayList<>();
+        ResultSet resultSet;
+        try {
+            conectar();
+            String sql = "select id_persona, nombre_persona, apellido_persona\n"
+                    + "	FROM laboratorio.persona p \n"
+                    + "	inner join laboratorio.encargado en on en.\"persona_id_persona\"=p.\"id_persona\"\n"
+                    + "	inner join laboratorio.encargado_laboratorio enl on enl.\"encargado_id_encargado\"  = en.\"id_encargado\"\n"
+                    + "	where laboratorio_id_laboratorio =" + encargadobylabo;
+            PreparedStatement st = this.getConnection().prepareStatement(sql);
+            resultSet = st.executeQuery();
+            while (resultSet.next()) {
+                Encargado obj = new Encargado();
+                obj.setIdPersona(resultSet.getInt("id_persona"));
+                obj.setNombre_persona(resultSet.getString("nombre_persona"));
+                obj.setApellido_persona(resultSet.getString("apellido_persona"));
+                lista.add(obj);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("x Aqui salio error linea 332 solicitudDAO");
+        } finally {
+            desconectar();
+        }
+        return lista;
+    }
+
 
 }

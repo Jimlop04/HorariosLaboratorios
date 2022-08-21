@@ -43,6 +43,7 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
     private List<Carrera> listaCarrera;
     private List<Asignatura> listAsignatura;
     private List<Laboratorio> listaLaboratorio;
+    private List<Encargado> listaEncargBYlabora;
     private List<Curso> listaCurso;
     private List<Persona> listaPersona;
     private List<Persona> listaPersonaConfirmada;
@@ -97,6 +98,20 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
             throw e;
         }
     }
+    
+    
+    
+       public void onEncargadoLaboratorioChange(int encargado) throws Exception {
+
+        try {
+            dao = new solicitudesDAO();
+            listaEncargBYlabora = dao.listarEncargadoBYlaboratorio(encargado);
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+    
 
     public void listarCareraByFacultadId() throws Exception {
         if (idFacultad == 0) {

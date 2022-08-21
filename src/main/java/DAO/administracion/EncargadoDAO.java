@@ -75,28 +75,6 @@ public class EncargadoDAO {
     }
     
     
-      public List<Encargado> getEncargados(int id_encargadobylabo) {
-        List<Encargado> Encargados = new ArrayList<>();
-
-        String sql = "SELECT laboratorio.listar_encargadobylaboratorio('" + id_encargadobylabo + "')";
-        try {
-            conexion.conectar();
-            resultSet = conexion.ejecutarSql(sql);
-            while (resultSet.next()) {
-                Encargados.add(new Encargado(
-                        resultSet.getInt("idpersona"),
-                        resultSet.getString("nompersona"),
-                        resultSet.getString("apepersona")));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            conexion.desconectar();
-        }
-        return Encargados;
-    }
-    
-
     public List<Encargado> getListaLaboratoriosXencargado(String dni) {
         List<Encargado> Encargados = new ArrayList<>();
 

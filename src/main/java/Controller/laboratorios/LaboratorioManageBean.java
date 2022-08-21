@@ -175,18 +175,7 @@ public class LaboratorioManageBean implements Serializable {
 
     }
 
-    public void onEncargadoLaboratorioChange(int encargado) throws Exception {
-
-        try {
-
-            System.out.print(encargado);
-            System.out.println(" ESTE ES EL ENCARGADO DE LABORATORIO");
-
-        } catch (Exception e) {
-            throw e;
-        }
-
-    }
+ 
 
     public void onFacultadChange() {
         System.out.println("FACULTAD");

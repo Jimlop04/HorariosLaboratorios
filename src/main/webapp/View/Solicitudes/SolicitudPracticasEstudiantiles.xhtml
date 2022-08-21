@@ -85,7 +85,9 @@
                                                 listener="#{equipoMB.listarEquiposByLaboratorioId()}"
                                                 update="comboEquipos"/>
                                         <p:ajax event="change"                                                         
-                                                listener="#{laboratorioMB.onEncargadoLaboratorioChange(equipoMB.idLaboratorio)}"
+                                                listener="#{solicitudesMB.onEncargadoLaboratorioChange(equipoMB.idLaboratorio)}"
+                                                rendered="SelectResponsableLabo" 
+                                                update="SelectResponsableLabo"
                                                 />
                                     </p:selectOneMenu>
                                 </div>
@@ -94,16 +96,15 @@
                                 <div class="p-field p-col-12 p-md-3">
                                     <p:outputLabel value="Responsable Laboratorio" for="@next"/>
                                     <p:selectOneMenu id="SelectResponsableLabo"
-                                                     disabled="#{encargadoMB.encargado.idEncargadoLaboratorio != 0}"
-                                                     value="#{encargadoMB.encargado.idEncargadoLaboratorio}">
-                                        <p:ajax listener="#{laboratorioMB.onEncargadoLaboratorioChange}" 
-                                                />
-                                        <f:selectItem itemLabel="Seleccione Encarcagado" 
+                                                     converter="omnifaces.SelectItemsIndexConverter"
+                                                     value="#{solicitudesMB.encargado.idEncargadoLaboratorio}">
+                                     
+                                        <f:selectItem noSelectionOption="true" itemLabel="Seleccione Encarcagado" 
                                                       itemValue="0"/>
-                                        <f:selectItems value="#{encargadoMB.listaEncargados}" 
+                                        <f:selectItems value="#{solicitudesMB.listaEncargBYlabora}" 
                                                        var="el"
                                                        itemLabel="#{el.nombre_persona}" 
-                                                       itemValue="#{el.idEncargadoLaboratorio}"></f:selectItems>
+                                                       itemValue="#{el.idPersona}"></f:selectItems>
 
                                     </p:selectOneMenu>
                                 </div>
