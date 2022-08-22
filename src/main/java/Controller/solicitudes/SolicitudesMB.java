@@ -98,10 +98,12 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
             throw e;
         }
     }
-    
-    
-    
-       public void onEncargadoLaboratorioChange(int encargado) throws Exception {
+
+    public void onEncargadoLaboratorioChange(int encargado) throws Exception {
+        
+        if (encargado == 0) {
+            listaEncargBYlabora = null;
+        }
 
         try {
             dao = new solicitudesDAO();
@@ -111,7 +113,6 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
         }
 
     }
-    
 
     public void listarCareraByFacultadId() throws Exception {
         if (idFacultad == 0) {
@@ -226,9 +227,9 @@ public class SolicitudesMB extends global.Mensajes implements Serializable {
         try {
             LocalDate todaysDate = LocalDate.now();
             practicaLaboratorio = new Practica();
-            if (dao.registrarHorario(practicaLaboratorio,listaEquipos,listaPersonaConfirmada) > 0) {
+            if (dao.registrarHorario(practicaLaboratorio, listaEquipos, listaPersonaConfirmada) > 0) {
                 System.out.println("    Correcto");
-            }else{
+            } else {
                 System.out.println("   Incorrecto");
             }
 

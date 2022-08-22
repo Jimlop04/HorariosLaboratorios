@@ -98,7 +98,7 @@
                                     <p:selectOneMenu id="SelectResponsableLabo"
                                                      converter="omnifaces.SelectItemsIndexConverter"
                                                      value="#{solicitudesMB.encargado.idEncargadoLaboratorio}">
-                                     
+
                                         <f:selectItem noSelectionOption="true" itemLabel="Seleccione Encarcagado" 
                                                       itemValue="0"/>
                                         <f:selectItems value="#{solicitudesMB.listaEncargBYlabora}" 
@@ -109,33 +109,45 @@
                                     </p:selectOneMenu>
                                 </div>
                                 <!-- ASIGNATURA -->
+
                                 <div class="p-field p-col-12 p-md-3">
                                     <p:outputLabel value="Materia" for="@next"/>
-                                    <p:selectOneMenu id="SelectAsignatura"
-                                                     value="#{solicitudesMB.asignatura.idAsignatura}">
-
-                                        <f:selectItem itemLabel="Seleccione Asigantura" 
-                                                      itemValue="0"/>
-                                        <f:selectItems value="#{solicitudesMB.listAsignatura}"
-                                                       var="la"
-                                                       itemLabel="#{la.nombreAsignatura}"                                                             
-                                                       itemValue="#{la.idAsignatura}">
-
-                                        </f:selectItems>
-                                        <p:ajax event="change"                                                         
-                                                listener="#{solicitudesMB.listaAlumnoByProfesor(solicitudesMB.asignatura.idAsignatura,loginMB.httpSession.getAttribute('idPersona') )}" 
-                                                rendered=":dialogEstudiante:listaEstudiantesElegir" 
-                                                update=":dialogEstudiante:listaEstudiantesElegir"
-                                                />
-                                    </p:selectOneMenu>
+                                    <p:inputText 
+                                        maxlength="25"></p:inputText>
                                 </div>
+
+
+                                <!--    <div class="p-field p-col-12 p-md-3">
+                                       <p:outputLabel value="Materia" for="@next"/>
+                                       <p:selectOneMenu id="SelectAsignatura"
+                                                        value="{solicitudesMB.asignatura.idAsignatura}">
+   
+                                           <f:selectItem itemLabel="Seleccione Asigantura" 
+                                                         itemValue="0"/>
+                                           <f:selectItems value="{solicitudesMB.listAsignatura}"
+                                                          var="la"
+                                                          itemLabel="{la.nombreAsignatura}"                                                             
+                                                          itemValue="{la.idAsignatura}">
+   
+                                           </f:selectItems>
+                                           <p:ajax event="change"                                                         
+                                                   listener="{solicitudesMB.listaAlumnoByProfesor(solicitudesMB.asignatura.idAsignatura,loginMB.httpSession.getAttribute('idPersona') )}" 
+                                                   rendered=":dialogEstudiante:listaEstudiantesElegir" 
+                                                   update=":dialogEstudiante:listaEstudiantesElegir"
+                                                   />
+                                       </p:selectOneMenu>
+                                   </div> -->
+
                                 <div class="p-field p-col-12 p-md-3">
                                     <p:outputLabel value="Docente" for="@next"/>
                                     <p:inputText
                                         value="#{loginMB.httpSession.getAttribute('nombrePersona')}"
                                         ></p:inputText>
-                                </div>
+                                </div> 
+
+
                                 <!-- Periodo Academico -->
+
                                 <div class="p-field p-col-12 p-md-2">
                                     <p:outputLabel value="Periodo Academico" for="@next"/>
                                     <p:selectOneMenu id="SelectPeriodo"
@@ -177,43 +189,78 @@
 
                                     </p:selectOneMenu>
                                 </div>
-                                <div class="p-field p-col-12 p-md-2">
+                                <div class="p-field p-col-12 p-md-3">
                                     <p:outputLabel value="Tipo de Solicitud" for="@next"/>
                                     <p:inputText 
                                         maxlength="50"></p:inputText>
                                 </div>
-                                 <div class="p-field p-col-12 p-md-1">
-                                    <p:outputLabel value="Nro. Practica" for="@next"/>
-                                    <p:inputText 
-                                        maxlength="25"></p:inputText>
-                                </div>
-                                <div class="p-field p-col-12 p-md-6">
+
+                                <div class="p-field p-col-12 p-md-7">
                                     <p:outputLabel value="Tema de la Practica" for="@next"/>
                                     <p:inputText 
                                         maxlength="25"></p:inputText>
                                 </div>
                                 <div class="p-field p-col-12 p-md-1">
+                                    <p:outputLabel value="Nro. Practica" for="@next"/>
+                                    <p:inputText 
+                                        maxlength="25"></p:inputText>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-1">
                                     <p:outputLabel value="Nro. Estudiantes" for="@next"/>
                                     <p:inputText 
                                         maxlength="25"></p:inputText>
                                 </div>
-                                <div class="p-field p-col-12 p-md-2">
-                                    <p:outputLabel value="Hora y Fecha"/>
-                                    <p:commandButton 
-                                        value="Elegir Horario" 
-                                        icon="pi pi-check" 
-                                        styleClass="ui-button-primary"
-                                        oncomplete="PF('SeleccionarHorario').show()">
-                                    </p:commandButton>
-
-
-                                </div>
-
                                 <div class="p-field p-col-12 p-md-12">
                                     <p:outputLabel value="Objetivo de la practica" for="@next"/>
                                     <p:inputText 
                                         maxlength="25"></p:inputText>
                                 </div>
+
+
+                                <div  class="card p-grid p-col-12 ">
+                                    <div class="p-field p-col-12 p-md-2" style="align-content: flex-start">
+                                        <p:outputLabel value="Fecha Solicitud" for="@next"/>
+                                        <div class="ui-inputgroup">
+
+                                            <p:inputText 
+                                                maxlength="25"></p:inputText>
+                                            <p:commandButton 
+                                                icon="pi pi-calendar" 
+                                                styleClass="ui-button-primary"
+                                                oncomplete="PF('SeleccionarHorario').show()">
+                                            </p:commandButton>
+                                        </div>
+
+                                    </div>
+                                    <div class=" p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Seleccionar Horas por la Mañana" for="@next"/>
+                                        <p:selectManyButton value="#{selectManyButtonView.selectedOptions}"  >
+                                            <f:selectItem itemLabel="07:30 - 08:29" itemValue="Option 1" />
+
+                                            <f:selectItem itemLabel="08:30 - 09:29" itemValue="Option 2"/>
+
+                                            <f:selectItem itemLabel="09:30 - 10:29" itemValue="Option 3"/>
+
+                                            <f:selectItem itemLabel="10:30 - 11:29" itemValue="Option 4"/>
+
+                                            <f:selectItem itemLabel="11:30 - 12:30" itemValue="Option 5"/>
+
+                                        </p:selectManyButton>
+                                        <!--      <p:outputLabel value="espacio" style="color: white"/> -->
+                                    </div>
+                                    <div class=" p-field p-col-12 p-md-4">  
+                                        <p:outputLabel value="Seleccionar Horas por la Tarde" for="@next"/>
+                                        <p:selectManyButton value="#{selectManyButtonView.selectedOptions}">
+                                            <f:selectItem itemLabel="15:00 - 15:59" itemValue="Option 6" />
+                                            <f:selectItem itemLabel="16:00 - 16:59" itemValue="Option 7"/>
+                                            <f:selectItem itemLabel="17:00 - 18:00" itemValue="Option 7"/>
+                                        </p:selectManyButton>
+                                    </div>
+
+                                </div>
+
+
                             </div>
                         </p:outputPanel>
                         <f:facet name="footer">

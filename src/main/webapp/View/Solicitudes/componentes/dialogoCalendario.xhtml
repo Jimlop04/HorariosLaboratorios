@@ -11,6 +11,7 @@
             id="DialogCalendarioHorario" 
             header="Horario" 
             showEffect="fade" 
+            height="600"
             modal="true"
             widgetVar="SeleccionarHorario"
             responsive="true" 
@@ -18,58 +19,61 @@
             draggable="false"
             closeOnEscape="true" >
             <p:outputPanel id="manage-rol-form" class="ui-fluid">
-                    <p:panel header="Calendario">
-                        <p:schedule
-                            value="#{calendarMB.eventModel}"
-                            draggable="true"
-                            
-                            resizable="true"
-                            showWeekends="false"
-                            allDaySlot="false"
-                            maxTime="18:30:00"
-                            minTime="07:30:00"
-                            slotDuration="01:00:00"
-                            rightHeaderTemplate="timeGridWeek"
-                            height="auto"
-                            leftHeaderTemplate="prev,next today">   
-                            <p:ajax event="dateSelect" 
-                                    listener="#{calendarMB.onDateSelect}" 
-                                    update="eventDetails"
-                                    oncomplete="PF('eventDialog').show();"/>
-                            <p:ajax event="eventSelect" 
-                                    listener="#{calendarMB.onEventSelect}" 
-                                    update="eventDetails"
-                                    oncomplete="PF('eventDialog').show();"/>
-                            <p:ajax event="eventMove" 
-                                    listener="#{calendarMB.onEventMove}" 
-                                    />
-                            <p:ajax event="eventResize" 
-                                    listener="#{calendarMB.onEventResize}" 
-                                    />
-                            <p:ajax event="viewChange" 
-                                    listener="#{calendarMB.onViewChange}" 
-                                    />
+                <p:panel header="Calendario">
+                    <p:schedule
+                        value="#{calendarMB.eventModel}"
+                        draggable="true"
+                        resizable="true"
+                        showWeekends="false"
+                        allDaySlot="false"
+                        maxTime="18:30:00"
+                        minTime="07:30:00"
+                        slotDuration="01:00:00"
+                        height="auto"
+                        leftHeaderTemplate="prev,next today"
+                        rightHeaderTemplate=""
+                        >   
+                        <p:ajax event="dateSelect" 
+                                listener="#{calendarMB.onDateSelect}" 
+                                update="eventDetails"
+                                oncomplete="PF('eventDialog').show();"/>
+                        <p:ajax event="eventSelect" 
+                                listener="#{calendarMB.onEventSelect}" 
+                                update="eventDetails"
+                                oncomplete="PF('eventDialog').show();"/>
+                        <p:ajax event="eventMove" 
+                                listener="#{calendarMB.onEventMove}" 
+                                />
+                        <p:ajax event="eventResize" 
+                                listener="#{calendarMB.onEventResize}" 
+                                />
 
-                        </p:schedule>
-                    </p:panel>
+                    </p:schedule>
+                </p:panel>
 
-          
-                
-                <p:dialog widgetVar="eventDialog" header="Fecha y Hora" showEffect="fade" hideEffect="fade">
+
+
+                <p:dialog widgetVar="eventDialog" header="Fecha de Solicitud">
+                    
                     <h:panelGrid id="eventDetails" columns="2" cellpadding="7">
-                        
-                        <p:outputLabel for="from" value="Hora Inicio" styleClass="p-text-bold"/>
-                        <p:datePicker id="from" value="#{scheduleJava8View.event.startDate}" pattern="dd/MM/yyyy"
-                                      showTime="true" appendTo="@(body)"/>
-
-                        <p:outputLabel for="to" value="Hora Fin" styleClass="p-text-bold"/>
-                        <p:datePicker id="to" value="#{scheduleJava8View.event.endDate}" pattern="dd/MM/yyyy"
-                                      showTime="true" appendTo="@(body)"/>
+                        <p:outputLabel for="from" value="¿ Desea seleccionar esta Fecha ? :" styleClass="font-bold"/>
+                        <p:datePicker id="from" 
+                                      value="#{calendarMB.event.startDate}" 
+                                      pattern="dd/MM/yyyy"
+                                      class="center_content"
+                                      showTime="false" 
+                                      disabled="true"
+                                      appendTo="@(body)"/>
 
                     </h:panelGrid>
 
                     <div class="p-d-flex p-jc-between p-mt-3">
-                        <p:commandButton type="reset" value="Reiniciar" styleClass="p-text-bold ui-button-outlined"/>
+                        <p:commandButton 
+                            value="Volver" 
+                            icon="pi pi-reply"
+                            onclick="PF('eventDialog').hide()"  
+                            styleClass="font-bold ui-button-outlined"/>
+
                         <p:commandButton id="addButton" value="Guardar" action="#{scheduleJava8View.addEvent}"
                                          oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
                     </div>
