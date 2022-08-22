@@ -5,59 +5,54 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
 import Model.administracion.Profesor;
 import global.Mensajes;
 import java.sql.SQLException;
-import javax.faces.bean.ViewScoped;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.ejb.Asynchronous;
-
 import Controller.login.LoginMB;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.faces.bean.ManagedBean;
+import lombok.Getter;
+import lombok.Setter;
 import org.primefaces.PrimeFaces;
 
 /**
  *
  * @author ebert
  */
+@Getter
+@Setter
 @ManagedBean
-@ViewScoped
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@javax.faces.view.ViewScoped
 public class ProfesorMB extends Mensajes implements Serializable {
 
     static final String NUEVO = "Nuevo";
     LoginMB prueba = new LoginMB();
     static final String EDITAR = "Editar";
     List<Profesor> listarProfesor;
-    List<Profesor> profesores;
     Profesor profesor;
     String profesorModo;
     ProfesorDAO profesorDAO;
 
     @PostConstruct
     public void init() {
+         System.out.println("1");
         try {
-            int var = (Integer) prueba.httpSession.getAttribute("chiquito");
-            listarProfesor = new ArrayList<>();
-            profesor = new Profesor();
-            listarProfesores();
+            int var = (Integer) prueba.httpSession.getAttribute("chiquito");            
         } catch (Exception ex) {
-            Logger.getLogger(ProfesorMB.class.getName()).log(Level.SEVERE, null, ex);
+          
         }
+         System.out.println("2");
+        profesorDAO = new ProfesorDAO();
+        profesor = new Profesor();
+         System.out.println("3");
+        listarProfesores();
 
     }
 
-    @Asynchronous
     public void listarProfesores() {
         try {
-            profesorDAO = new ProfesorDAO();
+            listarProfesor = new ArrayList<>();
             listarProfesor = profesorDAO.listarProfesor();
+        
         } catch (Exception e) {
             e.getMessage();
         }
@@ -81,20 +76,18 @@ public class ProfesorMB extends Mensajes implements Serializable {
     }
 
     public void guardar() throws Exception {
-        System.out.println(profesor+ "   SIN THIS");
-        System.out.println(this.profesor+"  CON THIS");
         try {
             if (this.profesorModo.equals(NUEVO)) {
                 profesorDAO.insertarProfesor(profesor);
                 mensajeDeExito("Éxito: Docente agregado");
-               
+
             }
             if (this.profesorModo.equals(EDITAR)) {
                 profesorDAO.editarProfesor(this.profesor.getIdPersona(), this.profesor.getIdUsuario(), this.profesor);
                 mensajeDeExito("Éxito: Docente editado");
             }
-             PrimeFaces.current().executeScript("PF('detalleProfesor').hide()");
-             PrimeFaces.current().ajax().update(":form:dtProfesor");
+            PrimeFaces.current().executeScript("PF('detalleProfesor').hide()");
+            PrimeFaces.current().ajax().update(":form:dtProfesor");
         } catch (Exception e) {
             e.getMessage();
         }
@@ -110,4 +103,5 @@ public class ProfesorMB extends Mensajes implements Serializable {
             return true;
         }
     }
+    
 }

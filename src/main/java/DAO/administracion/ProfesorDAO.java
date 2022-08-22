@@ -28,9 +28,9 @@ public class ProfesorDAO extends Conexion {
             while (result.next()) {
 
                 listProfesores.add(new Profesor(
-                        result.getInt("idU"),
-                        result.getInt("idP"),
-                        result.getInt("idR"),
+                        result.getInt("idu"),
+                        result.getInt("idp"),
+                        result.getInt("idr"),
                         result.getString("nombre"),
                         result.getString("apellido"),
                         result.getString("dni"),
@@ -87,6 +87,8 @@ public class ProfesorDAO extends Conexion {
     }
 
     public boolean insertarProfesor(Profesor pro) {
+        System.out.println("PRO");
+        System.out.println(pro);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String sql;
         encryptAES = new AES();
@@ -95,16 +97,18 @@ public class ProfesorDAO extends Conexion {
                 + ",'" + pro.getGenero_persona() + "','" + pro.getCorreo_persona() + "',"
                 + "'" + pro.getCelular_persona() + "','" + pro.getNombre_usuario() + "','" + pro.getPassword_usuario() + "');";
 
+        System.out.println(sql);
         try {
             conectar();
             result = ejecutarSql(sql);
             result.next();
-            return true;
+           
         } catch (Exception e) {
             return false;
         } finally {
             desconectar();
         }
+         return true;
     }
     public boolean editarProfesor(int idP,int idU,Profesor pro){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
